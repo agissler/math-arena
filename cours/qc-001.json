@@ -1,0 +1,15 @@
+{
+  "id": "qc-001",
+  "title": "Inégalité de Cauchy-Schwarz",
+  "domain": "Algèbre",
+  "chapter": 6,
+  "level": "MPSI",
+  "cadence": "Blitz · 10 min",
+  "difficulty": 3,
+  "statement": "Soient \\(n \\geq 1\\) un entier et \\(a_1, \\ldots, a_n, b_1, \\ldots, b_n\\) des réels. Démontrez l'inégalité :",
+  "formula": "\\left(\\sum_{i=1}^{n} a_i b_i\\right)^2 \\leq \\left(\\sum_{i=1}^{n} a_i^2\\right)\\left(\\sum_{i=1}^{n} b_i^2\\right)",
+  "followup": "Précisez également le cas d'égalité.",
+  "hint": "Considérez \\(f(t) = \\sum_{i=1}^n (a_i t - b_i)^2\\) comme polynôme en \\(t\\).",
+  "grading_context": "Inégalité de Cauchy-Schwarz. Méthodes acceptées : (1) discriminant du trinôme f(t)=sum(ai*t-bi)^2>=0, (2) identité de Lagrange. Le cas A=sum(ai^2)=0 doit être traité séparément. Cas d'égalité : les vecteurs (ai) et (bi) sont proportionnels.",
+  "correction": "<p>Pour \\(t \\in \\mathbb{R}\\), posons \\(f(t) = \\sum_{i=1}^n (a_i t - b_i)^2 \\geq 0\\). En développant, \\(f(t) = At^2 - 2Bt + C\\) avec \\(A = \\sum a_i^2\\), \\(B = \\sum a_i b_i\\), \\(C = \\sum b_i^2\\).</p><p>Si \\(A = 0\\), tous les \\(a_i\\) sont nuls, donc \\(B = 0\\) et l'inégalité \\(B^2 \\leq AC\\) devient \\(0 \\leq 0\\) : elle est vraie, avec égalité.</p><p>Si \\(A > 0\\), \\(f\\) est un trinôme du second degré toujours positif ou nul sur \\(\\mathbb{R}\\), donc son discriminant \\(\\Delta = 4B^2 - 4AC\\) est négatif ou nul, d'où \\(B^2 \\leq AC\\).</p><p><b>Cas d'égalité :</b> il y a égalité si et seulement si \\(f\\) admet une racine double \\(t_0\\) (ou \\(A=0\\) avec tous les \\(b_i\\) nuls), c'est-à-dire \\(a_i t_0 = b_i\\) pour tout \\(i\\) : les familles \\((a_i)\\) et \\((b_i)\\) sont proportionnelles.</p>"
+}

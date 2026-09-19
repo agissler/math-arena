@@ -1,0 +1,53 @@
+{
+  "id": "ccinp-mp-2026-maths1",
+  "concours": "CCINP",
+  "filiere": "MP",
+  "annee": 2026,
+  "epreuve": "Mathématiques 1",
+  "duree": "4 heures",
+  "blocks": [
+    { "type": "text", "html": "<p>Les calculatrices sont interdites. Le sujet est composé de deux exercices et d'un problème.</p>" },
+
+    { "type": "heading", "level": 1, "title": "Exercice I" },
+    { "type": "text", "html": "<p>On considère deux tables : ELEVES et PAIEMENTS. La première contient des informations sur des élèves dans une grande école d'ingénieur et la deuxième permet d'identifier quels sont les paiements effectués par les élèves pour la scolarité dans cette école.</p><p>La table ELEVES contient les attributs suivants :<br>- id : identifiant d'un individu (entier), clé primaire ;<br>- nom (chaîne de caractères) ;<br>- prenom (chaîne de caractères) ;<br>- email (chaîne de caractères) ;<br>- promo : année d'admission dans l'école (int).</p><p>La table PAIEMENTS contient les attributs suivants :<br>- id : identifiant de suivi (entier), clé primaire ;<br>- id_eleve : identifiant du client représenté par l'attribut id dans la table ELEVES (entier) ;<br>- montant : montant payé en euros (entier) ;<br>- date_paiement : date du paiement (chaîne de caractères).</p>" },
+    { "type": "question", "id": "Q1", "statement": "Écrire une requête SQL affichant les emails différents (sans doublons) de tous les élèves qui ne sont pas de la promotion 2025." },
+    { "type": "question", "id": "Q2", "statement": "Écrire une requête SQL affichant le nom, le prénom et le montant total payé pour chaque élève. Cette requête devra être triée par nom, puis prénom." },
+    { "type": "question", "id": "Q3", "statement": "On souhaite trouver les doublons dans la table ELEVES. Écrire une requête SQL affichant les id et emails des élèves qui ont au moins deux lignes identiques dans la table ELEVES (à l'exception de l'attribut id)." },
+    { "type": "question", "id": "Q4", "statement": "Écrire une requête SQL affichant l'id des élèves n'ayant effectué aucun paiement." },
+
+    { "type": "heading", "level": 1, "title": "Exercice II" },
+    { "type": "text", "html": "<p>Soit \\(X\\) une variable aléatoire à valeurs dans \\(\\mathbb{N}\\). On note \\(G_X\\) la fonction génératrice de \\(X\\) définie par :</p><div class=\"math-block\">\\[G_X(t) = \\sum_{n=0}^{+\\infty} P(X=n)\\,t^n.\\]</div>" },
+    { "type": "question", "id": "Q5", "statement": "Montrer que \\(G_X\\) est bien définie sur \\([-1,1]\\)." },
+    { "type": "question", "id": "Q6", "statement": "Si \\(X\\) est une variable aléatoire suivant une loi de Poisson de paramètre \\(\\lambda > 0\\), rappeler et démontrer l'expression de \\(G_X\\)." },
+    { "type": "question", "id": "Q7", "statement": "En utilisant un produit de Cauchy de deux séries entières, démontrer que si \\(X\\) et \\(Y\\) sont deux variables aléatoires indépendantes à valeurs dans \\(\\mathbb{N}\\), alors on a :", "formula": "\\forall t \\in\\ ]{-1},1[,\\quad G_{X+Y}(t) = G_X(t)\\,G_Y(t)." },
+    { "type": "question", "id": "Q8", "statement": "On suppose désormais que \\(X\\) et \\(Y\\) sont indépendantes et suivent des lois de Poisson de paramètres respectifs \\(\\lambda\\) et \\(\\mu\\). Déterminer la loi de \\(Z = X+Y\\)." },
+
+    { "type": "heading", "level": 1, "title": "Problème" },
+    { "type": "text", "html": "<p>Les parties I et II de ce problème sont indépendantes mais les résultats seront utilisés pour la résolution de la partie III.</p>" },
+
+    { "type": "heading", "level": 2, "title": "Partie I - Calcul d'une intégrale" },
+    { "type": "text", "html": "<p>Dans toute cette partie, on pose :</p><div class=\"math-block\">\\[g(x) = \\int_{-\\infty}^{+\\infty} \\frac{x}{x^2+t^2}\\,e^{it}\\,dt \\quad \\text{pour tout } x > 0.\\]</div>" },
+    { "type": "question", "id": "Q9", "statement": "Démontrer que \\(g\\) est bien définie sur \\(]0,+\\infty[\\)." },
+    { "type": "question", "id": "Q10", "statement": "Pour tout \\(x>0\\), démontrer que \\(\\displaystyle g(x) = \\int_{-\\infty}^{+\\infty} \\frac{e^{ixu}}{1+u^2}\\,du\\). En déduire que \\(g\\) est bornée sur \\(]0,+\\infty[\\)." },
+    { "type": "question", "id": "Q11", "statement": "Démontrer que \\(\\displaystyle\\lim_{x \\to 0^+} g(x) = \\pi\\)." },
+    { "type": "question", "id": "Q12", "statement": "Démontrer que \\(g\\) est de classe \\(C^2\\) sur \\(]0,+\\infty[\\)." },
+    { "type": "question", "id": "Q13", "statement": "Calculer \\(\\dfrac{\\partial^2}{\\partial x^2}\\!\\left(\\dfrac{x}{x^2+t^2}\\right) + \\dfrac{\\partial^2}{\\partial t^2}\\!\\left(\\dfrac{x}{x^2+t^2}\\right)\\) pour \\((x,t) \\in\\ ]0,+\\infty[\\times\\mathbb{R}\\). En déduire que \\(g\\) est solution de l'équation différentielle \\(y'' - y = 0\\) sur \\(]0,+\\infty[\\)." },
+    { "type": "question", "id": "Q14", "statement": "Pour tout \\(x > 0\\), déterminer une expression de \\(g(x)\\)." },
+
+    { "type": "heading", "level": 2, "title": "Partie II - Formule sommatoire de Poisson" },
+    { "type": "text", "html": "<p>Dans toute la suite, on pose :</p><div class=\"math-block\">\\[\\forall t \\in \\mathbb{R},\\quad f(t) = \\frac{1}{1+t^2},\\]</div><p>et</p><div class=\"math-block\">\\[\\forall x \\in \\mathbb{R},\\quad F(x) = \\sum_{n=0}^{+\\infty} f(x+n) + \\sum_{n=1}^{+\\infty} f(x-n).\\]</div>" },
+    { "type": "question", "id": "Q15", "statement": "Démontrer que \\(F\\) est bien définie sur \\(\\mathbb{R}\\) et 1 périodique." },
+    { "type": "question", "id": "Q16", "statement": "Démontrer que \\(F\\) est continue sur \\([0,1]\\) et en déduire que \\(F\\) est continue sur \\(\\mathbb{R}\\)." },
+    { "type": "text", "html": "<p>Pour toute fonction \\(u\\) continue sur \\(\\mathbb{R}\\) et 1 périodique, on pose, pour tout \\(k \\in \\mathbb{Z}\\) :</p><div class=\"math-block\">\\[c_k(u) = \\int_0^1 u(t)\\,e^{-2i\\pi k t}\\,dt.\\]</div>" },
+    { "type": "question", "id": "Q17", "statement": "Démontrer que \\(\\displaystyle c_k(F) = \\int_{-\\infty}^{+\\infty} f(t)\\,e^{-2i\\pi k t}\\,dt\\) pour tout \\(k \\in \\mathbb{Z}\\)." },
+    { "type": "question", "id": "Q18", "statement": "Pour tout \\(k,n \\in \\mathbb{Z}\\), calculer la valeur de l'intégrale \\(\\displaystyle\\int_0^1 e^{-2i\\pi(n+k)t}\\,dt\\)." },
+
+    { "type": "heading", "level": 2, "title": "Partie III - Applications" },
+    { "type": "text", "html": "<p>On rappelle les notations : \\(\\displaystyle\\forall x \\in \\mathbb{R},\\ F(x) = \\sum_{n=0}^{+\\infty} f(x+n) + \\sum_{n=1}^{+\\infty} f(x-n)\\) et \\(f : t \\mapsto \\dfrac{1}{1+t^2}\\).</p>" },
+    { "type": "question", "id": "Q19", "statement": "Calculer \\(c_0(F)\\). En utilisant les résultats des parties I et II, calculer \\(c_k(F)\\) pour tout entier \\(k > 0\\). On admettra que \\(c_{-k}(F) = c_k(F)\\) pour tout \\(k \\in \\mathbb{Z}\\)." },
+    { "type": "question", "id": "Q20", "statement": "On pose :", "formula": "\\forall x \\in \\mathbb{R},\\quad G(x) = \\sum_{n=0}^{+\\infty} c_n(F)\\,e^{2i\\pi nx} + \\sum_{n=1}^{+\\infty} c_{-n}(F)\\,e^{-2i\\pi nx}.", "followup": "Démontrer que \\(G\\) est continue sur \\(\\mathbb{R}\\) et 1 périodique." },
+    { "type": "text", "html": "<p>On admet le résultat suivant :</p><p style=\"font-style:italic\">« Si \\(u\\) et \\(v\\) sont deux fonctions continues sur \\(\\mathbb{R}\\), 1 périodiques et vérifient \\(c_k(u)=c_k(v)\\) pour tout \\(k \\in \\mathbb{Z}\\), alors \\(u=v\\) ».</p>" },
+    { "type": "question", "id": "Q21", "statement": "Démontrer que \\(F = G\\)." },
+    { "type": "question", "id": "Q22", "statement": "En déduire la valeur de \\(F(x)\\) pour tout \\(x \\in \\mathbb{R}\\)." }
+  ]
+}
