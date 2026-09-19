@@ -1,7 +1,9 @@
 {
   "id": "cs-001",
   "title": "Inégalité de Cauchy-Schwarz",
-  "category": "Analyse · Inégalités",
+  "domain": "Algèbre",
+  "chapter": 6,
+  "level": "MPSI",
   "cadence": "Blitz · 10 min",
   "difficulty": 3,
   "statement": "Soient \\(n \\geq 1\\) un entier et \\(a_1, \\ldots, a_n, b_1, \\ldots, b_n\\) des réels. Démontrez l'inégalité :",

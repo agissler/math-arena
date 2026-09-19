@@ -35,7 +35,12 @@ header{width:100%;border-bottom:1px solid var(--border);padding:14px 32px;displa
 .elo-pill{background:var(--surf2);border:1px solid var(--border);padding:4px 12px;border-radius:20px;font-size:12px;color:var(--text)}
 .elo-pill b{color:var(--accent)}
 
-.selector-bar{width:100%;max-width:820px;padding:24px 24px 0;display:flex;gap:10px;flex-wrap:wrap}
+.selector-bar{width:100%;max-width:820px;padding:24px 24px 0;display:flex;flex-direction:column;gap:12px}
+.filter-row{display:flex;gap:10px;flex-wrap:wrap}
+.filter-select{font-family:var(--mono);font-size:11px;padding:7px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surf);color:var(--text);cursor:pointer;transition:border-color .15s}
+.filter-select:hover{border-color:var(--borderB)}
+.prob-list{display:flex;gap:10px;flex-wrap:wrap}
+.no-results{font-family:var(--mono);font-size:12px;color:var(--muted);padding:6px 2px}
 .prob-btn{font-family:var(--mono);font-size:11px;padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:var(--surf);color:var(--muted);cursor:pointer;transition:all .15s}
 .prob-btn:hover{border-color:var(--borderB);color:var(--text)}
 .prob-btn.active{border-color:var(--accent);background:var(--accentD);color:var(--accent)}
@@ -43,6 +48,9 @@ header{width:100%;border-bottom:1px solid var(--border);padding:14px 32px;displa
 main{width:100%;max-width:820px;padding:20px 24px 0;display:flex;flex-direction:column;gap:20px}
 
 .meta-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.cat-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:-8px}
+.cat-tag{font-family:var(--mono);font-size:11px;padding:4px 10px;border-radius:20px;background:var(--surf2);border:1px solid var(--border);color:var(--muted)}
+.cat-tag.cat-level{color:var(--purple);border-color:rgba(139,92,246,.3);background:rgba(139,92,246,.08)}
 .tag{font-family:var(--mono);font-size:11px;color:var(--accent);background:var(--accentD);border:1px solid rgba(0,229,160,.3);padding:4px 10px;border-radius:20px}
 .diff-row{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;color:var(--muted)}
 .dots{display:flex;gap:3px}
@@ -162,9 +170,32 @@ const WORKER_URL = 'https://holy-dawn-664a.armandgissler.workers.dev/';
 // Le mot de passe et la clé Gemini sont dans Cloudflare.
 // ═══════════════════════════════════════════════════════
 
+// ── Chapitres du programme MP ───────────────────────────
+const CHAPTERS = [
+  {n:1,  name:'Groupes',                                  domain:'Algèbre'},
+  {n:2,  name:'Arithmétique',                              domain:'Algèbre'},
+  {n:3,  name:'Corps, polynômes, fractions rationnelles',  domain:'Algèbre'},
+  {n:4,  name:'Algèbre linéaire',                          domain:'Algèbre'},
+  {n:5,  name:'Réduction',                                 domain:'Algèbre'},
+  {n:6,  name:'Espaces euclidiens',                        domain:'Algèbre'},
+  {n:7,  name:'Endomorphismes symétriques',                domain:'Algèbre'},
+  {n:8,  name:'Topologie matricielle',                     domain:'Algèbre'},
+  {n:9,  name:'Espaces vectoriels normés et topologie',    domain:'Analyse'},
+  {n:10, name:'Analyse de première année',                 domain:'Analyse'},
+  {n:11, name:'Intégration',                               domain:'Analyse'},
+  {n:12, name:'Suites et séries de fonctions',             domain:'Analyse'},
+  {n:13, name:'Séries entières',                           domain:'Analyse'},
+  {n:14, name:'Équations différentielles',                 domain:'Analyse'},
+  {n:15, name:'Calcul différentiel',                       domain:'Analyse'},
+  {n:16, name:'Probabilités',                              domain:'Probabilités'},
+  {n:17, name:'Compléments',                               domain:'Compléments'},
+];
+const LEVELS = ['MPSI', 'MP'];
+function chapterInfo(n) { return CHAPTERS.find(c => c.n === Number(n)); }
+
 // ── Problèmes chargés depuis problems/*.json ──
-// Pour ajouter un problème : crée problems/<id>.json puis ajoute son nom
-// de fichier dans problems/index.json.
+// Pour ajouter un problème : crée problems/<id>.json (avec domain, chapter,
+// level, difficulty) puis ajoute son nom de fichier dans problems/index.json.
 let PROBLEMS = [];
 
 async function loadProblems() {
@@ -180,6 +211,7 @@ async function loadProblems() {
 
 // ── State ──────────────────────────────────────────────
 let currentIdx = 0;
+let filters = { domain: '', chapter: '', level: '', difficulty: '' };
 let currentElo = 1200;
 let evaluated = false;
 let msgTimer = null;
@@ -203,31 +235,104 @@ async function callAI(prompt) {
   return data.text;
 }
 
-// ── Selector ───────────────────────────────────────────
+// ── Filtres & sélecteur ─────────────────────────────────
+function filteredProblems() {
+  return PROBLEMS.filter(p =>
+    (!filters.domain || p.domain === filters.domain) &&
+    (!filters.chapter || String(p.chapter) === filters.chapter) &&
+    (!filters.level || p.level === filters.level) &&
+    (!filters.difficulty || String(p.difficulty) === filters.difficulty)
+  );
+}
+
 function buildSelector() {
-  document.getElementById('selector-bar').innerHTML = PROBLEMS.map((p, i) => `
-    <button class="prob-btn${i===0?' active':''}" onclick="switchProblem(${i})">
-      #${String(i+1).padStart(3,'0')} ${p.title}
-    </button>`).join('');
+  const domains = [...new Set(CHAPTERS.map(c => c.domain))];
+  const chapterOpts = CHAPTERS
+    .filter(c => !filters.domain || c.domain === filters.domain)
+    .map(c => `<option value="${c.n}"${filters.chapter===String(c.n)?' selected':''}>${c.n}. ${c.name}</option>`)
+    .join('');
+
+  document.getElementById('selector-bar').innerHTML = `
+    <div class="filter-row">
+      <select class="filter-select" onchange="onFilterChange('domain', this.value)">
+        <option value="">Toutes matières</option>
+        ${domains.map(d => `<option value="${d}"${filters.domain===d?' selected':''}>${d}</option>`).join('')}
+      </select>
+      <select class="filter-select" onchange="onFilterChange('chapter', this.value)">
+        <option value="">Tous chapitres</option>
+        ${chapterOpts}
+      </select>
+      <select class="filter-select" onchange="onFilterChange('level', this.value)">
+        <option value="">Tous niveaux</option>
+        ${LEVELS.map(l => `<option value="${l}"${filters.level===l?' selected':''}>${l}</option>`).join('')}
+      </select>
+      <select class="filter-select" onchange="onFilterChange('difficulty', this.value)">
+        <option value="">Toutes difficultés</option>
+        ${[1,2,3,4,5].map(d => `<option value="${d}"${filters.difficulty===String(d)?' selected':''}>Niveau ${d}/5</option>`).join('')}
+      </select>
+    </div>
+    <div class="prob-list" id="prob-list"></div>`;
+
+  renderProbList();
+}
+
+function renderProbList() {
+  const list = filteredProblems();
+  const wrap = document.getElementById('prob-list');
+  if (!list.length) {
+    wrap.innerHTML = `<div class="no-results">Aucun problème ne correspond à ces filtres.</div>`;
+    return;
+  }
+  wrap.innerHTML = list.map(p => {
+    const idx = PROBLEMS.indexOf(p);
+    return `<button class="prob-btn${idx===currentIdx?' active':''}" onclick="switchProblem(${idx})">
+      #${String(idx+1).padStart(3,'0')} ${p.title}
+    </button>`;
+  }).join('');
+}
+
+function onFilterChange(key, value) {
+  filters[key] = value;
+  if (key === 'domain' && value && filters.chapter && chapterInfo(filters.chapter)?.domain !== value) {
+    filters.chapter = '';
+  }
+  const list = filteredProblems();
+  if (list.length) {
+    if (!list.includes(PROBLEMS[currentIdx])) {
+      currentIdx = PROBLEMS.indexOf(list[0]);
+      evaluated = false;
+    }
+    buildSelector();
+    renderProblem(currentIdx);
+  } else {
+    buildSelector();
+    document.getElementById('main-content').innerHTML = `<p style="font-family:var(--mono);color:var(--muted);padding:24px 0">Aucun problème ne correspond à ces filtres.</p>`;
+  }
 }
 
 function switchProblem(idx) {
   currentIdx = idx;
   evaluated = false;
-  document.querySelectorAll('.prob-btn').forEach((b,i) => b.classList.toggle('active', i===idx));
+  buildSelector();
   renderProblem(idx);
 }
 
 // ── Render ─────────────────────────────────────────────
 function renderProblem(idx) {
   const p = PROBLEMS[idx];
-  document.getElementById('hdr-cat').textContent = p.category;
+  const chap = chapterInfo(p.chapter);
+  document.getElementById('hdr-cat').textContent = `${p.domain} · ${chap ? chap.name : '—'}`;
   const dots = Array.from({length:5},(_,i)=>`<div class="dot${i<p.difficulty?' on':''}"></div>`).join('');
 
   document.getElementById('main-content').innerHTML = `
     <div class="meta-row">
       <div class="tag">Problème #${String(idx+1).padStart(3,'0')}</div>
       <div class="diff-row">Difficulté <div class="dots">${dots}</div> niveau ${p.difficulty}/5</div>
+    </div>
+    <div class="cat-row">
+      <span class="cat-tag">${p.domain}</span>
+      <span class="cat-tag">Chap. ${p.chapter} — ${chap ? chap.name : '—'}</span>
+      <span class="cat-tag cat-level">${p.level}</span>
     </div>
     <div class="problem-card">
       <div class="prob-head">
@@ -368,7 +473,11 @@ ${draft}`;
 }
 
 function nextProblem() {
-  switchProblem((currentIdx + 1) % PROBLEMS.length);
+  const list = filteredProblems();
+  if (!list.length) return;
+  const pos = list.indexOf(PROBLEMS[currentIdx]);
+  const next = list[(pos + 1) % list.length];
+  switchProblem(PROBLEMS.indexOf(next));
   window.scrollTo({top:0,behavior:'smooth'});
 }
 

@@ -1,7 +1,9 @@
 {
   "id": "mat-001",
   "title": "Diagonalisation",
-  "category": "Algèbre · Matrices",
+  "domain": "Algèbre",
+  "chapter": 5,
+  "level": "MP",
   "cadence": "Marathon · 20 min",
   "difficulty": 4,
   "statement": "Soit la matrice \\(A \\in \\mathcal{M}_3(\\mathbb{R})\\) :",

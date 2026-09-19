@@ -1,7 +1,9 @@
 {
   "id": "rec-001",
   "title": "Suite récurrente",
-  "category": "Analyse · Suites",
+  "domain": "Analyse",
+  "chapter": 10,
+  "level": "MPSI",
   "cadence": "Blitz · 10 min",
   "difficulty": 2,
   "statement": "Soit la suite \\((u_n)\\) définie par \\(u_0 = 2\\) et pour tout \\(n \\geq 0\\) :",
