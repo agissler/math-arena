@@ -39,7 +39,9 @@ header{width:100%;border-bottom:1px solid var(--border);padding:14px 32px;displa
 .filter-row{display:flex;gap:10px;flex-wrap:wrap}
 .filter-select{font-family:var(--mono);font-size:11px;padding:7px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surf);color:var(--text);cursor:pointer;transition:border-color .15s}
 .filter-select:hover{border-color:var(--borderB)}
-.prob-list{display:flex;gap:10px;flex-wrap:wrap}
+.prob-picker{display:flex;align-items:center;gap:12px}
+.prob-select{flex:1;min-width:0}
+.prob-count{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap}
 .no-results{font-family:var(--mono);font-size:12px;color:var(--muted);padding:6px 2px}
 .prob-btn{font-family:var(--mono);font-size:11px;padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:var(--surf);color:var(--muted);cursor:pointer;transition:all .15s}
 .prob-btn:hover{border-color:var(--borderB);color:var(--text)}
@@ -286,12 +288,15 @@ function renderProbList() {
     wrap.innerHTML = `<div class="no-results">Aucun problème ne correspond à ces filtres.</div>`;
     return;
   }
-  wrap.innerHTML = list.map(p => {
+  const options = list.map(p => {
     const idx = PROBLEMS.indexOf(p);
-    return `<button class="prob-btn${idx===currentIdx?' active':''}" onclick="switchProblem(${idx})">
-      #${String(idx+1).padStart(3,'0')} ${p.title}
-    </button>`;
+    return `<option value="${idx}"${idx===currentIdx?' selected':''}>#${String(idx+1).padStart(3,'0')} — ${p.title}</option>`;
   }).join('');
+  wrap.innerHTML = `
+    <div class="prob-picker">
+      <select class="filter-select prob-select" onchange="switchProblem(Number(this.value))">${options}</select>
+      <span class="prob-count">${list.length} exercice${list.length>1?'s':''}</span>
+    </div>`;
 }
 
 function onFilterChange(key, value) {
