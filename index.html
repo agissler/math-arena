@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Math Arena</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-chtml.min.js"></script>
+<style>
+:root {
+  --bg:       #0F1117;
+  --surf:     #171B26;
+  --surf2:    #1E2333;
+  --border:   #2A3050;
+  --borderB:  #3D4A75;
+  --accent:   #00E5A0;
+  --accentD:  rgba(0,229,160,.12);
+  --warn:     #F5A623;
+  --danger:   #FF5F57;
+  --purple:   #8B5CF6;
+  --text:     #E8ECF4;
+  --muted:    #6B7599;
+  --dim:      #3D4A75;
+  --mono:     'JetBrains Mono', monospace;
+  --sans:     'Inter', sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding-bottom:60px}
+
+header{width:100%;border-bottom:1px solid var(--border);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--bg);z-index:10}
+.logo{font-family:var(--mono);font-weight:600;font-size:15px;color:var(--accent)}
+.logo span{color:var(--muted);font-weight:400}
+.header-right{display:flex;align-items:center;gap:16px;font-size:12px;color:var(--muted);font-family:var(--mono)}
+.elo-pill{background:var(--surf2);border:1px solid var(--border);padding:4px 12px;border-radius:20px;font-size:12px;color:var(--text)}
+.elo-pill b{color:var(--accent)}
+
+.selector-bar{width:100%;max-width:820px;padding:24px 24px 0;display:flex;gap:10px;flex-wrap:wrap}
+.prob-btn{font-family:var(--mono);font-size:11px;padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:var(--surf);color:var(--muted);cursor:pointer;transition:all .15s}
+.prob-btn:hover{border-color:var(--borderB);color:var(--text)}
+.prob-btn.active{border-color:var(--accent);background:var(--accentD);color:var(--accent)}
+
+main{width:100%;max-width:820px;padding:20px 24px 0;display:flex;flex-direction:column;gap:20px}
+
+.meta-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.tag{font-family:var(--mono);font-size:11px;color:var(--accent);background:var(--accentD);border:1px solid rgba(0,229,160,.3);padding:4px 10px;border-radius:20px}
+.diff-row{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.dots{display:flex;gap:3px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--border)}
+.dot.on{background:var(--warn)}
+
+.problem-card{background:var(--surf);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.prob-head{padding:16px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.prob-title{font-family:var(--mono);font-size:13px;font-weight:600}
+.cadence{font-family:var(--mono);font-size:11px;color:var(--warn);background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.25);padding:3px 9px;border-radius:12px}
+.prob-body{padding:24px 26px 20px;font-size:15px;line-height:1.8}
+.prob-body p{margin-bottom:12px}
+.math-block{margin:16px 0;padding:14px 18px;background:var(--surf2);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;overflow-x:auto}
+.hint-box{margin:0 26px 22px;padding:11px 15px;background:rgba(245,166,35,.07);border:1px solid rgba(245,166,35,.2);border-radius:8px;font-size:13px;color:var(--warn);font-family:var(--mono);display:flex;gap:10px}
+
+.answer-card{background:var(--surf);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.ans-head{padding:13px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.ans-head b{color:var(--text);font-weight:500}
+textarea{width:100%;min-height:220px;background:transparent;border:none;outline:none;color:var(--text);font-family:var(--mono);font-size:13px;line-height:1.8;padding:18px 22px;resize:vertical;caret-color:var(--accent)}
+textarea::placeholder{color:var(--dim)}
+textarea:focus{background:rgba(0,229,160,.02)}
+.ans-foot{padding:11px 18px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.char-count{font-family:var(--mono);font-size:11px;color:var(--dim)}
+.btn-val{background:var(--accent);color:#0A1A12;font-family:var(--mono);font-size:13px;font-weight:600;border:none;padding:9px 26px;border-radius:8px;cursor:pointer;transition:opacity .15s,transform .1s}
+.btn-val:hover{opacity:.9}
+.btn-val:active{transform:scale(.98)}
+.btn-val:disabled{background:var(--border);color:var(--muted);cursor:not-allowed;transform:none;opacity:1}
+
+.loading-bar{display:none;padding:18px 22px;gap:12px;align-items:center;font-family:var(--mono);font-size:13px;color:var(--muted)}
+.loading-bar.on{display:flex}
+.spinner{width:17px;height:17px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.load-msg{transition:opacity .3s}
+
+.scores-panel{display:none;background:var(--surf);border:1px solid var(--border);border-radius:14px;overflow:hidden;animation:slideIn .35s ease}
+.scores-panel.on{display:block}
+@keyframes slideIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.sc-head{padding:16px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.sc-head h2{font-family:var(--mono);font-size:14px;font-weight:600}
+.verdict{font-family:var(--mono);font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px}
+.verdict.ok{background:rgba(0,229,160,.15);color:var(--accent);border:1px solid rgba(0,229,160,.35)}
+.verdict.mid{background:rgba(245,166,35,.12);color:var(--warn);border:1px solid rgba(245,166,35,.3)}
+.verdict.bad{background:rgba(255,95,87,.12);color:var(--danger);border:1px solid rgba(255,95,87,.3)}
+.sc-grid{padding:20px 22px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:540px){.sc-grid{grid-template-columns:1fr}}
+.sc-item{background:var(--surf2);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+.sc-label{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:9px;text-transform:uppercase;letter-spacing:.3px;font-weight:500}
+.sc-bar-row{display:flex;align-items:center;gap:10px;margin-bottom:7px}
+.sc-track{flex:1;height:5px;background:var(--border);border-radius:3px;overflow:hidden}
+.sc-fill{height:100%;border-radius:3px;width:0;transition:width .8s cubic-bezier(.16,1,.3,1)}
+.fill-g{background:var(--accent)}.fill-m{background:var(--warn)}.fill-r{background:var(--danger)}
+.sc-val{font-family:var(--mono);font-size:20px;font-weight:600;line-height:1;min-width:36px;text-align:right}
+.sc-val.g{color:var(--accent)}.sc-val.m{color:var(--warn)}.sc-val.r{color:var(--danger)}
+.sc-comment{font-size:12px;color:var(--muted);line-height:1.5}
+.conf-row{grid-column:1/-1;background:var(--surf2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:14px}
+.conf-label{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px;font-weight:500;white-space:nowrap}
+.conf-track{flex:1;height:7px;background:var(--border);border-radius:4px;overflow:hidden}
+.conf-fill{height:100%;border-radius:4px;width:0;transition:width 1s cubic-bezier(.16,1,.3,1) .3s;background:linear-gradient(90deg,#3B82F6,#8B5CF6)}
+.conf-pct{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--purple);white-space:nowrap}
+.conf-note{font-size:11px;color:var(--dim);font-family:var(--mono);white-space:nowrap}
+.feedback-wrap{padding:0 22px 20px}
+.fb-label{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px}
+.fb-text{font-size:14px;line-height:1.75;color:var(--text);background:var(--surf2);border:1px solid var(--border);border-radius:8px;padding:14px 16px}
+.elo-row{padding:0 22px 20px;display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:13px;color:var(--muted)}
+.elo-delta{font-size:20px;font-weight:600;color:var(--accent)}
+.elo-delta.neg{color:var(--danger)}
+.err-msg{display:none;padding:11px 15px;background:rgba(255,95,87,.1);border:1px solid rgba(255,95,87,.25);border-radius:8px;font-family:var(--mono);font-size:12px;color:var(--danger);margin:0 20px 14px}
+.err-msg.on{display:block}
+.btn-retry{display:none;margin:0 22px 20px;background:transparent;color:var(--muted);font-family:var(--mono);font-size:12px;border:1px solid var(--border);padding:7px 18px;border-radius:8px;cursor:pointer}
+.btn-retry:hover{border-color:var(--borderB);color:var(--text)}
+.new-prob-wrap{padding:0 22px 20px}
+.btn-new{font-family:var(--mono);font-size:12px;padding:8px 20px;border-radius:8px;border:1px solid var(--borderB);background:transparent;color:var(--text);cursor:pointer;transition:all .15s}
+.btn-new:hover{background:var(--surf2)}
+@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+</style>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div id="login-screen" style="display:none;position:fixed;inset:0;background:var(--bg);z-index:100;flex-direction:column;align-items:center;justify-content:center;gap:0">
+  <div id="login-box" style="background:var(--surf);border:1px solid var(--border);border-radius:16px;padding:40px 36px;width:100%;max-width:360px;display:flex;flex-direction:column;gap:20px;align-items:center">
+    <div style="font-family:var(--mono);font-size:22px;font-weight:600;color:var(--accent)">Math<span style="color:var(--muted);font-weight:400">Arena</span></div>
+    <div style="font-family:var(--mono);font-size:12px;color:var(--muted);text-align:center">Accès restreint — entrez le mot de passe</div>
+    <input id="login-input" type="password" placeholder="Mot de passe…"
+      style="width:100%;background:var(--surf2);border:1px solid var(--border);border-radius:8px;padding:11px 14px;font-family:var(--mono);font-size:14px;color:var(--text);outline:none;caret-color:var(--accent);text-align:center;letter-spacing:2px"/>
+    <div id="login-error" style="display:none;font-family:var(--mono);font-size:12px;color:var(--danger);text-align:center">Mot de passe incorrect</div>
+    <button onclick="submitLogin()"
+      style="width:100%;background:var(--accent);color:#0A1A12;font-family:var(--mono);font-size:13px;font-weight:600;border:none;padding:11px;border-radius:8px;cursor:pointer">
+      Accéder
+    </button>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app-wrapper" style="display:none;width:100%;display:contents">
+  <header>
+    <div class="logo">Math<span>Arena</span></div>
+    <div class="header-right">
+      <span id="hdr-cat">—</span>
+      <div class="elo-pill">ELO <b id="elo-display">1200</b></div>
+    </div>
+  </header>
+  <div class="selector-bar" id="selector-bar"></div>
+  <main id="main-content"></main>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// CONFIGURATION — modifie ces valeurs avant de déployer
+// ═══════════════════════════════════════════════════════
+const WORKER_URL  = 'https://holy-dawn-664a.armandgissler.workers.dev/';
+const APP_PASSWORD = 'REMPLACE_PAR_TON_MOT_DE_PASSE';
+// La clé Gemini est stockée dans Cloudflare — pas ici.
+// ═══════════════════════════════════════════════════════
+
+// ── Problèmes intégrés (pas besoin de problems.json) ──
+const PROBLEMS = [
+  {
+    id: "cs-001",
+    title: "Inégalité de Cauchy-Schwarz",
+    category: "Analyse · Inégalités",
+    cadence: "Blitz · 10 min",
+    difficulty: 3,
+    statement: "Soient \\(n \\geq 1\\) un entier et \\(a_1, \\ldots, a_n, b_1, \\ldots, b_n\\) des réels. Démontrez l'inégalité :",
+    formula: "\\left(\\sum_{i=1}^{n} a_i b_i\\right)^2 \\leq \\left(\\sum_{i=1}^{n} a_i^2\\right)\\left(\\sum_{i=1}^{n} b_i^2\\right)",
+    followup: "Précisez également le cas d'égalité.",
+    hint: "Considérez \\(f(t) = \\sum_{i=1}^n (a_i t - b_i)^2\\) comme polynôme en \\(t\\).",
+    grading_context: "Inégalité de Cauchy-Schwarz. Méthodes acceptées : (1) discriminant du trinôme f(t)=sum(ai*t-bi)^2>=0, (2) identité de Lagrange. Le cas A=sum(ai^2)=0 doit être traité séparément. Cas d'égalité : les vecteurs (ai) et (bi) sont proportionnels."
+  },
+  {
+    id: "rec-001",
+    title: "Suite récurrente",
+    category: "Analyse · Suites",
+    cadence: "Blitz · 10 min",
+    difficulty: 2,
+    statement: "Soit la suite \\((u_n)\\) définie par \\(u_0 = 2\\) et pour tout \\(n \\geq 0\\) :",
+    formula: "u_{n+1} = \\frac{u_n + \\frac{3}{u_n}}{2}",
+    followup: "Montrez que \\((u_n)\\) converge et déterminez sa limite.",
+    hint: "Montrez d'abord que \\(u_n \\geq \\sqrt{3}\\) pour tout \\(n \\geq 1\\).",
+    grading_context: "Suite convergeant vers sqrt(3). Étapes attendues : (1) u_n >= sqrt(3) pour n>=1 par AM-GM, (2) suite décroissante à partir de n=1, (3) théorème des suites monotones bornées, (4) limite = sqrt(3) par résolution de l=(l+3/l)/2."
+  },
+  {
+    id: "mat-001",
+    title: "Diagonalisation",
+    category: "Algèbre · Matrices",
+    cadence: "Marathon · 20 min",
+    difficulty: 4,
+    statement: "Soit la matrice \\(A \\in \\mathcal{M}_3(\\mathbb{R})\\) :",
+    formula: "A = \\begin{pmatrix} 2 & 1 & 0 \\\\ 1 & 2 & 0 \\\\ 0 & 0 & 3 \\end{pmatrix}",
+    followup: "\\(A\\) est-elle diagonalisable sur \\(\\mathbb{R}\\) ? Si oui, donner \\(P\\) et \\(D\\) tels que \\(A = PDP^{-1}\\).",
+    hint: "Calculez le polynôme caractéristique \\(\\chi_A(\\lambda) = \\det(A - \\lambda I)\\).",
+    grading_context: "A est diagonalisable. Valeurs propres : lambda=1 (vecteur propre (1,-1,0)), lambda=3 (multiplicité 2, sous-espace engendré par (1,1,0) et (0,0,1)). Polynôme caractéristique : -(lambda-1)(lambda-3)^2. Vérifier dim(E_lambda) = multiplicité algébrique."
+  }
+];
+
+// ── State ──────────────────────────────────────────────
+let currentIdx = 0;
+let currentElo = 1200;
+let evaluated = false;
+let msgTimer = null;
+const loadMsgs = ['Analyse en cours…','Vérification de la structure…','Évaluation de la rigueur…','Calcul du score de confiance…'];
+
+// ── Appel Gemini via worker ────────────────────────────
+async function callAI(prompt) {
+  if (!WORKER_URL) {
+    throw new Error('URL du worker non configurée.');
+  }
+  const res = await fetch(WORKER_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ password: APP_PASSWORD, prompt })
+  });
+  const data = await res.json();
+  if (res.status === 401) throw new Error('Non autorisé — vérifiez le mot de passe.');
+  if (!res.ok) throw new Error(data?.error || `HTTP ${res.status}`);
+  if (!data.text) throw new Error('Réponse vide du worker');
+  return data.text;
+}
+
+// ── Selector ───────────────────────────────────────────
+function buildSelector() {
+  document.getElementById('selector-bar').innerHTML = PROBLEMS.map((p, i) => `
+    <button class="prob-btn${i===0?' active':''}" onclick="switchProblem(${i})">
+      #${String(i+1).padStart(3,'0')} ${p.title}
+    </button>`).join('');
+}
+
+function switchProblem(idx) {
+  currentIdx = idx;
+  evaluated = false;
+  document.querySelectorAll('.prob-btn').forEach((b,i) => b.classList.toggle('active', i===idx));
+  renderProblem(idx);
+}
+
+// ── Render ─────────────────────────────────────────────
+function renderProblem(idx) {
+  const p = PROBLEMS[idx];
+  document.getElementById('hdr-cat').textContent = p.category;
+  const dots = Array.from({length:5},(_,i)=>`<div class="dot${i<p.difficulty?' on':''}"></div>`).join('');
+
+  document.getElementById('main-content').innerHTML = `
+    <div class="meta-row">
+      <div class="tag">Problème #${String(idx+1).padStart(3,'0')}</div>
+      <div class="diff-row">Difficulté <div class="dots">${dots}</div> niveau ${p.difficulty}/5</div>
+    </div>
+    <div class="problem-card">
+      <div class="prob-head">
+        <div class="prob-title">${p.title}</div>
+        <div class="cadence">${p.cadence}</div>
+      </div>
+      <div class="prob-body">
+        <p>${p.statement}</p>
+        <div class="math-block">\\[${p.formula}\\]</div>
+        <p>${p.followup}</p>
+      </div>
+      <div class="hint-box"><span>⚑</span><span>Indication : ${p.hint}</span></div>
+    </div>
+    <div class="answer-card">
+      <div class="ans-head"><b>Votre démonstration</b><span>Rédigez librement — LaTeX accepté</span></div>
+      <textarea id="answer" placeholder="Écrivez votre preuve ici…"></textarea>
+      <div class="loading-bar" id="loading-bar">
+        <div class="spinner"></div>
+        <span class="load-msg" id="load-msg">Analyse en cours…</span>
+      </div>
+      <div class="ans-foot">
+        <div class="char-count" id="char-count">0 caractères</div>
+        <button class="btn-val" id="btn-val" onclick="validateAnswer()">Valider la réponse</button>
+      </div>
+    </div>
+    <div class="scores-panel" id="scores-panel">
+      <div class="sc-head"><h2>Résultats de l'évaluation</h2><div class="verdict" id="verdict">—</div></div>
+      <div class="sc-grid" id="sc-grid"></div>
+      <div class="feedback-wrap">
+        <div class="fb-label">Retour détaillé</div>
+        <div class="fb-text" id="fb-text">…</div>
+      </div>
+      <div class="elo-row">
+        <span>Variation ELO</span>
+        <span class="elo-delta" id="elo-delta">+0</span>
+        <span>→ nouveau score : <b id="new-elo">${currentElo}</b></span>
+      </div>
+      <div class="err-msg" id="err-msg"></div>
+      <button class="btn-retry" id="btn-retry" onclick="retryEval()">Relancer l'évaluation</button>
+      <div class="new-prob-wrap"><button class="btn-new" onclick="nextProblem()">Problème suivant →</button></div>
+    </div>`;
+
+  document.getElementById('answer').addEventListener('input', () => {
+    const n = document.getElementById('answer').value.length;
+    document.getElementById('char-count').textContent = n + ' caractère' + (n>1?'s':'');
+  });
+  if (window.MathJax) MathJax.typesetPromise();
+}
+
+function nextProblem() {
+  switchProblem((currentIdx + 1) % PROBLEMS.length);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── Loading ────────────────────────────────────────────
+function startLoading() {
+  let i = 0;
+  const el = document.getElementById('load-msg');
+  if (el) el.textContent = loadMsgs[0];
+  msgTimer = setInterval(() => {
+    i = (i+1) % loadMsgs.length;
+    const el = document.getElementById('load-msg');
+    if (!el) return;
+    el.style.opacity = '0';
+    setTimeout(() => { el.textContent = loadMsgs[i]; el.style.opacity = '1'; }, 200);
+  }, 2200);
+}
+function stopLoading() { if (msgTimer) { clearInterval(msgTimer); msgTimer = null; } }
+
+// ── Scores ─────────────────────────────────────────────
+function cc(s){return s>=70?'g':s>=40?'m':'r';}
+function fc(s){return s>=70?'fill-g':s>=40?'fill-m':'fill-r';}
+function animBar(id,pct,delay){setTimeout(()=>{const el=document.getElementById(id);if(el)el.style.width=pct+'%';},delay||0);}
+
+function renderScores(data) {
+  const dims = [
+    {key:'correctness',label:'Correction mathématique'},
+    {key:'completeness',label:'Complétude'},
+    {key:'rigor',label:'Rigueur & formalisme'},
+    {key:'clarity',label:'Clarté de rédaction'},
+  ];
+  const grid = document.getElementById('sc-grid');
+  grid.innerHTML = dims.map(d => {
+    const s = data[d.key]??0;
+    return `<div class="sc-item">
+      <div class="sc-label">${d.label}</div>
+      <div class="sc-bar-row">
+        <div class="sc-track"><div class="sc-fill ${fc(s)}" id="bar-${d.key}"></div></div>
+        <div class="sc-val ${cc(s)}">${s}</div>
+      </div>
+      <div class="sc-comment">${data[d.key+'_comment']||''}</div>
+    </div>`;
+  }).join('');
+
+  const conf = data.confidence??50;
+  grid.innerHTML += `<div class="conf-row">
+    <div class="conf-label">Confiance IA</div>
+    <div class="conf-track"><div class="conf-fill" id="bar-conf"></div></div>
+    <div class="conf-pct">${conf}%</div>
+    <div class="conf-note">non calibré</div>
+  </div>`;
+
+  requestAnimationFrame(() => {
+    dims.forEach((d,i) => animBar('bar-'+d.key, data[d.key]??0, 80+i*120));
+    animBar('bar-conf', conf, 560);
+  });
+
+  const overall = Math.round(dims.reduce((a,d)=>a+(data[d.key]??0),0)/4);
+  const vEl = document.getElementById('verdict');
+  if (overall>=70){vEl.textContent='Correct';vEl.className='verdict ok';}
+  else if(overall>=40){vEl.textContent='Partiel';vEl.className='verdict mid';}
+  else{vEl.textContent='Insuffisant';vEl.className='verdict bad';}
+
+  document.getElementById('fb-text').textContent = data.feedback||'';
+
+  const delta = data.elo_delta??0;
+  currentElo += delta;
+  const eEl = document.getElementById('elo-delta');
+  eEl.textContent = (delta>=0?'+':'')+delta;
+  eEl.className = 'elo-delta'+(delta<0?' neg':'');
+  document.getElementById('new-elo').textContent = currentElo;
+  document.getElementById('elo-display').textContent = currentElo;
+}
+
+// ── Validate ───────────────────────────────────────────
+async function validateAnswer() {
+  const answer = document.getElementById('answer')?.value?.trim();
+  if (!answer || answer.length < 20 || evaluated) return;
+
+  evaluated = true;
+  const btn = document.getElementById('btn-val');
+  btn.disabled = true;
+  btn.textContent = 'Évaluation…';
+  document.getElementById('loading-bar').classList.add('on');
+  document.getElementById('scores-panel').classList.remove('on');
+  document.getElementById('err-msg').classList.remove('on');
+  startLoading();
+
+  const p = PROBLEMS[currentIdx];
+  const prompt = `Tu es un correcteur expert en mathématiques de classes préparatoires (MPSI/MP).
+
+Contexte du problème : ${p.grading_context}
+
+Évalue la démonstration ci-dessous. Réponds UNIQUEMENT avec un objet JSON valide contenant exactement ces champs :
+{
+  "correctness": <entier 0-100, justesse mathématique>,
+  "correctness_comment": <string 1-2 phrases>,
+  "completeness": <entier 0-100, complétude et cas d'égalité>,
+  "completeness_comment": <string 1-2 phrases>,
+  "rigor": <entier 0-100, rigueur des justifications>,
+  "rigor_comment": <string 1-2 phrases>,
+  "clarity": <entier 0-100, clarté de rédaction>,
+  "clarity_comment": <string 1-2 phrases>,
+  "confidence": <entier 0-100, certitude de l'évaluation>,
+  "feedback": <string 3-5 phrases constructives en français>,
+  "elo_delta": <entier -30 à +30>
+}
+
+Démonstration à évaluer :
+${answer}`;
+
+  try {
+    const text = await callAI(prompt);
+    let raw = text.trim().replace(/```json\s*/gi,'').replace(/```\s*/g,'');
+    const s = raw.indexOf('{'), e = raw.lastIndexOf('}');
+    if (s===-1||e===-1) throw new Error('Aucun JSON dans la réponse');
+    raw = raw.slice(s, e+1);
+    const result = JSON.parse(raw);
+    if (typeof result.correctness !== 'number') throw new Error('Champs manquants');
+
+    stopLoading();
+    document.getElementById('loading-bar').classList.remove('on');
+    document.getElementById('scores-panel').classList.add('on');
+    renderScores(result);
+    btn.textContent = 'Évalué ✓';
+
+  } catch(err) {
+    stopLoading();
+    document.getElementById('loading-bar').classList.remove('on');
+    const el = document.getElementById('err-msg');
+    el.textContent = err.message || 'Erreur inconnue';
+    el.classList.add('on');
+    document.getElementById('scores-panel').classList.add('on');
+    document.getElementById('btn-retry').style.display = 'inline-block';
+    evaluated = false;
+    btn.disabled = false;
+    btn.textContent = 'Valider la réponse';
+  }
+}
+
+function retryEval() {
+  evaluated = false;
+  document.getElementById('err-msg').classList.remove('on');
+  document.getElementById('btn-retry').style.display = 'none';
+  validateAnswer();
+}
+
+// ── Login gate ─────────────────────────────────────────
+function checkLogin() {
+  const stored = sessionStorage.getItem('ma_auth');
+  if (stored === APP_PASSWORD) {
+    showApp();
+  } else {
+    showLogin();
+  }
+}
+
+function showLogin() {
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('app-wrapper').style.display = 'none';
+  setTimeout(() => document.getElementById('login-input').focus(), 100);
+}
+
+function showApp() {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app-wrapper').style.display = 'contents';
+  buildSelector();
+  renderProblem(0);
+}
+
+function submitLogin() {
+  const val = document.getElementById('login-input').value;
+  if (val === APP_PASSWORD) {
+    sessionStorage.setItem('ma_auth', val);
+    document.getElementById('login-error').style.display = 'none';
+    showApp();
+  } else {
+    const err = document.getElementById('login-error');
+    err.style.display = 'block';
+    document.getElementById('login-input').value = '';
+    document.getElementById('login-input').focus();
+    // Shake animation
+    const box = document.getElementById('login-box');
+    box.style.animation = 'none';
+    box.offsetHeight;
+    box.style.animation = 'shake .4s ease';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('login-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') submitLogin();
+  });
+  checkLogin();
+});
+</script>
+</body>
+</html>
