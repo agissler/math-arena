@@ -1,0 +1,12 @@
+{
+  "id": "cs-001",
+  "title": "Inégalité de Cauchy-Schwarz",
+  "category": "Analyse · Inégalités",
+  "cadence": "Blitz · 10 min",
+  "difficulty": 3,
+  "statement": "Soient \\(n \\geq 1\\) un entier et \\(a_1, \\ldots, a_n, b_1, \\ldots, b_n\\) des réels. Démontrez l'inégalité :",
+  "formula": "\\left(\\sum_{i=1}^{n} a_i b_i\\right)^2 \\leq \\left(\\sum_{i=1}^{n} a_i^2\\right)\\left(\\sum_{i=1}^{n} b_i^2\\right)",
+  "followup": "Précisez également le cas d'égalité.",
+  "hint": "Considérez \\(f(t) = \\sum_{i=1}^n (a_i t - b_i)^2\\) comme polynôme en \\(t\\).",
+  "grading_context": "Inégalité de Cauchy-Schwarz. Méthodes acceptées : (1) discriminant du trinôme f(t)=sum(ai*t-bi)^2>=0, (2) identité de Lagrange. Le cas A=sum(ai^2)=0 doit être traité séparément. Cas d'égalité : les vecteurs (ai) et (bi) sont proportionnels."
+}

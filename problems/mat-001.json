@@ -1,0 +1,12 @@
+{
+  "id": "mat-001",
+  "title": "Diagonalisation",
+  "category": "Algèbre · Matrices",
+  "cadence": "Marathon · 20 min",
+  "difficulty": 4,
+  "statement": "Soit la matrice \\(A \\in \\mathcal{M}_3(\\mathbb{R})\\) :",
+  "formula": "A = \\begin{pmatrix} 2 & 1 & 0 \\\\ 1 & 2 & 0 \\\\ 0 & 0 & 3 \\end{pmatrix}",
+  "followup": "\\(A\\) est-elle diagonalisable sur \\(\\mathbb{R}\\) ? Si oui, donner \\(P\\) et \\(D\\) tels que \\(A = PDP^{-1}\\).",
+  "hint": "Calculez le polynôme caractéristique \\(\\chi_A(\\lambda) = \\det(A - \\lambda I)\\).",
+  "grading_context": "A est diagonalisable. Valeurs propres : lambda=1 (vecteur propre (1,-1,0)), lambda=3 (multiplicité 2, sous-espace engendré par (1,1,0) et (0,0,1)). Polynôme caractéristique : -(lambda-1)(lambda-3)^2. Vérifier dim(E_lambda) = multiplicité algébrique."
+}
