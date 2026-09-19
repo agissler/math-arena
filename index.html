@@ -73,6 +73,8 @@ textarea:focus{background:rgba(0,229,160,.02)}
 .btn-val:hover{opacity:.9}
 .btn-val:active{transform:scale(.98)}
 .btn-val:disabled{background:var(--border);color:var(--muted);cursor:not-allowed;transform:none;opacity:1}
+.btn-advice{background:var(--purple);color:var(--text)}
+.btn-advice:disabled{background:var(--border);color:var(--muted)}
 
 .loading-bar{display:none;padding:18px 22px;gap:12px;align-items:center;font-family:var(--mono);font-size:13px;color:var(--muted)}
 .loading-bar.on{display:flex}
@@ -181,7 +183,10 @@ let currentIdx = 0;
 let currentElo = 1200;
 let evaluated = false;
 let msgTimer = null;
+let adviceMsgTimer = null;
+let adviceLoading = false;
 const loadMsgs = ['Analyse en cours…','Vérification de la structure…','Évaluation de la rigueur…','Calcul du score de confiance…'];
+const adviceMsgs = ['Lecture de votre brouillon…','Réflexion en cours…','Préparation d\'un conseil…'];
 
 // ── Appel Gemini via worker ────────────────────────────
 async function callAI(prompt) {
@@ -237,6 +242,23 @@ function renderProblem(idx) {
       <button class="btn-hint" id="btn-hint" onclick="toggleHint()"><span>⚑</span><span>Afficher l'indication</span></button>
       <div class="hint-box" id="hint-box"><span>⚑</span><span>Indication : ${p.hint}</span></div>
     </div>
+    <div class="answer-card" id="draft-card">
+      <div class="ans-head"><b>Brouillon</b><span>Idées, tentatives ou questions — l'IA vous conseille</span></div>
+      <textarea id="draft" placeholder="Écrivez ici vos idées, vos pistes ou vos questions…"></textarea>
+      <div class="loading-bar" id="draft-loading-bar">
+        <div class="spinner"></div>
+        <span class="load-msg" id="draft-load-msg">Réflexion en cours…</span>
+      </div>
+      <div class="feedback-wrap" id="advice-wrap" style="display:none">
+        <div class="fb-label">Conseil personnalisé</div>
+        <div class="fb-text" id="advice-text"></div>
+      </div>
+      <div class="err-msg" id="advice-err"></div>
+      <div class="ans-foot">
+        <div class="char-count" id="draft-char-count">0 caractère</div>
+        <button class="btn-val btn-advice" id="btn-advice" onclick="askAdvice()">Demander un conseil</button>
+      </div>
+    </div>
     <div class="answer-card">
       <div class="ans-head"><b>Votre démonstration</b><span>Rédigez librement — LaTeX accepté</span></div>
       <textarea id="answer" placeholder="Écrivez votre preuve ici…"></textarea>
@@ -270,12 +292,79 @@ function renderProblem(idx) {
     const n = document.getElementById('answer').value.length;
     document.getElementById('char-count').textContent = n + ' caractère' + (n>1?'s':'');
   });
+  document.getElementById('draft').addEventListener('input', () => {
+    const n = document.getElementById('draft').value.length;
+    document.getElementById('draft-char-count').textContent = n + ' caractère' + (n>1?'s':'');
+  });
   if (window.MathJax) MathJax.typesetPromise();
 }
 
 function toggleHint() {
   document.getElementById('hint-box').classList.add('on');
   document.getElementById('btn-hint').style.display = 'none';
+}
+
+// ── Brouillon / conseil IA ─────────────────────────────
+function startAdviceLoading() {
+  let i = 0;
+  const el = document.getElementById('draft-load-msg');
+  if (el) el.textContent = adviceMsgs[0];
+  adviceMsgTimer = setInterval(() => {
+    i = (i+1) % adviceMsgs.length;
+    const el = document.getElementById('draft-load-msg');
+    if (!el) return;
+    el.style.opacity = '0';
+    setTimeout(() => { el.textContent = adviceMsgs[i]; el.style.opacity = '1'; }, 200);
+  }, 2200);
+}
+function stopAdviceLoading() { if (adviceMsgTimer) { clearInterval(adviceMsgTimer); adviceMsgTimer = null; } }
+
+async function askAdvice() {
+  const draft = document.getElementById('draft')?.value?.trim();
+  if (!draft || draft.length < 5 || adviceLoading) return;
+
+  adviceLoading = true;
+  const btn = document.getElementById('btn-advice');
+  btn.disabled = true;
+  btn.textContent = 'Réflexion…';
+  document.getElementById('draft-loading-bar').classList.add('on');
+  document.getElementById('advice-wrap').style.display = 'none';
+  document.getElementById('advice-err').classList.remove('on');
+  startAdviceLoading();
+
+  const p = PROBLEMS[currentIdx];
+  const prompt = `Tu es un tuteur bienveillant qui encadre un étudiant de classes préparatoires (MPSI/MP) sur l'exercice suivant.
+
+Énoncé : ${p.statement} ${p.formula} ${p.followup}
+
+Contexte de correction (réservé à toi, ne le révèle jamais explicitement à l'étudiant) : ${p.grading_context}
+
+L'étudiant te partage ci-dessous un brouillon : ses idées, ses tentatives, ou une question qu'il se pose. Donne-lui un conseil personnalisé et progressif : oriente-le, signale une éventuelle erreur ou une piste prometteuse, sans donner la solution complète ni le résultat final. Réponds en français, en 3 à 5 phrases claires et encourageantes, en texte brut (pas de JSON, pas de markdown).
+
+Brouillon de l'étudiant :
+${draft}`;
+
+  try {
+    const text = await callAI(prompt);
+    const advice = text.trim().replace(/^```[a-z]*\s*/i,'').replace(/```\s*$/,'');
+
+    stopAdviceLoading();
+    document.getElementById('draft-loading-bar').classList.remove('on');
+    document.getElementById('advice-text').textContent = advice;
+    document.getElementById('advice-wrap').style.display = 'block';
+    btn.textContent = 'Demander un conseil';
+
+  } catch(err) {
+    stopAdviceLoading();
+    document.getElementById('draft-loading-bar').classList.remove('on');
+    const el = document.getElementById('advice-err');
+    el.textContent = err.message || 'Erreur inconnue';
+    el.classList.add('on');
+    btn.textContent = 'Demander un conseil';
+  } finally {
+    adviceLoading = false;
+    btn.disabled = false;
+  }
 }
 
 function nextProblem() {
