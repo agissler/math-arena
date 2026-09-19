@@ -73,6 +73,12 @@ main{width:100%;max-width:820px;padding:20px 24px 0;display:flex;flex-direction:
 .btn-hint:hover{background:rgba(245,166,35,.15)}
 .hint-box{display:none;margin:0 26px 22px;padding:11px 15px;background:rgba(245,166,35,.07);border:1px solid rgba(245,166,35,.2);border-radius:8px;font-size:13px;color:var(--warn);font-family:var(--mono);gap:10px}
 .hint-box.on{display:flex}
+.btn-correction{margin:0 26px 22px;font-family:var(--mono);font-size:11px;padding:6px 14px;border-radius:20px;border:1px solid rgba(59,130,246,.3);background:rgba(59,130,246,.07);color:#3B82F6;cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:6px}
+.btn-correction:hover{background:rgba(59,130,246,.15)}
+.correction-box{display:none;margin:0 26px 22px;padding:16px 18px;background:var(--surf2);border:1px solid rgba(59,130,246,.25);border-left:3px solid #3B82F6;border-radius:0 8px 8px 0;font-size:14px;line-height:1.85}
+.correction-box.on{display:block}
+.correction-label{font-family:var(--mono);font-size:11px;font-weight:600;color:#3B82F6;text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px}
+.correction-text p{margin-bottom:10px}
 
 .answer-card{background:var(--surf);border:1px solid var(--border);border-radius:14px;overflow:hidden}
 .ans-head{padding:13px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:12px;color:var(--muted)}
@@ -197,6 +203,15 @@ const CHAPTERS = [
 ];
 const LEVELS = ['MPSI', 'MP', 'MP*'];
 function chapterInfo(n) { return CHAPTERS.find(c => c.n === Number(n)); }
+
+function fullStatementText(p) {
+  const parts = [p.statement];
+  if (p.formula) parts.push(`Formule : ${p.formula}`);
+  if (p.followup) parts.push(p.followup);
+  if (p.questions?.length) parts.push(p.questions.map((q,i) => `${i+1}. ${q}`).join('\n'));
+  if (p.remark) parts.push(p.remark);
+  return parts.join('\n\n');
+}
 
 // ── Problèmes chargés depuis problems/*.json ──
 // Pour ajouter un problème : crée problems/<id>.json (avec domain, chapter,
@@ -356,6 +371,11 @@ function renderProblem(idx) {
       </div>
       ${p.hint ? `<button class="btn-hint" id="btn-hint" onclick="toggleHint()"><span>⚑</span><span>Afficher l'indication</span></button>
       <div class="hint-box" id="hint-box"><span>⚑</span><span>Indication : ${p.hint}</span></div>` : ''}
+      ${p.correction ? `<button class="btn-correction" id="btn-correction" onclick="toggleCorrection()"><span>📖</span><span>Afficher la correction</span></button>
+      <div class="correction-box" id="correction-box">
+        <div class="correction-label">Correction</div>
+        <div class="correction-text">${p.correction}</div>
+      </div>` : ''}
     </div>
     <div class="answer-card" id="draft-card">
       <div class="ans-head"><b>Brouillon</b><span>Idées, tentatives ou questions — l'IA vous conseille</span></div>
@@ -419,6 +439,12 @@ function toggleHint() {
   document.getElementById('btn-hint').style.display = 'none';
 }
 
+function toggleCorrection() {
+  document.getElementById('correction-box').classList.add('on');
+  document.getElementById('btn-correction').style.display = 'none';
+  if (window.MathJax) MathJax.typesetPromise();
+}
+
 // ── Brouillon / conseil IA ─────────────────────────────
 function startAdviceLoading() {
   let i = 0;
@@ -448,11 +474,12 @@ async function askAdvice() {
   startAdviceLoading();
 
   const p = PROBLEMS[currentIdx];
+  const context = p.correction || p.grading_context;
   const prompt = `Tu es un tuteur bienveillant qui encadre un étudiant de classes préparatoires (MPSI/MP) sur l'exercice suivant.
 
-Énoncé : ${p.statement} ${p.formula} ${p.followup}
+Énoncé : ${fullStatementText(p)}
 
-Contexte de correction (réservé à toi, ne le révèle jamais explicitement à l'étudiant) : ${p.grading_context}
+Solution de référence (réservée à toi, ne la révèle jamais à l'étudiant, même partiellement ou reformulée) : ${context}
 
 L'étudiant te partage ci-dessous un brouillon : ses idées, ses tentatives, ou une question qu'il se pose. Donne-lui un conseil personnalisé et progressif : oriente-le, signale une éventuelle erreur ou une piste prometteuse, sans donner la solution complète ni le résultat final. Réponds en français, en 3 à 5 phrases claires et encourageantes, en texte brut (pas de JSON, pas de markdown).
 
@@ -576,9 +603,12 @@ async function validateAnswer() {
   startLoading();
 
   const p = PROBLEMS[currentIdx];
+  const context = p.correction || p.grading_context;
   const prompt = `Tu es un correcteur expert en mathématiques de classes préparatoires (MPSI/MP).
 
-Contexte du problème : ${p.grading_context}
+Énoncé : ${fullStatementText(p)}
+
+Solution de référence (réservée à toi, ne la recopie jamais telle quelle dans ton retour) : ${context}
 
 Évalue la démonstration ci-dessous. Réponds UNIQUEMENT avec un objet JSON valide contenant exactement ces champs :
 {
