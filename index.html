@@ -129,7 +129,7 @@ textarea:focus{background:rgba(0,229,160,.02)}
     <input id="login-input" type="password" placeholder="Mot de passe…"
       style="width:100%;background:var(--surf2);border:1px solid var(--border);border-radius:8px;padding:11px 14px;font-family:var(--mono);font-size:14px;color:var(--text);outline:none;caret-color:var(--accent);text-align:center;letter-spacing:2px"/>
     <div id="login-error" style="display:none;font-family:var(--mono);font-size:12px;color:var(--danger);text-align:center">Mot de passe incorrect</div>
-    <button onclick="submitLogin()"
+    <button id="login-btn" onclick="submitLogin()"
       style="width:100%;background:var(--accent);color:#0A1A12;font-family:var(--mono);font-size:13px;font-weight:600;border:none;padding:11px;border-radius:8px;cursor:pointer">
       Accéder
     </button>
@@ -151,11 +151,10 @@ textarea:focus{background:rgba(0,229,160,.02)}
 
 <script>
 // ═══════════════════════════════════════════════════════
-// CONFIGURATION — modifie ces valeurs avant de déployer
+// CONFIGURATION — modifie cette valeur avant de déployer
 // ═══════════════════════════════════════════════════════
-const WORKER_URL  = 'https://holy-dawn-664a.armandgissler.workers.dev/';
-const APP_PASSWORD = 'REMPLACE_PAR_TON_MOT_DE_PASSE';
-// La clé Gemini est stockée dans Cloudflare — pas ici.
+const WORKER_URL = 'https://holy-dawn-664a.armandgissler.workers.dev/';
+// Le mot de passe et la clé Gemini sont dans Cloudflare.
 // ═══════════════════════════════════════════════════════
 
 // ── Problèmes intégrés (pas besoin de problems.json) ──
@@ -207,16 +206,14 @@ const loadMsgs = ['Analyse en cours…','Vérification de la structure…','Éva
 
 // ── Appel Gemini via worker ────────────────────────────
 async function callAI(prompt) {
-  if (!WORKER_URL) {
-    throw new Error('URL du worker non configurée.');
-  }
+  if (!WORKER_URL) throw new Error('URL du worker non configurée.');
   const res = await fetch(WORKER_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ password: APP_PASSWORD, prompt })
+    body: JSON.stringify({ password: sessionPassword, prompt })
   });
   const data = await res.json();
-  if (res.status === 401) throw new Error('Non autorisé — vérifiez le mot de passe.');
+  if (res.status === 401) throw new Error('Session expirée — rechargez la page.');
   if (!res.ok) throw new Error(data?.error || `HTTP ${res.status}`);
   if (!data.text) throw new Error('Réponse vide du worker');
   return data.text;
@@ -445,13 +442,10 @@ function retryEval() {
 }
 
 // ── Login gate ─────────────────────────────────────────
+let sessionPassword = null; // mot de passe tapé, gardé en mémoire le temps de la session
+
 function checkLogin() {
-  const stored = sessionStorage.getItem('ma_auth');
-  if (stored === APP_PASSWORD) {
-    showApp();
-  } else {
-    showLogin();
-  }
+  showLogin();
 }
 
 function showLogin() {
@@ -467,22 +461,42 @@ function showApp() {
   renderProblem(0);
 }
 
-function submitLogin() {
-  const val = document.getElementById('login-input').value;
-  if (val === APP_PASSWORD) {
-    sessionStorage.setItem('ma_auth', val);
+async function submitLogin() {
+  const val = document.getElementById('login-input').value.trim();
+  if (!val) return;
+
+  const btn = document.getElementById('login-btn');
+  btn.disabled = true;
+  btn.textContent = 'Vérification…';
+
+  // Teste le mot de passe contre le worker
+  try {
+    const res = await fetch(WORKER_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: val, prompt: 'ping' })
+    });
+
+    if (res.status === 401) {
+      throw new Error('incorrect');
+    }
+
+    // Mot de passe accepté — on le garde en mémoire
+    sessionPassword = val;
     document.getElementById('login-error').style.display = 'none';
     showApp();
-  } else {
-    const err = document.getElementById('login-error');
-    err.style.display = 'block';
+
+  } catch(e) {
+    document.getElementById('login-error').style.display = 'block';
     document.getElementById('login-input').value = '';
     document.getElementById('login-input').focus();
-    // Shake animation
     const box = document.getElementById('login-box');
     box.style.animation = 'none';
     box.offsetHeight;
     box.style.animation = 'shake .4s ease';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Accéder';
   }
 }
 
