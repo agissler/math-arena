@@ -1,0 +1,13 @@
+{
+  "id": "grp-018",
+  "title": "Éléments d'ordre m dans Sn",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Blitz · 15 min",
+  "difficulty": 3,
+  "statement": "Si \\(r \\geq 1\\), si \\(p_1, \\cdots, p_r\\) sont des nombres premiers distincts et \\(\\alpha_1, \\cdots, \\alpha_r\\) sont dans \\(\\mathbb{N}^*\\), on pose :",
+  "formula": "\\psi\\left(\\prod_{i=1}^{r} p_i^{\\alpha_i}\\right) = \\sum_{i=1}^{r} p_i^{\\alpha_i}",
+  "followup": "On pose aussi \\(\\psi(1) = 0\\). Montrer que \\(\\mathfrak{S}_n\\) contient un élément d'ordre \\(m\\) si et seulement si \\(\\psi(m) \\leq n\\).",
+  "grading_context": "Si m=∏p_i^{α_i}, un élément d'ordre m dans S_n existe ssi on peut placer des cycles disjoints de longueurs p_i^{α_i} (i=1..r), leur ppcm valant m puisque les p_i^{α_i} sont deux à deux premiers entre eux ; la somme des longueurs utilisées est ψ(m), qu'il faut compléter par des points fixes pour atteindre n, d'où la condition ψ(m)≤n. Réciproquement, si σ∈S_n est d'ordre m, sa décomposition en cycles disjoints doit contenir, pour chaque i, au moins un cycle dont la longueur est multiple de p_i^{α_i} (sinon la valuation p_i-adique de l'ordre serait insuffisante) ; en isolant pour chaque i un cycle de longueur multiple de p_i^{α_i} (ces cycles pouvant être choisis disjoints deux à deux, éventuellement en scindant un même grand cycle), la somme des longueurs minimales nécessaires est au moins ψ(m), donc n≥ψ(m)."
+}

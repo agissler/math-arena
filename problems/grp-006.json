@@ -1,0 +1,12 @@
+{
+  "id": "grp-006",
+  "title": "Cas particulier du lemme de Cauchy (2)",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Blitz · 10 min",
+  "difficulty": 2,
+  "statement": "Soit \\(G\\) un groupe abélien d'ordre \\(pq\\) où \\(p\\) et \\(q\\) sont deux nombres premiers distincts.",
+  "followup": "Montrer que \\(G\\) est cyclique.",
+  "grading_context": "Par le théorème de Cauchy, G contient un élément a d'ordre p et un élément b d'ordre q. Comme G est abélien, ab est d'ordre ppcm(p,q)=pq car pgcd(p,q)=1 (l'ordre de ab divise pq, et si (ab)^k=e alors a^k=b^{-k}∈⟨a⟩∩⟨b⟩={e} donc p|k et q|k). Ainsi ab engendre un sous-groupe d'ordre pq=|G|, donc G=⟨ab⟩ est cyclique."
+}

@@ -1,0 +1,12 @@
+{
+  "id": "grp-037",
+  "title": "Sommes de puissances dans F_p",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Blitz · 10 min",
+  "difficulty": 3,
+  "statement": "Soient \\(p\\) un nombre premier et \\(k \\in \\mathbb{N}^*\\).",
+  "followup": "Montrer que \\(\\sum_{x \\in \\mathbb{F}_p} x^k\\) ne peut prendre que deux valeurs. Préciser dans quels cas on obtient ces valeurs.",
+  "grading_context": "Notons S=∑_{x∈F_p} x^k. Si (p-1)|k, en posant y=gx pour g générateur de F_p*, S(sur F_p*)=∑ x^k reste invariant par multiplication par g^k=1, ce qui ne contraint pas directement ; le calcul direct donne S=p-1 restreint à F_p* car x^k=1 pour tout x≠0 (puisque (p-1)|k), plus le terme x=0 qui vaut 0 : S≡-1 [p] (ou S=p-1 selon k=0 inclus ou non). Si (p-1)∤k, en substituant x=gy pour g générateur, la somme sur F_p* est multipliée par g^k≠1, ce qui force la somme sur F_p* à être nulle ; donc S=0. Réponse attendue : S=0 si (p-1) ne divise pas k, et S=-1 (mod p), i.e. S≡p-1, si (p-1) divise k."
+}

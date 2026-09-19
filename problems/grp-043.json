@@ -1,0 +1,12 @@
+{
+  "id": "grp-043",
+  "title": "Cardinal de SO_2(F_p)",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Blitz · 10 min",
+  "difficulty": 3,
+  "statement": "Soit \\(p > 2\\) un nombre premier.",
+  "followup": "Calculer \\(|SO_2(\\mathbb{F}_p)|\\).",
+  "grading_context": "SO_2(F_p) est le groupe des matrices [[a,-b],[b,a]] avec a²+b²=1 dans F_p, isomorphe au groupe des éléments de norme 1 de l'anneau F_p[i] (i²=-1). Si -1 est un carré dans F_p (p≡1[4]), F_p[i]≅F_p×F_p et le groupe des normes 1 est isomorphe à F_p*, de cardinal p-1. Si -1 n'est pas un carré (p≡3[4]), F_p[i] est le corps fini F_{p²} et le groupe des éléments de norme 1 (noyau de la norme F_{p²}*→F_p*, surjective) a pour cardinal (p²-1)/(p-1)=p+1. Réponse : |SO_2(F_p)|=p-1 si p≡1[4], p+1 si p≡3[4]."
+}

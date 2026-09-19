@@ -1,0 +1,15 @@
+{
+  "id": "grp-035",
+  "title": "Automorphismes de Sn",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Standard · 20 min",
+  "difficulty": 5,
+  "statement": "Soit \\(n\\) un entier \\(\\geq 3\\).",
+  "questions": [
+    "Montrer que tout automorphisme de \\((\\mathfrak{S}_n,\\circ)\\) qui transforme toute transposition en une transposition est intérieur.",
+    "(Théorème de Hölder) Si \\(n \\neq 6\\), montrer que tout automorphisme de \\(\\mathfrak{S}_n\\) est intérieur."
+  ],
+  "grading_context": "(1) Un automorphisme φ envoyant transpositions sur transpositions induit une bijection sur les paires {i,j} (support des transpositions) compatible avec les intersections de supports (deux transpositions commutent ssi leurs supports sont disjoints ou égaux), ce qui définit une bijection σ de {1,...,n} induisant φ par conjugaison ; on vérifie φ=int(σ). (2) Théorème de Hölder : pour n≠6, on montre que toute classe de conjugaison des transpositions est caractérisée algébriquement à l'intérieur du groupe (par exemple comme l'unique classe de n(n-1)/2 éléments d'ordre 2 dont deux éléments distincts commutent ou engendrent un groupe diédral d'ordre spécifique), ce qui force tout automorphisme à préserver globalement l'ensemble des transpositions, ramenant au cas (1). Le cas n=6 est exceptionnel car S_6 possède un automorphisme extérieur qui échange la classe des transpositions avec une autre classe de même cardinal (15 éléments) mais de structure différente."
+}

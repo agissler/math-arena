@@ -1,0 +1,12 @@
+{
+  "id": "grp-022",
+  "title": "Maximalité du stabilisateur d'un point",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Blitz · 15 min",
+  "difficulty": 3,
+  "statement": "Soit \\(n \\geq 2\\) un entier.",
+  "followup": "Montrer que le sous-groupe de \\(\\mathfrak{S}_n\\) constitué des permutations fixant \\(n\\) est un sous-groupe maximal de \\(\\mathfrak{S}_n\\) pour l'inclusion.",
+  "grading_context": "Notons H=Stab(n)≅S_{n-1}, d'indice n dans S_n. Soit K un sous-groupe de S_n contenant strictement H : il existe σ∈K avec σ(n)=k≠n. En composant σ avec des éléments de H (qui permutent librement {1,...,n-1}), K contient un élément envoyant n sur n'importe quel autre point, donc K agit transitivement sur {1,...,n} ; un sous-groupe transitif contenant le stabilisateur d'un point est nécessairement le groupe entier (car toute permutation se décompose comme un produit d'un élément envoyant n sur son image et d'un élément de H). Donc K=S_n, ce qui prouve que H est maximal."
+}

@@ -1,0 +1,12 @@
+{
+  "id": "grp-024",
+  "title": "Sous-groupe engendré par un n-cycle et une transposition",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Blitz · 15 min",
+  "difficulty": 4,
+  "statement": "Soient \\(n \\geq 3\\) un entier, \\(r\\) et \\(s\\) dans \\(\\{1, \\ldots, n\\}\\) tels que \\(r < s\\), \\(G_{r,s}\\) le sous-groupe de \\(\\mathfrak{S}_n\\) engendré par \\((1\\ 2\\ \\ldots\\ n)\\) et \\((r\\ s)\\).",
+  "followup": "À quelle condition a-t-on \\(G_{r,s} = \\mathfrak{S}_n\\) ?",
+  "grading_context": "Résultat classique : G_{r,s}=S_n si et seulement si pgcd(s-r,n)=1. Idée de preuve : en conjuguant la transposition (r s) par les puissances du n-cycle c=(1 2 ... n), on obtient les transpositions (r+k, s+k) (indices modulo n), c'est-à-dire toutes les transpositions reliant deux points à « distance » d=s-r sur le cycle. Ces transpositions engendrent, avec c, un sous-groupe qui est tout S_n exactement quand d est premier avec n (auquel cas les décalages de d parcourent tout Z/nZ, permettant de relier tous les points), et un sous-groupe strict (produit de blocs, imprimitif) sinon."
+}

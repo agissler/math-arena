@@ -1,0 +1,12 @@
+{
+  "id": "grp-046",
+  "title": "Anneaux de Boole et généralisations",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Standard · 15 min",
+  "difficulty": 4,
+  "statement": "Soit \\((A,+,\\times)\\) un anneau tel que \\(x^2 = x\\) pour tout \\(x \\in A\\).",
+  "followup": "Montrer que \\(A\\) est commutatif. Montrer que la conclusion subsiste si l'on suppose \\(x^3 = x\\) pour tout \\(x \\in A\\) ou bien \\(x^4 = x\\) pour tout \\(x \\in A\\).",
+  "grading_context": "Cas x²=x (anneau de Boole) : développer (x+y)²=x+y donne xy+yx=0 ; en appliquant à x=y=1 on trouve 2=0 (caractéristique 2), donc xy=-yx=yx : commutativité. Cas x³=x et x⁴=x sont des résultats plus fins dus à Jacobson (tout anneau où x^n=x pour un n≥2 fixé et tout x est commutatif). Pour x³=x : développer (x+y)³=x+y et utiliser diverses identités (par exemple montrer d'abord que 6x=0, puis que 2x=0 ou traiter séparément, puis établir xy=yx via des manipulations sur (x+y)³, (x+xy-yx)³, etc.) — accepter toute preuve correcte, potentiellement longue et technique, aboutissant à xy=yx dans les deux cas x³=x et x⁴=x, en s'appuyant sur le théorème de Jacobson ou une preuve directe ad hoc."
+}

@@ -1,0 +1,16 @@
+{
+  "id": "grp-041",
+  "title": "Un invariant combinatoire sur les groupes abéliens",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Standard · 20 min",
+  "difficulty": 4,
+  "statement": "Soit \\((G,+)\\) un groupe abélien. On définit \\(\\varphi : \\mathcal{P}(G) \\to \\mathbb{N} \\cup \\{+\\infty\\}\\) comme suit : soit \\(A \\subset G\\) ; on considère les parties \\(B\\) de \\(A\\) telles que pour tout \\(b,b' \\in B\\) avec \\(b \\neq b'\\), on ait \\(b+b' \\notin A\\). On note \\(\\varphi(A)\\) le plus grand cardinal d'une telle partie \\(B\\).",
+  "questions": [
+    "Déterminer \\(\\varphi(A)\\) si \\(A\\) est un sous-groupe de \\(G\\).",
+    "Montrer que si \\(A\\) est la réunion de \\(k\\) sous-groupes de \\(G\\), alors \\(\\varphi(A) \\leq k\\).",
+    "On prend ici \\(G = \\mathbb{Z}\\). On suppose \\(A \\subset \\mathbb{N}^*\\) et \\(|A| = 2^k\\). Montrer que \\(\\varphi(A) \\geq k+1\\)."
+  ],
+  "grading_context": "(1) Si A est un sous-groupe, φ(A)=1 : dès que B contient deux éléments distincts b,b'∈A, b+b'∈A (stabilité du sous-groupe), violant la condition ; un singleton convient toujours. (2) Si A=H_1∪...∪H_k (réunion de sous-groupes), toute partie B⊂A sans somme (au sens de l'énoncé) ne peut contenir deux éléments distincts du même H_i (par (1) appliqué à H_i, leur somme serait dans H_i⊂A) ; B a donc au plus un élément par H_i, d'où |B|≤k. (3) Pour A⊂N* avec |A|=2^k, construire B par un argument de récurrence/dichotomie sur les échelles de grandeur (par exemple en choisissant à chaque étape l'élément maximal restant et en éliminant tous les éléments qui, ajoutés à un élément déjà choisi ou entre eux, retomberaient dans A) : on montre qu'on peut extraire une chaîne d'éléments de tailles suffisamment séparées (typiquement doublant à chaque étape) de sorte que la somme de deux éléments distincts de B dépasse le plus grand élément de A, donnant |B|≥k+1 par un argument de dénombrement dyadique sur les 2^k éléments."
+}

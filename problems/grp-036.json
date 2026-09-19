@@ -1,0 +1,17 @@
+{
+  "id": "grp-036",
+  "title": "Théorème de Chevalley-Warning et cyclicité de F_p*",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Marathon · 30 min",
+  "difficulty": 5,
+  "statement": "Soit \\(p \\in \\mathcal{P}\\). On admet que \\((\\mathbb{F}_p^*, \\times)\\) est cyclique. Soit \\(n \\geq 1\\). Pour tout \\(Q \\in \\mathbb{F}_p[X_1,\\ldots,X_n]\\), on pose \\(S_n(Q) = \\displaystyle\\sum_{(x_1,\\ldots,x_n) \\in (\\mathbb{F}_p)^n} Q(x_1,\\ldots,x_n)\\).",
+  "questions": [
+    "Soit \\(Q \\in \\mathbb{F}_p[X]\\) de degré strictement inférieur à \\(p-1\\). Montrer que \\(S_1(Q) = 0\\).",
+    "On considère des polynômes à \\(n\\) variables \\(F_1,\\ldots,F_m\\) sur \\(\\mathbb{F}_p\\) dont la somme des degrés est strictement inférieure à \\(n\\). On note \\(V = \\{(x_1,\\ldots,x_n) \\in \\mathbb{F}_p^n \\mid \\forall i \\in [\\![1,m]\\!],\\ F_i(x_1,\\ldots,x_n) = 0\\}\\). Montrer que \\(p\\) divise \\(|V|\\). Montrer que si le terme constant de chaque \\(F_i\\) est nul, alors \\(V\\) contient un autre élément que \\((0,\\ldots,0)\\).",
+    "On suppose \\(n \\geq 2\\) et on donne des entiers \\(a_1,\\ldots,a_{2n-1}\\). Montrer qu'il existe des indices \\(i_1,\\ldots,i_n\\) distincts tels que \\(a_{i_1} + \\ldots + a_{i_n} \\equiv 0\\ [n]\\).",
+    "Montrer le résultat admis (que \\(\\mathbb{F}_p^*\\) est cyclique)."
+  ],
+  "grading_context": "Théorème de Chevalley-Warning et applications. (1) Pour Q=X^k avec k<p-1, S_1(X^k)=∑_{x∈F_p} x^k=0 (voir exercice classique sur ces sommes de puissances : nulle sauf si (p-1)|k) ; par linéarité, S_1(Q)=0 pour tout Q de degré <p-1. (2) Considérer le polynôme auxiliaire ∏_i (1-F_i^{p-1}) qui vaut 1 sur V et 0 hors de V ; sa somme sur F_p^n est S_n de ce polynôme, de degré total (p-1)∑deg(F_i)<(p-1)n, donc chaque monôme a un exposant partiel <p-1 sur au moins une variable, et par (1) appliqué variable par variable, cette somme est nulle modulo p ; donc |V|≡0[p] (théorème de Chevalley-Warning). Si les F_i sont sans terme constant, 0∈V, et comme p||V| avec |V|≥1, |V|≥p>1 : V contient un autre point. (3) Application (théorème d'Erdős-Ginzburg-Ziv simplifié pour n premier, via Chevalley-Warning) : construire deux polynômes en (x_1,...,x_{2n-1}) de degré n-1 chacun (sommes de puissances (n-1)-ièmes pondérées par les a_i et par des indicatrices) dont la somme des degrés est <2n-1, appliquer (2) pour obtenir une solution non nulle, qui code un sous-ensemble de taille n dont la somme des a_i est ≡0[n]. (4) Cyclicité de F_p^* : pour tout diviseur d de p-1, le nombre de solutions de x^d=1 est au plus d (racines d'un polynôme) ; un argument de comptage utilisant la fonction indicatrice d'Euler sur les ordres possibles des éléments de F_p^* montre qu'il existe un élément d'ordre exactement p-1, donc F_p^* est cyclique."
+}

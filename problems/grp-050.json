@@ -1,0 +1,16 @@
+{
+  "id": "grp-050",
+  "title": "Un théorème de Beatty",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Blitz · 15 min",
+  "difficulty": 5,
+  "statement": "Soient \\(a,b > 1\\). On définit \\(E = \\{\\lfloor na \\rfloor \\mid n \\in \\mathbb{N}^*\\}\\) et \\(F = \\{\\lfloor nb \\rfloor \\mid n \\in \\mathbb{N}^*\\}\\).",
+  "followup": "Montrer que les propositions suivantes sont équivalentes :",
+  "questions": [
+    "\\(E\\) et \\(F\\) partitionnent \\(\\mathbb{N}^*\\) ;",
+    "\\(\\dfrac{1}{a} + \\dfrac{1}{b} = 1\\) et \\(a,b \\in \\mathbb{R} \\setminus \\mathbb{Q}\\)."
+  ],
+  "grading_context": "Théorème de Beatty (suites de Beatty complémentaires). Méthode de comptage : pour N∈N*, le nombre d'éléments de E inférieurs ou égaux à N est ⌊N/a⌋ (car ⌊na⌋≤N ⟺ n≤N/a). E et F partitionnent N* ssi pour tout N, exactement un élément de {⌊na⌋:n}∪{⌊nb⌋:n} vaut N, ce qui équivaut à ⌊N/a⌋+⌊N/b⌋ = N pour tout N≥1 (comptage cumulé). En divisant par N et en faisant N→∞ (utilisant ⌊x⌋/N→x/N·1), on obtient 1/a+1/b=1. L'irrationalité de a et b est nécessaire pour que les comptages ⌊N/a⌋ n'aient jamais d'ambiguïté (valeur exactement entière créant une collision ou un trou) ; réciproquement, si 1/a+1/b=1 avec a,b irrationnels, on vérifie que ⌊N/a⌋+⌊N/b⌋=N pour tout N en utilisant que N/a et N/b ne sont jamais entiers (irrationalité) et que leur somme vaut exactement N, ce qui permet de contrôler précisément la somme des parties entières. Cette égalité pour tout N équivaut exactement à ce que E,F partitionnent N*."
+}

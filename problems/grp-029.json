@@ -1,0 +1,12 @@
+{
+  "id": "grp-029",
+  "title": "Théorème de Frobenius-Zolotarev",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Blitz · 15 min",
+  "difficulty": 5,
+  "statement": "Soient \\(\\mathbb{K}\\) un corps fini de cardinal \\(q\\) et \\(M\\) un élément de \\(GL_n(\\mathbb{K})\\) avec \\(n \\geq 1\\). Soit \\(\\rho_M\\) la permutation de \\(\\mathbb{K}^n\\) associée.",
+  "followup": "Calculer \\(\\varepsilon(\\rho_M)\\).",
+  "grading_context": "Théorème de Frobenius-Zolotarev. Si q est impair, ε(ρ_M) = χ(det M) où χ est l'unique caractère quadratique non trivial de K* (symbole de Legendre généralisé, valant 1 sur les carrés non nuls, -1 sinon) ; si q est pair (caractéristique 2), ε(ρ_M)=1 pour tout M (car dans ce cas -1=1 et l'argument de parité ne distingue plus rien). Preuve standard : montrer que M↦ε(ρ_M) est un morphisme multiplicatif de GL_n(K) dans {±1}, invariant par similitude et par transvections (qui laissent ε(ρ_M)=1 puisqu'une transvection agit avec de nombreux points fixes/cycles courts), donc se factorise par det:GL_n(K)→K*, puis identifier ce morphisme induit sur K* comme le caractère quadratique en le testant sur un élément bien choisi (dilatation par un générateur de K*, dont la permutation associée est un produit de (q-1)/... cycles de longueur ord(a), permettant de calculer directement sa signature comme dans l'exercice de Zolotarev pour n=1)."
+}

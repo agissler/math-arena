@@ -1,0 +1,15 @@
+{
+  "id": "grp-048",
+  "title": "Anneaux finis isomorphes à un produit de corps finis",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Standard · 15 min",
+  "difficulty": 4,
+  "statement": "On s'intéresse aux anneaux commutatifs finis isomorphes à un produit de corps finis.",
+  "questions": [
+    "Soit \\(n \\in \\mathbb{N} \\setminus \\{0,1\\}\\). Donner une condition nécessaire et suffisante pour que l'anneau \\(\\mathbb{Z}/n\\mathbb{Z}\\) soit isomorphe à un produit de corps finis.",
+    "Soit \\(A\\) un anneau commutatif fini. Donner une condition nécessaire et suffisante pour que \\(A\\) soit isomorphe à un produit de corps finis."
+  ],
+  "grading_context": "(1) Par le lemme chinois, Z/nZ ≅ ∏ Z/p_i^{α_i}Z (n=∏p_i^{α_i}) ; chaque facteur Z/p_i^{α_i}Z est un corps ssi α_i=1. Donc Z/nZ est isomorphe à un produit de corps finis ssi n est sans facteur carré (squarefree). (2) Pour un anneau commutatif fini A général, la condition est que A soit réduit (pas d'élément nilpotent non nul) : un anneau commutatif fini réduit se décompose (théorème de structure, via les idéaux premiers qui sont maximaux en dimension 0 et le lemme chinois sur les idéaux premiers, tous comaximaux) en produit fini de corps (les quotients A/p pour p premier=maximal) ; réciproquement un produit de corps est évidemment réduit. Condition : A est isomorphe à un produit de corps finis ssi A n'a pas de nilpotent non nul."
+}

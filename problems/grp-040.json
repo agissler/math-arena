@@ -1,0 +1,16 @@
+{
+  "id": "grp-040",
+  "title": "Parties sans somme de Z",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Marathon · 25 min",
+  "difficulty": 4,
+  "statement": "On s'intéresse aux parties sans somme d'un groupe abélien.",
+  "questions": [
+    "Montrer qu'il existe une infinité de nombres premiers. Montrer qu'il existe une infinité de nombres premiers de la forme \\(3k+2\\).",
+    "Soient \\(p \\in \\mathcal{P}\\) de la forme \\(3k+2\\) et \\(A \\subset \\mathbb{F}_p^*\\). Si \\(x \\in \\mathbb{F}_p^*\\), on pose \\(B(x) = A \\cap \\{(k+1)x, \\ldots, (2k+1)x\\}\\). Calculer \\(\\sum_{x \\in \\mathbb{F}_p^*} |B(x)|\\).",
+    "Si \\((G,+)\\) est un groupe abélien, on dit d'une partie \\(B\\) de \\(G \\setminus \\{0\\}\\) qu'elle est sans somme, lorsque pour tout \\(x,y \\in G\\), \\(x+y \\notin B\\). Soit \\(A\\) une partie finie non vide de \\(\\mathbb{Z} \\setminus \\{0\\}\\). Montrer qu'il existe une partie sans somme \\(B\\) de \\(A\\) vérifiant \\(|B| > |A|/3\\)."
+  ],
+  "grading_context": "(1) Preuve d'Euclide classique pour l'infinité des nombres premiers ; pour les premiers de la forme 3k+2, adapter l'argument d'Euclide (si p_1,...,p_r sont tous les premiers de cette forme, considérer N=3p_1⋯p_r-1≡2[3], qui a un facteur premier de la forme 3k+2 non présent dans la liste, tous les facteurs premiers de N ne pouvant être ≡1[3] sinon N le serait aussi). (2) En sommant sur x∈F_p*, chaque élément a∈A est compté pour le nombre de x tels que a∈{(k+1)x,...,(2k+1)x}, c'est-à-dire pour lesquels x=a/j avec j∈{k+1,...,2k+1} (k+1 valeurs de j) ; donc chaque a contribue k+1 fois, et ∑_x |B(x)| = (k+1)|A|. (3) Application : l'intervalle {(k+1)x,...,(2k+1)x} mod p correspond (via une identification convenable avec un intervalle de 'tiers du milieu') à une partie sans somme de F_p* de densité 1/3 environ ; en choisissant x maximisant |B(x)| (moyenne (k+1)|A|/(p-1)≈|A|/3 sur les p-1 choix de x), on obtient un x avec |B(x)|>|A|/3, et B(x) est sans somme dans F_p (car {(k+1),...,(2k+1)} est stable par 'tiers du milieu' : la somme de deux éléments de cet intervalle sort de l'intervalle modulo p). Le passage de F_p à Z se fait en plongeant A dans F_p pour p premier assez grand de la forme 3k+2 ne divisant aucune différence d'éléments de A."
+}

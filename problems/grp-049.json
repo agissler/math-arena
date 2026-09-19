@@ -1,0 +1,15 @@
+{
+  "id": "grp-049",
+  "title": "Partition de N compatible somme et produit",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Standard · 15 min",
+  "difficulty": 4,
+  "statement": "On cherche les couples \\((A,B)\\) de parties de \\(\\mathbb{N}\\) vérifiant :",
+  "questions": [
+    "\\(A \\cup B = \\mathbb{N}\\) et \\(A \\cap B = \\emptyset\\) ;",
+    "\\(\\forall a \\in A,\\ \\forall b \\in B,\\ a+b \\in A\\) et \\(ab \\in B\\)."
+  ],
+  "grading_context": "Famille de solutions attendue : pour tout entier m≥0, en notant B_m l'ensemble des multiples de m dans N (avec la convention que les 'multiples de 0' se réduisent à {0}) et A_m=N\\B_m, le couple (A_m,B_m) convient. Vérification : si a∉B_m et b≡0[m], alors a+b≡a[m]≠0 donc a+b∈A_m, et ab≡0[m] donc ab∈B_m — les deux règles sont satisfaites pour tout m. Cas particuliers : m=0 donne (N*,{0}), m=1 donne (∅,N), m=2 donne (impairs,pairs). Si a=0∈A et b∈B avec B≠∅, la règle a+b∈A force b∈A, contradiction avec A∩B=∅ sauf si B=∅ ; ceci écarte les solutions avec 0∈A et B≠∅, orientant la recherche vers 0∈B, d'où la forme ci-dessus. Toute rédaction qui identifie correctement (une partie significative de) cette famille de solutions et vérifie rigoureusement les deux conditions est acceptée ; il n'est pas exigé de prouver qu'il n'existe aucune autre solution en dehors de cette famille."
+}

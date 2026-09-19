@@ -1,0 +1,12 @@
+{
+  "id": "grp-001",
+  "title": "Existence d'un idempotent",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Blitz · 10 min",
+  "difficulty": 1,
+  "statement": "Soit \\(E\\) un ensemble fini muni d'une loi de composition interne associative.",
+  "followup": "Montrer qu'il existe \\(s \\in E\\) tel que \\(s^2 = s\\).",
+  "grading_context": "Idempotent dans un magma associatif fini. Méthode attendue : pour a∈E fixé, la suite (a^n)_{n≥1} prend ses valeurs dans E fini donc n'est pas injective : il existe p<q avec a^p=a^q. En posant r=q-p>0, on a a^{n+r}=a^n dès que n≥p. Pour k assez grand, n=kr vérifie n≥p, et alors (a^n)^2=a^{2n}=a^n puisque 2n≡n [r] et n≥p. Toute rédaction correcte utilisant le principe des tiroirs sur les puissances d'un élément est acceptée."
+}

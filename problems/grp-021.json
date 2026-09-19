@@ -1,0 +1,12 @@
+{
+  "id": "grp-021",
+  "title": "Partie génératrice minimale de Sn",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Blitz · 10 min",
+  "difficulty": 3,
+  "statement": "Soit \\(n \\geq 2\\) un entier.",
+  "followup": "Trouver une partie génératrice de taille minimale de \\(\\mathfrak{S}_n\\).",
+  "grading_context": "Pour n≥3, S_n n'est pas cyclique (non abélien), donc aucune partie à 1 élément ne peut l'engendrer : le minimum est au moins 2. On atteint ce minimum avec {(1 2), (1 2 ... n)} : en conjuguant la transposition (1 2) par les puissances du n-cycle, on obtient toutes les transpositions (i, i+1) puis, par produits, toutes les transpositions, qui engendrent S_n. Pour n=2, S_2 est déjà engendré par 1 élément (la transposition (1 2)). Réponse attendue : 2 pour n≥3, 1 pour n=2."
+}

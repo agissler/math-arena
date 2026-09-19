@@ -1,0 +1,17 @@
+{
+  "id": "grp-030",
+  "title": "Décomposition minimale en transpositions",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Standard · 20 min",
+  "difficulty": 3,
+  "statement": "Soit \\(\\sigma \\in \\mathfrak{S}_n\\), de décomposition en cycles de supports disjoints de la forme \\(\\gamma_1 \\circ \\cdots \\circ \\gamma_r\\) où la longueur de \\(\\gamma_i\\) est \\(\\ell_i\\) (\\(\\ell_i \\geq 2\\)). On note :",
+  "formula": "p(\\sigma) = \\sum_{i=1}^{r} (\\ell_i - 1)",
+  "questions": [
+    "Montrer que \\(\\sigma\\) est produit de \\(p(\\sigma)\\) transpositions.",
+    "Montrer qu'on ne peut pas écrire \\(\\sigma\\) comme produit de moins de \\(p(\\sigma)\\) transpositions.",
+    "Quel est le cardinal minimal d'un système générateur de \\(\\mathfrak{S}_n\\) formé de transpositions ?"
+  ],
+  "grading_context": "(1) Un ℓ-cycle se décompose en ℓ-1 transpositions (formule classique (a_1...a_ℓ)=(a_1 a_ℓ)(a_1 a_{ℓ-1})...(a_1 a_2)), donc σ, produit de cycles disjoints, se décompose en ∑(ℓ_i-1)=p(σ) transpositions. (2) Minimalité : on utilise l'invariant du nombre de composantes connexes du graphe formé par les transpositions utilisées ; chaque transposition ne peut réduire le nombre d'orbites (cycles+points fixes) que d'au plus 1 lorsqu'elle relie deux orbites distinctes. Partant de n points fixes (n orbites) pour atteindre la décomposition en r cycles non triviaux (n-p(σ) orbites au total en comptant points fixes), il faut au moins p(σ) transpositions. (3) Le cardinal minimal d'un système générateur de S_n formé UNIQUEMENT de transpositions est n-1 (par exemple {(1 2),(1 3),...,(1 n)}), car ces transpositions correspondent aux arêtes d'un graphe connexe sur n sommets, et un graphe connexe a au moins n-1 arêtes ; on montre que les transpositions engendrant S_n correspondent exactement aux arêtes d'un graphe connexe sur {1,...,n}."
+}

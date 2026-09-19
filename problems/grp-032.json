@@ -1,0 +1,12 @@
+{
+  "id": "grp-032",
+  "title": "Cardinal d'une classe de conjugaison dans Sn",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Blitz · 15 min",
+  "difficulty": 3,
+  "statement": "Soit \\(\\sigma \\in \\mathfrak{S}_n\\).",
+  "followup": "Calculer, en fonction de la décomposition en cycles de \\(\\sigma\\), le cardinal de la classe de conjugaison de \\(\\sigma\\) dans \\(\\mathfrak{S}_n\\).",
+  "grading_context": "Si σ a pour type cyclique 1^{m_1} 2^{m_2} ⋯ n^{m_n} (m_k cycles de longueur k, avec ∑ k·m_k = n), le cardinal de son centralisateur est ∏_{k=1}^n k^{m_k} m_k! (choix indépendant de la rotation interne de chaque cycle et permutation des cycles de même longueur). Par la formule orbite-stabilisateur appliquée à l'action de conjugaison, le cardinal de la classe de conjugaison de σ est n! / ∏_{k=1}^n (k^{m_k} m_k!)."
+}

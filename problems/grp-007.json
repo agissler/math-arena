@@ -1,0 +1,16 @@
+{
+  "id": "grp-007",
+  "title": "Lemme de Cauchy",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Marathon · 25 min",
+  "difficulty": 4,
+  "statement": "Soit \\(G\\) un groupe fini de cardinal \\(p^m\\) où \\(p \\in \\mathcal{P}\\) et \\(m \\geq 1\\). On suppose que \\(G\\) opère sur un ensemble fini non vide \\(E\\). On considère \\(E^G = \\{x \\in E,\\ \\forall g \\in G,\\ g \\cdot x = x\\}\\).",
+  "questions": [
+    "Montrer que \\(|E^G| \\equiv |E|\\ [p]\\).",
+    "Soit \\(H\\) un groupe fini d'ordre \\(n\\) et \\(p\\) un diviseur premier de \\(n\\). Montrer que \\(H\\) contient un élément d'ordre \\(p\\).",
+    "Soient \\(H\\) un groupe fini d'ordre \\(n\\) et \\(m \\in \\mathbb{N}^*\\) tels que \\(\\forall x \\in H,\\ x^m = e\\). Montrer que \\(n\\) divise une puissance de \\(m\\)."
+  ],
+  "grading_context": "(1) Formule des classes : E se partitionne en orbites sous G ; les orbites ponctuelles forment E^G, les autres ont un cardinal >1 divisant |G|=p^m, donc divisible par p. D'où |E|-|E^G| ≡ 0 [p]. (2) Théorème de Cauchy : appliquer (1) (avec un p-groupe Z/pZ agissant, ou directement une action de G tout entier de cardinal p^m si p|n) sur E={(x_1,...,x_p)∈H^p : x_1⋯x_p=e}, muni de l'action de Z/pZ par permutation circulaire (|E|=n^{p-1}≡0[p] si p|n). Les points fixes sont les p-uplets constants (x,...,x) avec x^p=e ; (e,...,e) en est un, donc par (1) il y a au moins p tels x, donc un élément d'ordre exactement p. (3) Récurrence sur les facteurs premiers de n via (2) : si un premier p divise n mais pas m, (2) donne un élément d'ordre p dans H, qui vérifie aussi x^m=e, donc p divise m — contradiction. Ainsi tout diviseur premier de n divise m ; un argument de récurrence sur les sous-groupes (ou sur |H|) permet d'en déduire que n divise une puissance de m."
+}

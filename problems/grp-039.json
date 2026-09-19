@@ -1,0 +1,13 @@
+{
+  "id": "grp-039",
+  "title": "Critère d'Euler",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Blitz · 10 min",
+  "difficulty": 2,
+  "statement": "Soient \\(p > 2\\) un nombre premier et \\(x \\in \\mathbb{F}_p\\).",
+  "followup": "Montrer que :",
+  "formula": "x \\text{ est un carré de } \\mathbb{F}_p \\iff x^{\\frac{p-1}{2}} \\equiv 1\\ [p]",
+  "grading_context": "Critère d'Euler. F_p* est cyclique d'ordre p-1, engendré par g. Si x=g^{2k} est un carré, x^{(p-1)/2}=g^{k(p-1)}=1. Réciproquement, l'équation X^{(p-1)/2}=1 a au plus (p-1)/2 solutions dans le corps F_p (racines d'un polynôme de degré (p-1)/2), et les (p-1)/2 carrés non nuls (images de x↦x² sur F_p*, application 2-to-1) sont tous solutions, donc l'ensemble des solutions est exactement l'ensemble des carrés non nuls. D'où l'équivalence pour x≠0 (le cas x=0 étant trivial et généralement exclu de l'énoncé pour x^{(p-1)/2})."
+}

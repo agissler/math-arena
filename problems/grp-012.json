@@ -1,0 +1,18 @@
+{
+  "id": "grp-012",
+  "title": "Déterminant de groupe et lemme de Dedekind",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Marathon · 30 min",
+  "difficulty": 5,
+  "statement": "Soient \\((G,\\cdot)\\) un groupe fini de cardinal \\(n\\) et \\(\\mathbb{C}[(X_g)_{g \\in G}]\\) l'anneau des polynômes aux \\(n\\) indéterminées \\(X_g\\) où \\(g \\in G\\). On note \\(D\\) le déterminant de la matrice \\((X_{gh^{-1}})_{g,h \\in G}\\).",
+  "questions": [
+    "Calculer \\(D\\) lorsque \\(G = \\mathbb{Z}/2\\mathbb{Z}\\).",
+    "Montrer que \\(D\\) ne dépend pas de la numérotation des éléments de \\(G\\).",
+    "Montrer que \\(D\\) est un polynôme homogène de degré \\(n\\) à coefficients entiers."
+  ],
+  "formula": "D = \\prod_{\\omega \\in \\mathbb{U}_n} \\left(\\sum_{k=0}^{n-1} \\omega^k X_k\\right)",
+  "followup": "On suppose \\(G\\) cyclique. Montrer que \\(D\\) est donné par la formule ci-dessus, où \\(X_k\\) désigne \\(X_{a^k}\\) avec \\(a\\) générateur de \\(G\\). (Lemme de Dedekind) On considère \\((f_1,\\ldots,f_m)\\) des morphismes distincts de \\(G\\) dans \\(\\mathbb{C}^*\\). Montrer qu'ils forment une famille libre de \\(\\mathcal{F}(G,\\mathbb{C}^*)\\).",
+  "grading_context": "Déterminant de groupe. (1) Pour G=Z/2Z, la matrice est [[X_0,X_1],[X_1,X_0]], donc D=X_0²-X_1². (2) Renuméroter G revient à conjuguer la matrice (X_{gh^{-1}})_{g,h} par une matrice de permutation P (matrice de passage), or det(P M P^{-1})=det(M) : D est invariant. (3) Chaque terme du déterminant (formule de Leibniz) est un produit de n entrées de la matrice, chacune une indéterminée X_{gh^{-1}} au premier degré, donc D est homogène de degré n, à coefficients entiers (±1 issus des signatures de permutations). (4) Cas cyclique : la matrice (X_{gh^{-1}}) est une matrice circulante, diagonalisée par la matrice de Fourier discrète sur les racines n-ièmes de l'unité ; ses valeurs propres sont précisément ∑_k ω^k X_k pour ω∈U_n, d'où D=∏_{ω∈U_n}(∑_k ω^k X_k). (5) Lemme de Dedekind (indépendance linéaire des caractères) : par récurrence sur m, si une relation ∑ λ_i f_i=0 non triviale de longueur minimale existe, évaluer en gx pour un g bien choisi et combiner avec la relation en x pour faire disparaître un terme, contredisant la minimalité — argument classique d'Artin sur l'indépendance linéaire des caractères."
+}

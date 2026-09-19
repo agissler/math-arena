@@ -1,0 +1,12 @@
+{
+  "id": "grp-033",
+  "title": "Groupe engendré par deux cycles imbriqués",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Blitz · 10 min",
+  "difficulty": 3,
+  "statement": "Si \\(1 \\leq k < \\ell \\leq n\\),",
+  "followup": "Quel est le groupe de \\(\\mathfrak{S}_n\\) engendré par \\((1,2,\\cdots,k)\\) et \\((1,2,\\cdots,\\ell)\\) ?",
+  "grading_context": "Les deux cycles ont pour supports {1,...,k}⊂{1,...,ℓ}, donc le groupe engendré agit sur {1,...,ℓ} et fixe {ℓ+1,...,n}. En combinant les deux cycles (qui partagent la partie {1,...,k}), on engendre en général tout le groupe symétrique S_ℓ sur {1,...,ℓ} (le sous-groupe engendré étant transitif sur {1,...,ℓ} et contenant assez de mélange pour ne pas être seulement A_ℓ, sauf cas particuliers de petite taille à vérifier). La réponse attendue est donc le sous-groupe de S_n constitué des permutations de S_ℓ agissant sur {1,...,ℓ} et fixant les points ℓ+1,...,n, c'est-à-dire une copie de S_ℓ (à vérifier/nuancer pour les petites valeurs de k,ℓ où le groupe engendré pourrait être plus petit, par exemple A_ℓ)."
+}

@@ -1,0 +1,18 @@
+{
+  "id": "grp-013",
+  "title": "Dual d'un groupe fini",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Marathon · 25 min",
+  "difficulty": 4,
+  "statement": "Soit \\((G,\\cdot)\\) un groupe fini de cardinal \\(n\\). On note \\(\\widehat{G}\\) l'ensemble des morphismes de \\((G,\\cdot)\\) dans \\((\\mathbb{C}^*,\\times)\\).",
+  "questions": [
+    "Dans cette question, on suppose que \\(n\\) est premier. Montrer que \\(G\\) est cyclique, puis que \\(|\\widehat{G}| = n\\).",
+    "Dans les trois questions suivantes, \\(G\\) est supposé abélien et sa loi de groupe est notée additivement. On note \\(E = \\mathcal{F}(G,\\mathbb{C})\\) l'ensemble des applications de \\(G\\) vers \\(\\mathbb{C}\\). Munir \\(E\\) d'une structure de \\(\\mathbb{C}\\)-espace vectoriel et préciser sa dimension.",
+    "Soit \\(a \\in G\\). On définit \\(T_a \\in \\mathcal{L}(E)\\) par \\(\\forall (f,x) \\in E \\times G,\\ T_a(f)(x) = f(x+a)\\). Montrer qu'il existe une base de \\(E\\) formée de vecteurs propres communs à tous les \\(T_a\\).",
+    "Montrer que \\(|\\widehat{G}| = n\\).",
+    "Montrer par un exemple que ce résultat tombe en défaut lorsque \\(G\\) n'est plus supposé abélien."
+  ],
+  "grading_context": "Structure du dual d'un groupe abélien fini. (1) Si n est premier, tout élément non neutre a un ordre divisant n donc égal à n (Lagrange), donc G=⟨x⟩ est cyclique ; un morphisme est déterminé par l'image du générateur, qui doit être une racine n-ième de l'unité (n choix), donc |Ĝ|=n. (2) E=F(G,C) est un C-espace vectoriel de dimension n=|G| (base des indicatrices des points de G). (3) Les opérateurs T_a commutent entre eux (T_a T_b = T_{a+b} = T_b T_a) et chacun vérifie T_a^{ord(a)}=Id, donc est diagonalisable (polynôme annulateur scindé à racines simples, les racines de l'unité) ; une famille d'endomorphismes commutants diagonalisables est simultanément diagonalisable, d'où l'existence d'une base de vecteurs propres communs. (4) Un vecteur propre commun f non nul vérifie f(x+a)=χ(a)f(x) pour tout a, ce qui, en x=0, montre f(x)=f(0)χ(x) avec χ:G→C* un morphisme (caractère) ; chaque espace propre commun est de dimension 1 et associé à un caractère distinct, et il y a exactement dim E=n tels vecteurs propres (à scalaire près), donc |Ĝ|=n. (5) Contre-exemple non abélien : pour G=S_3 (n=6), tout morphisme vers C* (abélien) se factorise par l'abélianisé G/[G,G]≅Z/2Z, donc |Ĝ|=2≠6."
+}

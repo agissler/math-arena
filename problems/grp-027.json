@@ -1,0 +1,12 @@
+{
+  "id": "grp-027",
+  "title": "Éléments d'ordre p dans S_2p",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Blitz · 15 min",
+  "difficulty": 3,
+  "statement": "Soit \\(p\\) un nombre premier.",
+  "followup": "Trouver le nombre d'éléments d'ordre \\(p\\) de \\(\\mathfrak{S}_{2p}\\).",
+  "grading_context": "Un élément d'ordre p dans S_{2p} est soit un p-cycle unique (avec p points fixes), soit un produit de deux p-cycles disjoints (l'ordre étant alors ppcm(p,p)=p). Nombre de p-cycles simples : choisir p points parmi 2p (C(2p,p)) puis les arranger en cycle ((p-1)! arrangements), soit C(2p,p)·(p-1)!. Nombre de produits de deux p-cycles disjoints couvrant les 2p points : partitionner les 2p points en deux paquets non ordonnés de p (C(2p,p)/2 façons), puis arranger chaque paquet en cycle ((p-1)! façons chacun), soit (C(2p,p)/2)·(p-1)!². Le total attendu est C(2p,p)·(p-1)! + (1/2)·C(2p,p)·(p-1)!², qu'on peut aussi écrire sous forme factorielle équivalente ; toute réponse numériquement équivalente et correctement justifiée est acceptée."
+}

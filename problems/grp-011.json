@@ -1,0 +1,12 @@
+{
+  "id": "grp-011",
+  "title": "Inégalité de Dixon",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Marathon · 25 min",
+  "difficulty": 5,
+  "statement": "Soit \\(G\\) un groupe fini non commutatif.",
+  "followup": "Montrer que la probabilité que deux éléments de \\(G\\) commutent est majorée par \\(\\dfrac{5}{8}\\).",
+  "grading_context": "Résultat classique (inégalité de Dixon). Notons P(G)=|\\{(g,h)\\in G^2 : gh=hg\\}|/|G|^2. Par le lemme de Burnside-Cauchy-Frobenius appliqué à l'action de conjugaison, P(G)=k(G)/|G| où k(G) est le nombre de classes de conjugaison de G. Comme G est non abélien, G/Z(G) n'est pas cyclique, donc l'indice du centre |G:Z(G)| est au moins 4 (en fait au moins p² pour un premier p, donc ≥4). En majorant le nombre de classes de conjugaison — chaque élément central donne une classe de taille 1 (au plus |Z(G)|≤|G|/4 classes de ce type), et les classes non centrales ont une taille au moins égale au plus petit indice d'un sous-groupe propre contenant strictement Z(G) — une analyse fine (classique, due à Erdős-Turán puis Dixon) donne k(G) ≤ (5/8)|G|, d'où P(G)≤5/8, avec égalité pour le groupe diédral d'ordre 8 (ou le groupe quaternionique Q_8)."
+}

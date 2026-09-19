@@ -1,0 +1,12 @@
+{
+  "id": "grp-009",
+  "title": "Groupes d'ordre p²",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Blitz · 15 min",
+  "difficulty": 3,
+  "statement": "Soit \\(p \\in \\mathcal{P}\\).",
+  "followup": "Déterminer, à isomorphisme près, les groupes d'ordre \\(p^2\\).",
+  "grading_context": "Résultat attendu : tout groupe d'ordre p² est abélien, donc isomorphe à Z/p²Z ou à (Z/pZ)². Méthode : d'après le résultat sur le centre d'un p-groupe, Z(G) est non trivial, donc |Z(G)|∈{p,p²}. Si |Z(G)|=p, alors G/Z(G) est cyclique d'ordre p ; or un groupe dont le quotient par le centre est cyclique est nécessairement abélien (si G/Z(G)=⟨ḡ⟩, tout élément s'écrit g^k z avec z∈Z(G), et deux tels éléments commutent), donc Z(G)=G, contradiction avec |Z(G)|=p<p². Donc |Z(G)|=p², G est abélien. On conclut par la classification (ou directement) : si G a un élément d'ordre p², G≅Z/p²Z ; sinon tout élément non nul est d'ordre p et G≅(Z/pZ)²."
+}

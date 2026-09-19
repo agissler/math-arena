@@ -1,0 +1,13 @@
+{
+  "id": "grp-028",
+  "title": "Signature de la multiplication dans F_p*",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Blitz · 10 min",
+  "difficulty": 3,
+  "statement": "Soient \\(p\\) un nombre premier, \\(a\\) dans \\((\\mathbb{Z}/p\\mathbb{Z})^*\\) et :",
+  "formula": "\\sigma_a\\ :\\ (\\mathbb{Z}/p\\mathbb{Z})^* \\to (\\mathbb{Z}/p\\mathbb{Z})^*,\\quad x \\mapsto ax",
+  "followup": "Calculer \\(\\varepsilon(\\sigma_a)\\).",
+  "grading_context": "Lemme de Zolotarev : ε(σ_a) est égal au symbole de Legendre (a/p), c'est-à-dire vaut 1 si a est un carré non nul modulo p, et -1 sinon. Preuve standard : (Z/pZ)* étant cyclique engendré par un élément g, σ_a se décompose selon l'ordre de a dans (Z/pZ)*/⟨a⟩... plus directement, on montre que a↦ε(σ_a) est un morphisme de (Z/pZ)* dans {±1} non trivial (car σ_g, g générateur, est un (p-1)-cycle donc de signature (-1)^{p-2}=-1 si p impair), qui coïncide donc avec l'unique morphisme non trivial (Z/pZ)*→{±1}, à savoir le caractère quadratique (symbole de Legendre)."
+}

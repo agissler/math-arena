@@ -1,0 +1,12 @@
+{
+  "id": "grp-045",
+  "title": "Commutant infini dans SLn(C)",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Blitz · 10 min",
+  "difficulty": 3,
+  "statement": "On considère une matrice quelconque de \\(SL_n(\\mathbb{C})\\).",
+  "followup": "Montrer que le commutant de toute matrice de \\(SL_n(\\mathbb{C})\\) est infini.",
+  "grading_context": "Le commutant d'une matrice A contient toujours le sous-groupe {λI_n : λ∈C*} des homothéties, qui commutent avec toute matrice — mais celles-ci ne sont dans SL_n que si λ^n=1 (fini). L'argument correct utilise plutôt le fait que le commutant de A contient toujours C[A]∩GL_n(C) (les polynômes en A inversibles), un ensemble infini dès que A n'est pas trop dégénérée, ou plus simplement : le commutant de A contient toujours un sous-groupe à un paramètre non trivial (par exemple exp(tN) pour N commutant avec A, ou les puissances de A elles-mêmes si A est d'ordre infini, ou un tore/sous-groupe de Cartan associé à la décomposition de Jordan de A) qui est infini. Toute preuve correcte établissant l'infinitude du commutant (via un sous-groupe à un paramètre, une famille infinie de polynômes en A inversibles et de déterminant 1 après ajustement, etc.) est acceptée."
+}

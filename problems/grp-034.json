@@ -1,0 +1,13 @@
+{
+  "id": "grp-034",
+  "title": "Probabilité que deux permutations commutent",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Blitz · 15 min",
+  "difficulty": 4,
+  "statement": "On considère :",
+  "formula": "p_n = \\frac{\\left|\\{(g,h) \\in (\\mathfrak{S}_n)^2\\ ,\\ g \\circ h = h \\circ g\\}\\right|}{(n!)^2}",
+  "followup": "Déterminer la limite de \\(p_n\\) quand \\(n \\to +\\infty\\).",
+  "grading_context": "Par le lemme de Burnside-Cauchy-Frobenius, p_n = k(S_n)/n! où k(S_n) est le nombre de classes de conjugaison de S_n, c'est-à-dire le nombre de partitions de l'entier n, noté part(n). Il s'agit donc de déterminer lim_{n→∞} part(n)/n!. Comme part(n) croît sous-exponentiellement (formule asymptotique de Hardy-Ramanujan : part(n) ~ exp(π√(2n/3))/(4n√3)) alors que n! croît beaucoup plus vite, on a part(n)/n! → 0. La limite attendue est donc 0."
+}

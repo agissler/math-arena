@@ -1,0 +1,12 @@
+{
+  "id": "grp-016",
+  "title": "Signature de la translation dans Sn",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Blitz · 10 min",
+  "difficulty": 3,
+  "statement": "Soit \\(\\sigma \\in \\mathfrak{S}_n\\). On définit la permutation \\(\\mu_\\sigma\\) de \\(\\mathfrak{S}_n\\) par : \\(\\forall g \\in \\mathfrak{S}_n,\\ \\mu_\\sigma(g) = \\sigma \\circ g\\).",
+  "followup": "Déterminer la signature de \\(\\mu_\\sigma\\) (vue comme permutation de l'ensemble \\(\\mathfrak{S}_n\\), qui a \\(n!\\) éléments).",
+  "grading_context": "μ_σ est la translation à gauche par σ sur le groupe régulier S_n vu comme ensemble à n! éléments. Par le théorème de Cayley appliqué à la représentation régulière, la permutation μ_σ se décompose en n!/ord(σ) cycles disjoints, tous de longueur ord(σ). Sa signature vaut donc (-1)^{(n!/ord(σ))·(ord(σ)-1)}. En particulier ε(μ_σ)=1 si ord(σ) est impair (car alors ord(σ)-1 est pair) ; si ord(σ) est pair, ε(μ_σ)=(-1)^{n!/ord(σ)}, qui dépend de la parité de n!/ord(σ). Toute rédaction aboutissant à cette formule (via la décomposition en cycles de la représentation régulière) est acceptée."
+}

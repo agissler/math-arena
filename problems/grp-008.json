@@ -1,0 +1,12 @@
+{
+  "id": "grp-008",
+  "title": "Centre d'un p-groupe",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Blitz · 15 min",
+  "difficulty": 3,
+  "statement": "Soit \\(G\\) un groupe fini de cardinal une puissance non nulle d'un nombre premier.",
+  "followup": "Montrer qu'il existe un élément différent du neutre qui commute à tous les éléments de \\(G\\).",
+  "grading_context": "Formule des classes appliquée à l'action de G sur lui-même par conjugaison : |G| = |Z(G)| + Σ (tailles des classes de conjugaison non ponctuelles). Chaque taille de classe non ponctuelle divise |G|=p^m (stabilisateur-orbite) donc est divisible par p. Comme |G| est divisible par p, |Z(G)| est aussi divisible par p. Or |Z(G)| ≥ 1 (le neutre y est), donc |Z(G)| ≥ p > 1 : le centre contient un élément non trivial qui commute avec tout le groupe."
+}

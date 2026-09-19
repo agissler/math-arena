@@ -1,0 +1,12 @@
+{
+  "id": "grp-003",
+  "title": "Groupe à nombre fini de sous-groupes",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Blitz · 10 min",
+  "difficulty": 3,
+  "statement": "Soit \\(G\\) un groupe admettant un nombre fini de sous-groupes.",
+  "followup": "Que dire de \\(G\\) ?",
+  "grading_context": "Réponse attendue : G est fini. Méthode : par contraposée, si G est infini, on construit une infinité de sous-groupes distincts. Si G contient un élément d'ordre infini x, les sous-groupes ⟨x^n⟩ (n≥1) sont deux à deux distincts. Si tous les éléments de G sont d'ordre fini et G est infini, on construit par récurrence une suite strictement croissante de sous-groupes finiment engendrés (donc finis puisque tout élément est d'ordre fini) : à chaque étape, le sous-groupe engendré est fini donc distinct de G, on peut ajouter un nouvel élément hors de ce sous-groupe. On obtient ainsi une infinité de sous-groupes distincts. Conclusion : un groupe à nombre fini de sous-groupes est nécessairement fini."
+}

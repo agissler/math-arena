@@ -1,0 +1,12 @@
+{
+  "id": "grp-005",
+  "title": "Cas particulier du lemme de Cauchy (1)",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Blitz · 10 min",
+  "difficulty": 3,
+  "statement": "Soit \\(G\\) un groupe d'ordre \\(2p\\) où \\(p \\in \\mathcal{P}\\).",
+  "followup": "Montrer que \\(G\\) contient un élément d'ordre \\(p\\).",
+  "grading_context": "Cas particulier du théorème de Cauchy. Si p=2, tout élément non neutre convient. Si p est impair, méthode de McKay : faire agir Z/pZ par permutation circulaire sur l'ensemble E={(x_1,...,x_p)∈G^p : x_1⋯x_p=e} de cardinal |G|^{p-1}=(2p)^{p-1}. Les points fixes de cette action sont les p-uplets constants (x,...,x) avec x^p=e. Par la formule des classes modulo p (les orbites non ponctuelles ont p éléments), |E^{fix}| ≡ |E| [p]. Comme (2p)^{p-1} ≡ 0 [p] et que (e,...,e) est un point fixe, il y a au moins p éléments x vérifiant x^p=e, donc au moins un élément d'ordre p (p premier). Toute preuve correcte de ce cas particulier de Cauchy (McKay, action de groupe, ou argument de Sylow direct) est acceptée."
+}

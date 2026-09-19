@@ -1,0 +1,13 @@
+{
+  "id": "grp-044",
+  "title": "Matrices infiniment divisibles dans GLn(Z)",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Blitz · 15 min",
+  "difficulty": 4,
+  "statement": "On s'intéresse aux matrices \\(A \\in GL_n(\\mathbb{Z})\\) telles que :",
+  "formula": "\\forall k \\in \\mathbb{N}^*,\\ \\exists M \\in GL_n(\\mathbb{Z}),\\ M^k = A",
+  "followup": "Déterminer ces matrices.",
+  "grading_context": "Réponse attendue : seule A=I_n (l'identité) convient (ou plus généralement les matrices dont l'unique valeur propre possible compatible avec une racine k-ième entière pour tout k est 1, ce qui force A=I_n en dimension finie). Idée : si A≠I_n admet une racine k-ième M_k dans GL_n(Z) pour tout k, les valeurs propres de M_k sont des racines k-ièmes des valeurs propres de A ; en considérant le polynôme caractéristique de M_k (à coefficients entiers, unitaire, car M_k∈GL_n(Z)) et en faisant croître k, les coefficients de ce polynôme restent bornés (car les valeurs propres de M_k sont bornées si celles de A le sont, or déterminant ±1 impose des contraintes), on aboutit par un argument de finitude (nombre fini de polynômes caractéristiques entiers unitaires à coefficients bornés) à une contradiction sauf si A=I_n."
+}

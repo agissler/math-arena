@@ -1,0 +1,12 @@
+{
+  "id": "grp-026",
+  "title": "Signature d'une union de supports disjoints",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Blitz · 10 min",
+  "difficulty": 2,
+  "statement": "Soient \\(X\\) et \\(Y\\) deux ensembles finis non vides et disjoints, \\(\\sigma\\) dans \\(\\mathfrak{S}(X)\\), \\(\\sigma'\\) dans \\(\\mathfrak{S}(Y)\\) et \\(\\rho\\) la permutation de \\(X \\cup Y\\) coïncidant avec \\(\\sigma\\) (resp. \\(\\sigma'\\)) sur \\(X\\) (resp. \\(Y\\)).",
+  "followup": "Calculer \\(\\varepsilon(\\rho)\\) à l'aide de \\(\\varepsilon(\\sigma)\\) et \\(\\varepsilon(\\sigma')\\).",
+  "grading_context": "ε(ρ)=ε(σ)·ε(σ'). Méthode : décomposer σ en produit de ε(σ)-inversions... plus simplement, décomposer σ en produit de transpositions de X (p transpositions, ε(σ)=(-1)^p) et σ' en produit de q transpositions de Y (ε(σ')=(-1)^q) ; ρ est alors le produit de ces p+q transpositions (vues dans X∪Y, à supports disjoints donc commutant), d'où ε(ρ)=(-1)^{p+q}=ε(σ)ε(σ')."
+}

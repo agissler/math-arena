@@ -1,0 +1,12 @@
+{
+  "id": "grp-020",
+  "title": "Unicité du morphisme signature",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Blitz · 10 min",
+  "difficulty": 3,
+  "statement": "Soit \\(n \\geq 2\\) un entier.",
+  "followup": "Montrer que la signature est le seul morphisme non trivial de \\(\\mathfrak{S}_n\\) dans \\((\\mathbb{C}^*,\\times)\\).",
+  "grading_context": "Soit φ:S_n→C* un morphisme non trivial. Toutes les transpositions étant conjuguées dans S_n, elles ont même image par φ (car C* est abélien : φ(gτg^{-1})=φ(τ)). Notons t cette valeur commune : t²=φ(τ²)=φ(e)=1 donc t=±1. Si t=1, φ serait trivial sur les transpositions, donc sur S_n tout entier (les transpositions engendrent S_n) — exclu. Donc t=-1=ε(τ) pour toute transposition τ, et comme φ et ε coïncident sur une partie génératrice de S_n, φ=ε."
+}

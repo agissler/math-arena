@@ -1,0 +1,12 @@
+{
+  "id": "grp-047",
+  "title": "Nilpotents de Z/nZ",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Blitz · 10 min",
+  "difficulty": 3,
+  "statement": "Soit \\(n \\in \\mathbb{N}^*\\).",
+  "followup": "Dénombrer les nilpotents de l'anneau \\(\\mathbb{Z}/n\\mathbb{Z}\\).",
+  "grading_context": "Écrivons n=∏ p_i^{α_i}. Un élément x∈Z/nZ est nilpotent ssi x^k≡0[n] pour un certain k, ce qui équivaut (par le lemme chinois, en raisonnant composante par composante sur les Z/p_i^{α_i}Z) à ce que x soit divisible par chaque p_i, c'est-à-dire par le radical rad(n)=∏p_i. Les nilpotents de Z/nZ sont donc exactement les multiples de rad(n) modulo n, au nombre de n/rad(n) = ∏ p_i^{α_i - 1}."
+}

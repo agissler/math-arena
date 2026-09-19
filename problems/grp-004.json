@@ -1,0 +1,16 @@
+{
+  "id": "grp-004",
+  "title": "p-Groupes de Prüfer",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Standard · 15 min",
+  "difficulty": 4,
+  "statement": "Soit \\(p \\in \\mathcal{P}\\). Notons \\(\\mathcal{U}_p\\) le sous-groupe multiplicatif de \\(\\mathbb{C}^*\\) engendré par l'ensemble des nombres \\(\\exp\\left(\\dfrac{2i\\pi}{p^{\\alpha}}\\right)\\) où \\(\\alpha \\in \\mathbb{N}\\).",
+  "questions": [
+    "Quels sont les sous-groupes de \\(\\mathcal{U}_p\\) ?",
+    "Montrer que \\(\\mathcal{U}_p\\) est indécomposable, c'est à dire non isomorphe à un produit direct de deux groupes non triviaux."
+  ],
+  "remark": "Les p-groupes de Prüfer fournissent donc des exemples de groupes infinis dont tous les sous-groupes sont finis.",
+  "grading_context": "U_p est la réunion croissante des groupes cycliques U_{p,α} (racines p^α-ièmes de l'unité), chaque U_{p,α} strictement inclus dans U_{p,α+1}. (1) Tout sous-groupe propre de U_p est fini : un sous-groupe infini contiendrait des éléments d'ordre p^α pour tout α, donc contiendrait tous les U_{p,α}, donc égalerait U_p. Un sous-groupe fini de U_p, étant cyclique (sous-groupe d'un groupe abélien de torsion à racines p-primaires), est nécessairement l'un des U_{p,α}. Donc les sous-groupes de U_p sont exactement U_p et les U_{p,α} (α∈N). (2) Indécomposabilité : si U_p ≅ H×K avec H,K non triviaux, chacun contient un sous-groupe d'ordre p (car tout élément non trivial de U_p a un ordre p^k, k≥1, qui contient un sous-groupe d'ordre p), donc H×K contient un sous-groupe isomorphe à (Z/pZ)², qui n'est pas cyclique — contredisant le fait que tout sous-groupe fini de U_p est cyclique d'après (1)."
+}

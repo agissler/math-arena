@@ -1,0 +1,13 @@
+{
+  "id": "grp-025",
+  "title": "Une formule explicite pour la signature",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Blitz · 15 min",
+  "difficulty": 3,
+  "statement": "Soit \\(\\sigma \\in \\mathfrak{S}_n\\).",
+  "followup": "Montrer que :",
+  "formula": "\\varepsilon(\\sigma) = \\prod_{1 \\leq i < j \\leq n} \\frac{\\sigma(j) - \\sigma(i)}{j - i}",
+  "grading_context": "Chaque facteur (σ(j)-σ(i))/(j-i) vaut ±1 selon que la paire (i,j) est préservée ou inversée par σ, donc le produit vaut (-1)^{inv(σ)} où inv(σ) est le nombre d'inversions de σ, ce qui est précisément la définition (ou une caractérisation standard) de la signature ε(σ). Une rédaction rigoureuse doit justifier que chaque facteur du produit ne dépend que du signe de σ(j)-σ(i) comparé à j-i (car {i,j} et {σ(i),σ(j)} parcourent les mêmes paires non ordonnées à travers σ, permutant les valeurs absolues au numérateur et dénominateur), et relier le compte des signes négatifs au nombre d'inversions."
+}

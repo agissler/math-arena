@@ -1,0 +1,15 @@
+{
+  "id": "grp-014",
+  "title": "Taux de croissance d'un endomorphisme",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Standard · 20 min",
+  "difficulty": 5,
+  "statement": "Soit \\((G,\\cdot)\\) un groupe engendré par une partie finie \\(S\\) stable par passage à l'inverse. Pour \\(x \\in G\\), on note \\(L(x,S)\\) la longueur minimale d'une décomposition de \\(x\\) comme produit d'éléments de \\(S\\). Pour \\(\\varphi : G \\to G\\) morphisme, on note \\(\\Lambda(\\varphi,S) = \\max_{x \\in S} L(\\varphi(x),S)\\).",
+  "questions": [
+    "Montrer que \\(\\displaystyle\\lim_{n \\to +\\infty} \\frac{1}{n} \\ln \\Lambda(\\varphi^n,S)\\) existe et ne dépend pas de \\(S\\).",
+    "Calculer la quantité précédente dans le cas où \\(G = \\mathbb{Z}^2\\) et \\(\\varphi : (x,y) \\in \\mathbb{Z}^2 \\mapsto (2x+y,x+y)\\)."
+  ],
+  "grading_context": "Taux de croissance exponentiel (entropie) d'un endomorphisme itéré. (1) La suite a_n=ln Λ(φ^n,S) est sous-additive : Λ(φ^{n+m},S) ≤ Λ(φ^n,S)·Λ(φ^m,S) car la longueur d'un produit se majore par la somme (ou le produit adapté) des longueurs, donc a_{n+m}≤a_n+a_m ; par le lemme de Fekete, (1/n)a_n converge vers inf_n a_n/n. L'indépendance vis-à-vis de S vient du fait que deux parties génératrices finies S,S' sont bi-Lipschitz équivalentes (tout élément de S est un mot de longueur bornée en S' et réciproquement), ce qui ne change pas la limite exponentielle. (2) Pour G=Z², φ est donné par la matrice M=[[2,1],[1,1]], de valeurs propres (3±√5)/2. La limite cherchée est le logarithme du rayon spectral de M (croissance exponentielle de ‖M^n‖), soit ln((3+√5)/2)."
+}

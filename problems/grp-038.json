@@ -1,0 +1,13 @@
+{
+  "id": "grp-038",
+  "title": "-1 est un carré modulo p",
+  "domain": "Algèbre",
+  "chapter": 1,
+  "level": "MP*",
+  "cadence": "Blitz · 10 min",
+  "difficulty": 2,
+  "statement": "Soit \\(p > 2\\) un nombre premier.",
+  "followup": "Montrer que :",
+  "formula": "\\overline{-1} \\text{ est un carré de } \\mathbb{F}_p \\iff p \\equiv 1\\ [4]",
+  "grading_context": "F_p* est cyclique d'ordre p-1 (généré par un élément g). -1 est l'unique élément d'ordre 2 de F_p* (racine non triviale de x²=1). -1 est un carré ssi -1=g^{2k} pour un certain k, ssi l'élément d'ordre 2 (qui est g^{(p-1)/2}) est bien un carré, ce qui équivaut à ce que (p-1)/2 soit pair, i.e. 4 | (p-1), i.e. p≡1 [4]. Réciproquement si p≡3[4], (p-1)/2 est impair et g^{(p-1)/2}=-1 n'est pas un carré (les carrés sont exactement les g^{2j})."
+}
