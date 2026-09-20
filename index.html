@@ -35,6 +35,27 @@ header{width:100%;border-bottom:1px solid var(--border);padding:14px 32px;displa
 .elo-pill{background:var(--surf2);border:1px solid var(--border);padding:4px 12px;border-radius:20px;font-size:12px;color:var(--text)}
 .elo-pill b{color:var(--accent)}
 
+/* ── Sélecteur de modèle (Gemini/Groq) ── */
+.model-select-wrap{position:relative;display:flex;align-items:center;gap:8px}
+.model-select-btn{display:flex;align-items:center;gap:6px;background:var(--surf2);border:1px solid var(--border);color:var(--text);font-family:var(--mono);font-size:11px;padding:5px 10px;border-radius:20px;cursor:pointer;transition:border-color .15s;max-width:220px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.model-select-btn:hover{border-color:var(--borderB)}
+.model-select-chevron{color:var(--muted);flex-shrink:0}
+.model-remaining{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap}
+.model-dropdown{display:none;position:absolute;top:calc(100% + 6px);left:0;min-width:260px;max-height:280px;overflow-y:auto;background:var(--surf);border:1px solid var(--border);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.4);z-index:80;padding:6px}
+.model-dropdown.on{display:block}
+.model-dropdown-note{font-family:var(--mono);font-size:10px;color:var(--dim);padding:6px 10px 8px;border-bottom:1px solid var(--border);margin-bottom:4px}
+.model-option{display:flex;flex-direction:column;align-items:flex-start;gap:2px;width:100%;background:transparent;border:none;color:var(--text);font-family:var(--mono);text-align:left;padding:8px 10px;border-radius:6px;cursor:pointer}
+.model-option:hover{background:var(--surf2)}
+.model-option.active{background:var(--accentD);color:var(--accent)}
+.model-option-label{font-size:12px;font-weight:500}
+.model-option-meta{font-size:10px;color:var(--muted)}
+.model-option.active .model-option-meta{color:var(--accent)}
+.model-option:disabled{opacity:.45;cursor:not-allowed}
+.quota-banner{display:none;width:100%;max-width:820px;padding:12px 24px 0}
+.quota-banner-inner{background:rgba(255,95,87,.1);border:1px solid rgba(255,95,87,.25);border-radius:10px;padding:10px 16px;font-family:var(--mono);font-size:12px;color:var(--danger)}
+.quota-banner.on{display:block}
+.eval-meta{padding:0 22px 14px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+
 .tab-bar{width:100%;max-width:820px;padding:20px 24px 0;display:flex;gap:8px;flex-wrap:wrap}
 .tab-btn{font-family:var(--mono);font-size:12px;font-weight:500;padding:8px 18px;border-radius:20px;border:1px solid var(--border);background:var(--surf);color:var(--muted);cursor:pointer;transition:all .15s}
 .tab-btn:hover{border-color:var(--borderB);color:var(--text)}
@@ -255,6 +276,9 @@ textarea:focus{background:rgba(0,229,160,.02)}
   .sc-grid{grid-template-columns:1fr}
   header{padding:12px 16px}
   #hdr-cat{display:none}
+  .model-select-btn{max-width:130px;font-size:10px}
+  .model-remaining{display:none}
+  .quota-banner{padding:10px 16px 0}
   .tab-bar{padding:16px 16px 0}
   .selector-bar{padding:14px 16px 0}
   main{padding:16px 16px 0}
@@ -301,9 +325,20 @@ textarea:focus{background:rgba(0,229,160,.02)}
     <div class="logo">Math<span>Arena</span></div>
     <div class="header-right">
       <span id="hdr-cat">—</span>
+      <div class="model-select-wrap" id="model-select-wrap" style="display:none">
+        <button type="button" class="model-select-btn" id="model-select-btn" onclick="toggleModelDropdown(event)">
+          <span id="model-select-label">🤖 —</span>
+          <span class="model-select-chevron">▾</span>
+        </button>
+        <span class="model-remaining" id="model-remaining"></span>
+        <div class="model-dropdown" id="model-dropdown"></div>
+      </div>
       <div class="elo-pill">ELO <b id="elo-display">1200</b></div>
     </div>
   </header>
+  <div class="quota-banner" id="quota-banner">
+    <div class="quota-banner-inner">⚠️ Quota journalier épuisé — réessayez demain.</div>
+  </div>
   <div class="tab-bar" id="tab-bar">
     <button class="tab-btn" data-tab="cours" onclick="switchSection('cours')">Questions de cours</button>
     <button class="tab-btn active" data-tab="exercices" onclick="switchSection('exercices')">Exercices</button>
@@ -496,6 +531,7 @@ async function callAI(prompt, images) {
 async function callGrading(prompt, gradingContext, images) {
   if (!WORKER_URL) throw new Error('URL du worker non configurée.');
   const body = { password: sessionPassword, prompt, grading_context: gradingContext };
+  if (selectedModel) body.model = selectedModel;
   if (images && images.length) {
     body.images = images.map(a => ({ mimeType: a.mimeType, data: a.base64 }));
   }
@@ -509,6 +545,131 @@ async function callGrading(prompt, gradingContext, images) {
   if (!res.ok) throw new Error(data?.error || `HTTP ${res.status}`);
   if (typeof data.correctness !== 'number') throw new Error('Réponse d\'évaluation invalide');
   return data;
+}
+
+// ── Sélecteur de modèle (Gemini/Groq) & quotas estimés ─
+// Le catalogue vient de GET /models (public, sans mot de passe). Les quotas
+// sont une ESTIMATION côté client (compteur localStorage), pas une source de
+// vérité : le serveur reste seul juge du quota réel auprès des providers.
+const QUOTA_KEY = 'ma_quotas';
+let MODEL_CATALOG_CLIENT = {};
+let DEFAULT_ORDER_CLIENT = [];
+let selectedModel = null;
+
+function workerModelsUrl() {
+  return WORKER_URL.endsWith('/') ? WORKER_URL + 'models' : WORKER_URL + '/models';
+}
+
+function todayStr() { return new Date().toISOString().slice(0, 10); }
+
+function loadQuotas() {
+  try {
+    const raw = localStorage.getItem(QUOTA_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch { return {}; }
+}
+function saveQuotas() {
+  try { localStorage.setItem(QUOTA_KEY, JSON.stringify(quotas)); } catch {}
+}
+let quotas = loadQuotas();
+
+function usedToday(model) {
+  const entry = quotas[model];
+  if (!entry || entry.date !== todayStr()) return 0;
+  return entry.used;
+}
+function bumpQuota(model) {
+  if (!model) return;
+  const today = todayStr();
+  const entry = quotas[model];
+  quotas[model] = (!entry || entry.date !== today) ? { used: 1, date: today } : { used: entry.used + 1, date: today };
+  saveQuotas();
+}
+function remaining(model) {
+  const info = MODEL_CATALOG_CLIENT[model];
+  if (!info) return 0;
+  return Math.max(0, info.rpd - usedToday(model));
+}
+function allQuotasExhausted() {
+  const keys = Object.keys(MODEL_CATALOG_CLIENT);
+  return keys.length > 0 && keys.every(m => remaining(m) <= 0);
+}
+
+// Trie par remaining décroissant, puis par quality décroissant en cas d'égalité.
+function selectDefaultModel() {
+  const keys = Object.keys(MODEL_CATALOG_CLIENT);
+  if (!keys.length) return null;
+  const ranked = [...keys].sort((a, b) => {
+    const diff = remaining(b) - remaining(a);
+    if (diff !== 0) return diff;
+    return (MODEL_CATALOG_CLIENT[b].quality || 0) - (MODEL_CATALOG_CLIENT[a].quality || 0);
+  });
+  return ranked[0];
+}
+
+async function loadModelCatalog() {
+  try {
+    const res = await fetch(workerModelsUrl());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    MODEL_CATALOG_CLIENT = data.models || {};
+    DEFAULT_ORDER_CLIENT = Array.isArray(data.default_order) ? data.default_order.filter(m => MODEL_CATALOG_CLIENT[m]) : Object.keys(MODEL_CATALOG_CLIENT);
+  } catch (e) {
+    console.error('Impossible de charger le catalogue de modèles', e);
+    MODEL_CATALOG_CLIENT = {};
+    DEFAULT_ORDER_CLIENT = [];
+  }
+  selectedModel = selectDefaultModel();
+  renderModelSelector();
+  updateQuotaBanner();
+}
+
+function renderModelSelector() {
+  const wrap = document.getElementById('model-select-wrap');
+  if (!wrap) return;
+  const keys = DEFAULT_ORDER_CLIENT.length ? DEFAULT_ORDER_CLIENT : Object.keys(MODEL_CATALOG_CLIENT);
+  if (!keys.length) { wrap.style.display = 'none'; return; }
+  wrap.style.display = '';
+
+  if (!selectedModel || !MODEL_CATALOG_CLIENT[selectedModel]) selectedModel = keys[0];
+  const info = MODEL_CATALOG_CLIENT[selectedModel];
+
+  document.getElementById('model-select-label').textContent = `🤖 ${info.label}`;
+  document.getElementById('model-remaining').textContent = `${remaining(selectedModel)} restants`;
+
+  const dd = document.getElementById('model-dropdown');
+  dd.innerHTML = `
+    <div class="model-dropdown-note">Quotas estimés (côté client)</div>
+    ${keys.map(k => {
+      const m = MODEL_CATALOG_CLIENT[k];
+      const rem = remaining(k);
+      return `<button type="button" class="model-option${k === selectedModel ? ' active' : ''}" onclick="chooseModel('${k}')">
+        <span class="model-option-label">${m.label}</span>
+        <span class="model-option-meta">${rem} restants (est.) · qualité ${m.quality}/3</span>
+      </button>`;
+    }).join('')}
+  `;
+}
+
+function chooseModel(key) {
+  selectedModel = key;
+  closeModelDropdown();
+  renderModelSelector();
+}
+
+function toggleModelDropdown(e) {
+  e?.stopPropagation();
+  document.getElementById('model-dropdown')?.classList.toggle('on');
+}
+function closeModelDropdown() {
+  document.getElementById('model-dropdown')?.classList.remove('on');
+}
+
+function updateQuotaBanner() {
+  const exhausted = allQuotasExhausted();
+  document.getElementById('quota-banner')?.classList.toggle('on', exhausted);
+  const btn = document.getElementById('btn-val');
+  if (btn) btn.disabled = exhausted || evaluated;
 }
 
 // ── Pièces jointes (photo de réponse manuscrite) ───────
@@ -1341,6 +1502,7 @@ function renderProblem(idx) {
     </div>
     <div class="scores-panel" id="scores-panel">
       <div class="sc-head"><h2>Résultats de l'évaluation</h2><div style="display:flex;align-items:center;gap:10px"><span class="eval-badge" id="eval-badge"></span><div class="verdict" id="verdict">—</div></div></div>
+      <div class="eval-meta" id="eval-meta"></div>
       <div class="sc-grid" id="sc-grid"></div>
       <div class="feedback-wrap">
         <div class="fb-label">Retour détaillé</div>
@@ -1361,6 +1523,7 @@ function renderProblem(idx) {
     document.getElementById('char-count').textContent = n + ' caractère' + (n>1?'s':'');
   });
   if (window.MathJax) MathJax.typesetPromise();
+  updateQuotaBanner();
 }
 
 function toggleHint() {
@@ -1570,6 +1733,14 @@ function renderScores(data) {
       : 'Une seule relecture (scores cohérents et confiance suffisante)';
   }
 
+  const metaEl = document.getElementById('eval-meta');
+  if (metaEl) {
+    const modelInfo = MODEL_CATALOG_CLIENT[data.model_used];
+    const modelLabel = modelInfo ? modelInfo.label : (data.model_used || 'modèle inconnu');
+    const evalType = data.evaluation_count === 2 ? 'Double évaluation' : 'Évaluation simple';
+    metaEl.textContent = `Évalué par : ${modelLabel} • ${evalType} • Confiance : ${data.confidence}%`;
+  }
+
   document.getElementById('fb-text').textContent = data.feedback||'';
 
   const delta = data.elo_delta??0;
@@ -1585,7 +1756,7 @@ function renderScores(data) {
 async function validateAnswer() {
   const answer = document.getElementById('answer')?.value?.trim() || '';
   const images = attachments['answer'] || [];
-  if ((answer.length < 20 && !images.length) || evaluated) return;
+  if ((answer.length < 20 && !images.length) || evaluated || allQuotasExhausted()) return;
 
   evaluated = true;
   const btn = document.getElementById('btn-val');
@@ -1607,12 +1778,15 @@ ${answer || '(voir les pièces jointes)'}`;
 
   try {
     const result = await callGrading(prompt, gradingContext, images);
+    bumpQuota(result.model_used);
+    renderModelSelector();
 
     stopLoading();
     document.getElementById('loading-bar').classList.remove('on');
     document.getElementById('scores-panel').classList.add('on');
     renderScores(result);
     btn.textContent = 'Évalué ✓';
+    updateQuotaBanner();
 
   } catch(err) {
     stopLoading();
@@ -1686,6 +1860,7 @@ async function submitLogin() {
     // Mot de passe accepté — on le garde en mémoire
     sessionPassword = val;
     document.getElementById('login-error').style.display = 'none';
+    loadModelCatalog(); // en parallèle : n'a pas besoin d'attendre le chargement des problèmes
     await showApp();
 
   } catch(e) {
@@ -1710,6 +1885,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Enter') submitLogin();
   });
   checkLogin();
+
+  document.addEventListener('click', (e) => {
+    const wrap = document.getElementById('model-select-wrap');
+    if (wrap && !wrap.contains(e.target)) closeModelDropdown();
+  });
 
   document.getElementById('tutor-attach-row-slot').innerHTML = attachRowHTML('chat');
   const tutorInput = document.getElementById('tutor-chat-input');
