@@ -113,8 +113,6 @@ textarea:focus{background:rgba(0,229,160,.02)}
 .btn-val:hover{opacity:.9}
 .btn-val:active{transform:scale(.98)}
 .btn-val:disabled{background:var(--border);color:var(--muted);cursor:not-allowed;transform:none;opacity:1}
-.btn-advice{background:var(--purple);color:var(--text)}
-.btn-advice:disabled{background:var(--border);color:var(--muted)}
 
 .answer-card .attach-row{padding:10px 18px 0}
 .qblock .attach-row{padding:8px 0 0}
@@ -179,6 +177,44 @@ textarea:focus{background:rgba(0,229,160,.02)}
 .btn-new:hover{background:var(--surf2)}
 @keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
 
+/* ── Tutor (chatbot professeur) ── */
+.tutor-launcher{position:fixed;right:24px;bottom:24px;z-index:60;display:flex;flex-direction:row-reverse;align-items:center;gap:10px}
+.tutor-avatar-btn{width:56px;height:56px;border-radius:50%;background:var(--accent);border:none;font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,229,160,.35);transition:transform .15s;flex-shrink:0}
+.tutor-avatar-btn:hover{transform:scale(1.06)}
+.tutor-bubble{background:var(--surf2);border:1px solid var(--border);color:var(--text);font-family:var(--sans);font-size:13px;font-weight:500;padding:9px 10px 9px 14px;border-radius:16px 16px 4px 16px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.3);display:flex;align-items:center;gap:6px;white-space:nowrap;animation:tutorBounce 2.4s ease-in-out infinite}
+.tutor-bubble.hidden{display:none}
+.tutor-bubble-close{background:transparent;border:none;color:var(--muted);font-size:15px;cursor:pointer;line-height:1;padding:2px}
+.tutor-bubble-close:hover{color:var(--text)}
+@keyframes tutorBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+
+.tutor-chat-overlay{display:none;position:fixed;inset:0;background:rgba(6,8,14,.5);z-index:69}
+.tutor-chat-overlay.on{display:block}
+.tutor-chat-panel{display:none;flex-direction:column;position:fixed;right:24px;bottom:24px;width:380px;max-width:calc(100vw - 32px);height:min(600px,calc(100vh - 110px));background:var(--surf);border:1px solid var(--border);border-radius:16px;z-index:70;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.5)}
+.tutor-chat-panel.on{display:flex}
+.tutor-chat-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--border);background:var(--surf2);flex-shrink:0}
+.tutor-chat-title{display:flex;align-items:center;gap:10px}
+.tutor-chat-avatar{width:34px;height:34px;border-radius:50%;background:var(--accentD);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.tutor-chat-title b{display:block;font-size:13px;font-family:var(--sans)}
+.tutor-chat-title span{display:block;font-size:11px;color:var(--muted);font-family:var(--mono)}
+.tutor-chat-close{background:transparent;border:none;color:var(--muted);font-size:20px;cursor:pointer;line-height:1;padding:2px 6px}
+.tutor-chat-close:hover{color:var(--text)}
+.tutor-chat-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.tutor-msg{display:flex}
+.tutor-msg-bot{justify-content:flex-start}
+.tutor-msg-user{justify-content:flex-end}
+.tutor-msg-bubble{max-width:84%;padding:9px 13px;border-radius:14px;font-size:13px;line-height:1.55;font-family:var(--sans)}
+.tutor-msg-bot .tutor-msg-bubble{background:var(--surf2);border:1px solid var(--border);border-bottom-left-radius:4px}
+.tutor-msg-user .tutor-msg-bubble{background:var(--accentD);border:1px solid rgba(0,229,160,.3);color:var(--text);border-bottom-right-radius:4px}
+.tutor-msg-img{display:block;max-width:160px;border-radius:8px;margin-bottom:6px}
+.tutor-chat-loading{display:none;align-items:center;gap:10px;padding:0 16px 12px;font-family:var(--mono);font-size:12px;color:var(--muted);flex-shrink:0}
+.tutor-chat-loading.on{display:flex}
+.tutor-chat-input-area{border-top:1px solid var(--border);padding:10px 12px;display:flex;flex-direction:column;gap:8px;flex-shrink:0}
+.tutor-chat-input-row{display:flex;gap:8px;align-items:flex-end}
+.tutor-chat-input-row textarea{flex:1;background:var(--surf2);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:var(--sans);font-size:13px;padding:9px 12px;resize:none;max-height:100px;outline:none}
+.tutor-chat-input-row textarea:focus{border-color:var(--borderB)}
+.tutor-chat-send-btn{width:36px;height:36px;border-radius:10px;background:var(--accent);border:none;color:#0A1A12;font-size:15px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.tutor-chat-send-btn:disabled{background:var(--border);color:var(--muted);cursor:default}
+
 /* ── Mobile ── */
 @media(max-width:600px){
   .sc-grid{grid-template-columns:1fr}
@@ -189,12 +225,14 @@ textarea:focus{background:rgba(0,229,160,.02)}
   main{padding:16px 16px 0}
   .prob-head,.ans-head,.sc-head{flex-direction:column;align-items:flex-start;gap:6px}
   .ans-foot,.q-foot{flex-direction:column;align-items:stretch;gap:10px}
-  .ans-foot .btn-val,.q-foot .btn-val,.btn-advice{width:100%}
+  .ans-foot .btn-val,.q-foot .btn-val{width:100%}
   .elo-row{flex-wrap:wrap;row-gap:6px}
   .conf-row{flex-wrap:wrap;row-gap:8px}
   .filter-select{flex:1 1 100%}
   .prob-picker{flex-wrap:wrap;row-gap:8px}
   .prob-select{flex-basis:100%}
+  .tutor-launcher{right:16px;bottom:16px}
+  .tutor-chat-panel{right:0;bottom:0;left:0;top:0;width:100%;max-width:100%;height:100%;border-radius:0}
 }
 </style>
 </head>
@@ -240,6 +278,38 @@ textarea:focus{background:rgba(0,229,160,.02)}
     <div class="camera-modal-actions">
       <button class="btn-val" onclick="capturePhoto()">Capturer</button>
       <button class="btn-retry" style="display:inline-block" onclick="closeCameraModal()">Annuler</button>
+    </div>
+  </div>
+</div>
+
+<!-- TUTOR (chatbot professeur) -->
+<div class="tutor-launcher" id="tutor-launcher">
+  <button class="tutor-avatar-btn" onclick="openTutorChat()" title="Discuter avec le professeur">🧑‍🏫</button>
+  <div class="tutor-bubble" id="tutor-bubble" onclick="openTutorChat()">
+    <span>Des questions ?</span>
+    <button class="tutor-bubble-close" onclick="event.stopPropagation();dismissTutorBubble()" title="Masquer">×</button>
+  </div>
+</div>
+
+<div class="tutor-chat-overlay" id="tutor-chat-overlay" onclick="closeTutorChat()"></div>
+<div class="tutor-chat-panel" id="tutor-chat-panel">
+  <div class="tutor-chat-head">
+    <div class="tutor-chat-title">
+      <span class="tutor-chat-avatar">🧑‍🏫</span>
+      <div><b>Professeur</b><span>Toujours là pour t'aider</span></div>
+    </div>
+    <button class="tutor-chat-close" onclick="closeTutorChat()" title="Fermer">×</button>
+  </div>
+  <div class="tutor-chat-messages" id="tutor-chat-messages"></div>
+  <div class="tutor-chat-loading" id="tutor-chat-loading">
+    <div class="spinner"></div><span id="tutor-chat-load-msg">Réflexion en cours…</span>
+  </div>
+  <div class="err-msg" id="tutor-chat-err"></div>
+  <div class="tutor-chat-input-area">
+    <div id="tutor-attach-row-slot"></div>
+    <div class="tutor-chat-input-row">
+      <textarea id="tutor-chat-input" placeholder="Écris ton message…" rows="1"></textarea>
+      <button class="tutor-chat-send-btn" id="tutor-chat-send" onclick="sendTutorMessage()" title="Envoyer">➤</button>
     </div>
   </div>
 </div>
@@ -350,10 +420,13 @@ let filters = { domain: '', chapter: '', level: '', difficulty: '' };
 let currentElo = 1200;
 let evaluated = false;
 let msgTimer = null;
-let adviceMsgTimer = null;
-let adviceLoading = false;
 const loadMsgs = ['Analyse en cours…','Vérification de la structure…','Évaluation de la rigueur…','Calcul du score de confiance…'];
-const adviceMsgs = ['Lecture de votre brouillon…','Réflexion en cours…','Préparation d\'un conseil…'];
+
+// ── Tutor (chatbot professeur) ─────────────────────────
+let tutorHistory = []; // {role:'user'|'assistant', text, images}
+let tutorLoading = false;
+let tutorMsgTimer = null;
+const tutorMsgs = ['Réflexion en cours…','Je regarde ça…','Un instant…'];
 
 // ── Appel Gemini via worker ────────────────────────────
 async function callAI(prompt, images) {
@@ -911,7 +984,6 @@ function retryAnnaleEval(sujetId, qid) {
 function renderProblem(idx) {
   const p = PROBLEMS[idx];
   attachments['answer'] = [];
-  attachments['draft'] = [];
   const chap = chapterInfo(p.chapter);
   document.getElementById('hdr-cat').textContent = `${p.domain} · ${chap ? chap.name : '—'}`;
   const dots = Array.from({length:5},(_,i)=>`<div class="dot${i<p.difficulty?' on':''}"></div>`).join('');
@@ -945,24 +1017,6 @@ function renderProblem(idx) {
         <div class="correction-label">Correction</div>
         <div class="correction-text">${p.correction}</div>
       </div>` : ''}
-    </div>
-    <div class="answer-card" id="draft-card">
-      <div class="ans-head"><b>Brouillon</b><span>Idées, tentatives ou questions — l'IA vous conseille</span></div>
-      <textarea id="draft" placeholder="Écrivez ici vos idées, vos pistes ou vos questions…"></textarea>
-      ${attachRowHTML('draft')}
-      <div class="loading-bar" id="draft-loading-bar">
-        <div class="spinner"></div>
-        <span class="load-msg" id="draft-load-msg">Réflexion en cours…</span>
-      </div>
-      <div class="feedback-wrap" id="advice-wrap" style="display:none">
-        <div class="fb-label">Conseil personnalisé</div>
-        <div class="fb-text" id="advice-text"></div>
-      </div>
-      <div class="err-msg" id="advice-err"></div>
-      <div class="ans-foot">
-        <div class="char-count" id="draft-char-count">0 caractère</div>
-        <button class="btn-val btn-advice" id="btn-advice" onclick="askAdvice()">Demander un conseil</button>
-      </div>
     </div>
     <div class="answer-card">
       <div class="ans-head"><b>Votre démonstration</b><span>Rédigez librement — LaTeX accepté</span></div>
@@ -998,10 +1052,6 @@ function renderProblem(idx) {
     const n = document.getElementById('answer').value.length;
     document.getElementById('char-count').textContent = n + ' caractère' + (n>1?'s':'');
   });
-  document.getElementById('draft').addEventListener('input', () => {
-    const n = document.getElementById('draft').value.length;
-    document.getElementById('draft-char-count').textContent = n + ' caractère' + (n>1?'s':'');
-  });
   if (window.MathJax) MathJax.typesetPromise();
 }
 
@@ -1016,70 +1066,119 @@ function toggleCorrection() {
   if (window.MathJax) MathJax.typesetPromise();
 }
 
-// ── Brouillon / conseil IA ─────────────────────────────
-function startAdviceLoading() {
+// ── Tutor (chatbot professeur) ─────────────────────────
+function escapeHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function getCurrentContextText() {
+  const activeTab = document.querySelector('.tab-btn.active')?.dataset.tab;
+  if (activeTab === 'annales') {
+    const s = ANNALES.find(a => a.id === currentSujetId);
+    return s ? `L'étudiant consulte actuellement le sujet de concours : ${s.concours} ${s.filiere} ${s.annee} — ${s.epreuve}. S'il te pose une question dessus, demande-lui de préciser le numéro de la question si besoin.` : '';
+  }
+  const p = PROBLEMS[currentIdx];
+  if (!p) return '';
+  const context = p.correction || p.grading_context || '';
+  return `L'étudiant est actuellement sur l'exercice ou la question de cours suivant(e) :\n${fullStatementText(p)}\n\nSolution de référence (réservée à toi ; privilégie des indices progressifs plutôt que de la révéler d'un coup, sauf si l'étudiant demande explicitement la solution complète) :\n${context}`;
+}
+
+function openTutorChat() {
+  document.getElementById('tutor-chat-panel').classList.add('on');
+  document.getElementById('tutor-chat-overlay').classList.add('on');
+  dismissTutorBubble();
+  renderTutorMessages();
+  scrollTutorToBottom();
+  document.getElementById('tutor-chat-input')?.focus();
+}
+function closeTutorChat() {
+  document.getElementById('tutor-chat-panel').classList.remove('on');
+  document.getElementById('tutor-chat-overlay').classList.remove('on');
+}
+function dismissTutorBubble() {
+  document.getElementById('tutor-bubble')?.classList.add('hidden');
+}
+
+function scrollTutorToBottom() {
+  const wrap = document.getElementById('tutor-chat-messages');
+  if (wrap) wrap.scrollTop = wrap.scrollHeight;
+}
+
+function renderTutorMessages() {
+  const wrap = document.getElementById('tutor-chat-messages');
+  if (!wrap) return;
+  const welcome = `<div class="tutor-msg tutor-msg-bot"><div class="tutor-msg-bubble">Bonjour ! Je suis ton professeur virtuel : pose-moi une question sur l'exercice en cours, une notion de cours, ou tout ce qui te bloque.</div></div>`;
+  const msgsHtml = tutorHistory.map(m => {
+    const imgsHtml = (m.images || []).filter(a => a.previewUrl).map(a => `<img class="tutor-msg-img" src="${a.previewUrl}">`).join('');
+    const textHtml = m.text ? escapeHtml(m.text).replace(/\n/g,'<br>') : '';
+    return `<div class="tutor-msg tutor-msg-${m.role === 'user' ? 'user' : 'bot'}"><div class="tutor-msg-bubble">${imgsHtml}${textHtml}</div></div>`;
+  }).join('');
+  wrap.innerHTML = welcome + msgsHtml;
+  if (window.MathJax) MathJax.typesetPromise([wrap]);
+}
+
+function startTutorLoading() {
   let i = 0;
-  const el = document.getElementById('draft-load-msg');
-  if (el) el.textContent = adviceMsgs[0];
-  adviceMsgTimer = setInterval(() => {
-    i = (i+1) % adviceMsgs.length;
-    const el = document.getElementById('draft-load-msg');
+  const el = document.getElementById('tutor-chat-load-msg');
+  if (el) el.textContent = tutorMsgs[0];
+  tutorMsgTimer = setInterval(() => {
+    i = (i+1) % tutorMsgs.length;
+    const el = document.getElementById('tutor-chat-load-msg');
     if (!el) return;
     el.style.opacity = '0';
-    setTimeout(() => { el.textContent = adviceMsgs[i]; el.style.opacity = '1'; }, 200);
+    setTimeout(() => { el.textContent = tutorMsgs[i]; el.style.opacity = '1'; }, 200);
   }, 2200);
 }
-function stopAdviceLoading() { if (adviceMsgTimer) { clearInterval(adviceMsgTimer); adviceMsgTimer = null; } }
+function stopTutorLoading() { if (tutorMsgTimer) { clearInterval(tutorMsgTimer); tutorMsgTimer = null; } }
 
-async function askAdvice() {
-  const draft = document.getElementById('draft')?.value?.trim() || '';
-  const images = attachments['draft'] || [];
-  if ((draft.length < 5 && !images.length) || adviceLoading) return;
+async function sendTutorMessage() {
+  const input = document.getElementById('tutor-chat-input');
+  const text = input.value.trim();
+  const images = attachments['chat'] || [];
+  if ((!text && !images.length) || tutorLoading) return;
 
-  adviceLoading = true;
-  const btn = document.getElementById('btn-advice');
-  btn.disabled = true;
-  btn.textContent = 'Réflexion…';
-  document.getElementById('draft-loading-bar').classList.add('on');
-  document.getElementById('advice-wrap').style.display = 'none';
-  document.getElementById('advice-err').classList.remove('on');
-  startAdviceLoading();
+  tutorHistory.push({ role: 'user', text, images: images.slice() });
+  input.value = '';
+  input.style.height = 'auto';
+  attachments['chat'] = [];
+  renderAttachThumbs('chat');
+  renderTutorMessages();
+  scrollTutorToBottom();
 
-  const p = PROBLEMS[currentIdx];
-  const context = p.correction || p.grading_context;
-  const prompt = `Tu es un tuteur bienveillant qui encadre un étudiant de classes préparatoires (MPSI/MP) sur l'exercice suivant.
+  tutorLoading = true;
+  document.getElementById('tutor-chat-send').disabled = true;
+  document.getElementById('tutor-chat-loading').classList.add('on');
+  document.getElementById('tutor-chat-err').classList.remove('on');
+  startTutorLoading();
 
-Énoncé : ${fullStatementText(p)}
+  const historyText = tutorHistory.slice(0, -1).map(m =>
+    `${m.role === 'user' ? 'Étudiant' : 'Toi (professeur)'} : ${m.text || '[a envoyé une image]'}`
+  ).join('\n');
 
-Solution de référence (réservée à toi, ne la révèle jamais à l'étudiant, même partiellement ou reformulée) : ${context}
+  const prompt = `Tu es un professeur de mathématiques bienveillant et pédagogue qui discute par chat avec un étudiant de classes préparatoires (MPSI/MP). Réponds en français, de façon claire, concise et conversationnelle (quelques phrases, pas de longues listes). Tu peux utiliser du LaTeX entre \\( \\) ou \\[ \\] pour les formules. Si tu n'es pas sûr d'un résultat, dis-le honnêtement plutôt que d'inventer. Réponds en texte brut (pas de JSON, pas de markdown).
+
+${getCurrentContextText()}
 ${notationGuideText()}
+${historyText ? `\nHistorique de la conversation :\n${historyText}\n` : ''}
+${images.length ? `\nL'étudiant a joint ${images.length} photo(s) à son message : regarde-les attentivement.` : ''}
 
-L'étudiant te partage ci-dessous un brouillon : ses idées, ses tentatives, ou une question qu'il se pose. Donne-lui un conseil personnalisé et progressif : oriente-le, signale une éventuelle erreur ou une piste prometteuse, sans donner la solution complète ni le résultat final. Réponds en français, en 3 à 5 phrases claires et encourageantes, en texte brut (pas de JSON, pas de markdown).
-${images.length ? `\nL'étudiant a également joint ${images.length} photo(s) de son brouillon manuscrit : lis-les attentivement.` : ''}
-
-Brouillon de l'étudiant :
-${draft || '(voir les pièces jointes)'}`;
+Nouveau message de l'étudiant : ${text || '(voir les pièces jointes)'}`;
 
   try {
-    const text = await callAI(prompt, images);
-    const advice = text.trim().replace(/^```[a-z]*\s*/i,'').replace(/```\s*$/,'');
-
-    stopAdviceLoading();
-    document.getElementById('draft-loading-bar').classList.remove('on');
-    document.getElementById('advice-text').textContent = advice;
-    document.getElementById('advice-wrap').style.display = 'block';
-    btn.textContent = 'Demander un conseil';
-
-  } catch(err) {
-    stopAdviceLoading();
-    document.getElementById('draft-loading-bar').classList.remove('on');
-    const el = document.getElementById('advice-err');
+    const reply = await callAI(prompt, images);
+    const clean = reply.trim().replace(/^```[a-z]*\s*/i,'').replace(/```\s*$/,'');
+    tutorHistory.push({ role: 'assistant', text: clean, images: [] });
+  } catch (err) {
+    const el = document.getElementById('tutor-chat-err');
     el.textContent = err.message || 'Erreur inconnue';
     el.classList.add('on');
-    btn.textContent = 'Demander un conseil';
   } finally {
-    adviceLoading = false;
-    btn.disabled = false;
+    stopTutorLoading();
+    tutorLoading = false;
+    document.getElementById('tutor-chat-send').disabled = false;
+    document.getElementById('tutor-chat-loading').classList.remove('on');
+    renderTutorMessages();
+    scrollTutorToBottom();
   }
 }
 
@@ -1315,6 +1414,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Enter') submitLogin();
   });
   checkLogin();
+
+  document.getElementById('tutor-attach-row-slot').innerHTML = attachRowHTML('chat');
+  const tutorInput = document.getElementById('tutor-chat-input');
+  tutorInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendTutorMessage(); }
+  });
+  tutorInput.addEventListener('input', () => {
+    tutorInput.style.height = 'auto';
+    tutorInput.style.height = Math.min(tutorInput.scrollHeight, 100) + 'px';
+  });
 });
 </script>
 </body>
