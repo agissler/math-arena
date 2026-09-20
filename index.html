@@ -178,7 +178,7 @@ textarea:focus{background:rgba(0,229,160,.02)}
 @keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
 
 /* ── Tutor (chatbot professeur) ── */
-.tutor-launcher{position:fixed;right:24px;bottom:24px;z-index:60;display:flex;flex-direction:row-reverse;align-items:center;gap:10px}
+.tutor-launcher{position:fixed;right:calc(24px + env(safe-area-inset-right,0px));bottom:calc(24px + env(safe-area-inset-bottom,0px));z-index:999998;display:flex;flex-direction:row-reverse;align-items:center;gap:10px}
 .tutor-avatar-btn{width:56px;height:56px;border-radius:50%;background:var(--accent);border:none;font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,229,160,.35);transition:transform .15s;flex-shrink:0}
 .tutor-avatar-btn:hover{transform:scale(1.06)}
 .tutor-bubble{background:var(--surf2);border:1px solid var(--border);color:var(--text);font-family:var(--sans);font-size:13px;font-weight:500;padding:9px 10px 9px 14px;border-radius:16px 16px 4px 16px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.3);display:flex;align-items:center;gap:6px;white-space:nowrap;animation:tutorBounce 2.4s ease-in-out infinite}
@@ -187,9 +187,9 @@ textarea:focus{background:rgba(0,229,160,.02)}
 .tutor-bubble-close:hover{color:var(--text)}
 @keyframes tutorBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
 
-.tutor-chat-overlay{display:none;position:fixed;inset:0;background:rgba(6,8,14,.5);z-index:69}
+.tutor-chat-overlay{display:none;position:fixed;inset:0;background:rgba(6,8,14,.5);z-index:999996}
 .tutor-chat-overlay.on{display:block}
-.tutor-chat-panel{display:none;flex-direction:column;position:fixed;right:24px;bottom:24px;width:380px;max-width:calc(100vw - 32px);height:min(600px,calc(100vh - 110px));background:var(--surf);border:1px solid var(--border);border-radius:16px;z-index:70;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.5)}
+.tutor-chat-panel{display:none;flex-direction:column;position:fixed;right:calc(24px + env(safe-area-inset-right,0px));bottom:calc(24px + env(safe-area-inset-bottom,0px));width:380px;max-width:calc(100vw - 32px);height:min(600px,calc(100vh - 110px));background:var(--surf);border:1px solid var(--border);border-radius:16px;z-index:999997;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.5)}
 .tutor-chat-panel.on{display:flex}
 .tutor-chat-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--border);background:var(--surf2);flex-shrink:0}
 .tutor-chat-title{display:flex;align-items:center;gap:10px}
@@ -231,8 +231,9 @@ textarea:focus{background:rgba(0,229,160,.02)}
   .filter-select{flex:1 1 100%}
   .prob-picker{flex-wrap:wrap;row-gap:8px}
   .prob-select{flex-basis:100%}
-  .tutor-launcher{right:16px;bottom:16px}
-  .tutor-chat-panel{right:0;bottom:0;left:0;top:0;width:100%;max-width:100%;height:100%;border-radius:0}
+  .tutor-launcher{right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+  .tutor-bubble span{max-width:150px;overflow:hidden;text-overflow:ellipsis}
+  .tutor-chat-panel{right:0;bottom:0;left:0;top:0;width:100%;max-width:100%;height:100%;height:100dvh;border-radius:0}
 }
 </style>
 </head>
@@ -1099,6 +1100,20 @@ function dismissTutorBubble() {
   document.getElementById('tutor-bubble')?.classList.add('hidden');
 }
 
+// Sur mobile, la barre d'adresse/le clavier réduisent la "visual viewport" sans
+// changer window.innerHeight : on recale le widget pour qu'il reste visible
+// au-dessus de la zone masquée (barre du navigateur, clavier virtuel…).
+function syncTutorViewport() {
+  const vv = window.visualViewport;
+  if (!vv) return;
+  const hidden = Math.max(0, window.innerHeight - (vv.height + vv.offsetTop));
+  const shift = hidden ? `translateY(-${hidden}px)` : '';
+  const launcher = document.getElementById('tutor-launcher');
+  const panel = document.getElementById('tutor-chat-panel');
+  if (launcher) launcher.style.transform = shift;
+  if (panel) panel.style.transform = shift;
+}
+
 function scrollTutorToBottom() {
   const wrap = document.getElementById('tutor-chat-messages');
   if (wrap) wrap.scrollTop = wrap.scrollHeight;
@@ -1155,7 +1170,9 @@ async function sendTutorMessage() {
     `${m.role === 'user' ? 'Étudiant' : 'Toi (professeur)'} : ${m.text || '[a envoyé une image]'}`
   ).join('\n');
 
-  const prompt = `Tu es un professeur de mathématiques bienveillant et pédagogue qui discute par chat avec un étudiant de classes préparatoires (MPSI/MP). Réponds en français, de façon claire, concise et conversationnelle (quelques phrases, pas de longues listes). Tu peux utiliser du LaTeX entre \\( \\) ou \\[ \\] pour les formules. Si tu n'es pas sûr d'un résultat, dis-le honnêtement plutôt que d'inventer. Réponds en texte brut (pas de JSON, pas de markdown).
+  const prompt = `Tu es un professeur de mathématiques bienveillant et pédagogue qui discute par chat avec un étudiant de classes préparatoires (MPSI/MP). Réponds en français, de façon claire, concise et conversationnelle (quelques phrases, pas de longues listes). Si tu n'es pas sûr d'un résultat, dis-le honnêtement plutôt que d'inventer. Réponds en texte brut (pas de JSON, pas de markdown).
+
+Notation mathématique obligatoire : toute expression mathématique, même simple (une variable, un exposant, un indice, une fraction…), doit être écrite en LaTeX, entre \\( ... \\) pour une formule dans le texte ou entre \\[ ... \\] pour une formule isolée sur sa propre ligne. N'écris jamais de mathématiques en texte brut ou avec des notations ASCII (interdits : x^2, x_n, sqrt(x), a/b, ->, INTEGRALE(...) ; écris plutôt \\(x^2\\), \\(x_n\\), \\(\\sqrt{x}\\), \\(\\frac{a}{b}\\), \\(\\to\\), \\(\\int ... \\)). Ce formatage est rendu automatiquement par MathJax : respecte-le systématiquement, y compris pour la plus petite formule.
 
 ${getCurrentContextText()}
 ${notationGuideText()}
@@ -1416,6 +1433,12 @@ document.addEventListener('DOMContentLoaded', () => {
   checkLogin();
 
   document.getElementById('tutor-attach-row-slot').innerHTML = attachRowHTML('chat');
+  syncTutorViewport();
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', syncTutorViewport);
+    window.visualViewport.addEventListener('scroll', syncTutorViewport);
+  }
+  window.addEventListener('resize', syncTutorViewport);
   const tutorInput = document.getElementById('tutor-chat-input');
   tutorInput.addEventListener('keydown', e => {
     if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendTutorMessage(); }
