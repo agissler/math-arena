@@ -183,6 +183,7 @@ textarea:focus{background:rgba(0,229,160,.02)}
 .tutor-avatar-btn:hover{transform:scale(1.06)}
 .tutor-bubble{background:var(--surf2);border:1px solid var(--border);color:var(--text);font-family:var(--sans);font-size:13px;font-weight:500;padding:9px 10px 9px 14px;border-radius:16px 16px 4px 16px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.3);display:flex;align-items:center;gap:6px;white-space:nowrap;animation:tutorBounce 2.4s ease-in-out infinite}
 .tutor-bubble.hidden{display:none}
+.tutor-launcher.chat-open{display:none}
 .tutor-bubble-close{background:transparent;border:none;color:var(--muted);font-size:15px;cursor:pointer;line-height:1;padding:2px}
 .tutor-bubble-close:hover{color:var(--text)}
 @keyframes tutorBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
@@ -228,7 +229,7 @@ textarea:focus{background:rgba(0,229,160,.02)}
   .ans-foot .btn-val,.q-foot .btn-val{width:100%}
   .elo-row{flex-wrap:wrap;row-gap:6px}
   .conf-row{flex-wrap:wrap;row-gap:8px}
-  .filter-select{flex:1 1 100%}
+  .filter-select{flex:1 1 100%;min-width:0}
   .prob-picker{flex-wrap:wrap;row-gap:8px}
   .prob-select{flex-basis:100%}
   .tutor-launcher{right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px))}
@@ -1087,6 +1088,7 @@ function getCurrentContextText() {
 function openTutorChat() {
   document.getElementById('tutor-chat-panel').classList.add('on');
   document.getElementById('tutor-chat-overlay').classList.add('on');
+  document.getElementById('tutor-launcher').classList.add('chat-open');
   dismissTutorBubble();
   renderTutorMessages();
   scrollTutorToBottom();
@@ -1095,6 +1097,7 @@ function openTutorChat() {
 function closeTutorChat() {
   document.getElementById('tutor-chat-panel').classList.remove('on');
   document.getElementById('tutor-chat-overlay').classList.remove('on');
+  document.getElementById('tutor-launcher').classList.remove('chat-open');
 }
 function dismissTutorBubble() {
   document.getElementById('tutor-bubble')?.classList.add('hidden');
