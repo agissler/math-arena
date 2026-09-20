@@ -1,0 +1,31 @@
+{
+  "grading_instruction": "Lorsque tu lis une démonstration — surtout si elle provient d'une photo manuscrite — interprète la notation mathématique de façon charitable et te concentre sur le sens, jamais sur la forme typographique exacte. Deux écritures différentes d'un même objet mathématique ne doivent JAMAIS être signalées comme une incohérence, une erreur de notation ou un manque de rigueur. Ne pénalise que les erreurs mathématiques réelles (raisonnement faux, hypothèse manquante, calcul erroné), jamais un choix de notation, un artefact de transcription d'une écriture manuscrite, ou une variation graphique sans conséquence sur le sens.",
+  "equivalent_notations": [
+    { "meaning": "élever au carré / à une puissance", "forms": ["x^2", "x²", "x**2", "x au carré"] },
+    { "meaning": "racine carrée", "forms": ["sqrt(x)", "√x", "x^(1/2)"] },
+    { "meaning": "multiplication", "forms": ["a*b", "a×b", "a·b", "ab (juxtaposition)"] },
+    { "meaning": "somme indexée", "forms": ["sum_{i=1}^n ...", "Σ_{i=1}^n ...", "∑"] },
+    { "meaning": "produit indexé", "forms": ["prod_{i=1}^n ...", "Π_{i=1}^n ...", "∏"] },
+    { "meaning": "appartenance à un ensemble", "forms": ["x dans E", "x in E", "x ∈ E"] },
+    { "meaning": "inclusion", "forms": ["A inclus dans B", "A ⊂ B", "A ⊆ B"] },
+    { "meaning": "pour tout", "forms": ["pour tout x", "forall x", "∀x"] },
+    { "meaning": "il existe", "forms": ["il existe x", "exists x", "∃x"] },
+    { "meaning": "infini", "forms": ["infini", "+infty", "+∞"] },
+    { "meaning": "inégalités larges", "forms": ["<=", "≤", ">=", "≥"] },
+    { "meaning": "norme", "forms": ["||x||", "|x| (selon contexte)", "norm(x)"] },
+    { "meaning": "produit scalaire", "forms": ["<a,b>", "(a|b)", "a·b (selon contexte)"] },
+    { "meaning": "ensemble vide", "forms": ["vide", "∅", "{}"] },
+    { "meaning": "tend vers / limite", "forms": ["->", "→", "tend vers"] },
+    { "meaning": "implique", "forms": ["=>", "⇒", "implique"] },
+    { "meaning": "équivaut à", "forms": ["<=>", "⇔", "ssi", "si et seulement si"] }
+  ],
+  "handwriting_ambiguities": [
+    "Un exposant (carré, cube, puissance n) est souvent écrit petit et mal aligné à la main : ne jamais interpréter un exposant décalé, trop haut, trop bas ou de taille inhabituelle comme une notation différente ou une incohérence — c'est un simple artefact de l'écriture manuscrite.",
+    "Une lettre manuscrite peut visuellement ressembler à une autre (l/1/I, n/u, x/×, O/0, a/n) : si le contexte mathématique permet de lever l'ambiguïté sans équivoque, choisis l'interprétation qui rend la démonstration cohérente plutôt que de la signaler comme une erreur.",
+    "Les indices en bas (i, j, n, k) sont parfois mal positionnés ou peu lisibles sur une photo : n'en déduis pas une erreur de notation si le raisonnement reste cohérent avec l'indice attendu.",
+    "Une flèche au-dessus d'une lettre, un trait dessous, ou du gras simulé indiquent généralement un vecteur : ne les confonds pas avec un opérateur ou une autre variable.",
+    "Les parenthèses, crochets et accolades sont souvent tracés à main levée de façon imprécise : ne pénalise pas une différence de forme entre eux tant que la structure logique de l'expression est claire.",
+    "Un signe barré ou une flèche de correction dans la photo indique que l'étudiant a raturé et changé d'avis : privilégie la version finale non barrée.",
+    "Si une portion de l'écriture est réellement illisible ou ambiguë au point de ne pouvoir être résolue par le contexte, signale-le explicitement dans ton retour plutôt que de pénaliser silencieusement une supposée erreur de notation."
+  ]
+}

@@ -303,13 +303,28 @@ async function loadProblemSet(folder) {
   }));
 }
 
+let NOTATION_GUIDE = null;
+
 async function loadAllContent() {
-  [EXERCICES, COURS, ANNALES] = await Promise.all([
+  [EXERCICES, COURS, ANNALES, NOTATION_GUIDE] = await Promise.all([
     loadProblemSet('exercices'),
     loadProblemSet('cours'),
     loadProblemSet('annales'),
+    fetch('notation-guide.json').then(r => r.ok ? r.json() : null).catch(() => null),
   ]);
   PROBLEMS = EXERCICES;
+}
+
+// Construit un bloc d'instructions à partir de notation-guide.json, pour aider
+// l'IA à interpréter les notations mathématiques (en particulier sur une photo
+// manuscrite) sans pénaliser des variations de forme sans conséquence sur le sens.
+function notationGuideText() {
+  if (!NOTATION_GUIDE) return '';
+  const equiv = (NOTATION_GUIDE.equivalent_notations || [])
+    .map(e => `- ${e.meaning} : ${e.forms.join(' / ')}`).join('\n');
+  const ambig = (NOTATION_GUIDE.handwriting_ambiguities || [])
+    .map(a => `- ${a}`).join('\n');
+  return `\n\nGuide d'interprétation des notations mathématiques : ${NOTATION_GUIDE.grading_instruction}\n\nNotations équivalentes (à ne jamais traiter comme incohérentes entre elles) :\n${equiv}\n\nAmbiguïtés fréquentes de l'écriture manuscrite :\n${ambig}`;
 }
 
 // ── State ──────────────────────────────────────────────
@@ -772,6 +787,7 @@ async function validateAnnaleAnswer(sujetId, qid) {
 
 Contexte de l'épreuve jusqu'à la question ${qid} incluse :
 ${context}
+${notationGuideText()}
 
 Évalue la réponse ci-dessous à la question ${qid} uniquement. Réponds UNIQUEMENT avec un objet JSON valide contenant exactement ces champs :
 {
@@ -878,6 +894,7 @@ function retryAnnaleEval(sujetId, qid) {
 function renderProblem(idx) {
   const p = PROBLEMS[idx];
   attachments['answer'] = [];
+  attachments['draft'] = [];
   const chap = chapterInfo(p.chapter);
   document.getElementById('hdr-cat').textContent = `${p.domain} · ${chap ? chap.name : '—'}`;
   const dots = Array.from({length:5},(_,i)=>`<div class="dot${i<p.difficulty?' on':''}"></div>`).join('');
@@ -915,6 +932,7 @@ function renderProblem(idx) {
     <div class="answer-card" id="draft-card">
       <div class="ans-head"><b>Brouillon</b><span>Idées, tentatives ou questions — l'IA vous conseille</span></div>
       <textarea id="draft" placeholder="Écrivez ici vos idées, vos pistes ou vos questions…"></textarea>
+      ${attachRowHTML('draft')}
       <div class="loading-bar" id="draft-loading-bar">
         <div class="spinner"></div>
         <span class="load-msg" id="draft-load-msg">Réflexion en cours…</span>
@@ -997,8 +1015,9 @@ function startAdviceLoading() {
 function stopAdviceLoading() { if (adviceMsgTimer) { clearInterval(adviceMsgTimer); adviceMsgTimer = null; } }
 
 async function askAdvice() {
-  const draft = document.getElementById('draft')?.value?.trim();
-  if (!draft || draft.length < 5 || adviceLoading) return;
+  const draft = document.getElementById('draft')?.value?.trim() || '';
+  const images = attachments['draft'] || [];
+  if ((draft.length < 5 && !images.length) || adviceLoading) return;
 
   adviceLoading = true;
   const btn = document.getElementById('btn-advice');
@@ -1016,14 +1035,16 @@ async function askAdvice() {
 Énoncé : ${fullStatementText(p)}
 
 Solution de référence (réservée à toi, ne la révèle jamais à l'étudiant, même partiellement ou reformulée) : ${context}
+${notationGuideText()}
 
 L'étudiant te partage ci-dessous un brouillon : ses idées, ses tentatives, ou une question qu'il se pose. Donne-lui un conseil personnalisé et progressif : oriente-le, signale une éventuelle erreur ou une piste prometteuse, sans donner la solution complète ni le résultat final. Réponds en français, en 3 à 5 phrases claires et encourageantes, en texte brut (pas de JSON, pas de markdown).
+${images.length ? `\nL'étudiant a également joint ${images.length} photo(s) de son brouillon manuscrit : lis-les attentivement.` : ''}
 
 Brouillon de l'étudiant :
-${draft}`;
+${draft || '(voir les pièces jointes)'}`;
 
   try {
-    const text = await callAI(prompt);
+    const text = await callAI(prompt, images);
     const advice = text.trim().replace(/^```[a-z]*\s*/i,'').replace(/```\s*$/,'');
 
     stopAdviceLoading();
@@ -1146,6 +1167,7 @@ async function validateAnswer() {
 Énoncé : ${fullStatementText(p)}
 
 Solution de référence (réservée à toi, ne la recopie jamais telle quelle dans ton retour) : ${context}
+${notationGuideText()}
 
 Évalue la démonstration ci-dessous. Réponds UNIQUEMENT avec un objet JSON valide contenant exactement ces champs :
 {
