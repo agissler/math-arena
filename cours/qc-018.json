@@ -1,0 +1,14 @@
+{
+  "id": "qc-018",
+  "title": "Continuité croissante et décroissante d'une probabilité",
+  "domain": "Probabilités",
+  "chapter": 28,
+  "level": "MP",
+  "cadence": "Blitz · 10 min",
+  "difficulty": 3,
+  "statement": "Soit \\((\\Omega,\\mathcal{A},P)\\) un espace probabilisé et \\((A_n)_{n\\geq0}\\) une suite d'événements.",
+  "followup": "Énoncez les propriétés de continuité croissante et décroissante de \\(P\\), et démontrez la continuité croissante à partir des axiomes de la probabilité.",
+  "hint": "Si (An) est croissante pour l'inclusion, écrivez la réunion des An comme réunion disjointe des couronnes Bn=An\\A_{n-1}, et utilisez la σ-additivité.",
+  "grading_context": "Continuité croissante : si (An) croissante (An⊂A_{n+1}), alors P(∪An)=lim P(An). Continuité décroissante : si (An) décroissante, P(∩An)=lim P(An) (se déduit de la croissante par passage au complémentaire). Preuve croissante : posons B0=A0, Bn=An\\A_{n-1} pour n≥1 ; les Bn sont deux à deux disjoints (car (An) croissante) et ∪_{k=0}^n Bk=An, ∪_{k≥0}Bk=∪An. Par σ-additivité, P(∪An)=P(∪Bk)=Σ_{k=0}^∞ P(Bk)=lim_{n→∞} Σ_{k=0}^n P(Bk)=lim_{n→∞}P(An) (somme télescopique reconstituant An par additivité finie).",
+  "correction": "<p><b>Énoncé.</b> <i>Continuité croissante :</i> si \\((A_n)_{n\\geq0}\\) est une suite croissante d'événements (\\(A_n\\subset A_{n+1}\\)), alors \\(P\\left(\\bigcup_{n\\geq0} A_n\\right)=\\lim_{n\\to\\infty}P(A_n)\\). <i>Continuité décroissante :</i> si \\((A_n)\\) est décroissante, \\(P\\left(\\bigcap_{n\\geq0}A_n\\right)=\\lim_{n\\to\\infty}P(A_n)\\).</p><p><b>Démonstration (continuité croissante).</b> Posons \\(B_0=A_0\\) et, pour \\(n\\geq1\\), \\(B_n=A_n\\setminus A_{n-1}\\). Les \\(B_n\\) sont deux à deux disjoints : si \\(m<n\\), \\(B_m\\subset A_m\\subset A_{n-1}\\) tandis que \\(B_n\\cap A_{n-1}=\\emptyset\\), donc \\(B_m\\cap B_n=\\emptyset\\). Par construction (récurrence immédiate utilisant la croissance de \\((A_n)\\)), \\(\\bigcup_{k=0}^n B_k = A_n\\) pour tout \\(n\\), et donc \\(\\bigcup_{k\\geq0}B_k=\\bigcup_{n\\geq0}A_n\\).</p><p>Par \\(\\sigma\\)-additivité de \\(P\\) appliquée à la famille disjointe \\((B_k)\\) : \\[P\\Big(\\bigcup_{n\\geq0}A_n\\Big)=P\\Big(\\bigcup_{k\\geq0}B_k\\Big)=\\sum_{k=0}^{\\infty}P(B_k)=\\lim_{n\\to\\infty}\\sum_{k=0}^{n}P(B_k).\\] Or par additivité finie (les \\(B_k\\) étant disjoints), \\(\\sum_{k=0}^n P(B_k)=P\\left(\\bigcup_{k=0}^n B_k\\right)=P(A_n)\\). D'où \\(P\\left(\\bigcup_n A_n\\right)=\\lim_n P(A_n)\\).</p><p><b>Continuité décroissante.</b> Si \\((A_n)\\) est décroissante, \\((\\overline{A_n})\\) (complémentaires) est croissante, donc par continuité croissante \\(P\\left(\\bigcup_n \\overline{A_n}\\right)=\\lim_n P(\\overline{A_n})=\\lim_n(1-P(A_n))\\). Or \\(\\bigcup_n\\overline{A_n}=\\overline{\\bigcap_n A_n}\\) (lois de De Morgan), donc \\(1-P\\left(\\bigcap_n A_n\\right)=1-\\lim_n P(A_n)\\), d'où le résultat.</p>"
+}

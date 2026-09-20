@@ -1,0 +1,18 @@
+{
+  "id": "ccp-064",
+  "title": "Caractérisations de Im f ⊕ Ker f",
+  "domain": "Algèbre",
+  "chapter": 12,
+  "level": "MP",
+  "cadence": "Standard · 20 min",
+  "difficulty": 4,
+  "statement": "Soit \\(f\\) un endomorphisme d'un espace vectoriel \\(E\\) de dimension \\(n\\).",
+  "questions": [
+    "Démontrer que \\(E = \\mathrm{Im}\\,f \\oplus \\ker f \\Rightarrow \\mathrm{Im}\\,f = \\mathrm{Im}\\,f^2\\).",
+    "Démontrer que \\(\\mathrm{Im}\\,f = \\mathrm{Im}\\,f^2 \\iff \\ker f = \\ker f^2\\).",
+    "Démontrer que \\(\\mathrm{Im}\\,f = \\mathrm{Im}\\,f^2 \\Rightarrow E = \\mathrm{Im}\\,f \\oplus \\ker f\\)."
+  ],
+  "hint": "Pour la question 2, utilisez le théorème du rang appliqué à f et à sa restriction, sachant que Im f² ⊂ Im f et Ker f ⊂ Ker f² toujours.",
+  "grading_context": "(1) Soit y=f(x)∈Imf ; décomposer x=u+v avec u∈Imf (u=f(z)), v∈Kerf : y=f(x)=f(u)=f(f(z))=f²(z)∈Imf². Comme Imf²⊂Imf toujours, égalité. (2) On a toujours Imf²⊂Imf et Kerf⊂Kerf² (inclusions générales). Par le théorème du rang appliqué à f et à f² : dim Imf²=n-dim Kerf². Donc dim Imf=dim Imf² ⟺ dim Kerf=dim Kerf² (car dim Imf=n-dim Kerf), et comme il y a inclusion dans les deux cas, égalité des dimensions équivaut à égalité des ensembles. (3) Par rang-nullité, dim Imf+dim Kerf=n, donc il suffit de montrer Imf∩Kerf={0}. Soit y∈Imf∩Kerf : y=f(x) et f(y)=0, donc f²(x)=0, i.e. x∈Kerf². Par (2) (hypothèse Imf=Imf² donne Kerf=Kerf²), x∈Kerf, donc y=f(x)=0. D'où Imf∩Kerf={0}, et avec la somme des dimensions égale à n, E=Imf⊕Kerf.",
+  "correction": "<p><b>1.</b> Soit \\(y\\in\\mathrm{Im}\\,f\\), \\(y=f(x)\\). Par hypothèse, \\(x=u+v\\) avec \\(u\\in\\mathrm{Im}\\,f\\) (donc \\(u=f(z)\\) pour un certain \\(z\\)) et \\(v\\in\\ker f\\). Alors \\(y=f(x)=f(u)+f(v)=f(f(z))+0=f^2(z)\\in\\mathrm{Im}\\,f^2\\). Donc \\(\\mathrm{Im}\\,f\\subset\\mathrm{Im}\\,f^2\\) ; comme l'inclusion \\(\\mathrm{Im}\\,f^2\\subset\\mathrm{Im}\\,f\\) est toujours vraie (\\(f^2(E)=f(f(E))\\subset f(E)\\)), on a \\(\\mathrm{Im}\\,f=\\mathrm{Im}\\,f^2\\).</p><p><b>2.</b> On a toujours \\(\\mathrm{Im}\\,f^2\\subset\\mathrm{Im}\\,f\\) et \\(\\ker f\\subset\\ker f^2\\) (si \\(f(x)=0\\) alors \\(f^2(x)=0\\)). Par le théorème du rang appliqué à \\(f\\) et à \\(f^2\\) : \\(\\dim\\mathrm{Im}\\,f=n-\\dim\\ker f\\) et \\(\\dim\\mathrm{Im}\\,f^2=n-\\dim\\ker f^2\\). Donc \\(\\dim\\mathrm{Im}\\,f=\\dim\\mathrm{Im}\\,f^2 \\iff \\dim\\ker f=\\dim\\ker f^2\\). Comme il y a inclusion dans chaque cas, égalité des dimensions équivaut à égalité des ensembles (un sous-espace inclus dans un autre de même dimension finie lui est égal) : \\(\\mathrm{Im}\\,f=\\mathrm{Im}\\,f^2 \\iff \\ker f=\\ker f^2\\).</p><p><b>3.</b> Par le théorème du rang, \\(\\dim\\mathrm{Im}\\,f+\\dim\\ker f=n\\) ; il suffit donc de montrer \\(\\mathrm{Im}\\,f\\cap\\ker f=\\{0\\}\\) pour conclure à la somme directe. Soit \\(y\\in\\mathrm{Im}\\,f\\cap\\ker f\\) : \\(y=f(x)\\) pour un certain \\(x\\), et \\(f(y)=0\\), donc \\(f^2(x)=f(y)=0\\), soit \\(x\\in\\ker f^2\\). Par hypothèse \\(\\mathrm{Im}\\,f=\\mathrm{Im}\\,f^2\\), donc par (2), \\(\\ker f=\\ker f^2\\), donc \\(x\\in\\ker f\\), c'est-à-dire \\(f(x)=0\\), soit \\(y=0\\). Donc \\(\\mathrm{Im}\\,f\\cap\\ker f=\\{0\\}\\), et avec la somme des dimensions égale à \\(n\\), \\(E=\\mathrm{Im}\\,f\\oplus\\ker f\\).</p>"
+}

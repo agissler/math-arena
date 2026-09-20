@@ -1,0 +1,17 @@
+{
+  "id": "ccp-109",
+  "title": "Rangs d'apparition dans un tirage sans remise",
+  "domain": "Probabilités",
+  "chapter": 28,
+  "level": "MP",
+  "cadence": "Marathon · 25 min",
+  "difficulty": 5,
+  "statement": "Soit \\(n \\in \\mathbb{N}^*\\). Une urne contient \\(n\\) boules blanches numérotées de \\(1\\) à \\(n\\) et deux boules noires numérotées \\(1\\) et \\(2\\). On effectue le tirage, une à une, sans remise, de toutes les boules de l'urne. On note \\(X\\) la variable aléatoire égale au rang d'apparition de la première boule blanche, et \\(Y\\) la variable aléatoire égale au rang d'apparition de la première boule numérotée \\(1\\) (blanche ou noire).",
+  "questions": [
+    "Déterminer la loi de \\(X\\).",
+    "Déterminer la loi de \\(Y\\)."
+  ],
+  "hint": "Pour Y, remarquez qu'il n'y a que deux boules numérotées 1 parmi les n+2 boules, et que leur ordre relatif suit une loi uniforme parmi toutes les positions.",
+  "grading_context": "L'urne a n+2 boules dont 2 noires. X (rang de la 1ère blanche) ne peut valoir que 1,2,3 (il n'y a que 2 boules noires). P(X=1)=n/(n+2) (1ère tirée blanche). P(X=2)=[2/(n+2)][n/(n+1)] (noire puis blanche). P(X=3)=[2/(n+2)][1/(n+1)]·1 (deux noires puis nécessairement blanche). Pour Y : il y a exactement 2 boules numérotées 1 parmi les n+2 boules (une blanche, une noire) ; par symétrie de l'ordre aléatoire, leurs positions relatives sont 2 positions distinctes uniformément choisies parmi {1,...,n+2}. Le rang du minimum de 2 positions uniformes distinctes parmi N=n+2 suit P(min=k)=2(N-k)/(N(N-1)), soit ici P(Y=k)=2(n+2-k)/[(n+1)(n+2)] pour k=1,...,n+1.",
+  "correction": "<p><b>Loi de \\(X\\).</b> Il y a \\(n+2\\) boules dont \\(2\\) noires ; \\(X\\) prend ses valeurs dans \\(\\{1,2,3\\}\\) (au plus 2 boules noires peuvent précéder la première blanche). \\(P(X=1)=\\dfrac{n}{n+2}\\) (la première boule tirée est blanche). \\(P(X=2)=\\dfrac{2}{n+2}\\cdot\\dfrac{n}{n+1}\\) (noire puis blanche). \\(P(X=3)=\\dfrac{2}{n+2}\\cdot\\dfrac{1}{n+1}\\cdot1\\) (les deux boules noires sortent en premier, la troisième est nécessairement blanche). On vérifie que ces trois probabilités somment à \\(1\\).</p><p><b>Loi de \\(Y\\).</b> Il y a exactement deux boules numérotées \\(1\\) parmi les \\(n+2\\) boules (une blanche, une noire). Par symétrie du tirage aléatoire (toutes les permutations des \\(n+2\\) boules sont équiprobables), les positions de ces deux boules particulières forment une paire de positions distinctes choisie uniformément parmi les \\(\\binom{n+2}{2}\\) paires possibles dans \\(\\{1,\\ldots,n+2\\}\\). Pour que le minimum de cette paire vaille \\(k\\), il faut que l'une des deux boules soit en position \\(k\\) et l'autre en une position \\(>k\\), ce qui donne \\(n+2-k\\) paires possibles. Donc \\(P(Y=k)=\\dfrac{n+2-k}{\\binom{n+2}{2}}=\\dfrac{2(n+2-k)}{(n+1)(n+2)}\\), pour \\(k=1,\\ldots,n+1\\) (on vérifie que la somme sur \\(k\\) vaut bien \\(1\\)).</p>"
+}

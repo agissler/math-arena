@@ -1,0 +1,17 @@
+{
+  "id": "ccp-017",
+  "title": "Condition nécessaire de convergence uniforme d'une série de fonctions",
+  "domain": "Analyse",
+  "chapter": 25,
+  "level": "MP",
+  "cadence": "Standard · 20 min",
+  "difficulty": 4,
+  "statement": "Soit \\(A \\subset \\mathbb{C}\\) et \\((f_n)_{n\\in\\mathbb{N}}\\) une suite de fonctions de \\(A\\) dans \\(\\mathbb{C}\\).",
+  "questions": [
+    "Démontrer l'implication : « la série de fonctions \\(\\sum f_n\\) converge uniformément sur \\(A\\) » \\(\\Rightarrow\\) « la suite de fonctions \\((f_n)_{n\\in\\mathbb{N}}\\) converge uniformément vers \\(0\\) sur \\(A\\) ».",
+    "On pose \\(\\forall n \\in \\mathbb{N},\\ \\forall x \\in [0,+\\infty[,\\ f_n(x) = nx^2 e^{-x\\sqrt{n}}\\). Prouver que \\(\\sum f_n\\) converge simplement sur \\([0,+\\infty[\\). \\(\\sum f_n\\) converge-t-elle uniformément sur \\([0,+\\infty[\\) ? Justifier."
+  ],
+  "hint": "Pour la question 2, calculez le maximum de fn sur [0,+∞[ en étudiant ses variations, et utilisez le résultat de la question 1.",
+  "grading_context": "(1) fn=Sn-Sn-1 où Sn sont les sommes partielles, convergeant uniformément vers S. Donc sup|fn|≤sup|Sn-S|+sup|Sn-1-S|→0. (2) Convergence simple : en x=0, terme nul. Pour x>0, ne^{-x√n} décroît plus vite que toute puissance de n (comparaison classique exponentielle/polynôme en √n), donc nx²e^{-x√n}=o(1/n²) : la série Σfn(x) converge par comparaison à une série de Riemann convergente. Uniforme : en étudiant les variations de fn (dérivée s'annulant en x=2/√n), le maximum de fn sur [0,+∞[ vaut fn(2/√n)=4/e², constante indépendante de n ! Donc sup_x fn(x)=4/e² ne tend pas vers 0 : par la question 1 (contraposée), Σfn ne converge pas uniformément sur [0,+∞[.",
+  "correction": "<p><b>1.</b> Notons \\(S_n=\\sum_{k=0}^n f_k\\), convergeant uniformément vers \\(S\\) sur \\(A\\). Alors \\(f_n=S_n-S_{n-1}=(S_n-S)-(S_{n-1}-S)\\), donc \\(\\sup_A|f_n| \\leq \\sup_A|S_n-S|+\\sup_A|S_{n-1}-S|\\), qui tend vers \\(0+0=0\\) par convergence uniforme de \\((S_n)\\). Donc \\((f_n)\\) converge uniformément vers \\(0\\) sur \\(A\\).</p><p><b>2.</b> <u>Convergence simple :</u> en \\(x=0\\), \\(f_n(0)=0\\). Pour \\(x>0\\) fixé, \\(n\\,e^{-x\\sqrt n}\\) tend vers \\(0\\) plus vite que toute puissance de \\(n\\) (croissance comparée classique de l'exponentielle en \\(\\sqrt n\\) et des polynômes en \\(n\\)) ; en particulier \\(f_n(x)=x^2\\cdot n e^{-x\\sqrt n} = o(1/n^2)\\), donc \\(\\sum f_n(x)\\) converge (absolument) par comparaison à une série de Riemann convergente, pour tout \\(x\\geq0\\).</p><p><u>Convergence uniforme :</u> étudions \\(f_n\\) sur \\([0,+\\infty[\\) : \\(f_n'(x)=2nxe^{-x\\sqrt n}-n^{3/2}x^2e^{-x\\sqrt n}=n x e^{-x\\sqrt n}(2-\\sqrt n\\,x)\\), qui s'annule (changement de signe, maximum) en \\(x_n=\\dfrac{2}{\\sqrt n}\\). On calcule \\(f_n(x_n) = n\\cdot\\dfrac{4}{n}\\cdot e^{-2} = \\dfrac{4}{e^2}\\), valeur constante indépendante de \\(n\\) ! Donc \\(\\sup_{x\\geq0} f_n(x) = \\dfrac{4}{e^2}\\) pour tout \\(n\\), qui ne tend pas vers \\(0\\). Par la contraposée de la question 1, \\(\\sum f_n\\) ne converge pas uniformément sur \\([0,+\\infty[\\).</p>"
+}

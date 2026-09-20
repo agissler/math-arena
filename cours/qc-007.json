@@ -1,0 +1,14 @@
+{
+  "id": "qc-007",
+  "title": "Polynôme caractéristique : définition, degré, coefficients",
+  "domain": "Algèbre",
+  "chapter": 21,
+  "level": "MP",
+  "cadence": "Blitz · 10 min",
+  "difficulty": 2,
+  "statement": "Soit \\(A\\) une matrice carrée d'ordre \\(n\\) à coefficients dans \\(\\mathbb{K}\\) (\\(\\mathbb{R}\\) ou \\(\\mathbb{C}\\)).",
+  "followup": "Définissez le polynôme caractéristique de \\(A\\), précisez son degré et démontrez la valeur de ses coefficients de degrés \\(0\\) et \\(n-1\\).",
+  "hint": "Le coefficient de degré 0 s'obtient en évaluant le polynôme en 0 ; celui de degré n-1 s'obtient en développant le déterminant et en identifiant le terme de plus haut degré après le terme dominant.",
+  "grading_context": "χ_A(X)=det(A-XI_n), polynôme de degré n, unitaire (coefficient dominant (-1)^n·(-1)^n=1 en développant), coefficient de degré 0 : χ_A(0)=det(A). Coefficient de degré n-1 : en développant det(A-XI) par la formule de Leibniz, le terme en X^{n-1} provient uniquement du produit des éléments diagonaux (a11-X)...(ann-X) (les autres termes de la somme de Leibniz font intervenir au plus n-2 facteurs diagonaux car ils utilisent au moins une transposition, donc degré ≤n-2 en X) ; le coefficient de X^{n-1} dans ce produit vaut (-1)^{n-1}(a11+...+ann)=(-1)^{n-1}tr(A).",
+  "correction": "<p><b>Définition.</b> Le polynôme caractéristique de \\(A\\) est \\(\\chi_A(X)=\\det(A-XI_n)\\).</p><p><b>Degré et coefficient dominant.</b> En développant le déterminant par la formule de Leibniz, le terme de plus haut degré en \\(X\\) provient du produit des éléments diagonaux \\((a_{11}-X)\\cdots(a_{nn}-X)\\), qui contribue un terme en \\((-X)^n=(-1)^nX^n\\) ; les autres termes de la somme de Leibniz (associés à des permutations non triviales) contiennent au moins deux éléments hors diagonale, donc au plus \\(n-2\\) facteurs en \\(X\\), donc un degré \\(\\leq n-2\\). Ainsi \\(\\chi_A\\) est de degré exactement \\(n\\), de coefficient dominant \\((-1)^n\\) (on préfère souvent définir \\(\\chi_A=\\det(XI_n-A)\\), unitaire, selon la convention retenue).</p><p><b>Coefficient de degré \\(0\\).</b> \\(\\chi_A(0)=\\det(A-0)=\\det(A)\\).</p><p><b>Coefficient de degré \\(n-1\\).</b> D'après l'analyse ci-dessus, seul le produit diagonal \\(\\prod_i(a_{ii}-X)\\) contribue aux degrés \\(n\\) et \\(n-1\\). En développant ce produit, le coefficient de \\(X^{n-1}\\) est \\((-1)^{n-1}\\sum_i a_{ii} = (-1)^{n-1}\\,\\mathrm{tr}(A)\\).</p>"
+}

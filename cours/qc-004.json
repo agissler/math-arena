@@ -1,0 +1,14 @@
+{
+  "id": "qc-004",
+  "title": "Convergence simple et convergence uniforme",
+  "domain": "Analyse",
+  "chapter": 25,
+  "level": "MP",
+  "cadence": "Blitz · 10 min",
+  "difficulty": 2,
+  "statement": "On considère une suite de fonctions \\((f_n)\\) définies sur une partie \\(A\\) d'un espace vectoriel de dimension finie, à valeurs dans un espace vectoriel normé \\(F\\) de dimension finie, et une fonction \\(f\\) de \\(A\\) dans \\(F\\).",
+  "followup": "Définissez la convergence simple et la convergence uniforme de \\((f_n)\\) vers \\(f\\) sur \\(A\\), et démontrez que la convergence uniforme entraîne la convergence simple.",
+  "hint": "Comparez les quantificateurs : dans un cas, le rang à partir duquel on est proche de f peut dépendre du point ; dans l'autre, non.",
+  "grading_context": "Convergence simple : ∀x∈A, ∀ε>0, ∃N (dépendant de x et ε), ∀n≥N, ||fn(x)-f(x)||<ε. Convergence uniforme : ∀ε>0, ∃N (dépendant seulement de ε), ∀n≥N, ∀x∈A, ||fn(x)-f(x)||<ε, ce qui équivaut à sup_{x∈A}||fn(x)-f(x)||→0. Si (fn) converge uniformément vers f, alors pour tout ε>0, un N convient pour TOUS les x simultanément, donc en particulier convient pour chaque x fixé : la convergence simple est vérifiée (le N uniforme est a fortiori un N valable ponctuellement).",
+  "correction": "<p><b>Convergence simple :</b> \\((f_n)\\) converge simplement vers \\(f\\) sur \\(A\\) si pour tout \\(x\\in A\\), \\(f_n(x)\\to f(x)\\), c'est-à-dire : \\(\\forall x\\in A,\\ \\forall\\varepsilon>0,\\ \\exists N\\in\\mathbb{N}\\ (\\text{dépendant de } x \\text{ et } \\varepsilon),\\ \\forall n\\geq N,\\ \\|f_n(x)-f(x)\\|<\\varepsilon\\).</p><p><b>Convergence uniforme :</b> \\((f_n)\\) converge uniformément vers \\(f\\) sur \\(A\\) si \\(\\sup_{x\\in A}\\|f_n(x)-f(x)\\| \\to 0\\), c'est-à-dire : \\(\\forall\\varepsilon>0,\\ \\exists N\\in\\mathbb{N}\\ (\\text{indépendant de } x),\\ \\forall n\\geq N,\\ \\forall x\\in A,\\ \\|f_n(x)-f(x)\\|<\\varepsilon\\).</p><p><b>Convergence uniforme \\(\\Rightarrow\\) convergence simple :</b> soit \\(x\\in A\\) et \\(\\varepsilon>0\\). Par convergence uniforme, il existe \\(N\\) (ne dépendant que de \\(\\varepsilon\\)) tel que pour tout \\(n\\geq N\\) et tout \\(y\\in A\\), \\(\\|f_n(y)-f(y)\\|<\\varepsilon\\). En particulier, cette inégalité est vraie pour \\(y=x\\) : \\(\\forall n\\geq N,\\ \\|f_n(x)-f(x)\\|<\\varepsilon\\). Ce même \\(N\\) convient donc dans la définition de la convergence simple en \\(x\\) : \\((f_n)\\) converge simplement vers \\(f\\) sur \\(A\\).</p>"
+}

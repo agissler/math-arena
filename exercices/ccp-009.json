@@ -1,0 +1,20 @@
+{
+  "id": "ccp-009",
+  "title": "Convergence d'une suite de fonctions gaussiennes oscillantes",
+  "domain": "Analyse",
+  "chapter": 25,
+  "level": "MP",
+  "cadence": "Standard · 20 min",
+  "difficulty": 4,
+  "statement": "On pose \\(f_n(x) = \\dfrac{n+2}{n+1}\\,e^{-nx^2}\\cos(\\sqrt{n}x)\\).",
+  "questions": [
+    "Soit \\(X\\) un ensemble, \\((g_n)_{n\\in\\mathbb{N}}\\) une suite de fonctions de \\(X\\) dans \\(\\mathbb{C}\\) et \\(g\\) une fonction de \\(X\\) dans \\(\\mathbb{C}\\). Donner la définition de la convergence uniforme sur \\(X\\) de la suite de fonctions \\((g_n)\\) vers la fonction \\(g\\).",
+    "Étudier la convergence simple de la suite de fonctions \\((f_n)_{n\\in\\mathbb{N}}\\).",
+    "La suite de fonctions \\((f_n)_{n\\in\\mathbb{N}}\\) converge-t-elle uniformément sur \\([0,+\\infty[\\) ?",
+    "Soit \\(a>0\\). La suite de fonctions \\((f_n)_{n\\in\\mathbb{N}}\\) converge-t-elle uniformément sur \\([a,+\\infty[\\) ?",
+    "La suite de fonctions \\((f_n)_{n\\in\\mathbb{N}}\\) converge-t-elle uniformément sur \\(]0,+\\infty[\\) ?"
+  ],
+  "hint": "Sur [a,+∞[, majorez |fn(x)| par sa valeur en x=a. Sur ]0,+∞[, cherchez une suite xn→0 pour laquelle fn(xn) ne tend pas vers 0.",
+  "grading_context": "(2) En x=0, fn(0)=(n+2)/(n+1)→1. Pour x≠0 fixé, e^{-nx²}→0 exponentiellement donc fn(x)→0. Limite simple : f(0)=1, f(x)=0 sinon. (3) f est discontinue en 0 alors que chaque fn est continue ; une limite uniforme de fonctions continues est continue, donc pas de convergence uniforme sur [0,+∞[ (qui contient un voisinage de 0). (4) Pour x≥a>0, |fn(x)|≤(n+2)/(n+1)e^{-nx²}≤(n+2)/(n+1)e^{-na²} (car x²≥a²), majorant qui tend vers 0 : convergence uniforme sur [a,+∞[. (5) Sur ]0,+∞[, prendre xn=1/√n : fn(xn)=(n+2)/(n+1)e^{-1}cos(1)→cos(1)/e≠0, alors que f(xn)=0 pour xn≠0 : donc sup|fn-f| ne tend pas vers 0, pas de convergence uniforme sur ]0,+∞[.",
+  "correction": "<p><b>1.</b> \\((g_n)\\) converge uniformément vers \\(g\\) sur \\(X\\) si \\(\\sup_{x\\in X}|g_n(x)-g(x)| \\xrightarrow[n\\to+\\infty]{} 0\\).</p><p><b>2.</b> En \\(x=0\\) : \\(f_n(0)=\\frac{n+2}{n+1}\\to1\\). Pour \\(x\\neq0\\) fixé, \\(e^{-nx^2}\\to0\\) exponentiellement (car \\(x^2>0\\)) et \\(\\left|\\frac{n+2}{n+1}\\cos(\\sqrt{n}x)\\right|\\) reste borné, donc \\(f_n(x)\\to0\\). La limite simple est \\(f(0)=1\\), \\(f(x)=0\\) pour \\(x\\neq0\\).</p><p><b>3.</b> Chaque \\(f_n\\) est continue sur \\([0,+\\infty[\\), mais \\(f\\) est discontinue en \\(0\\). Une limite uniforme de fonctions continues étant continue, la convergence ne peut être uniforme sur \\([0,+\\infty[\\).</p><p><b>4.</b> Pour \\(x\\geq a>0\\), \\(|f_n(x)|\\leq\\frac{n+2}{n+1}e^{-nx^2}\\leq\\frac{n+2}{n+1}e^{-na^2}\\) (car \\(x^2\\geq a^2\\) et \\(e^{-nt}\\) décroissante). Ce majorant, indépendant de \\(x\\), tend vers \\(0\\) : \\(\\sup_{x\\geq a}|f_n(x)-f(x)|\\to0\\), convergence uniforme sur \\([a,+\\infty[\\).</p><p><b>5.</b> Sur \\(]0,+\\infty[\\), posons \\(x_n=1/\\sqrt{n}\\) : \\(f_n(x_n)=\\frac{n+2}{n+1}e^{-1}\\cos(1) \\to \\frac{\\cos(1)}{e} \\neq 0\\), alors que \\(f(x_n)=0\\) puisque \\(x_n\\neq0\\). Donc \\(f_n(x_n)-f(x_n)\\) ne tend pas vers \\(0\\), ce qui exclut la convergence uniforme sur \\(]0,+\\infty[\\).</p>"
+}

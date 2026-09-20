@@ -1,0 +1,19 @@
+{
+  "id": "ccp-034",
+  "title": "Caractérisation séquentielle de l'adhérence",
+  "domain": "Analyse",
+  "chapter": 23,
+  "level": "MP",
+  "cadence": "Standard · 15 min",
+  "difficulty": 3,
+  "statement": "Soit \\(A\\) une partie non vide d'un espace vectoriel normé \\(E\\).",
+  "questions": [
+    "Rappeler la définition d'un point adhérent à \\(A\\), en termes de voisinages ou de boules.",
+    "Démontrer que \\(x \\in \\overline{A} \\iff \\exists (x_n)_{n\\in\\mathbb{N}} \\in A^{\\mathbb{N}},\\ \\forall n \\in \\mathbb{N},\\ x_n \\in A\\ \\text{et}\\ \\lim_{n\\to+\\infty} x_n = x\\).",
+    "Démontrer que si \\(A\\) est un sous-espace vectoriel de \\(E\\), alors \\(\\overline{A}\\) est un sous-espace vectoriel de \\(E\\).",
+    "Démontrer que, si \\(A\\) est convexe, alors \\(\\overline{A}\\) est convexe."
+  ],
+  "hint": "Pour le sens direct de la caractérisation séquentielle, choisissez xn dans A∩B(x,1/n).",
+  "grading_context": "(1) x est adhérent à A si tout voisinage (ou toute boule ouverte centrée en x) rencontre A. (2) Sens direct : si x∈Ā, pour tout n, la boule B(x,1/n) rencontre A, on choisit xn dans cette intersection, et xn→x. Réciproque : si xn→x avec xn∈A, tout voisinage de x contient xn pour n assez grand, donc rencontre A, donc x∈Ā. (3) Soient x,y∈Ā (avec suites xn,yn→x,y dans A) et λ,μ scalaires ; λxn+μyn∈A (sous-espace) et →λx+μy, donc λx+μy∈Ā : Ā est un sous-espace. (4) Identique à l'exercice sur la convexité de l'adhérence (combinaison convexe de suites convergentes).",
+  "correction": "<p><b>1.</b> \\(x\\) est adhérent à \\(A\\) si tout voisinage de \\(x\\) (de manière équivalente, toute boule ouverte \\(B(x,r)\\), \\(r>0\\)) rencontre \\(A\\).</p><p><b>2.</b> (\\(\\Rightarrow\\)) Si \\(x\\in\\overline{A}\\), pour chaque \\(n\\geq1\\), la boule \\(B(x,1/n)\\) rencontre \\(A\\) : on choisit \\(x_n\\in A\\cap B(x,1/n)\\), alors \\(\\|x_n-x\\|<1/n\\to0\\), donc \\(x_n\\to x\\). (\\(\\Leftarrow\\)) Si \\((x_n)\\) est une suite de \\(A\\) convergeant vers \\(x\\), tout voisinage \\(V\\) de \\(x\\) contient \\(x_n\\) pour \\(n\\) assez grand (définition de la convergence), donc \\(V\\cap A\\neq\\emptyset\\) : \\(x\\in\\overline{A}\\).</p><p><b>3.</b> Soient \\(x,y\\in\\overline{A}\\) et \\(\\lambda,\\mu\\) des scalaires, avec \\((x_n),(y_n)\\) des suites de \\(A\\) tendant vers \\(x,y\\). Comme \\(A\\) est un sous-espace, \\(\\lambda x_n+\\mu y_n\\in A\\) pour tout \\(n\\), et cette suite tend vers \\(\\lambda x+\\mu y\\). Donc \\(\\lambda x+\\mu y\\in\\overline{A}\\) : \\(\\overline{A}\\) est un sous-espace vectoriel.</p><p><b>4.</b> Comme dans l'exercice précédent : pour \\(x,y\\in\\overline{A}\\) et \\(t\\in[0,1]\\), en prenant des suites \\(x_n,y_n\\to x,y\\) dans \\(A\\), \\(tx_n+(1-t)y_n\\in A\\) (convexité) et tend vers \\(tx+(1-t)y\\), donc \\(tx+(1-t)y\\in\\overline{A}\\) : \\(\\overline{A}\\) est convexe.</p>"
+}

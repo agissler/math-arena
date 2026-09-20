@@ -1,0 +1,14 @@
+{
+  "id": "qc-011",
+  "title": "Inégalité de la moyenne pour les intégrales vectorielles",
+  "domain": "Analyse",
+  "chapter": 26,
+  "level": "MP",
+  "cadence": "Blitz · 10 min",
+  "difficulty": 2,
+  "statement": "Soit \\(f\\) une fonction continue par morceaux sur un segment \\([a,b]\\) (\\(a\\leq b\\)), à valeurs dans un espace vectoriel normé de dimension finie \\(E\\).",
+  "followup": "Énoncez et démontrez l'inégalité comparant \\(\\left\\|\\int_a^b f(t)\\,dt\\right\\|\\) et \\(\\int_a^b \\|f(t)\\|\\,dt\\).",
+  "hint": "Traitez d'abord le cas des fonctions en escalier en utilisant l'inégalité triangulaire sur une somme finie, puis passez à la limite par densité (approximation uniforme).",
+  "grading_context": "Théorème : ||∫_a^b f|| ≤ ∫_a^b ||f||. Preuve : pour φ en escalier associée à une subdivision (xi), ∫φ=Σ(xi+1-xi)ci, donc ||∫φ||≤Σ(xi+1-xi)||ci||=∫||φ|| par inégalité triangulaire. Pour f continue par morceaux quelconque, on approche uniformément f par une suite de fonctions en escalier φn (théorème d'approximation uniforme), et on passe à la limite dans l'inégalité ||∫φn||≤∫||φn||, sachant que ∫φn→∫f et ∫||φn||→∫||f|| (convergence uniforme donc convergence des intégrales, et ||φn||→||f|| uniformément par inégalité triangulaire inversée).",
+  "correction": "<p><b>Énoncé.</b> \\(\\displaystyle\\left\\|\\int_a^b f(t)\\,dt\\right\\| \\leq \\int_a^b \\|f(t)\\|\\,dt\\).</p><p><b>Cas des fonctions en escalier.</b> Si \\(\\varphi\\) est en escalier, constante égale à \\(c_i\\) sur chaque \\([x_i,x_{i+1}[\\) d'une subdivision \\((x_i)_{0\\leq i\\leq N}\\) de \\([a,b]\\), alors \\(\\int_a^b\\varphi = \\sum_i (x_{i+1}-x_i)c_i\\), donc par inégalité triangulaire : \\(\\left\\|\\int_a^b\\varphi\\right\\| \\leq \\sum_i (x_{i+1}-x_i)\\|c_i\\| = \\int_a^b\\|\\varphi\\|\\).</p><p><b>Cas général.</b> Soit \\(f\\) continue par morceaux sur \\([a,b]\\). Par le théorème d'approximation uniforme, il existe une suite \\((\\varphi_n)\\) de fonctions en escalier telle que \\(\\|f-\\varphi_n\\|_\\infty\\to 0\\). Alors \\(\\int_a^b\\varphi_n \\to \\int_a^b f\\) (car \\(\\left\\|\\int(f-\\varphi_n)\\right\\|\\leq (b-a)\\|f-\\varphi_n\\|_\\infty\\to0\\)) et \\(\\int_a^b\\|\\varphi_n\\| \\to \\int_a^b\\|f\\|\\) (car \\(\\big|\\,\\|\\varphi_n(t)\\|-\\|f(t)\\|\\,\\big|\\leq\\|\\varphi_n(t)-f(t)\\|\\leq\\|f-\\varphi_n\\|_\\infty\\), donc convergence uniforme des normes). En passant à la limite dans \\(\\left\\|\\int_a^b\\varphi_n\\right\\|\\leq\\int_a^b\\|\\varphi_n\\|\\), on obtient \\(\\left\\|\\int_a^b f\\right\\|\\leq\\int_a^b\\|f\\|\\).</p>"
+}

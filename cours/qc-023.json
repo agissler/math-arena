@@ -1,0 +1,14 @@
+{
+  "id": "qc-023",
+  "title": "Convergence uniforme d'une série de fonctions : caractérisation par le reste",
+  "domain": "Analyse",
+  "chapter": 25,
+  "level": "MP",
+  "cadence": "Standard · 15 min",
+  "difficulty": 3,
+  "statement": "Soit \\(\\sum f_n\\) une série de fonctions définies sur une partie \\(D\\), convergeant simplement sur \\(D\\) vers une fonction \\(S\\), de reste \\(R_n=S-\\sum_{k=0}^n f_k\\).",
+  "followup": "Démontrez que \\(\\sum f_n\\) converge uniformément sur \\(D\\) si et seulement si \\((R_n)\\) converge uniformément vers \\(0\\) sur \\(D\\).",
+  "hint": "Revenez à la définition : la convergence uniforme de la série équivaut à la convergence uniforme de la suite des sommes partielles vers S, ce qui s'écrit exactement sup_D|R_n|→0.",
+  "grading_context": "Par définition, la suite des sommes partielles Sn=Σ_{k=0}^n f_k converge uniformément vers S sur D ssi sup_{x∈D}|S(x)-Sn(x)|→0, ce qui s'écrit exactement sup_{x∈D}|Rn(x)|→0, i.e. (Rn) converge uniformément vers la fonction nulle sur D. Par définition, la série Σfn converge uniformément sur D signifie précisément que la suite des sommes partielles (Sn) converge uniformément sur D (vers sa somme S, la convergence simple étant supposée acquise). Les deux énoncés sont donc rigoureusement équivalents, il s'agit essentiellement d'une reformulation à expliciter proprement.",
+  "correction": "<p><b>Rappel des définitions.</b> On suppose la convergence simple de \\(\\sum f_n\\) vers \\(S\\) acquise sur \\(D\\), de sorte que \\(R_n(x)=S(x)-\\sum_{k=0}^n f_k(x)\\) est bien défini pour tout \\(x\\in D\\). Par définition, la série \\(\\sum f_n\\) <i>converge uniformément</i> sur \\(D\\) signifie que la suite des sommes partielles \\(S_n=\\sum_{k=0}^n f_k\\) converge uniformément sur \\(D\\) vers \\(S\\), c'est-à-dire :</p><p>\\[\\sup_{x\\in D}|S(x)-S_n(x)| \\xrightarrow[n\\to\\infty]{} 0.\\]</p><p><b>Équivalence.</b> Or, par définition même de \\(R_n\\), \\(S(x)-S_n(x)=R_n(x)\\) pour tout \\(x\\in D\\). Donc</p><p>\\[\\sup_{x\\in D}|S(x)-S_n(x)| = \\sup_{x\\in D}|R_n(x)| = \\|R_n\\|_{\\infty,D}.\\]</p><p>Ainsi, « \\(\\sum f_n\\) converge uniformément sur \\(D\\) » équivaut, mot pour mot, à « \\(\\|R_n\\|_{\\infty,D}\\to0\\) », c'est-à-dire à la convergence uniforme de la suite \\((R_n)\\) vers la fonction nulle sur \\(D\\). Les deux assertions sont donc équivalentes, par simple réécriture de la définition de la convergence uniforme appliquée à la suite des sommes partielles.</p>"
+}

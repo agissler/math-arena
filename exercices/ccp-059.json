@@ -1,0 +1,18 @@
+{
+  "id": "ccp-059",
+  "title": "L'endomorphisme P ↦ P - P'",
+  "domain": "Algèbre",
+  "chapter": 21,
+  "level": "MP",
+  "cadence": "Standard · 20 min",
+  "difficulty": 3,
+  "statement": "Soit \\(n\\) un entier naturel tel que \\(n \\geq 2\\). Soit \\(E\\) l'espace vectoriel des polynômes à coefficients dans \\(\\mathbb{K}\\) (\\(\\mathbb{K}=\\mathbb{R}\\) ou \\(\\mathbb{K}=\\mathbb{C}\\)) de degré inférieur ou égal à \\(n\\). On pose \\(\\forall P \\in E,\\ f(P) = P - P'\\).",
+  "questions": [
+    "Démontrer que \\(f\\) est bijectif de deux manières : sans utiliser de matrice de \\(f\\), puis en utilisant une matrice de \\(f\\).",
+    "Soit \\(Q \\in E\\). Trouver \\(P\\) tel que \\(f(P) = Q\\).",
+    "\\(f\\) est-il diagonalisable ?"
+  ],
+  "hint": "Pour la question 2, itérez la relation P=Q+P' en utilisant que P^{(n+1)}=0.",
+  "grading_context": "(1) Sans matrice : si f(P)=0, P=P' ; si P≠0 de degré d≥1, deg(P')=d-1<d, donc P-P' a pour terme dominant celui de P (non nul), contradiction avec P-P'=0 sauf P constant, auquel cas P'=0 donc P=0. Donc f injective, et E de dimension finie n+1 donne bijectivité. Avec matrice : dans la base (1,X,...,X^n), la matrice de f est I-D où D est la matrice de dérivation (nilpotente, strictement triangulaire). det(I-D)=1 (valeurs propres de D toutes nulles, donc celles de I-D toutes égales à 1), donc f bijectif. (2) En itérant P=Q+P' : P=Q+Q'+P''=...=Q+Q'+...+Q^{(n)}+P^{(n+1)}. Comme deg P≤n, P^{(n+1)}=0, donc P=∑_{k=0}^n Q^{(k)}. (3) f=Id-D avec D nilpotente non nulle (n≥2) : la seule valeur propre de f est 1 (car D n'a que 0 pour valeur propre). Si f était diagonalisable avec l'unique valeur propre 1, on aurait f=Id, ce qui est faux (f(X)=X-1≠X). Donc f n'est pas diagonalisable.",
+  "correction": "<p><b>1. Sans matrice :</b> si \\(f(P)=0\\), alors \\(P=P'\\). Si \\(P\\neq0\\) est de degré \\(d\\geq1\\), \\(P'\\) est de degré \\(d-1<d\\), donc \\(P-P'\\) a le même terme dominant que \\(P\\) (non nul) : \\(P-P'\\neq0\\), contradiction. Si \\(P\\) est constant, \\(P'=0\\) donc \\(P=P'=0\\). Ainsi \\(\\ker f=\\{0\\}\\) : \\(f\\) est injectif, donc bijectif (\\(E\\) de dimension finie \\(n+1\\)). <b>Avec matrice :</b> dans la base \\((1,X,\\ldots,X^n)\\), la matrice de dérivation \\(D\\) est strictement triangulaire supérieure (donc nilpotente), et celle de \\(f\\) est \\(I-D\\). Les valeurs propres de \\(D\\) sont toutes nulles, donc celles de \\(I-D\\) sont toutes égales à \\(1\\) : \\(\\det(I-D)=1\\neq0\\), \\(f\\) est bijectif.</p><p><b>2.</b> De \\(P=Q+P'\\), on tire par itération : \\(P=Q+P'=Q+(Q+P')' \\) ... plus généralement \\(P=Q+Q'+Q''+\\cdots+Q^{(n)}+P^{(n+1)}\\). Comme \\(\\deg P\\leq n\\), \\(P^{(n+1)}=0\\), donc \\(P=\\displaystyle\\sum_{k=0}^n Q^{(k)}\\) (on vérifie que \\(P-P'=Q\\) par télescopage).</p><p><b>3.</b> \\(f=\\mathrm{Id}-D\\) où \\(D\\) est nilpotente et non nulle (car \\(n\\geq2\\)). Les valeurs propres de \\(D\\) sont toutes nulles, donc l'unique valeur propre de \\(f\\) est \\(1\\). Si \\(f\\) était diagonalisable, elle serait semblable à \\(\\mathrm{Id}\\) (seule matrice diagonale de valeur propre unique 1), donc égale à \\(\\mathrm{Id}\\) elle-même. Or \\(f(X)=X-1\\neq X\\) : \\(f\\neq\\mathrm{Id}\\). Donc \\(f\\) n'est pas diagonalisable.</p>"
+}

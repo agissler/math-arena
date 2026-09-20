@@ -1,0 +1,14 @@
+{
+  "id": "qc-020",
+  "title": "Formule des probabilités composées",
+  "domain": "Probabilités",
+  "chapter": 28,
+  "level": "MP",
+  "cadence": "Blitz · 10 min",
+  "difficulty": 2,
+  "statement": "Soit \\((\\Omega,\\mathcal{A},P)\\) un espace probabilisé et \\(A_1,\\ldots,A_n\\) des événements tels que \\(P(A_1\\cap\\cdots\\cap A_{n-1})>0\\).",
+  "followup": "Énoncez et démontrez la formule des probabilités composées pour \\(P(A_1\\cap\\cdots\\cap A_n)\\).",
+  "hint": "Procédez par récurrence, en utilisant la définition de la probabilité conditionnelle à chaque étape et en vérifiant que les intersections successives restent de probabilité non nulle.",
+  "grading_context": "Formule : P(A1∩...∩An) = P(A1)·P(A2|A1)·P(A3|A1∩A2)·...·P(An|A1∩...∩A_{n-1}), sous réserve que P(A1∩...∩A_{n-1})>0 (ce qui entraîne automatiquement P(A1∩...∩Ak)>0 pour tout k<n par décroissance). Preuve par récurrence sur n, ou directement en développant le produit télescopique : P(Ak|A1∩...∩A_{k-1})=P(A1∩...∩Ak)/P(A1∩...∩A_{k-1}) par définition de la probabilité conditionnelle (le dénominateur étant non nul car A1∩...∩Ak⊂A1∩...∩A_{k-1} donc P décroissante et ≥P(A1∩...∩A_{n-1})>0 pour k≤n-1) ; le produit de ces quotients pour k=2,...,n télescope et donne P(A1∩...∩An)/P(A1), d'où le résultat en multipliant par P(A1).",
+  "correction": "<p><b>Énoncé.</b> Si \\(P(A_1\\cap\\cdots\\cap A_{n-1})>0\\), alors tous les événements \\(A_1\\cap\\cdots\\cap A_k\\) (\\(k\\leq n-1\\)) sont de probabilité strictement positive (par décroissance de ces intersections emboîtées), et</p><p>\\[P(A_1\\cap\\cdots\\cap A_n) = P(A_1)\\,P(A_2\\mid A_1)\\,P(A_3\\mid A_1\\cap A_2)\\cdots P(A_n\\mid A_1\\cap\\cdots\\cap A_{n-1}).\\]</p><p><b>Démonstration.</b> Pour \\(k=1,\\ldots,n-1\\), \\(A_1\\cap\\cdots\\cap A_{k+1}\\subset A_1\\cap\\cdots\\cap A_k\\), donc par croissance de \\(P\\), \\(P(A_1\\cap\\cdots\\cap A_k)\\geq P(A_1\\cap\\cdots\\cap A_{n-1})>0\\) : toutes les probabilités conditionnelles ci-dessus sont bien définies. Par définition de la probabilité conditionnelle, pour chaque \\(k=2,\\ldots,n\\) :</p><p>\\[P(A_k\\mid A_1\\cap\\cdots\\cap A_{k-1}) = \\frac{P(A_1\\cap\\cdots\\cap A_k)}{P(A_1\\cap\\cdots\\cap A_{k-1})}.\\]</p><p>En faisant le produit de ces égalités pour \\(k=2\\) à \\(n\\), le produit télescope :</p><p>\\[\\prod_{k=2}^{n}P(A_k\\mid A_1\\cap\\cdots\\cap A_{k-1}) = \\prod_{k=2}^n \\frac{P(A_1\\cap\\cdots\\cap A_k)}{P(A_1\\cap\\cdots\\cap A_{k-1})} = \\frac{P(A_1\\cap\\cdots\\cap A_n)}{P(A_1)}.\\]</p><p>En multipliant par \\(P(A_1)\\), on obtient exactement la formule annoncée.</p>"
+}

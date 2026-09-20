@@ -1,0 +1,14 @@
+{
+  "id": "qc-014",
+  "title": "Formule de Taylor-Young",
+  "domain": "Analyse",
+  "chapter": 26,
+  "level": "MP",
+  "cadence": "Blitz · 10 min",
+  "difficulty": 3,
+  "statement": "Soit \\(f\\) une fonction de classe \\(\\mathcal{C}^n\\) sur un intervalle \\(I\\), à valeurs dans un espace normé de dimension finie, et \\(a\\in I\\).",
+  "followup": "Énoncez la formule de Taylor-Young à l'ordre \\(n\\) en \\(a\\), et démontrez-la à l'aide de l'inégalité de Taylor-Lagrange appliquée à \\(f^{(n)}\\).",
+  "hint": "Appliquez l'inégalité de Taylor-Lagrange à l'ordre n-1 à la fonction f, en utilisant la continuité de f^(n) en a pour contrôler le reste par un o((x-a)^n).",
+  "grading_context": "Formule : f(x) = Σ_{k=0}^n (x-a)^k/k! f^(k)(a) + o((x-a)^n) quand x→a. Preuve : soit ε>0. Par continuité de f^(n) en a, il existe η>0 tel que |t-a|<η ⟹ ||f^(n)(t)-f^(n)(a)||≤ε. Appliquons l'inégalité de Taylor-Lagrange à l'ordre n-1 à la fonction g=f (qui est C^n, donc g^(n-1) est C^1 de dérivée f^(n)) : pour |x-a|<η, en posant M=ε borne de ||f^(n)(t)-f^(n)(a)|| sur [a,x], on applique Taylor-Lagrange à h(t)=f(t)-f(a)-...-((t-a)^n/n!)f^(n)(a) qui vérifie h^(n)(t)=f^(n)(t)-f^(n)(a), obtenant ||f(x)-Σ_{k=0}^n (x-a)^k/k! f^(k)(a)|| ≤ ε|x-a|^n/n!, ce qui signifie exactement que le reste est un o((x-a)^n).",
+  "correction": "<p><b>Énoncé.</b> Si \\(f\\) est de classe \\(\\mathcal{C}^n\\) au voisinage de \\(a\\), alors, quand \\(x\\to a\\) :</p><p>\\[f(x) = \\sum_{k=0}^{n}\\frac{(x-a)^k}{k!}f^{(k)}(a) + o\\big((x-a)^n\\big).\\]</p><p><b>Démonstration.</b> Soit \\(\\varepsilon>0\\). Comme \\(f^{(n)}\\) est continue en \\(a\\), il existe \\(\\eta>0\\) tel que pour tout \\(t\\in I\\) avec \\(|t-a|<\\eta\\), \\(\\|f^{(n)}(t)-f^{(n)}(a)\\|\\leq\\varepsilon\\). Posons \\(h(t)=f(t)-\\sum_{k=0}^{n}\\frac{(t-a)^k}{k!}f^{(k)}(a)\\) : \\(h\\) est de classe \\(\\mathcal{C}^n\\), et par construction \\(h^{(k)}(a)=0\\) pour \\(k=0,\\ldots,n-1\\), et \\(h^{(n)}(t)=f^{(n)}(t)-f^{(n)}(a)\\), donc \\(\\|h^{(n)}(t)\\|\\leq\\varepsilon\\) pour \\(|t-a|<\\eta\\). L'inégalité de Taylor-Lagrange appliquée à \\(h\\) à l'ordre \\(n-1\\) donne, pour \\(|x-a|<\\eta\\) : \\[\\|h(x)\\| = \\left\\|h(x)-\\sum_{k=0}^{n-1}\\frac{(x-a)^k}{k!}h^{(k)}(a)\\right\\| \\leq \\varepsilon\\,\\frac{|x-a|^n}{n!}.\\] Ainsi \\(\\left\\|f(x)-\\sum_{k=0}^n\\frac{(x-a)^k}{k!}f^{(k)}(a)\\right\\|\\leq \\frac{\\varepsilon}{n!}|x-a|^n\\) dès que \\(|x-a|<\\eta\\) : c'est exactement la définition du \\(o((x-a)^n)\\).</p>"
+}

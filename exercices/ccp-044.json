@@ -1,0 +1,18 @@
+{
+  "id": "ccp-044",
+  "title": "Adhérence d'une union et d'une intersection",
+  "domain": "Analyse",
+  "chapter": 23,
+  "level": "MP",
+  "cadence": "Standard · 15 min",
+  "difficulty": 3,
+  "statement": "Soit \\(E\\) un espace vectoriel normé. Soient \\(A\\) et \\(B\\) deux parties non vides de \\(E\\).",
+  "questions": [
+    "Rappeler la caractérisation de l'adhérence d'un ensemble à l'aide des suites. Montrer que \\(A \\subset B \\Rightarrow \\overline{A} \\subset \\overline{B}\\).",
+    "Montrer que \\(\\overline{A \\cup B} = \\overline{A} \\cup \\overline{B}\\) (une réponse sans utiliser les suites est aussi acceptée).",
+    "Montrer que \\(\\overline{A \\cap B} \\subset \\overline{A} \\cap \\overline{B}\\), puis montrer, à l'aide d'un exemple (on pourra prendre \\(E = \\mathbb{R}\\)), que l'autre inclusion n'est pas forcément vérifiée."
+  ],
+  "hint": "Pour la question 3, pensez à un couple de parties d'intersection vide mais toutes deux denses dans R.",
+  "grading_context": "(1) x∈Ā ssi il existe une suite d'éléments de A tendant vers x. Si A⊂B et x∈Ā (suite xn∈A→x), alors xn∈B aussi, donc x∈B̄. (2) Inclusion ⊇ : A,B⊂A∪B donc par (1), Ā,B̄⊂(A∪B)‾, donc Ā∪B̄⊂(A∪B)‾. Inclusion ⊆ : si x∈(A∪B)‾, une suite de A∪B tend vers x ; une infinité de ses termes sont dans A ou une infinité sont dans B, on extrait une sous-suite (convergeant encore vers x) entièrement dans A ou entièrement dans B, donnant x∈Ā ou x∈B̄. (3) A∩B⊂A et A∩B⊂B, donc par (1) (A∩B)‾⊂Ā et (A∩B)‾⊂B̄, d'où (A∩B)‾⊂Ā∩B̄. Contre-exemple : A=Q, B=R\\Q dans E=R : A∩B=∅ donc (A∩B)‾=∅, mais Ā=B̄=R (densité de Q et de R\\Q dans R), donc Ā∩B̄=R≠∅.",
+  "correction": "<p><b>1.</b> \\(x\\in\\overline{A}\\) ssi il existe une suite \\((x_n)\\) d'éléments de \\(A\\) telle que \\(x_n\\to x\\). Si \\(A\\subset B\\) et \\(x\\in\\overline{A}\\), une telle suite \\((x_n)\\) est aussi une suite d'éléments de \\(B\\) (car \\(A\\subset B\\)) tendant vers \\(x\\), donc \\(x\\in\\overline{B}\\) : \\(\\overline{A}\\subset\\overline{B}\\).</p><p><b>2.</b> (\\(\\supset\\)) Comme \\(A\\subset A\\cup B\\) et \\(B\\subset A\\cup B\\), la question 1 donne \\(\\overline{A}\\subset\\overline{A\\cup B}\\) et \\(\\overline{B}\\subset\\overline{A\\cup B}\\), donc \\(\\overline{A}\\cup\\overline{B}\\subset\\overline{A\\cup B}\\). (\\(\\subset\\)) Soit \\(x\\in\\overline{A\\cup B}\\) : il existe une suite \\((x_n)\\) de \\(A\\cup B\\) tendant vers \\(x\\). Au moins l'un des deux ensembles \\(\\{n : x_n\\in A\\}\\) ou \\(\\{n : x_n\\in B\\}\\) est infini ; on en extrait une sous-suite entièrement contenue dans \\(A\\) (ou dans \\(B\\)), qui converge encore vers \\(x\\) (sous-suite d'une suite convergente). Donc \\(x\\in\\overline{A}\\) ou \\(x\\in\\overline{B}\\), soit \\(x\\in\\overline{A}\\cup\\overline{B}\\).</p><p><b>3.</b> Comme \\(A\\cap B\\subset A\\) et \\(A\\cap B\\subset B\\), la question 1 donne \\(\\overline{A\\cap B}\\subset\\overline{A}\\) et \\(\\overline{A\\cap B}\\subset\\overline{B}\\), d'où \\(\\overline{A\\cap B}\\subset\\overline{A}\\cap\\overline{B}\\). L'inclusion réciproque est fausse en général : dans \\(E=\\mathbb{R}\\), prendre \\(A=\\mathbb{Q}\\) et \\(B=\\mathbb{R}\\setminus\\mathbb{Q}\\). Alors \\(A\\cap B=\\emptyset\\), donc \\(\\overline{A\\cap B}=\\emptyset\\), tandis que \\(\\overline{A}=\\overline{B}=\\mathbb{R}\\) (densité de \\(\\mathbb{Q}\\) et de \\(\\mathbb{R}\\setminus\\mathbb{Q}\\) dans \\(\\mathbb{R}\\)), donc \\(\\overline{A}\\cap\\overline{B}=\\mathbb{R}\\neq\\emptyset=\\overline{A\\cap B}\\).</p>"
+}

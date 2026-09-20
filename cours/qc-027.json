@@ -1,0 +1,14 @@
+{
+  "id": "qc-027",
+  "title": "Unicité de la valeur d'adhérence d'une suite convergente",
+  "domain": "Analyse",
+  "chapter": 23,
+  "level": "MP",
+  "cadence": "Blitz · 10 min",
+  "difficulty": 2,
+  "statement": "Soit \\((u_n)\\) une suite d'un espace vectoriel normé \\(E\\).",
+  "followup": "Démontrez que si \\((u_n)\\) converge vers \\(\\ell\\), alors \\(\\ell\\) est son unique valeur d'adhérence. En déduire qu'une suite admettant au moins deux valeurs d'adhérence distinctes diverge.",
+  "hint": "Si (u_n) converge vers ℓ, toute sous-suite converge aussi vers ℓ. Pour la contraposée, raisonnez par l'absurde en extrayant une sous-suite convergeant vers une autre valeur d'adhérence.",
+  "grading_context": "Résultat : (un) converge vers ℓ ⟹ ℓ est l'unique valeur d'adhérence de (un). Preuve : toute sous-suite d'une suite convergente vers ℓ converge aussi vers ℓ (extraction préservant la convergence), donc toute valeur d'adhérence (limite d'une sous-suite extraite) vaut ℓ : ℓ est l'unique valeur d'adhérence. Contraposée/conséquence : si (un) admet deux valeurs d'adhérence distinctes a≠b, alors (un) ne peut pas converger (sinon elle n'aurait qu'une seule valeur d'adhérence, sa limite), donc (un) diverge.",
+  "correction": "<p><b>Énoncé.</b> Si \\((u_n)\\) converge vers \\(\\ell\\in E\\), alors \\(\\ell\\) est l'unique valeur d'adhérence de \\((u_n)\\). Par conséquent, si \\((u_n)\\) admet deux valeurs d'adhérence distinctes, elle diverge.</p><p><b>Démonstration.</b> Supposons \\(u_n\\to\\ell\\). Soit \\((u_{\\varphi(n)})\\) une sous-suite quelconque (\\(\\varphi\\) strictement croissante \\(\\mathbb{N}\\to\\mathbb{N}\\)). Pour tout \\(\\varepsilon>0\\), il existe \\(N\\) tel que \\(n\\geq N\\Rightarrow\\|u_n-\\ell\\|<\\varepsilon\\) ; comme \\(\\varphi(n)\\geq n\\) pour tout \\(n\\) (extraction strictement croissante d'entiers), on a \\(n\\geq N \\Rightarrow \\varphi(n)\\geq N \\Rightarrow \\|u_{\\varphi(n)}-\\ell\\|<\\varepsilon\\). Donc \\(u_{\\varphi(n)}\\to\\ell\\) : toute sous-suite converge vers \\(\\ell\\), donc \\(\\ell\\) est la seule valeur d'adhérence possible.</p><p><b>Conséquence.</b> Si \\((u_n)\\) admettait deux valeurs d'adhérence distinctes \\(a\\neq b\\) tout en étant convergente vers une limite \\(\\ell\\), on aurait par le résultat ci-dessus \\(a=\\ell=b\\), contredisant \\(a\\neq b\\). Donc une suite ayant au moins deux valeurs d'adhérence distinctes ne peut pas converger : elle diverge.</p>"
+}

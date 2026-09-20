@@ -1,0 +1,17 @@
+{
+  "id": "ccp-012",
+  "title": "Continuité de la limite uniforme et exemple xⁿ",
+  "domain": "Analyse",
+  "chapter": 25,
+  "level": "MP",
+  "cadence": "Blitz · 15 min",
+  "difficulty": 3,
+  "statement": "Soit \\((f_n)\\) une suite de fonctions de \\([a,b]\\) dans \\(\\mathbb{R}\\). On suppose que la suite de fonctions \\((f_n)\\) converge uniformément sur \\([a,b]\\) vers une fonction \\(f\\), et que, pour tout \\(n \\in \\mathbb{N}\\), \\(f_n\\) est continue en \\(x_0\\), avec \\(x_0 \\in [a,b]\\).",
+  "questions": [
+    "Démontrer que \\(f\\) est continue en \\(x_0\\).",
+    "On pose \\(\\forall n \\in \\mathbb{N}^*,\\ \\forall x \\in [0,1],\\ g_n(x) = x^n\\). La suite de fonctions \\((g_n)_{n\\in\\mathbb{N}^*}\\) converge-t-elle uniformément sur \\([0,1]\\) ?"
+  ],
+  "hint": "Pour la question 1, découpez |f(x)-f(x0)| en trois termes via f_n(x) (inégalité triangulaire « ε/3 »). Pour la question 2, identifiez la limite simple de gn et regardez sa continuité.",
+  "grading_context": "(1) Argument ε/3 classique : |f(x)-f(x0)|≤|f(x)-fn(x)|+|fn(x)-fn(x0)|+|fn(x0)-f(x0)|. Le 1er et 3e terme sont majorés par sup|f-fn| (convergence uniforme, indépendant de x), petit pour n fixé assez grand ; le 2e terme est petit pour x proche de x0 par continuité de fn en x0. (2) Limite simple de gn : g(x)=0 pour x∈[0,1[, g(1)=1, discontinue en 1. Chaque gn est continue ; si la convergence était uniforme, g serait continue (par la question 1 appliquée en x0=1), contradiction. Donc pas de convergence uniforme sur [0,1].",
+  "correction": "<p><b>1.</b> Soit \\(\\varepsilon>0\\). Par convergence uniforme, il existe \\(N\\) tel que pour \\(n\\geq N\\), \\(\\sup_{[a,b]}|f_n-f|<\\varepsilon/3\\). Fixons un tel \\(n=N\\). Comme \\(f_N\\) est continue en \\(x_0\\), il existe \\(\\eta>0\\) tel que \\(|x-x_0|<\\eta \\Rightarrow |f_N(x)-f_N(x_0)|<\\varepsilon/3\\). Alors pour \\(|x-x_0|<\\eta\\) : \\(|f(x)-f(x_0)| \\leq |f(x)-f_N(x)| + |f_N(x)-f_N(x_0)| + |f_N(x_0)-f(x_0)| < \\varepsilon/3+\\varepsilon/3+\\varepsilon/3=\\varepsilon\\). Donc \\(f\\) est continue en \\(x_0\\).</p><p><b>2.</b> La limite simple de \\((g_n)\\) sur \\([0,1]\\) est \\(g(x)=0\\) pour \\(x\\in[0,1[\\) et \\(g(1)=1\\), qui est discontinue en \\(1\\). Chaque \\(g_n\\) est continue en \\(1\\) ; si la convergence était uniforme sur \\([0,1]\\), la question 1 (avec \\(x_0=1\\)) impliquerait que \\(g\\) est continue en \\(1\\), ce qui est faux. Donc \\((g_n)\\) ne converge pas uniformément sur \\([0,1]\\).</p>"
+}

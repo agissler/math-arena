@@ -1,0 +1,14 @@
+{
+  "id": "qc-012",
+  "title": "Formule de Taylor avec reste intégral",
+  "domain": "Analyse",
+  "chapter": 26,
+  "level": "MP",
+  "cadence": "Standard · 15 min",
+  "difficulty": 3,
+  "statement": "Soit \\(f\\) une fonction de classe \\(\\mathcal{C}^{n+1}\\) sur un intervalle \\(I\\) à valeurs dans \\(\\mathbb{R}\\) ou \\(\\mathbb{C}\\), et \\(a,x\\in I\\).",
+  "followup": "Énoncez la formule de Taylor avec reste intégral à l'ordre \\(n\\) en \\(a\\), et démontrez-la par récurrence sur \\(n\\).",
+  "hint": "Initialisez avec le théorème fondamental de l'analyse (n=0), puis faites une intégration par parties pour passer du rang n au rang n+1.",
+  "grading_context": "Formule : f(x)=Σ_{k=0}^n (x-a)^k/k! f^(k)(a) + ∫_a^x (x-t)^n/n! f^(n+1)(t)dt. Preuve par récurrence : n=0 c'est f(x)=f(a)+∫_a^x f'(t)dt (théorème fondamental). Hérédité : on intègre par parties ∫_a^x (x-t)^n/n! f^(n+1)(t)dt en posant u=f^(n+1)(t), dv=(x-t)^n/n! dt, v=-(x-t)^{n+1}/(n+1)! : on obtient [-((x-t)^{n+1}/(n+1)!)f^(n+1)(t)]_a^x + ∫_a^x (x-t)^{n+1}/(n+1)! f^(n+2)(t)dt = (x-a)^{n+1}/(n+1)! f^(n+1)(a) + reste à l'ordre n+1, ce qui donne la formule au rang n+1.",
+  "correction": "<p><b>Énoncé.</b> Pour \\(f\\) de classe \\(\\mathcal{C}^{n+1}\\) sur \\(I\\) et \\(a,x\\in I\\) :</p><p>\\[f(x)=\\sum_{k=0}^{n}\\frac{(x-a)^k}{k!}f^{(k)}(a) + \\int_a^x \\frac{(x-t)^n}{n!}f^{(n+1)}(t)\\,dt.\\]</p><p><b>Démonstration par récurrence sur \\(n\\).</b> <i>Initialisation (\\(n=0\\)) :</i> la formule s'écrit \\(f(x)=f(a)+\\int_a^x f'(t)\\,dt\\), qui est le théorème fondamental de l'analyse (\\(f\\) est \\(\\mathcal{C}^1\\)).</p><p><i>Hérédité :</i> supposons la formule vraie au rang \\(n\\) pour toute fonction de classe \\(\\mathcal{C}^{n+1}\\). Soit \\(f\\) de classe \\(\\mathcal{C}^{n+2}\\) ; elle est en particulier \\(\\mathcal{C}^{n+1}\\), donc \\(f(x)=\\sum_{k=0}^n\\frac{(x-a)^k}{k!}f^{(k)}(a)+\\int_a^x\\frac{(x-t)^n}{n!}f^{(n+1)}(t)\\,dt\\). On intègre par parties le reste, avec \\(u(t)=f^{(n+1)}(t)\\), \\(dv=\\frac{(x-t)^n}{n!}\\,dt\\), donc \\(v(t)=-\\frac{(x-t)^{n+1}}{(n+1)!}\\) : \\[\\int_a^x\\frac{(x-t)^n}{n!}f^{(n+1)}(t)\\,dt = \\left[-\\frac{(x-t)^{n+1}}{(n+1)!}f^{(n+1)}(t)\\right]_a^x + \\int_a^x \\frac{(x-t)^{n+1}}{(n+1)!}f^{(n+2)}(t)\\,dt.\\] Le crochet vaut \\(\\frac{(x-a)^{n+1}}{(n+1)!}f^{(n+1)}(a)\\) (le terme en \\(x=t\\) s'annule). En reportant, on obtient exactement la formule au rang \\(n+1\\).</p>"
+}

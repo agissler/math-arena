@@ -1,0 +1,17 @@
+{
+  "id": "ccp-035",
+  "title": "Continuité séquentielle et prolongement par densité",
+  "domain": "Analyse",
+  "chapter": 23,
+  "level": "MP",
+  "cadence": "Standard · 15 min",
+  "difficulty": 3,
+  "statement": "\\(E\\) et \\(F\\) désignent deux espaces vectoriels normés.",
+  "questions": [
+    "Soient \\(f\\) une application de \\(E\\) dans \\(F\\) et \\(a\\) un point de \\(E\\). Prouver que les propositions \\(P_1\\) : « \\(f\\) est continue en \\(a\\) » et \\(P_2\\) : « pour toute suite \\((x_n)\\) d'éléments de \\(E\\) telle que \\(\\lim_{n\\to+\\infty} x_n = a\\), alors \\(\\lim_{n\\to+\\infty} f(x_n) = f(a)\\) » sont équivalentes.",
+    "Soit \\(A\\) une partie dense d'un espace vectoriel normé \\(E\\), et soient \\(f\\) et \\(g\\) deux applications continues de \\(E\\) dans \\(F\\). Démontrer que si, pour tout \\(x \\in A\\), \\(f(x) = g(x)\\), alors \\(f = g\\)."
+  ],
+  "hint": "Pour la question 2, utilisez la caractérisation séquentielle de la densité de A puis la continuité séquentielle de f et g.",
+  "grading_context": "(1) C'est la caractérisation séquentielle de la continuité en un point, résultat de cours à redémontrer : (P1⇒P2) par composition des limites ; (P2⇒P1) par contraposée, en construisant une suite xn→a avec f(xn) ne tendant pas vers f(a) si f n'est pas continue en a (négation de la définition ε-δ). (2) Soit x∈E quelconque. Par densité de A, il existe une suite (xn) de A convergeant vers x. Par continuité séquentielle de f et g (question 1), f(xn)→f(x) et g(xn)→g(x). Or f(xn)=g(xn) pour tout n (car xn∈A), donc les deux suites sont égales, donc leurs limites coïncident : f(x)=g(x). Comme x est quelconque, f=g.",
+  "correction": "<p><b>1.</b> (\\(P_1\\Rightarrow P_2\\)) Si \\(f\\) est continue en \\(a\\) et \\(x_n\\to a\\), pour tout \\(\\varepsilon>0\\) il existe \\(\\eta>0\\) tel que \\(\\|x-a\\|<\\eta \\Rightarrow \\|f(x)-f(a)\\|<\\varepsilon\\) ; comme \\(x_n\\to a\\), \\(\\|x_n-a\\|<\\eta\\) à partir d'un certain rang, donc \\(\\|f(x_n)-f(a)\\|<\\varepsilon\\) à partir de ce rang : \\(f(x_n)\\to f(a)\\). (\\(P_2\\Rightarrow P_1\\)) Par contraposée : si \\(f\\) n'est pas continue en \\(a\\), il existe \\(\\varepsilon>0\\) tel que pour tout \\(\\eta>0\\), il existe \\(x\\) avec \\(\\|x-a\\|<\\eta\\) et \\(\\|f(x)-f(a)\\|\\geq\\varepsilon\\) ; en prenant \\(\\eta=1/n\\), on construit une suite \\(x_n\\to a\\) telle que \\(f(x_n)\\) ne tend pas vers \\(f(a)\\), donc \\(P_2\\) est fausse.</p><p><b>2.</b> Soit \\(x\\in E\\). Par densité de \\(A\\), il existe une suite \\((x_n)\\) d'éléments de \\(A\\) telle que \\(x_n\\to x\\). Par continuité de \\(f\\) et \\(g\\) et la question 1, \\(f(x_n)\\to f(x)\\) et \\(g(x_n)\\to g(x)\\). Or pour tout \\(n\\), \\(x_n\\in A\\) donc \\(f(x_n)=g(x_n)\\) : les deux suites \\((f(x_n))\\) et \\((g(x_n))\\) sont égales, donc ont même limite, d'où \\(f(x)=g(x)\\). Ceci étant vrai pour tout \\(x\\in E\\), \\(f=g\\).</p>"
+}

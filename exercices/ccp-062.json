@@ -1,0 +1,18 @@
+{
+  "id": "ccp-062",
+  "title": "Endomorphisme annulé par un polynôme scindé à racines simples",
+  "domain": "Algèbre",
+  "chapter": 21,
+  "level": "MP",
+  "cadence": "Marathon · 25 min",
+  "difficulty": 4,
+  "statement": "Soit \\(E\\) un espace vectoriel sur \\(\\mathbb{R}\\) ou \\(\\mathbb{C}\\). Soit \\(f \\in \\mathcal{L}(E)\\) tel que \\(f^2 - f - 2\\,\\mathrm{Id} = 0\\).",
+  "questions": [
+    "Prouver que \\(f\\) est bijectif et exprimer \\(f^{-1}\\) en fonction de \\(f\\).",
+    "Prouver que \\(E = \\ker(f+\\mathrm{Id}) \\oplus \\ker(f-2\\,\\mathrm{Id})\\) : en utilisant le lemme des noyaux, puis sans utiliser le lemme des noyaux.",
+    "Dans cette question, on suppose que \\(E\\) est de dimension finie. Prouver que \\(\\mathrm{Im}(f+\\mathrm{Id}) = \\ker(f-2\\,\\mathrm{Id})\\)."
+  ],
+  "hint": "Pour la question 2 sans lemme des noyaux, cherchez a,b tels que x=a+b avec f(a)=-a, f(b)=2b, en résolvant le système linéaire correspondant.",
+  "grading_context": "(1) f(f-Id)=f²-f=2Id, donc f∘[(f-Id)/2]=Id ; de même [(f-Id)/2]∘f=(f²-f)/2=Id : f est bijectif d'inverse f^{-1}=(f-Id)/2. (2) Avec lemme des noyaux : f annule P(X)=X²-X-2=(X+1)(X-2), facteurs premiers entre eux (racines distinctes), donc E=Ker(P(f))=Ker(f+Id)⊕Ker(f-2Id). Sans lemme des noyaux : pour x∈E, poser b=(x+f(x))/3, a=x-b=(2x-f(x))/3 ; vérifier via f²=f+2Id que f(a)=-a et f(b)=2b, donnant la décomposition x=a+b explicite ; l'intersection des deux noyaux est réduite à {0} (si f(v)=-v=2v alors v=0), d'où la somme directe. (3) Pour x=a+b (a∈Ker(f+Id),b∈Ker(f-2Id)), (f+Id)(x)=(f+Id)(a)+(f+Id)(b)=0+3b=3b, qui parcourt Ker(f-2Id) tout entier quand b varie (sous-espace stable par multiplication par 3≠0) : Im(f+Id)=Ker(f-2Id).",
+  "correction": "<p><b>1.</b> De \\(f^2-f=2\\,\\mathrm{Id}\\), on tire \\(f\\circ\\left(\\dfrac{f-\\mathrm{Id}}{2}\\right)=\\mathrm{Id}\\) et \\(\\left(\\dfrac{f-\\mathrm{Id}}{2}\\right)\\circ f=\\mathrm{Id}\\) (même calcul, \\(f\\) et \\(f-\\mathrm{Id}\\) commutant). Donc \\(f\\) est bijectif, d'inverse \\(f^{-1}=\\dfrac{f-\\mathrm{Id}}{2}\\).</p><p><b>2. Avec le lemme des noyaux :</b> \\(f\\) annule \\(P(X)=X^2-X-2=(X+1)(X-2)\\), produit de deux facteurs premiers entre eux (racines \\(-1\\) et \\(2\\) distinctes). Le lemme des noyaux donne \\(E=\\ker(P(f))=\\ker(f+\\mathrm{Id})\\oplus\\ker(f-2\\,\\mathrm{Id})\\) (et \\(\\ker(P(f))=E\\) car \\(P(f)=0\\)).</p><p><b>Sans le lemme des noyaux :</b> pour \\(x\\in E\\), posons \\(b=\\dfrac{x+f(x)}{3}\\) et \\(a=x-b=\\dfrac{2x-f(x)}{3}\\), de sorte que \\(a+b=x\\). En utilisant \\(f^2=f+2\\,\\mathrm{Id}\\) : \\(f(b)=\\dfrac{f(x)+f^2(x)}{3}=\\dfrac{f(x)+f(x)+2x}{3}=\\dfrac{2(x+f(x))}{3}=2b\\), et \\(f(a)=\\dfrac{2f(x)-f^2(x)}{3}=\\dfrac{2f(x)-f(x)-2x}{3}=\\dfrac{f(x)-2x}{3}=-a\\). Donc \\(a\\in\\ker(f+\\mathrm{Id})\\) et \\(b\\in\\ker(f-2\\,\\mathrm{Id})\\). L'intersection des deux noyaux est \\(\\{0\\}\\) (si \\(f(v)=-v\\) et \\(f(v)=2v\\), alors \\(3v=0\\)), donc la décomposition \\(x=a+b\\) est une somme directe.</p><p><b>3.</b> Pour \\(x=a+b\\) avec \\(a\\in\\ker(f+\\mathrm{Id})\\), \\(b\\in\\ker(f-2\\,\\mathrm{Id})\\) : \\((f+\\mathrm{Id})(x)=(f+\\mathrm{Id})(a)+(f+\\mathrm{Id})(b) = (-a+a)+(2b+b) = 3b\\). Quand \\(x\\) parcourt \\(E\\), \\(b\\) parcourt tout \\(\\ker(f-2\\,\\mathrm{Id})\\), donc \\(3b\\) aussi (ce sous-espace est stable par multiplication par le scalaire non nul \\(3\\)). D'où \\(\\mathrm{Im}(f+\\mathrm{Id})=\\ker(f-2\\,\\mathrm{Id})\\).</p>"
+}

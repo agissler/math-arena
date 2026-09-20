@@ -1,0 +1,18 @@
+{
+  "id": "ccp-105",
+  "title": "Formule de Bayes et dés pipés",
+  "domain": "Probabilités",
+  "chapter": 28,
+  "level": "MP",
+  "cadence": "Marathon · 25 min",
+  "difficulty": 4,
+  "statement": "On dispose de 100 dés dont 25 sont pipés (c'est-à-dire truqués). Pour chaque dé non pipé, la probabilité d'obtenir le chiffre 6 lors d'un lancer vaut \\(\\frac16\\) ; pour chaque dé pipé, cette probabilité vaut \\(\\frac12\\).",
+  "questions": [
+    "Énoncer et démontrer la formule de Bayes pour un système complet d'événements.",
+    "On tire un dé au hasard parmi les 100 dés. On lance ce dé et on obtient le chiffre 6. Quelle est la probabilité que ce dé soit pipé ?",
+    "Soit \\(n \\in \\mathbb{N}^*\\). On tire un dé au hasard parmi les 100 dés. On lance ce dé \\(n\\) fois et on obtient \\(n\\) fois le chiffre 6. Quelle est la probabilité \\(p_n\\) que ce dé soit pipé ? Déterminer \\(\\lim_{n\\to+\\infty} p_n\\). Interpréter ce résultat."
+  ],
+  "hint": "Notez T l'événement « le dé est pipé » avec P(T)=1/4, et appliquez Bayes avec l'événement « n fois le chiffre 6 ».",
+  "grading_context": "(1) Formule de Bayes : si (Ai) est un système complet d'événements, P(Ai|B)=P(B|Ai)P(Ai)/∑P(B|Aj)P(Aj), démontrée via la définition de la probabilité conditionnelle et la formule des probabilités totales pour P(B). (2) Notons T='dé pipé', P(T)=1/4, P(T^c)=3/4. P(T|6)=P(6|T)P(T)/[P(6|T)P(T)+P(6|T^c)P(T^c)]=(1/2·1/4)/[(1/2·1/4)+(1/6·3/4)]=(1/8)/(1/8+1/8)=1/2. (3) pn=P(T|n fois 6)=(1/2)^n(1/4)/[(1/2)^n(1/4)+(1/6)^n(3/4)]=1/[1+3(1/3)^n]=1/(1+3^{1-n}). Comme 3^{1-n}→0, pn→1 : plus on observe de 6 consécutifs, plus il devient certain que le dé est pipé.",
+  "correction": "<p><b>1.</b> Si \\((A_i)_{i\\in I}\\) est un système complet d'événements et \\(B\\) un événement, la formule de Bayes s'écrit \\(P(A_i|B)=\\dfrac{P(B|A_i)P(A_i)}{\\sum_j P(B|A_j)P(A_j)}\\). Preuve : \\(P(A_i|B)=\\dfrac{P(A_i\\cap B)}{P(B)}=\\dfrac{P(B|A_i)P(A_i)}{P(B)}\\) (définition de la probabilité conditionnelle), et \\(P(B)=\\sum_j P(B\\cap A_j)=\\sum_j P(B|A_j)P(A_j)\\) par la formule des probabilités totales.</p><p><b>2.</b> Notons \\(T\\)=« le dé tiré est pipé », \\(P(T)=\\frac{25}{100}=\\frac14\\), \\(P(T^c)=\\frac34\\). Par Bayes : \\(P(T\\mid 6)=\\dfrac{P(6|T)P(T)}{P(6|T)P(T)+P(6|T^c)P(T^c)}=\\dfrac{\\frac12\\cdot\\frac14}{\\frac12\\cdot\\frac14+\\frac16\\cdot\\frac34}=\\dfrac{1/8}{1/8+1/8}=\\dfrac12\\).</p><p><b>3.</b> De même, en notant \\(S_n\\)=« n fois le chiffre 6 » : \\(p_n=P(T|S_n)=\\dfrac{(1/2)^n(1/4)}{(1/2)^n(1/4)+(1/6)^n(3/4)}\\). En divisant numérateur et dénominateur par \\((1/2)^n(1/4)\\) : \\(p_n=\\dfrac{1}{1+3\\left(\\frac{1/6}{1/2}\\right)^n}=\\dfrac{1}{1+3(1/3)^n}=\\dfrac{1}{1+3^{1-n}}\\). Comme \\(3^{1-n}\\to0\\) quand \\(n\\to+\\infty\\), \\(p_n\\to1\\). Interprétation : plus on observe de tirages consécutifs donnant 6, plus il devient certain (probabilité tendant vers 1) que le dé utilisé est le dé pipé.</p>"
+}

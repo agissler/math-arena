@@ -1,0 +1,14 @@
+{
+  "id": "qc-031",
+  "title": "Caractérisation de la convexité par le signe de la dérivée seconde",
+  "domain": "Analyse",
+  "chapter": 6,
+  "level": "MPSI",
+  "cadence": "Standard · 15 min",
+  "difficulty": 3,
+  "statement": "Soit \\(f\\) une fonction deux fois dérivable sur un intervalle \\(I\\).",
+  "followup": "Démontrez que \\(f\\) est convexe sur \\(I\\) si et seulement si \\(f''\\geq0\\) sur \\(I\\).",
+  "hint": "Utilisez la caractérisation de la convexité par la croissance de la dérivée f'. Pour le sens direct, comparez les taux d'accroissement de f' déduits de la définition de la convexité ; pour la réciproque, appliquez l'égalité des accroissements finis à f' entre deux points.",
+  "grading_context": "On admet (ou démontre au préalable) que f convexe sur I ssi f' croissante sur I (pour f dérivable). Théorème demandé : f' croissante ssi f''≥0 (résultat classique de monotonie via le signe de la dérivée), donc f convexe ssi f''≥0. Preuve du lien f' croissante ⟺ f''≥0 : c'est le théorème de caractérisation de la monotonie d'une fonction dérivable par le signe de sa dérivée, appliqué à f' (dérivable puisque f deux fois dérivable) : f' croissante sur I ssi (f')'=f''≥0 sur I. En combinant avec f convexe ⟺ f' croissante, on obtient f convexe ⟺ f''≥0.",
+  "correction": "<p><b>Énoncé.</b> Pour \\(f\\) deux fois dérivable sur un intervalle \\(I\\), \\(f\\) est convexe sur \\(I\\) si et seulement si \\(f''\\geq0\\) sur \\(I\\).</p><p><b>Étape 1 : convexité et croissance de \\(f'\\).</b> On rappelle (caractérisation usuelle de la convexité pour une fonction dérivable) que \\(f\\) est convexe sur \\(I\\) si et seulement si \\(f'\\) est croissante sur \\(I\\). <i>Rappel de preuve :</i> si \\(f\\) est convexe et \\(a<b\\) dans \\(I\\), le taux d'accroissement \\(\\tau(x)=\\frac{f(x)-f(a)}{x-a}\\) est croissant en \\(x\\) (propriété des trois pentes), donc en faisant tendre \\(x\\to a^+\\) et en comparant à la pente en \\(b\\), on obtient \\(f'(a)\\leq f'(b)\\) ; réciproquement, si \\(f'\\) est croissante, l'égalité des accroissements finis sur \\([a,x]\\) et \\([x,b]\\) pour \\(a<x<b\\) donne les inégalités caractérisant la convexité.</p><p><b>Étape 2 : croissance de \\(f'\\) et signe de \\(f''\\).</b> Comme \\(f\\) est deux fois dérivable, \\(f'\\) est dérivable de dérivée \\(f''\\). Par le théorème classique de caractérisation de la monotonie d'une fonction dérivable par le signe de sa dérivée, \\(f'\\) est croissante sur \\(I\\) si et seulement si \\(f''\\geq0\\) sur \\(I\\).</p><p><b>Conclusion.</b> En combinant les deux étapes : \\(f\\) convexe sur \\(I\\) \\(\\iff\\) \\(f'\\) croissante sur \\(I\\) \\(\\iff\\) \\(f''\\geq0\\) sur \\(I\\).</p>"
+}

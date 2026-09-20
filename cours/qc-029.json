@@ -1,0 +1,14 @@
+{
+  "id": "qc-029",
+  "title": "Z/nZ est un corps si et seulement si n est premier",
+  "domain": "Algèbre",
+  "chapter": 8,
+  "level": "MP",
+  "cadence": "Standard · 15 min",
+  "difficulty": 3,
+  "statement": "Soit \\(n\\geq2\\) un entier, et \\(\\mathbb{Z}/n\\mathbb{Z}\\) l'anneau quotient associé.",
+  "followup": "Démontrez que \\(\\mathbb{Z}/n\\mathbb{Z}\\) est un corps si et seulement si \\(n\\) est premier.",
+  "hint": "Utilisez le théorème de Bézout : un élément k̄ est inversible dans Z/nZ si et seulement si k∧n=1. Si n n'est pas premier, exhibez un diviseur de zéro.",
+  "grading_context": "Théorème : Z/nZ corps ⟺ n premier. Preuve du sens ⟸ : si n premier, tout k̄≠0̄ avec 0<k<n vérifie k∧n=1 (car n premier ne divise pas k), donc par Bézout il existe u,v avec uk+vn=1, donc uk≡1[n], donc k̄ est inversible d'inverse ū : tout élément non nul est inversible, Z/nZ est un corps (il est déjà anneau commutatif non nul). Preuve du sens ⟹ (contraposée) : si n n'est pas premier, n=ab avec 1<a,b<n, alors ā≠0̄ et b̄≠0̄ mais āb̄=n̄=0̄ : ā et b̄ sont des diviseurs de zéro non nuls, donc ā n'est pas inversible (un diviseur de zéro non nul dans un anneau intègre n'existe pas, et un élément inversible ne peut être diviseur de zéro), donc Z/nZ n'est pas un corps.",
+  "correction": "<p><b>Énoncé.</b> \\(\\mathbb{Z}/n\\mathbb{Z}\\) est un corps si et seulement si \\(n\\) est premier.</p><p><b>Sens direct (n premier \\(\\Rightarrow\\) corps).</b> Soit \\(\\bar{k}\\in\\mathbb{Z}/n\\mathbb{Z}\\) non nul, représenté par \\(k\\) avec \\(0<k<n\\). Comme \\(n\\) est premier et ne divise pas \\(k\\) (car \\(0<k<n\\)), \\(k\\wedge n=1\\). Par le théorème de Bézout, il existe \\(u,v\\in\\mathbb{Z}\\) tels que \\(uk+vn=1\\), donc \\(uk\\equiv1\\ [n]\\), c'est-à-dire \\(\\bar{u}\\,\\bar{k}=\\bar1\\) : \\(\\bar{k}\\) est inversible, d'inverse \\(\\bar{u}\\). Tout élément non nul de \\(\\mathbb{Z}/n\\mathbb{Z}\\) étant inversible, et \\(\\mathbb{Z}/n\\mathbb{Z}\\) étant un anneau commutatif non nul (\\(n\\geq2\\)), c'est un corps.</p><p><b>Réciproque (contraposée : n non premier \\(\\Rightarrow\\) pas un corps).</b> Si \\(n\\) n'est pas premier (et \\(n\\geq2\\)), il existe \\(a,b\\) avec \\(1<a,b<n\\) et \\(n=ab\\). Alors \\(\\bar{a}\\neq\\bar0\\) et \\(\\bar{b}\\neq\\bar0\\) (car \\(0<a,b<n\\)), mais \\(\\bar{a}\\,\\bar{b}=\\overline{ab}=\\bar{n}=\\bar0\\). Ainsi \\(\\bar{a}\\) est un diviseur de zéro non nul. Or dans un corps, tout élément non nul est inversible, et un élément inversible ne peut être diviseur de zéro (si \\(xy=0\\) et \\(x\\) inversible, alors \\(y=x^{-1}(xy)=0\\)) : \\(\\bar a\\) ne peut donc pas être inversible. \\(\\mathbb{Z}/n\\mathbb{Z}\\) n'est donc pas un corps.</p>"
+}

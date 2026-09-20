@@ -1,0 +1,17 @@
+{
+  "id": "ccp-011",
+  "title": "Critère de non-uniformité et étude d'une suite de fonctions",
+  "domain": "Analyse",
+  "chapter": 25,
+  "level": "MP",
+  "cadence": "Standard · 20 min",
+  "difficulty": 3,
+  "statement": "Soit \\(X\\) une partie de \\(\\mathbb{R}\\), \\((f_n)_{n\\in\\mathbb{N}}\\) une suite de fonctions de \\(X\\) dans \\(\\mathbb{R}\\) convergeant simplement vers une fonction \\(f\\).",
+  "questions": [
+    "On suppose qu'il existe une suite \\((x_n)_{n\\in\\mathbb{N}}\\) d'éléments de \\(X\\) telle que la suite \\((f_n(x_n) - f(x_n))_{n\\in\\mathbb{N}}\\) ne tende pas vers \\(0\\). Démontrer que la suite de fonctions \\((f_n)_{n\\in\\mathbb{N}}\\) ne converge pas uniformément vers \\(f\\) sur \\(X\\).",
+    "Pour tout \\(x \\in \\mathbb{R}\\), on pose \\(f_n(x) = \\dfrac{\\sin(nx)}{1+n^2x^2}\\). Étudier la convergence simple de la suite \\((f_n)_{n\\in\\mathbb{N}}\\). Étudier la convergence uniforme de la suite \\((f_n)_{n\\in\\mathbb{N}}\\) sur \\([a,+\\infty[\\) (avec \\(a>0\\)), puis sur \\(]0,+\\infty[\\)."
+  ],
+  "hint": "Pour l'étude sur ]0,+∞[, prenez xn=1/n.",
+  "grading_context": "(1) Contraposée directe de la définition : si (fn) convergeait uniformément vers f, alors sup_X|fn-f|→0, donc en particulier |fn(xn)-f(xn)|≤sup_X|fn-f|→0, contredisant l'hypothèse. (2) Convergence simple : en x=0, fn(0)=0. Pour x≠0, |fn(x)|≤1/(1+n²x²)→0. Donc fn→0 simplement sur R. Sur [a,+∞[ (a>0) : sup_{x≥a}|fn(x)|≤1/(1+n²a²)→0, convergence uniforme. Sur ]0,+∞[ : prendre xn=1/n, fn(xn)=sin(1)/2 constante non nulle qui ne tend pas vers f(xn)=0, donc par la question 1, pas de convergence uniforme sur ]0,+∞[.",
+  "correction": "<p><b>1.</b> Par contraposée de la définition : si \\((f_n)\\) convergeait uniformément vers \\(f\\) sur \\(X\\), on aurait \\(\\sup_{x\\in X}|f_n(x)-f(x)|\\to0\\). Or \\(|f_n(x_n)-f(x_n)|\\leq\\sup_{x\\in X}|f_n(x)-f(x)|\\) pour tout \\(n\\), donc \\(f_n(x_n)-f(x_n)\\) tendrait vers \\(0\\), ce qui contredit l'hypothèse. Donc \\((f_n)\\) ne converge pas uniformément vers \\(f\\) sur \\(X\\).</p><p><b>2.</b> <u>Convergence simple :</u> en \\(x=0\\), \\(f_n(0)=0\\to0\\). Pour \\(x\\neq0\\) fixé, \\(|f_n(x)|=\\dfrac{|\\sin(nx)|}{1+n^2x^2}\\leq\\dfrac{1}{1+n^2x^2}\\to0\\). Donc \\((f_n)\\) converge simplement vers la fonction nulle sur \\(\\mathbb{R}\\).</p><p><u>Sur \\([a,+\\infty[\\) (\\(a>0\\)) :</u> \\(\\sup_{x\\geq a}|f_n(x)|\\leq\\sup_{x\\geq a}\\dfrac{1}{1+n^2x^2}\\leq\\dfrac{1}{1+n^2a^2}\\to0\\) : convergence uniforme.</p><p><u>Sur \\(]0,+\\infty[\\) :</u> posons \\(x_n=1/n\\) : \\(f_n(x_n)=\\dfrac{\\sin(1)}{1+1}=\\dfrac{\\sin(1)}{2}\\), constante non nulle, qui ne tend donc pas vers \\(f(x_n)=0\\). Par la question 1, la convergence n'est pas uniforme sur \\(]0,+\\infty[\\).</p>"
+}

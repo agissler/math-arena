@@ -1,0 +1,18 @@
+{
+  "id": "ccp-083",
+  "title": "Valeurs propres communes de u∘v et v∘u",
+  "domain": "Algèbre",
+  "chapter": 21,
+  "level": "MP",
+  "cadence": "Marathon · 25 min",
+  "difficulty": 4,
+  "statement": "Soit \\(u\\) et \\(v\\) deux endomorphismes d'un espace vectoriel \\(E\\).",
+  "questions": [
+    "Soit \\(\\lambda\\) un réel non nul. Prouver que si \\(\\lambda\\) est valeur propre de \\(u \\circ v\\), alors \\(\\lambda\\) est valeur propre de \\(v \\circ u\\).",
+    "On considère sur \\(E = \\mathbb{R}[X]\\) les endomorphismes \\(u\\) et \\(v\\) définis par \\(u : P \\mapsto \\int_1^X P\\) et \\(v : P \\mapsto P'\\). Déterminer \\(\\ker(u \\circ v)\\) et \\(\\ker(v \\circ u)\\). Le résultat de la question 1 reste-t-il vrai pour \\(\\lambda = 0\\) ?",
+    "Si \\(E\\) est de dimension finie, démontrer que le résultat de la première question reste vrai pour \\(\\lambda = 0\\)."
+  ],
+  "hint": "Pour la question 1, si (u∘v)(x)=λx avec x≠0, posez y=v(x) et calculez (v∘u)(y). Pour la question 3, utilisez le déterminant.",
+  "grading_context": "(1) Soit x≠0 avec (u∘v)(x)=λx. Posons y=v(x). Si y=0, alors u(v(x))=0=λx avec λ≠0 donne x=0, absurde ; donc y≠0. Calculer (v∘u)(y)=v(u(v(x)))=v(λx)=λv(x)=λy : y est vecteur propre de v∘u pour λ. (2) u∘v(P)=∫₁^X P'=P(X)-P(1) (théorème fondamental) : ker(u∘v)={polynômes constants}, dimension 1. v∘u(P)=(∫₁^X P)'=P (dérivée de l'intégrale) : v∘u=Id, ker(v∘u)={0}. Comme ker(u∘v)≠{0}=ker(v∘u), 0 est valeur propre de u∘v mais pas de v∘u : le résultat de la question 1 ne s'étend pas à λ=0 en dimension infinie. (3) En dimension finie : 0 valeur propre de u∘v ⟺ det(u∘v)=0 ⟺ det(u)det(v)=0 ⟺ det(v)det(u)=0 ⟺ det(v∘u)=0 ⟺ 0 valeur propre de v∘u. Ceci utilise la multiplicativité du déterminant, qui n'a pas d'équivalent en dimension infinie, expliquant le contre-exemple de la question 2.",
+  "correction": "<p><b>1.</b> Soit \\(x\\neq0\\) tel que \\((u\\circ v)(x)=\\lambda x\\). Posons \\(y=v(x)\\). Si \\(y=0\\), alors \\(u(v(x))=u(0)=0=\\lambda x\\), et comme \\(\\lambda\\neq0\\), \\(x=0\\), contradiction. Donc \\(y\\neq0\\). Calculons \\((v\\circ u)(y)=v\\big(u(v(x))\\big)=v(\\lambda x)=\\lambda v(x)=\\lambda y\\). Donc \\(y\\) est un vecteur propre non nul de \\(v\\circ u\\) associé à \\(\\lambda\\) : \\(\\lambda\\) est valeur propre de \\(v\\circ u\\).</p><p><b>2.</b> \\((u\\circ v)(P)(X)=\\int_1^X P'(t)\\,dt = P(X)-P(1)\\) par le théorème fondamental de l'analyse. Donc \\((u\\circ v)(P)=0\\) (polynôme nul) ssi \\(P(X)=P(1)\\) pour tout \\(X\\), c'est-à-dire ssi \\(P\\) est constant : \\(\\ker(u\\circ v)=\\{\\text{polynômes constants}\\}\\), de dimension \\(1\\). D'autre part, \\((v\\circ u)(P)=\\left(\\int_1^X P(t)\\,dt\\right)'=P\\) : \\(v\\circ u=\\mathrm{Id}\\), donc \\(\\ker(v\\circ u)=\\{0\\}\\). Ainsi \\(0\\) est valeur propre de \\(u\\circ v\\) (noyau non trivial) mais pas de \\(v\\circ u\\) (qui est l'identité, de seule valeur propre \\(1\\)) : le résultat de la question 1 ne s'étend pas à \\(\\lambda=0\\) dans ce cadre de dimension infinie.</p><p><b>3.</b> En dimension finie, \\(0\\) est valeur propre de \\(u\\circ v\\) ssi \\(u\\circ v\\) n'est pas bijectif, ssi \\(\\det(u\\circ v)=0\\), ssi \\(\\det(u)\\det(v)=0\\) (multiplicativité du déterminant). Or \\(\\det(u)\\det(v)=\\det(v)\\det(u)=\\det(v\\circ u)\\) (produit de scalaires commutatif), donc \\(\\det(u\\circ v)=0 \\iff \\det(v\\circ u)=0 \\iff 0\\) est valeur propre de \\(v\\circ u\\). Le résultat s'étend donc à \\(\\lambda=0\\) en dimension finie, précisément parce que la notion de déterminant (et sa multiplicativité) n'a pas d'équivalent en dimension infinie — ce qui explique le contre-exemple de la question 2.</p>"
+}

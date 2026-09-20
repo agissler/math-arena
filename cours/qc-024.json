@@ -1,0 +1,14 @@
+{
+  "id": "qc-024",
+  "title": "Convergence normale entraîne convergence uniforme et absolue",
+  "domain": "Analyse",
+  "chapter": 25,
+  "level": "MP",
+  "cadence": "Blitz · 10 min",
+  "difficulty": 3,
+  "statement": "Soit \\(\\sum f_n\\) une série de fonctions définies sur une partie \\(D\\), à valeurs réelles ou complexes, telle que \\(\\sum \\|f_n\\|_{\\infty,D}\\) converge (convergence normale sur \\(D\\)).",
+  "followup": "Démontrez que \\(\\sum f_n\\) converge alors absolument en tout point de \\(D\\), et uniformément sur \\(D\\).",
+  "hint": "Pour l'absolue convergence en chaque point, comparez |fn(x)| à ||fn||_∞. Pour l'uniforme, majorez le reste ||Rn||_∞ par le reste de la série numérique Σ||fk||_∞.",
+  "grading_context": "Convergence absolue en x : |fn(x)|≤||fn||_∞,D pour tout x∈D, et Σ||fn||_∞ converge (hypothèse), donc par comparaison de séries à termes positifs, Σ|fn(x)| converge pour tout x∈D : convergence absolue simple en tout point. Convergence uniforme : la convergence absolue en chaque point assure la convergence simple de Σfn vers une fonction S sur D. Le reste vérifie |Rn(x)|=|Σ_{k>n}f_k(x)|≤Σ_{k>n}|f_k(x)|≤Σ_{k>n}||f_k||_∞ (majoration valable pour tout x, donc aussi pour le sup), donc ||Rn||_∞,D ≤ Σ_{k>n}||f_k||_∞ = reste d'ordre n de la série numérique convergente Σ||fk||_∞, qui tend vers 0. Donc ||Rn||_∞→0 : convergence uniforme.",
+  "correction": "<p><b>Convergence absolue en chaque point.</b> Pour tout \\(x\\in D\\) et tout \\(n\\), \\(|f_n(x)|\\leq\\|f_n\\|_{\\infty,D}\\) par définition de la norme uniforme. Comme \\(\\sum\\|f_n\\|_{\\infty,D}\\) converge (hypothèse de convergence normale), la série numérique à termes positifs \\(\\sum|f_n(x)|\\) converge par comparaison, pour chaque \\(x\\in D\\) fixé : la série \\(\\sum f_n\\) converge donc absolument (donc simplement) en tout point de \\(D\\), vers une fonction \\(S\\).</p><p><b>Convergence uniforme.</b> La convergence simple étant acquise, on peut considérer le reste \\(R_n(x)=S(x)-\\sum_{k=0}^n f_k(x)=\\sum_{k=n+1}^{\\infty}f_k(x)\\). Pour tout \\(x\\in D\\) :</p><p>\\[|R_n(x)| = \\left|\\sum_{k=n+1}^{\\infty}f_k(x)\\right| \\leq \\sum_{k=n+1}^{\\infty}|f_k(x)| \\leq \\sum_{k=n+1}^{\\infty}\\|f_k\\|_{\\infty,D}.\\]</p><p>Le majorant, indépendant de \\(x\\), est le reste d'ordre \\(n\\) de la série numérique convergente \\(\\sum\\|f_k\\|_{\\infty,D}\\), donc tend vers \\(0\\) quand \\(n\\to\\infty\\). En passant au supremum sur \\(x\\in D\\) : \\(\\|R_n\\|_{\\infty,D} \\leq \\sum_{k=n+1}^{\\infty}\\|f_k\\|_{\\infty,D} \\xrightarrow[n\\to\\infty]{}0\\). Donc \\(\\sum f_n\\) converge uniformément sur \\(D\\) (caractérisation de la convergence uniforme par le reste).</p>"
+}

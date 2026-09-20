@@ -1,0 +1,18 @@
+{
+  "id": "ccp-085",
+  "title": "Formule de Taylor polynomiale et multiplicité d'une racine",
+  "domain": "Algèbre",
+  "chapter": 10,
+  "level": "MP",
+  "cadence": "Standard · 20 min",
+  "difficulty": 3,
+  "statement": "Soient \\(n \\in \\mathbb{N}^*\\), \\(P \\in \\mathbb{R}_n[X]\\) et \\(a \\in \\mathbb{R}\\).",
+  "questions": [
+    "Donner, sans démonstration, en utilisant la formule de Taylor, la décomposition de \\(P(X)\\) dans la base \\((1, X-a, (X-a)^2, \\ldots, (X-a)^n)\\).",
+    "Soit \\(r \\in \\mathbb{N}^*\\). En déduire que : \\(a\\) est une racine de \\(P\\) d'ordre de multiplicité \\(r\\) si et seulement si \\(P^{(r)}(a) \\neq 0\\) et \\(\\forall k \\in [\\![0,r-1]\\!],\\ P^{(k)}(a) = 0\\).",
+    "Déterminer deux réels \\(a\\) et \\(b\\) pour que \\(1\\) soit racine double du polynôme \\(P = X^5 + aX^2 + bX\\) et factoriser alors ce polynôme dans \\(\\mathbb{R}[X]\\)."
+  ],
+  "hint": "Pour la question 3, résolvez le système P(1)=0, P'(1)=0, puis effectuez une division euclidienne pour factoriser.",
+  "grading_context": "(1) P(X)=∑_{k=0}^n [P^{(k)}(a)/k!] (X-a)^k (formule de Taylor pour les polynômes). (2) (X-a)^r divise P ssi les coefficients de (X-a)^0,...,(X-a)^{r-1} dans cette décomposition sont nuls, i.e. P(a)=...=P^{(r-1)}(a)=0. (X-a)^{r+1} ne divise pas P ssi le coefficient de (X-a)^r est non nul, i.e. P^{(r)}(a)≠0. La conjonction des deux donne exactement la multiplicité r. (3) P(1)=1+a+b=0, P'(1)=5+2a+b=0 (P'=5X^4+2aX+b). Soustraction : 4+a=0 donc a=-4, puis b=3. Vérifier P''(1)=20+2a=12≠0 (multiplicité exactement 2). P=X^5-4X²+3X=X(X^4-4X+3). Division euclidienne de X^4-4X+3 par (X-1)²=X²-2X+1 donne X²+2X+3 (discriminant -8<0, irréductible sur R). Donc P=X(X-1)²(X²+2X+3).",
+  "correction": "<p><b>1.</b> \\(P(X) = \\displaystyle\\sum_{k=0}^n \\frac{P^{(k)}(a)}{k!}(X-a)^k\\).</p><p><b>2.</b> D'après la décomposition précédente, \\((X-a)^r\\) divise \\(P\\) si et seulement si les coefficients des puissances \\((X-a)^0,\\ldots,(X-a)^{r-1}\\) sont nuls, c'est-à-dire \\(P(a)=P'(a)=\\cdots=P^{(r-1)}(a)=0\\). De plus, \\((X-a)^{r+1}\\) ne divise pas \\(P\\) si et seulement si le coefficient de \\((X-a)^r\\) est non nul, c'est-à-dire \\(P^{(r)}(a)\\neq0\\). La conjonction de ces deux conditions caractérise exactement le fait que \\(a\\) soit racine de multiplicité exactement \\(r\\).</p><p><b>3.</b> \\(P'(X)=5X^4+2aX+b\\). Les conditions \\(P(1)=0\\) et \\(P'(1)=0\\) donnent \\(1+a+b=0\\) et \\(5+2a+b=0\\) ; en soustrayant, \\(4+a=0\\), soit \\(a=-4\\), puis \\(b=3\\). On vérifie \\(P''(1)=20+2a=12\\neq0\\) : \\(1\\) est bien racine de multiplicité exactement \\(2\\). On a \\(P=X^5-4X^2+3X=X(X^4-4X+3)\\). La division euclidienne de \\(X^4-4X+3\\) par \\((X-1)^2=X^2-2X+1\\) donne \\(X^4-4X+3=(X^2-2X+1)(X^2+2X+3)\\) (à vérifier par développement). Le facteur \\(X^2+2X+3\\) a pour discriminant \\(4-12=-8<0\\), il est irréductible sur \\(\\mathbb{R}\\). Donc \\(P = X(X-1)^2(X^2+2X+3)\\), factorisation complète dans \\(\\mathbb{R}[X]\\).</p>"
+}

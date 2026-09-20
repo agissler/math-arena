@@ -1,0 +1,18 @@
+{
+  "id": "ccp-056",
+  "title": "Fonction définie par une intégrale à bornes variables",
+  "domain": "Analyse",
+  "chapter": 4,
+  "level": "MP",
+  "cadence": "Marathon · 25 min",
+  "difficulty": 4,
+  "statement": "On considère la fonction \\(H\\) définie sur \\(]1,+\\infty[\\) par \\(H(x) = \\displaystyle\\int_x^{x^2} \\dfrac{dt}{\\ln t}\\).",
+  "questions": [
+    "Montrer que \\(H\\) est \\(C^1\\) sur \\(]1,+\\infty[\\) et calculer sa dérivée.",
+    "Montrer que la fonction \\(u\\) définie par \\(u(x) = \\dfrac{1}{\\ln x} - \\dfrac{1}{x-1}\\) admet une limite finie en \\(x=1\\).",
+    "En utilisant la fonction \\(u\\) de la question 2, calculer la limite en \\(1^+\\) de la fonction \\(H\\)."
+  ],
+  "hint": "Pour la question 3, écrivez 1/ln t = 1/(t-1) + u(t) et intégrez chaque terme séparément entre x et x².",
+  "grading_context": "(1) H(x)=G(x²)-G(x) où G est une primitive de g(t)=1/ln(t) (continue sur ]1,+∞[), donc H est C¹ et H'(x)=2x·g(x²)-g(x)=2x/(2ln x)-1/ln x=(x-1)/ln x. (2) Développement limité : ln(1+h)=h-h²/2+o(h²), 1/ln(1+h)=1/h+1/2+o(1) (développement classique), donc u(1+h)=1/h+1/2+o(1)-1/h=1/2+o(1)→1/2. (3) Écrire 1/ln t=1/(t-1)+u(t) avec u prolongeable par continuité en t=1 (u(1)=1/2). Alors H(x)=∫_x^{x²} dt/(t-1) + ∫_x^{x²} u(t)dt. Le premier terme vaut [ln|t-1|]_x^{x²}=ln(x²-1)-ln(x-1)=ln(x+1) (car x²-1=(x-1)(x+1)), qui tend vers ln2. Le second terme tend vers 0 car l'intervalle [x,x²] a une longueur x²-x→0 et u y est bornée (continue, limite finie en 1). Donc H(x)→ln2 quand x→1+.",
+  "correction": "<p><b>1.</b> Soit \\(G\\) une primitive de \\(g(t)=1/\\ln t\\) sur \\(]1,+\\infty[\\) (continue donc admet des primitives). Alors \\(H(x)=G(x^2)-G(x)\\), composée/différence de fonctions \\(C^1\\), donc \\(H\\) est \\(C^1\\) et \\(H'(x)=2x\\,g(x^2)-g(x)=\\dfrac{2x}{\\ln(x^2)}-\\dfrac{1}{\\ln x}=\\dfrac{2x}{2\\ln x}-\\dfrac{1}{\\ln x}=\\dfrac{x-1}{\\ln x}\\).</p><p><b>2.</b> Posons \\(x=1+h\\), \\(h\\to0\\). On a le développement classique \\(\\dfrac{1}{\\ln(1+h)} = \\dfrac1h+\\dfrac12+o(1)\\) (obtenu à partir de \\(\\ln(1+h)=h(1-h/2+o(h))\\), puis développement de \\(1/(1-h/2+o(h))\\)). Donc \\(u(1+h)=\\dfrac1h+\\dfrac12+o(1)-\\dfrac1h=\\dfrac12+o(1) \\xrightarrow[h\\to0]{} \\dfrac12\\). Ainsi \\(u\\) admet la limite finie \\(\\dfrac12\\) en \\(1\\).</p><p><b>3.</b> Prolongeons \\(u\\) par continuité en \\(1\\) en posant \\(u(1)=\\frac12\\), de sorte que \\(\\dfrac{1}{\\ln t}=\\dfrac{1}{t-1}+u(t)\\) avec \\(u\\) continue (donc bornée au voisinage de \\(1\\)). Alors \\(H(x)=\\displaystyle\\int_x^{x^2}\\dfrac{dt}{t-1} + \\int_x^{x^2} u(t)\\,dt\\). Le premier terme vaut \\(\\big[\\ln(t-1)\\big]_x^{x^2}=\\ln(x^2-1)-\\ln(x-1)=\\ln\\!\\big((x-1)(x+1)\\big)-\\ln(x-1)=\\ln(x+1)\\), qui tend vers \\(\\ln2\\) quand \\(x\\to1^+\\). Le second terme tend vers \\(0\\) : l'intervalle d'intégration \\([x,x^2]\\) est de longueur \\(x^2-x=x(x-1)\\to0\\), et \\(u\\) y reste bornée (proche de \\(u(1)=1/2\\)), donc l'intégrale tend vers \\(0\\). Conclusion : \\(H(x) \\xrightarrow[x\\to1^+]{} \\ln 2\\).</p>"
+}

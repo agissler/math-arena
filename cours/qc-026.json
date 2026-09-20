@@ -1,0 +1,14 @@
+{
+  "id": "qc-026",
+  "title": "Polynôme minimal et diagonalisabilité d'un endomorphisme induit",
+  "domain": "Algèbre",
+  "chapter": 21,
+  "level": "MP",
+  "cadence": "Standard · 15 min",
+  "difficulty": 4,
+  "statement": "Soit \\(u\\) un endomorphisme diagonalisable d'un espace vectoriel \\(E\\) de dimension finie, et \\(F\\) un sous-espace de \\(E\\) stable par \\(u\\). On note \\(u_F\\) l'endomorphisme de \\(F\\) induit par \\(u\\).",
+  "followup": "Démontrez que \\(u_F\\) est diagonalisable, en utilisant le polynôme minimal de \\(u\\).",
+  "hint": "Montrez que le polynôme minimal de u annule aussi u_F, donc que le polynôme minimal de u_F divise celui de u ; concluez avec le critère de diagonalisabilité par polynôme annulateur scindé à racines simples.",
+  "grading_context": "Critère utilisé (admis ou déjà vu) : un endomorphisme est diagonalisable ssi il annule un polynôme scindé à racines simples. Preuve : u diagonalisable ⟹ πu scindé à racines simples (produit des (X-λi) pour les valeurs propres distinctes λi). Pour tout x∈F, πu(u)(x)=0 (car πu(u)=0 sur E entier), et comme F stable par u, u_F^k(x)=u^k(x) pour tout k et tout x∈F, donc πu(u_F)(x)=πu(u)(x)=0 pour tout x∈F : πu annule u_F. Or πu est scindé à racines simples (car u diagonalisable), donc πu annule u_F qui est donc diagonalisable par le critère (un polynôme annulateur scindé à racines simples suffit, pas besoin que ce soit LE polynôme minimal de u_F).",
+  "correction": "<p><b>Rappel (critère de diagonalisabilité par polynôme annulateur).</b> Un endomorphisme est diagonalisable si et seulement s'il admet un polynôme annulateur scindé à racines simples.</p><p><b>Démonstration.</b> Comme \\(u\\) est diagonalisable, son polynôme minimal \\(\\pi_u\\) est scindé à racines simples : \\(\\pi_u(X)=\\prod_{i=1}^p(X-\\lambda_i)\\), où \\(\\lambda_1,\\ldots,\\lambda_p\\) sont les valeurs propres (distinctes) de \\(u\\), et \\(\\pi_u(u)=0\\).</p><p>Montrons que \\(\\pi_u(u_F)=0\\), c'est-à-dire que \\(\\pi_u\\) annule aussi \\(u_F\\). Comme \\(F\\) est stable par \\(u\\), on a \\(u_F^k(x)=u^k(x)\\) pour tout \\(x\\in F\\) et tout \\(k\\in\\mathbb{N}\\) (l'endomorphisme induit coïncide avec \\(u\\) sur \\(F\\), à toutes les puissances). Donc, pour tout \\(x\\in F\\) : \\[\\pi_u(u_F)(x) = \\sum_i c_i\\, u_F^i(x) = \\sum_i c_i\\, u^i(x) = \\pi_u(u)(x) = 0,\\] où \\((c_i)\\) sont les coefficients de \\(\\pi_u\\). Ainsi \\(\\pi_u(u_F)=0\\) : \\(\\pi_u\\) est un polynôme annulateur de \\(u_F\\).</p><p>Or \\(\\pi_u\\) est scindé à racines simples. Par le critère de diagonalisabilité rappelé ci-dessus (il suffit d'exhiber <i>un</i> polynôme annulateur scindé à racines simples, pas nécessairement le polynôme minimal de \\(u_F\\)), \\(u_F\\) est diagonalisable.</p>"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "ccp-073",
+  "title": "Commutant d'une matrice diagonalisable 2×2",
+  "domain": "Algèbre",
+  "chapter": 21,
+  "level": "MP",
+  "cadence": "Standard · 20 min",
+  "difficulty": 3,
+  "statement": "On pose \\(A = \\begin{pmatrix} 2 & 1 \\\\ 4 & -1 \\end{pmatrix}\\).",
+  "questions": [
+    "Déterminer les valeurs propres et les vecteurs propres de \\(A\\).",
+    "Déterminer toutes les matrices qui commutent avec la matrice \\(\\begin{pmatrix} 3 & 0 \\\\ 0 & -2 \\end{pmatrix}\\). En déduire que l'ensemble des matrices qui commutent avec \\(A\\) est \\(\\mathrm{Vect}(I_2, A)\\)."
+  ],
+  "hint": "Diagonalisez A en A=PDP⁻¹, puis utilisez que M commute avec A ssi P⁻¹MP commute avec D.",
+  "grading_context": "χ_A(λ)=λ²-λ-6=(λ-3)(λ+2), valeurs propres 3 et -2, vecteurs propres (1,1) et (1,-4) respectivement. Une matrice M=[[p,q],[r,s]] commute avec D=diag(3,-2) ssi q=r=0 (calcul direct de MD et DM), donc M diagonale, i.e. M∈Vect(I2,D). Comme A=PDP^{-1} (P matrice de passage vers la base de vecteurs propres), M commute avec A ssi P^{-1}MP commute avec D ssi P^{-1}MP∈Vect(I2,D) ssi M∈Vect(I2, PDP^{-1})=Vect(I2,A) (par linéarité de la conjugaison et invariance de I2).",
+  "correction": "<p><b>1.</b> \\(\\chi_A(\\lambda)=(2-\\lambda)(-1-\\lambda)-4=\\lambda^2-\\lambda-6=(\\lambda-3)(\\lambda+2)\\) : valeurs propres \\(3\\) et \\(-2\\). Pour \\(\\lambda=3\\) : \\((A-3I)v=0\\) donne \\(-x+y=0\\), vecteur propre \\((1,1)\\). Pour \\(\\lambda=-2\\) : \\((A+2I)v=0\\) donne \\(4x+y=0\\), vecteur propre \\((1,-4)\\).</p><p><b>2.</b> Soit \\(M=\\begin{pmatrix}p&q\\\\r&s\\end{pmatrix}\\) commutant avec \\(D=\\begin{pmatrix}3&0\\\\0&-2\\end{pmatrix}\\) : \\(MD=\\begin{pmatrix}3p&-2q\\\\3r&-2s\\end{pmatrix}\\), \\(DM=\\begin{pmatrix}3p&3q\\\\-2r&-2s\\end{pmatrix}\\). L'égalité donne \\(-2q=3q\\) et \\(3r=-2r\\), soit \\(q=r=0\\) : \\(M\\) est diagonale, donc \\(M\\in\\mathrm{Vect}(I_2,D)\\) (réciproque immédiate : toute matrice diagonale commute avec \\(D\\)).</p><p>Notons \\(P\\) la matrice de passage vers la base de vecteurs propres \\(((1,1),(1,-4))\\), de sorte que \\(A=PDP^{-1}\\). Une matrice \\(M\\) commute avec \\(A\\) ssi \\(P^{-1}MP\\) commute avec \\(D\\) (car \\(MA=AM \\iff M P D P^{-1} = PDP^{-1}M \\iff (P^{-1}MP)D=D(P^{-1}MP)\\)), c'est-à-dire ssi \\(P^{-1}MP\\in\\mathrm{Vect}(I_2,D)\\), c'est-à-dire (en reconjugant, et comme \\(P I_2 P^{-1}=I_2\\), \\(PDP^{-1}=A\\)) ssi \\(M\\in\\mathrm{Vect}(I_2,A)\\).</p>"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "qc-019",
+  "title": "Réunion dénombrable d'événements négligeables",
+  "domain": "Probabilités",
+  "chapter": 28,
+  "level": "MP",
+  "cadence": "Blitz · 10 min",
+  "difficulty": 2,
+  "statement": "Soit \\((\\Omega,\\mathcal{A},P)\\) un espace probabilisé et \\((A_n)_{n\\geq0}\\) une suite d'événements négligeables (\\(P(A_n)=0\\) pour tout \\(n\\)).",
+  "followup": "Démontrez que \\(\\bigcup_{n\\geq0} A_n\\) est également négligeable.",
+  "hint": "Utilisez la sous-additivité dénombrable de P (ou la σ-additivité appliquée après avoir rendu les événements disjoints).",
+  "grading_context": "Résultat : réunion dénombrable de négligeables est négligeable. Preuve directe par sous-additivité dénombrable (elle-même conséquence de la σ-additivité) : P(∪An) ≤ Σ P(An) = Σ 0 = 0, et P(∪An)≥0 toujours, donc P(∪An)=0. (La sous-additivité dénombrable s'obtient en posant Bn=An\\(A0∪...∪A_{n-1}) disjoints avec ∪Bn=∪An et Bn⊂An donc P(Bn)≤P(An), puis P(∪An)=ΣP(Bn)≤ΣP(An) par σ-additivité.)",
+  "correction": "<p><b>Énoncé.</b> Si \\(P(A_n)=0\\) pour tout \\(n\\geq0\\), alors \\(P\\left(\\bigcup_{n\\geq0}A_n\\right)=0\\).</p><p><b>Démonstration.</b> On utilise la sous-additivité dénombrable de \\(P\\) : pour toute suite d'événements \\((A_n)\\), \\(P\\left(\\bigcup_n A_n\\right)\\leq\\sum_n P(A_n)\\). (Rappel de preuve : en posant \\(B_0=A_0\\) et \\(B_n=A_n\\setminus(A_0\\cup\\cdots\\cup A_{n-1})\\) pour \\(n\\geq1\\), les \\(B_n\\) sont deux à deux disjoints, \\(\\bigcup_n B_n=\\bigcup_n A_n\\) et \\(B_n\\subset A_n\\) donc \\(P(B_n)\\leq P(A_n)\\) par croissance de \\(P\\) ; la \\(\\sigma\\)-additivité donne alors \\(P\\left(\\bigcup_n A_n\\right)=\\sum_n P(B_n)\\leq\\sum_n P(A_n)\\).)</p><p>Ici, \\(\\sum_{n\\geq0}P(A_n)=\\sum_{n\\geq0}0=0\\), donc \\(0\\leq P\\left(\\bigcup_n A_n\\right)\\leq 0\\) : \\(P\\left(\\bigcup_n A_n\\right)=0\\).</p>"
+}

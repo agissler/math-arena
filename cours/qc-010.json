@@ -1,0 +1,14 @@
+{
+  "id": "qc-010",
+  "title": "Caractérisation des endomorphismes nilpotents",
+  "domain": "Algèbre",
+  "chapter": 21,
+  "level": "MP",
+  "cadence": "Blitz · 15 min",
+  "difficulty": 3,
+  "statement": "Soit \\(u\\) un endomorphisme d'un espace vectoriel \\(E\\) de dimension finie.",
+  "followup": "Énoncez une condition nécessaire et suffisante pour que \\(u\\) soit nilpotent, faisant intervenir la trigonalisabilité, et démontrez-la.",
+  "hint": "Utilisez le fait qu'une matrice triangulaire avec des 0 sur la diagonale est nilpotente, et que le polynôme caractéristique d'un endomorphisme nilpotent est (-X)^n.",
+  "grading_context": "Théorème : u est nilpotent ssi u est trigonalisable avec pour seule valeur propre 0 (i.e. χu(X)=(-X)^n, ou de façon équivalente T est triangulaire supérieure à diagonale nulle dans une base adaptée). (⟹) Si u^k=0, toute valeur propre λ vérifie λ^k=0 (car si u(x)=λx, u^k(x)=λ^kx=0 avec x≠0 donne λ=0) : la seule valeur propre possible est 0, donc χu=(-X)^n, scindé (trivialement), donc u trigonalisable (par le critère précédent) avec diagonale nulle (les coefficients diagonaux d'une trigonalisation sont les valeurs propres). (⟸) Si u est trigonalisable en une matrice triangulaire T à diagonale nulle, alors T est nilpotente (calcul direct : T^n=0 pour une matrice triangulaire stricte d'ordre n, par récurrence sur les puissances qui décalent les blocs non nuls), donc u^n=0 : u est nilpotent.",
+  "correction": "<p><b>Énoncé.</b> \\(u\\) est nilpotent si et seulement si \\(u\\) est trigonalisable avec pour seule valeur propre \\(0\\) (c'est-à-dire \\(\\chi_u(X)=(-X)^n\\), ou encore : il existe une base dans laquelle la matrice de \\(u\\) est triangulaire supérieure à diagonale nulle).</p><p><b>Sens direct.</b> Supposons \\(u^k=0\\) pour un certain \\(k\\). Si \\(\\lambda\\) est valeur propre de \\(u\\), associée à un vecteur propre \\(x\\neq0\\), alors \\(u^k(x)=\\lambda^kx\\) ; or \\(u^k=0\\), donc \\(\\lambda^kx=0\\), et comme \\(x\\neq0\\), \\(\\lambda^k=0\\), donc \\(\\lambda=0\\). La seule valeur propre possible de \\(u\\) est donc \\(0\\) : \\(\\chi_u(X)=(-X)^n\\) (le polynôme caractéristique est scindé, n'ayant que la racine \\(0\\), de multiplicité \\(n\\)). Étant scindé, \\(\\chi_u\\) assure (par le critère de trigonalisabilité) que \\(u\\) est trigonalisable, et les coefficients diagonaux de la matrice triangulaire obtenue sont exactement les valeurs propres, donc tous nuls.</p><p><b>Réciproque.</b> Si \\(u\\) est trigonalisable en une matrice \\(T\\) triangulaire supérieure à diagonale nulle (matrice « strictement triangulaire »), on montre par récurrence que \\(T^n=0\\) : les puissances successives de \\(T\\) ont une bande de zéros qui s'élargit sous la diagonale supérieure à chaque produit (plus précisément, \\(T^k\\) a des coefficients nuls sur les \\(k-1\\) premières sur-diagonales), si bien que \\(T^n=0\\). Donc \\(u^n=0\\) : \\(u\\) est nilpotent.</p>"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "ccp-071",
+  "title": "Projection vectorielle sur un plan parallèlement à une droite",
+  "domain": "Algèbre",
+  "chapter": 12,
+  "level": "MP",
+  "cadence": "Standard · 20 min",
+  "difficulty": 3,
+  "statement": "Soit \\(p\\) la projection vectorielle de \\(\\mathbb{R}^3\\) sur le plan \\(P\\) d'équation \\(x+y+z=0\\), parallèlement à la droite \\(D\\) d'équation \\(x = \\frac{y}{2} = \\frac{z}{3}\\).",
+  "questions": [
+    "Vérifier que \\(\\mathbb{R}^3 = P \\oplus D\\).",
+    "Soit \\(u=(x,y,z) \\in \\mathbb{R}^3\\). Déterminer \\(p(u)\\) et donner la matrice de \\(p\\) dans la base canonique de \\(\\mathbb{R}^3\\).",
+    "Déterminer une base de \\(\\mathbb{R}^3\\) dans laquelle la matrice de \\(p\\) est diagonale."
+  ],
+  "hint": "Pour trouver p(u), écrivez u = w + λ(1,2,3) avec w∈P, et déterminez λ en imposant que la somme des coordonnées de w soit nulle.",
+  "grading_context": "D est dirigée par (1,2,3). P∩D={0} car (t,2t,3t)∈P ⟺ 6t=0 ⟺ t=0 ; dim P + dim D = 2+1=3, donc somme directe = R³. Pour u=(x,y,z), on cherche λ tel que u-λ(1,2,3)∈P : (x-λ)+(y-2λ)+(z-3λ)=0 ⟺ λ=(x+y+z)/6. Alors p(u)=u-λ(1,2,3), soit p(x,y,z)=(x-s/6, y-s/3, z-s/2) avec s=x+y+z. La matrice dans la base canonique est (1/6)*[[5,-1,-1],[-2,4,-2],[-3,-3,3]] (colonnes = images de e1,e2,e3), de trace 2=rang(p) (cohérent, projecteur de rang 2). Base de diagonalisation : deux vecteurs de P (valeur propre 1, ex. (1,-1,0) et (0,1,-1)) et un vecteur directeur de D (valeur propre 0, ex. (1,2,3)) : dans cette base, la matrice de p est diag(1,1,0).",
+  "correction": "<p><b>1.</b> \\(D\\) est dirigée par le vecteur \\((1,2,3)\\). Un point \\((t,2t,3t)\\) de \\(D\\) appartient à \\(P\\) ssi \\(t+2t+3t=6t=0\\), soit \\(t=0\\) : donc \\(P\\cap D=\\{0\\}\\). Comme \\(\\dim P+\\dim D=2+1=3=\\dim\\mathbb{R}^3\\), on a \\(\\mathbb{R}^3=P\\oplus D\\).</p><p><b>2.</b> Pour \\(u=(x,y,z)\\), on décompose \\(u=w+\\lambda(1,2,3)\\) avec \\(w\\in P\\) : la condition \\((x-\\lambda)+(y-2\\lambda)+(z-3\\lambda)=0\\) donne \\(\\lambda=\\dfrac{x+y+z}{6}\\). Alors \\(p(u)=w=u-\\lambda(1,2,3)\\), soit, en posant \\(s=x+y+z\\) : \\(p(x,y,z)=\\left(x-\\dfrac{s}{6},\\ y-\\dfrac{s}{3},\\ z-\\dfrac{s}{2}\\right)\\). La matrice de \\(p\\) dans la base canonique (colonnes = images de \\(e_1,e_2,e_3\\)) est \\(\\dfrac{1}{6}\\begin{pmatrix}5&-1&-1\\\\-2&4&-2\\\\-3&-3&3\\end{pmatrix}\\) (on vérifie que sa trace vaut \\(2=\\mathrm{rg}(p)\\), cohérent avec les propriétés d'un projecteur).</p><p><b>3.</b> Dans une base adaptée à \\(P\\oplus D\\), \\(p\\) vaut l'identité sur \\(P\\) et \\(0\\) sur \\(D\\). En prenant deux vecteurs de \\(P\\), par exemple \\((1,-1,0)\\) et \\((0,1,-1)\\) (vérifiant \\(x+y+z=0\\)), et le vecteur directeur \\((1,2,3)\\) de \\(D\\), la matrice de \\(p\\) dans cette base est \\(\\mathrm{diag}(1,1,0)\\).</p>"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "ccp-037",
+  "title": "Comparaison des normes de la convergence uniforme et en moyenne",
+  "domain": "Analyse",
+  "chapter": 23,
+  "level": "MP",
+  "cadence": "Standard · 20 min",
+  "difficulty": 4,
+  "statement": "On note \\(E\\) l'espace vectoriel des applications continues de \\([0,1]\\) dans \\(\\mathbb{R}\\). On pose pour \\(f \\in E\\) : \\(N_\\infty(f) = \\sup_{x\\in[0,1]} |f(x)|\\) et \\(N_1(f) = \\int_0^1 |f(x)|\\,dx\\).",
+  "questions": [
+    "Démontrer que \\(N_\\infty\\) et \\(N_1\\) sont deux normes sur \\(E\\). Démontrer qu'il existe \\(k>0\\) tel que, pour tout \\(f\\) de \\(E\\), \\(N_1(f) \\leq k\\,N_\\infty(f)\\). Démontrer que tout ouvert pour la norme \\(N_1\\) est un ouvert pour la norme \\(N_\\infty\\).",
+    "Démontrer que les normes \\(N_1\\) et \\(N_\\infty\\) ne sont pas équivalentes."
+  ],
+  "hint": "Pour montrer la non-équivalence, construisez une suite de fonctions « pics » de hauteur 1 (donc N∞=1) mais d'aire tendant vers 0 (donc N1→0).",
+  "grading_context": "N∞ est la norme sup usuelle sur les fonctions continues sur un segment (bien définie car f continue sur compact est bornée). N1(f)=∫|f| est une norme (séparation via : une fonction continue positive d'intégrale nulle est nulle). Inégalité : N1(f)=∫₀¹|f|≤∫₀¹N∞(f)=N∞(f), donc k=1 convient. Ouverts : si U est ouvert pour N1, pour x∈U il existe r>0 avec B_{N1}(x,r)⊂U ; comme N1≤N∞, B_{N∞}(x,r)⊂B_{N1}(x,r)⊂U, donc U est aussi ouvert pour N∞. Non-équivalence : prendre fn de type 'triangle' de hauteur 1 en 0 et de support [0,1/n] (N∞(fn)=1 pour tout n, N1(fn)=aire du triangle=1/(2n)→0) : le rapport N∞/N1=2n→∞, donc aucune constante C ne peut vérifier N∞≤C·N1 : les normes ne sont pas équivalentes.",
+  "correction": "<p><b>1.</b> \\(N_\\infty\\) est la norme usuelle de la convergence uniforme (bien définie car toute fonction continue sur le segment \\([0,1]\\) y est bornée) ; les axiomes de norme se vérifient directement. \\(N_1\\) est une norme : positivité et inégalité triangulaire immédiates par les propriétés de l'intégrale, homogénéité claire, et séparation car une fonction continue positive (\\(|f|\\)) d'intégrale nulle sur \\([0,1]\\) est identiquement nulle. Inégalité : pour tout \\(x\\in[0,1]\\), \\(|f(x)|\\leq N_\\infty(f)\\), donc \\(N_1(f)=\\int_0^1|f(x)|\\,dx \\leq \\int_0^1 N_\\infty(f)\\,dx = N_\\infty(f)\\) : on prend \\(k=1\\). Ouverts : soit \\(U\\) ouvert pour \\(N_1\\) et \\(x\\in U\\) ; il existe \\(r>0\\) tel que la boule \\(B_{N_1}(x,r)\\subset U\\). Comme \\(N_1(y-x)\\leq N_\\infty(y-x)\\), on a \\(B_{N_\\infty}(x,r)\\subset B_{N_1}(x,r)\\subset U\\) : \\(U\\) est donc aussi ouvert pour \\(N_\\infty\\).</p><p><b>2.</b> Pour \\(n\\geq1\\), posons \\(f_n(x)=\\max(0,\\,1-nx)\\) sur \\([0,1]\\) (fonction « triangle » décroissant de 1 à 0 sur \\([0,1/n]\\), nulle ensuite). Alors \\(N_\\infty(f_n)=f_n(0)=1\\) pour tout \\(n\\), tandis que \\(N_1(f_n)=\\) aire du triangle \\(=\\frac{1}{2n}\\to0\\). Le rapport \\(N_\\infty(f_n)/N_1(f_n)=2n\\to+\\infty\\) : aucune constante \\(C\\) ne peut vérifier \\(N_\\infty\\leq C\\,N_1\\) sur \\(E\\) tout entier. Les deux normes ne sont donc pas équivalentes.</p>"
+}

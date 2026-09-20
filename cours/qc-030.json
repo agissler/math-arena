@@ -1,0 +1,14 @@
+{
+  "id": "qc-030",
+  "title": "Un sous-espace de dimension finie d'un espace normé est fermé",
+  "domain": "Analyse",
+  "chapter": 23,
+  "level": "MP",
+  "cadence": "Standard · 15 min",
+  "difficulty": 4,
+  "statement": "Soit \\(E\\) un espace vectoriel normé (non nécessairement de dimension finie), et \\(F\\) un sous-espace vectoriel de \\(E\\) de dimension finie.",
+  "followup": "Démontrez que \\(F\\) est fermé dans \\(E\\).",
+  "hint": "Prenez une suite (xn) de F convergeant dans E vers une limite ℓ ; montrez qu'elle est de Cauchy, puis utilisez que F, muni d'une base, est isomorphe à K^p (complet car dimension finie) via l'équivalence des normes en dimension finie, pour conclure que la limite ℓ appartient à F.",
+  "grading_context": "Résultat : F sous-espace de dimension finie p d'un evn E est fermé. Preuve : soit (xn) suite de F convergeant vers ℓ∈E ; (xn) est de Cauchy dans E (toute suite convergente est de Cauchy), donc a fortiori de Cauchy dans F pour la norme induite. Comme F est de dimension finie p, toutes les normes sur F sont équivalentes, donc F muni de la norme induite est isomorphe (comme evn) à (K^p, ||.||_∞) via le choix d'une base, qui est complet (produit fini de complets). Donc F est complet : (xn) étant de Cauchy dans F converge dans F vers une limite ℓ'∈F. Par unicité de la limite dans E (une suite convergente a une limite unique), ℓ=ℓ'∈F. Donc toute suite convergente d'éléments de F a sa limite dans F : F est fermé.",
+  "correction": "<p><b>Énoncé.</b> Tout sous-espace vectoriel \\(F\\) de dimension finie d'un espace vectoriel normé \\(E\\) (de dimension quelconque) est fermé dans \\(E\\).</p><p><b>Démonstration.</b> Soit \\((x_n)\\) une suite d'éléments de \\(F\\) convergeant dans \\(E\\) vers une limite \\(\\ell\\in E\\). Montrons que \\(\\ell\\in F\\).</p><p>Toute suite convergente étant de Cauchy, \\((x_n)\\) est de Cauchy dans \\(E\\), donc a fortiori de Cauchy pour la norme induite sur \\(F\\) (une même distance est utilisée). Or \\(F\\) est de dimension finie \\(p\\) : en choisissant une base \\((e_1,\\ldots,e_p)\\) de \\(F\\), l'application \\((\\lambda_1,\\ldots,\\lambda_p)\\mapsto\\sum\\lambda_ie_i\\) est un isomorphisme d'espaces vectoriels de \\(\\mathbb{K}^p\\) sur \\(F\\) ; comme toutes les normes sont équivalentes en dimension finie, cet isomorphisme est aussi un homéomorphisme entre \\((\\mathbb{K}^p,\\|\\cdot\\|_\\infty)\\) (complet, produit fini d'espaces complets) et \\((F,\\|\\cdot\\|_{|F})\\). Donc \\(F\\), muni de la norme induite, est complet.</p><p>La suite \\((x_n)\\), de Cauchy dans l'espace complet \\(F\\), y converge donc vers une limite \\(\\ell'\\in F\\). Mais \\((x_n)\\) converge aussi vers \\(\\ell\\) dans \\(E\\), et la limite d'une suite convergente dans un espace normé est unique : \\(\\ell=\\ell'\\in F\\).</p><p>Ainsi toute suite d'éléments de \\(F\\) convergeant dans \\(E\\) a sa limite dans \\(F\\) : \\(F\\) est fermé dans \\(E\\).</p>"
+}

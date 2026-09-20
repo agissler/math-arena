@@ -1,0 +1,19 @@
+{
+  "id": "ccp-045",
+  "title": "Adhérence, distance à une partie et convexité",
+  "domain": "Analyse",
+  "chapter": 23,
+  "level": "MP",
+  "cadence": "Standard · 20 min",
+  "difficulty": 4,
+  "statement": "Soit \\(E\\) un espace vectoriel normé. Soit \\(A\\) une partie non vide de \\(E\\). On note \\(\\overline{A}\\) l'adhérence de \\(A\\).",
+  "questions": [
+    "Donner la caractérisation séquentielle de \\(\\overline{A}\\).",
+    "Prouver que, si \\(A\\) est convexe, alors \\(\\overline{A}\\) est convexe.",
+    "On pose, pour \\(x \\in E\\), \\(d_A(x) = \\inf_{a \\in A} \\|x-a\\|\\). Prouver que \\(d_A(x) = 0 \\iff x \\in \\overline{A}\\).",
+    "On suppose que \\(A\\) est fermée et que \\(\\forall (x,y) \\in E^2,\\ \\forall t \\in [0,1],\\ d_A(tx+(1-t)y) \\leq t\\,d_A(x) + (1-t)\\,d_A(y)\\). Prouver que \\(A\\) est convexe."
+  ],
+  "hint": "Pour la question 4, appliquez l'hypothèse à x,y∈A (donc d_A(x)=d_A(y)=0) et utilisez que A est fermée.",
+  "grading_context": "(1) x∈Ā ssi il existe une suite (xn) d'éléments de A convergeant vers x. (2) Si x,y∈Ā, prendre xn→x, yn→y dans A ; pour t∈[0,1], txn+(1-t)yn∈A (convexité de A) et cette suite tend vers tx+(1-t)y, qui est donc dans Ā. (3) d_A(x)=0 ssi pour tout ε>0 il existe a∈A avec ||x-a||<ε, ce qui est exactement la caractérisation de l'adhérence par les boules. (4) Pour x,y∈A=Ā (A fermée), d_A(x)=d_A(y)=0 par (3), donc l'hypothèse donne d_A(tx+(1-t)y)≤0, et comme d_A≥0 toujours, d_A(tx+(1-t)y)=0, donc tx+(1-t)y∈Ā=A : A est convexe.",
+  "correction": "<p><b>1.</b> \\(x \\in \\overline{A} \\iff \\exists (x_n)_{n\\in\\mathbb{N}} \\in A^{\\mathbb{N}},\\ x_n \\to x\\).</p><p><b>2.</b> Soient \\(x,y \\in \\overline{A}\\), et \\((x_n),(y_n)\\) des suites de \\(A\\) convergeant vers \\(x,y\\). Pour \\(t\\in[0,1]\\), \\(tx_n+(1-t)y_n \\in A\\) par convexité de \\(A\\), et cette suite converge vers \\(tx+(1-t)y\\) par continuité des opérations vectorielles. Donc \\(tx+(1-t)y \\in \\overline{A}\\) : \\(\\overline{A}\\) est convexe.</p><p><b>3.</b> \\(d_A(x)=0\\) signifie que pour tout \\(\\varepsilon>0\\), il existe \\(a\\in A\\) avec \\(\\|x-a\\|<\\varepsilon\\) (sinon la borne inférieure serait \\(>0\\)) ; c'est exactement dire que toute boule ouverte centrée en \\(x\\) rencontre \\(A\\), c'est-à-dire \\(x\\in\\overline{A}\\).</p><p><b>4.</b> Soient \\(x,y\\in A\\). Comme \\(A\\) est fermée, \\(A=\\overline{A}\\), donc par (3), \\(d_A(x)=d_A(y)=0\\). L'hypothèse donne \\(d_A(tx+(1-t)y) \\leq t\\cdot 0+(1-t)\\cdot 0 = 0\\). Comme \\(d_A\\) est à valeurs positives, \\(d_A(tx+(1-t)y)=0\\), donc par (3), \\(tx+(1-t)y\\in\\overline{A}=A\\). Donc \\(A\\) est convexe.</p>"
+}

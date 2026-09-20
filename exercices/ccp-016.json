@@ -1,0 +1,17 @@
+{
+  "id": "ccp-016",
+  "title": "Dérivabilité d'une somme de série de fonctions",
+  "domain": "Analyse",
+  "chapter": 25,
+  "level": "MP",
+  "cadence": "Standard · 20 min",
+  "difficulty": 4,
+  "statement": "On considère la série de fonctions de terme général \\(u_n\\) définie par \\(\\forall n \\in \\mathbb{N}^*,\\ \\forall x \\in [0,1],\\ u_n(x) = \\ln\\!\\left(1+\\dfrac{x}{n}\\right) - \\dfrac{x}{n}\\). On pose, lorsque la série converge, \\(S(x) = \\displaystyle\\sum_{n=1}^{+\\infty} \\left[\\ln\\!\\left(1+\\dfrac{x}{n}\\right)-\\dfrac{x}{n}\\right]\\).",
+  "questions": [
+    "Démontrer que \\(S\\) est dérivable sur \\([0,1]\\).",
+    "Calculer \\(S'(1)\\)."
+  ],
+  "hint": "Calculez u_n'(x) et majorez-le sur [0,1] pour établir une convergence normale de la série des dérivées.",
+  "grading_context": "un'(x)=1/n·[1/(1+x/n)-1]=-x/[n(n+x)]. Sur [0,1], |un'(x)|=x/[n(n+x)]≤1/n² (car x≤1, n+x≥n), donc Σun' converge normalement sur [0,1]. De plus Σun(0)=0 converge trivialement (point de départ). Par le théorème de dérivation terme à terme (convergence en un point + convergence normale/uniforme de la série des dérivées), S est de classe C¹ sur [0,1] avec S'=Σun'. En x=1 : S'(1)=-Σ_{n=1}^∞ 1/[n(n+1)]=-Σ[1/n-1/(n+1)] (décomposition en éléments simples), série télescopique de somme 1, donc S'(1)=-1.",
+  "correction": "<p><b>1.</b> \\(u_n'(x) = \\dfrac{1}{n}\\left(\\dfrac{1}{1+x/n}-1\\right) = \\dfrac{1}{n}\\cdot\\dfrac{-x/n}{1+x/n} = -\\dfrac{x}{n(n+x)}\\). Sur \\([0,1]\\), \\(|u_n'(x)| = \\dfrac{x}{n(n+x)} \\leq \\dfrac{1}{n^2}\\) (car \\(x\\leq1\\) et \\(n+x\\geq n\\)). Comme \\(\\sum1/n^2\\) converge (série de Riemann), \\(\\sum u_n'\\) converge normalement, donc uniformément, sur \\([0,1]\\). De plus, la série \\(\\sum u_n(0)\\) est trivialement convergente (tous les termes sont nuls en \\(x=0\\)). Par le théorème de dérivation terme à terme des séries de fonctions, \\(S\\) est de classe \\(C^1\\) (en particulier dérivable) sur \\([0,1]\\), avec \\(S'=\\sum_{n=1}^{+\\infty}u_n'\\).</p><p><b>2.</b> \\(S'(1) = -\\displaystyle\\sum_{n=1}^{+\\infty}\\dfrac{1}{n(n+1)}\\). Par décomposition en éléments simples, \\(\\dfrac{1}{n(n+1)}=\\dfrac1n-\\dfrac{1}{n+1}\\), série télescopique dont la somme partielle vaut \\(1-\\dfrac{1}{N+1}\\to1\\). Donc \\(\\displaystyle\\sum_{n=1}^{+\\infty}\\dfrac{1}{n(n+1)}=1\\), et \\(S'(1)=-1\\).</p>"
+}

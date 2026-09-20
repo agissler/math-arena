@@ -1,0 +1,19 @@
+{
+  "id": "ccp-091",
+  "title": "Matrice à valeur propre triple, polynôme minimal et puissances",
+  "domain": "Algèbre",
+  "chapter": 21,
+  "level": "MP",
+  "cadence": "Marathon · 30 min",
+  "difficulty": 5,
+  "statement": "On considère la matrice \\(A = \\begin{pmatrix} 0 & 2 & -1 \\\\ -1 & 3 & -1 \\\\ -1 & 2 & 0 \\end{pmatrix} \\in \\mathcal{M}_3(\\mathbb{R})\\).",
+  "questions": [
+    "Montrer que \\(A\\) n'admet qu'une seule valeur propre que l'on déterminera.",
+    "La matrice \\(A\\) est-elle inversible ? Est-elle diagonalisable ?",
+    "Déterminer, en justifiant, le polynôme minimal de \\(A\\).",
+    "Soit \\(n \\in \\mathbb{N}\\). Déterminer le reste de la division euclidienne de \\(X^n\\) par \\((X-1)^2\\) et en déduire la valeur de \\(A^n\\)."
+  ],
+  "hint": "Pour le polynôme minimal, remarquez que les trois lignes de A-I sont identiques : cela donne immédiatement (A-I)² en calculant un produit de rang 1.",
+  "grading_context": "χ_A(λ)=-(λ-1)³ (calcul direct), donc unique valeur propre 1 (multiplicité algébrique 3). det(A)=χ_A(0)=-(0-1)³=1≠0 : A inversible. A-I a ses trois lignes identiques à (-1,2,-1) : rang 1, donc dim Ker(A-I)=3-1=2<3=multiplicité algébrique : A n'est pas diagonalisable (sauf si multiplicité géométrique égalait 3, ce qui forcerait A=I, faux). Polynôme minimal : A≠I donc pas (X-1) ; A-I=uv^T (produit extérieur, u=(1,1,1)^T,v=(-1,2,-1)^T), donc (A-I)²=(v^Tu)(A-I) avec v^Tu=-1+2-1=0, donc (A-I)²=0 : polynôme minimal (X-1)². Division de X^n par (X-1)² : reste R(X)=aX+b avec R(1)=1 et R'(1)=a=n (par dérivation de l'identité de Taylor), donnant a=n,b=1-n. Donc A^n=R(A)=n(A-I)+I=nA+(1-n)I (car (A-I)²=0 annule le quotient).",
+  "correction": "<p><b>1.</b> \\(\\chi_A(\\lambda)=\\det(A-\\lambda I)\\) se calcule et se factorise en \\(\\chi_A(\\lambda)=-(\\lambda-1)^3\\) : l'unique valeur propre de \\(A\\) est \\(1\\), de multiplicité algébrique \\(3\\).</p><p><b>2.</b> \\(\\det(A)=\\chi_A(0)=-(0-1)^3=1\\neq0\\) : \\(A\\) est inversible. Calculons \\(A-I=\\begin{pmatrix}-1&2&-1\\\\-1&2&-1\\\\-1&2&-1\\end{pmatrix}\\) : ses trois lignes sont identiques, donc \\(\\mathrm{rg}(A-I)=1\\), d'où \\(\\dim\\ker(A-I)=3-1=2\\), strictement inférieur à la multiplicité algébrique \\(3\\) de la valeur propre \\(1\\). \\(A\\) n'est donc pas diagonalisable.</p><p><b>3.</b> Comme \\(A\\neq I\\), le polynôme minimal n'est pas \\(X-1\\). Écrivons \\(A-I = u\\,v^T\\) où \\(u=(1,1,1)^T\\) et \\(v^T=(-1,2,-1)\\) (produit extérieur, cohérent avec les lignes identiques). Alors \\((A-I)^2 = u\\,v^T u\\,v^T = (v^Tu)\\,u v^T = (v^Tu)(A-I)\\), avec \\(v^Tu=-1+2-1=0\\). Donc \\((A-I)^2=0\\) : le polynôme minimal de \\(A\\) est \\((X-1)^2\\).</p><p><b>4.</b> Écrivons \\(X^n=(X-1)^2Q(X)+R(X)\\) avec \\(\\deg R\\leq1\\), \\(R(X)=aX+b\\). En évaluant en \\(X=1\\) : \\(R(1)=1=a+b\\). En dérivant l'identité et en évaluant en \\(X=1\\) (les termes en \\((X-1)^2\\) et leur dérivée \\(2(X-1)Q(X)\\) s'annulent en \\(1\\)) : \\(nX^{n-1}|_{X=1}=n=R'(1)=a\\). D'où \\(a=n\\), \\(b=1-n\\), soit \\(R(X)=n(X-1)+1\\). Comme \\((A-I)^2=0\\), en évaluant l'identité en \\(A\\) : \\(A^n=(A-I)^2Q(A)+R(A)=R(A)=n(A-I)+I\\), soit \\(A^n = nA+(1-n)I_3\\).</p>"
+}

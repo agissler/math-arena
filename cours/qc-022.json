@@ -1,0 +1,14 @@
+{
+  "id": "qc-022",
+  "title": "Exponentielle complexe : définition et morphisme de groupe",
+  "domain": "Analyse",
+  "chapter": 24,
+  "level": "MP",
+  "cadence": "Blitz · 10 min",
+  "difficulty": 3,
+  "statement": "Pour \\(z\\in\\mathbb{C}\\), on pose \\(\\exp(z)=\\displaystyle\\sum_{n=0}^{\\infty}\\frac{z^n}{n!}\\).",
+  "followup": "Justifiez que cette série est bien définie pour tout \\(z\\in\\mathbb{C}\\), puis démontrez que \\(\\exp\\) réalise un morphisme du groupe \\((\\mathbb{C},+)\\) vers \\((\\mathbb{C}^*,\\times)\\).",
+  "hint": "Utilisez le critère de d'Alembert pour la convergence absolue, puis le produit de Cauchy de deux séries absolument convergentes pour établir exp(a+b)=exp(a)exp(b) via la formule du binôme.",
+  "grading_context": "La série Σz^n/n! converge absolument pour tout z (d'Alembert : |z^{n+1}/(n+1)!| / |z^n/n!| = |z|/(n+1) → 0). Morphisme : exp(a+b)=exp(a)exp(b) par produit de Cauchy des séries Σa^n/n! et Σb^n/n!, absolument convergentes : le coefficient c_n=Σ_{k=0}^n (a^k/k!)(b^{n-k}/(n-k)!) = (1/n!)Σ_{k=0}^n C(n,k)a^k b^{n-k} = (a+b)^n/n! par la formule du binôme de Newton. Donc exp(a)exp(b)=Σc_n=Σ(a+b)^n/n!=exp(a+b). De plus exp(0)=1, et exp(z)exp(-z)=exp(0)=1 donc exp(z)≠0 pour tout z et exp(z)^{-1}=exp(-z) : exp est bien un morphisme de (C,+) vers (C*,×).",
+  "correction": "<p><b>Convergence absolue.</b> Pour \\(z\\neq0\\), le critère de d'Alembert donne \\(\\dfrac{|z^{n+1}/(n+1)!|}{|z^n/n!|}=\\dfrac{|z|}{n+1}\\xrightarrow[n\\to\\infty]{}0<1\\), donc \\(\\sum\\frac{z^n}{n!}\\) converge absolument pour tout \\(z\\in\\mathbb{C}\\) ; \\(\\exp(z)\\) est donc bien défini.</p><p><b>Morphisme de groupe.</b> Soient \\(a,b\\in\\mathbb{C}\\). Les séries \\(\\sum\\frac{a^n}{n!}\\) et \\(\\sum\\frac{b^n}{n!}\\) sont absolument convergentes ; leur produit de Cauchy \\(\\sum c_n\\) est donc absolument convergent et de somme \\(\\exp(a)\\exp(b)\\), avec</p><p>\\[c_n=\\sum_{k=0}^n \\frac{a^k}{k!}\\cdot\\frac{b^{n-k}}{(n-k)!} = \\frac{1}{n!}\\sum_{k=0}^n \\binom{n}{k}a^kb^{n-k} = \\frac{(a+b)^n}{n!}\\]</p><p>par la formule du binôme de Newton. Ainsi \\(\\exp(a)\\exp(b)=\\sum_{n=0}^\\infty c_n = \\sum_{n=0}^\\infty \\frac{(a+b)^n}{n!}=\\exp(a+b)\\).</p><p>Par ailleurs \\(\\exp(0)=1\\) (seul le terme \\(n=0\\) est non nul). En particulier \\(\\exp(z)\\exp(-z)=\\exp(0)=1\\) pour tout \\(z\\), donc \\(\\exp(z)\\neq0\\) et \\(\\exp(z)^{-1}=\\exp(-z)\\). L'application \\(\\exp:(\\mathbb{C},+)\\to(\\mathbb{C}^*,\\times)\\) vérifie donc \\(\\exp(a+b)=\\exp(a)\\exp(b)\\) pour tous \\(a,b\\), et prend ses valeurs dans \\(\\mathbb{C}^*\\) : c'est un morphisme de groupes.</p>"
+}

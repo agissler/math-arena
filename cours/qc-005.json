@@ -1,0 +1,14 @@
+{
+  "id": "qc-005",
+  "title": "Continuité de la limite uniforme d'une suite de fonctions",
+  "domain": "Analyse",
+  "chapter": 25,
+  "level": "MP",
+  "cadence": "Blitz · 10 min",
+  "difficulty": 3,
+  "statement": "Soit \\(A\\) une partie d'un espace vectoriel de dimension finie, \\((f_n)\\) une suite de fonctions de \\(A\\) dans un espace vectoriel normé de dimension finie \\(F\\), convergeant uniformément vers une fonction \\(f\\) sur \\(A\\).",
+  "followup": "Énoncez et démontrez le lien entre convergence uniforme et continuité ponctuelle.",
+  "hint": "Utilisez l'inégalité triangulaire en trois termes (« méthode du ε/3 »).",
+  "grading_context": "Résultat : si les fn sont continues en un point a de A et si (fn) converge uniformément vers f sur (un voisinage de) A, alors f est continue en a. Preuve ε/3 : |f(x)-f(a)|≤|f(x)-fN(x)|+|fN(x)-fN(a)|+|fN(a)-f(a)|, les 1er et 3e termes majorés par sup|f-fN|<ε/3 pour N assez grand (convergence uniforme), le 2e majoré par ε/3 pour x proche de a (continuité de fN en a).",
+  "correction": "<p><b>Énoncé.</b> Si chaque \\(f_n\\) est continue en un point \\(a\\in A\\) et si \\((f_n)\\) converge uniformément vers \\(f\\) sur \\(A\\), alors \\(f\\) est continue en \\(a\\). (Conséquence : une limite uniforme de fonctions continues sur \\(A\\) est continue sur \\(A\\).)</p><p><b>Démonstration.</b> Soit \\(\\varepsilon>0\\). Par convergence uniforme, il existe \\(N\\) tel que \\(\\sup_A\\|f_N-f\\|<\\varepsilon/3\\). Comme \\(f_N\\) est continue en \\(a\\), il existe \\(\\eta>0\\) tel que \\(\\|x-a\\|<\\eta \\Rightarrow \\|f_N(x)-f_N(a)\\|<\\varepsilon/3\\). Alors, pour \\(\\|x-a\\|<\\eta\\) : \\[\\|f(x)-f(a)\\| \\leq \\|f(x)-f_N(x)\\| + \\|f_N(x)-f_N(a)\\| + \\|f_N(a)-f(a)\\| < \\frac{\\varepsilon}{3}+\\frac{\\varepsilon}{3}+\\frac{\\varepsilon}{3}=\\varepsilon.\\] Donc \\(f\\) est continue en \\(a\\).</p>"
+}

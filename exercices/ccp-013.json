@@ -1,0 +1,17 @@
+{
+  "id": "ccp-013",
+  "title": "Limite uniforme d'une suite de fonctions bornées",
+  "domain": "Analyse",
+  "chapter": 25,
+  "level": "MP",
+  "cadence": "Standard · 20 min",
+  "difficulty": 4,
+  "statement": "Soit \\((g_n)\\) une suite de fonctions de \\(X\\) dans \\(\\mathbb{C}\\), \\(X\\) désignant un ensemble non vide quelconque. On suppose que, pour tout \\(n \\in \\mathbb{N}\\), \\(g_n\\) est bornée et que la suite \\((g_n)\\) converge uniformément sur \\(X\\) vers \\(g\\).",
+  "questions": [
+    "Démontrer que la fonction \\(g\\) est bornée.",
+    "Pour tout entier naturel \\(n\\) non nul, on considère la fonction \\(f_n\\) définie sur \\(\\mathbb{R}\\) par \\(f_n(x) = n^3x\\) si \\(|x| \\leq \\frac{1}{n}\\), et \\(f_n(x)=\\frac{1}{x}\\) si \\(|x|>\\frac{1}{n}\\). Prouver que \\((f_n)_{n\\in\\mathbb{N}^*}\\) converge simplement sur \\(\\mathbb{R}\\). La convergence est-elle uniforme sur \\(\\mathbb{R}\\) ?"
+  ],
+  "hint": "Pour la question 2, montrez que chaque fn est bornée, puis utilisez le résultat de la question 1 en observant que la limite simple ne l'est pas.",
+  "grading_context": "(1) Convergence uniforme avec ε=1 donne N tel que sup|gN-g|<1, donc |g(x)|≤|gN(x)|+1≤||gN||∞+1 pour tout x : g est bornée. (2) Convergence simple : en x=0, fn(0)=0. Pour x≠0 fixé, dès que n>1/|x|, fn(x)=1/x, donc fn(x)→1/x. Limite f(0)=0, f(x)=1/x sinon. Chaque fn est bornée (par n² sur [-1/n,1/n] et par n ailleurs). Si la convergence était uniforme, la question 1 donnerait f bornée ; or f(x)=1/x n'est pas bornée au voisinage de 0. Donc la convergence n'est pas uniforme sur R.",
+  "correction": "<p><b>1.</b> Par convergence uniforme (avec \\(\\varepsilon=1\\)), il existe \\(N\\) tel que \\(\\sup_{x\\in X}|g_N(x)-g(x)|<1\\). Alors pour tout \\(x\\in X\\), \\(|g(x)|\\leq|g_N(x)|+|g(x)-g_N(x)|<\\|g_N\\|_\\infty+1\\), qui est une constante finie (car \\(g_N\\) est bornée) : \\(g\\) est bornée.</p><p><b>2.</b> <u>Convergence simple :</u> en \\(x=0\\), \\(f_n(0)=0\\) pour tout \\(n\\). Pour \\(x\\neq0\\) fixé, dès que \\(n>1/|x|\\), on a \\(|x|>1/n\\) donc \\(f_n(x)=1/x\\) : la suite est stationnaire égale à \\(1/x\\) à partir d'un certain rang, donc \\(f_n(x)\\to1/x\\). La limite simple est \\(f(0)=0\\), \\(f(x)=1/x\\) pour \\(x\\neq0\\).</p><p>Chaque \\(f_n\\) est bornée sur \\(\\mathbb{R}\\) : sur \\([-1/n,1/n]\\), \\(|f_n(x)|=n^3|x|\\leq n^2\\) ; ailleurs, \\(|f_n(x)|=1/|x|<n\\). Si la convergence était uniforme sur \\(\\mathbb{R}\\), la question 1 impliquerait que \\(f\\) est bornée sur \\(\\mathbb{R}\\) ; or \\(f(x)=1/x\\to+\\infty\\) quand \\(x\\to0^+\\), donc \\(f\\) n'est pas bornée. La convergence n'est donc pas uniforme sur \\(\\mathbb{R}\\).</p>"
+}

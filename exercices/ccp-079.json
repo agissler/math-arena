@@ -1,0 +1,18 @@
+{
+  "id": "ccp-079",
+  "title": "Produit scalaire intégral et inégalité de Cauchy-Schwarz",
+  "domain": "Algèbre",
+  "chapter": 18,
+  "level": "MP",
+  "cadence": "Standard · 20 min",
+  "difficulty": 3,
+  "statement": "Soit \\(a\\) et \\(b\\) deux réels tels que \\(a<b\\).",
+  "questions": [
+    "Soit \\(h\\) une fonction continue et positive de \\([a,b]\\) dans \\(\\mathbb{R}\\). Démontrer que \\(\\int_a^b h(x)\\,dx = 0 \\Rightarrow h = 0\\).",
+    "Soit \\(E\\) le \\(\\mathbb{R}\\)-espace vectoriel des fonctions continues de \\([a,b]\\) dans \\(\\mathbb{R}\\). On pose \\(\\forall (f,g) \\in E^2,\\ (f|g) = \\int_a^b f(x)g(x)\\,dx\\). Démontrer que l'on définit ainsi un produit scalaire sur \\(E\\).",
+    "Majorer \\(\\int_0^1 \\sqrt{x}\\,e^{-x}\\,dx\\) en utilisant l'inégalité de Cauchy-Schwarz."
+  ],
+  "hint": "Pour la question 1, raisonnez par l'absurde en utilisant la continuité de h en un point où elle serait strictement positive. Pour la question 3, décomposez √x·e^{-x} en produit de √x et e^{-x}.",
+  "grading_context": "(1) Par l'absurde : si h(x0)>0 pour un x0∈[a,b], par continuité h≥h(x0)/2 sur un voisinage de x0 de longueur δ>0 (intersecté avec [a,b]), donc ∫h≥(h(x0)/2)δ>0, contredisant l'hypothèse. (2) Bilinéarité et symétrie immédiates par linéarité de l'intégrale et commutativité du produit fg=gf. Positivité : (f|f)=∫f²≥0. Définie : (f|f)=0 ⟹ f² continue positive d'intégrale nulle ⟹ f²=0 (par la question 1) ⟹ f=0. (3) Cauchy-Schwarz avec f(x)=√x, g(x)=e^{-x} sur [0,1] : (∫√x·e^{-x}dx)²≤(∫x dx)(∫e^{-2x}dx)=(1/2)·[(1-e^{-2})/2], d'où l'intégrale ≤ (1/2)√(1-e^{-2}).",
+  "correction": "<p><b>1.</b> Supposons par l'absurde qu'il existe \\(x_0\\in[a,b]\\) avec \\(h(x_0)>0\\). Par continuité de \\(h\\) en \\(x_0\\), il existe \\(\\delta>0\\) tel que \\(h(x)\\geq h(x_0)/2\\) pour \\(x\\) dans un voisinage de \\(x_0\\) (intersecté avec \\([a,b]\\)) de longueur \\(\\ell>0\\). Comme \\(h\\geq0\\) partout, \\(\\int_a^b h \\geq \\int_{\\text{voisinage}} h \\geq \\dfrac{h(x_0)}{2}\\ell > 0\\), ce qui contredit \\(\\int_a^b h=0\\). Donc \\(h=0\\) sur \\([a,b]\\).</p><p><b>2.</b> Bilinéarité et symétrie découlent directement de la linéarité de l'intégrale et de \\(f(x)g(x)=g(x)f(x)\\). Positivité : \\((f|f)=\\int_a^b f(x)^2\\,dx \\geq 0\\) (intégrale d'une fonction positive). Caractère défini : si \\((f|f)=0\\), la fonction \\(f^2\\), continue et positive, a une intégrale nulle sur \\([a,b]\\), donc \\(f^2=0\\) par la question 1, donc \\(f=0\\). \\((\\cdot|\\cdot)\\) est donc un produit scalaire sur \\(E\\).</p><p><b>3.</b> Par l'inégalité de Cauchy-Schwarz appliquée à \\(f(x)=\\sqrt{x}\\) et \\(g(x)=e^{-x}\\) sur \\([0,1]\\) : \\(\\left(\\int_0^1 \\sqrt{x}\\,e^{-x}\\,dx\\right)^2 \\leq \\left(\\int_0^1 x\\,dx\\right)\\left(\\int_0^1 e^{-2x}\\,dx\\right) = \\dfrac12 \\cdot \\dfrac{1-e^{-2}}{2} = \\dfrac{1-e^{-2}}{4}\\). D'où \\(\\displaystyle\\int_0^1 \\sqrt{x}\\,e^{-x}\\,dx \\leq \\dfrac{1}{2}\\sqrt{1-e^{-2}}\\).</p>"
+}

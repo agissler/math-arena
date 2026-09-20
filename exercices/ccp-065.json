@@ -1,0 +1,18 @@
+{
+  "id": "ccp-065",
+  "title": "Morphisme d'évaluation et polynômes annulateurs",
+  "domain": "Algèbre",
+  "chapter": 21,
+  "level": "MP",
+  "cadence": "Standard · 20 min",
+  "difficulty": 3,
+  "statement": "Soit \\(u\\) un endomorphisme d'un espace vectoriel \\(E\\) sur le corps \\(\\mathbb{K}\\) (\\(=\\mathbb{R}\\) ou \\(\\mathbb{C}\\)). On note \\(\\mathbb{K}[X]\\) l'ensemble des polynômes à coefficients dans \\(\\mathbb{K}\\).",
+  "questions": [
+    "Démontrer que \\(\\forall (P,Q) \\in \\mathbb{K}[X] \\times \\mathbb{K}[X],\\ (PQ)(u) = P(u) \\circ Q(u)\\).",
+    "Démontrer que \\(\\forall (P,Q) \\in \\mathbb{K}[X] \\times \\mathbb{K}[X],\\ P(u) \\circ Q(u) = Q(u) \\circ P(u)\\). Démontrer que pour tout \\((P,Q) \\in \\mathbb{K}[X] \\times \\mathbb{K}[X]\\) : (\\(P\\) polynôme annulateur de \\(u\\)) \\(\\Rightarrow\\) (\\(PQ\\) polynôme annulateur de \\(u\\)).",
+    "Soit \\(A = \\begin{pmatrix} -1 & -2 \\\\ 1 & 2 \\end{pmatrix}\\). Écrire le polynôme caractéristique de \\(A\\), puis en déduire que le polynôme \\(R = X^4+2X^3+X^2-4X\\) est un polynôme annulateur de \\(A\\)."
+  ],
+  "hint": "Pour la question 3, factorisez R par le polynôme caractéristique de A (via Cayley-Hamilton) et utilisez le résultat de la question 2.",
+  "grading_context": "(1) Vérification directe sur les monômes (X^i)(X^j)=X^{i+j} correspond à u^i∘u^j=u^{i+j}, puis extension par bilinéarité. (2) P(u) et Q(u) sont des polynômes en le même endomorphisme u, donc commutent (cas particulier de (1) avec PQ=QP dans K[X] commutatif). Si P annule u (P(u)=0), alors (PQ)(u)=P(u)∘Q(u)=0∘Q(u)=0 : PQ annule u. (3) χ_A(λ)=(-1-λ)(2-λ)+2=λ²-λ, donc par Cayley-Hamilton A²-A=0, i.e. X²-X annule A. Factoriser R=X⁴+2X³+X²-4X=X(X³+2X²+X-4)=X(X-1)(X²+3X+4)=(X²-X)(X²+3X+4) (vérifier que X=1 est racine de X³+2X²+X-4). Par la question 2, comme X²-X annule A, R=(X²-X)(X²+3X+4) annule aussi A.",
+  "correction": "<p><b>1.</b> Pour \\(P=\\sum a_iX^i\\), \\(Q=\\sum b_jX^j\\), \\(PQ=\\sum_{k}\\left(\\sum_{i+j=k}a_ib_j\\right)X^k\\), donc \\((PQ)(u)=\\sum_k\\left(\\sum_{i+j=k}a_ib_j\\right)u^k\\). D'autre part, \\(P(u)\\circ Q(u)=\\left(\\sum_i a_iu^i\\right)\\circ\\left(\\sum_j b_ju^j\\right)=\\sum_{i,j}a_ib_j\\,u^{i+j}\\) (par bilinéarité de la composition et \\(u^i\\circ u^j=u^{i+j}\\)), qui coïncide avec \\((PQ)(u)\\) en regroupant par \\(k=i+j\\).</p><p><b>2.</b> Comme \\(\\mathbb{K}[X]\\) est commutatif, \\(PQ=QP\\), donc par la question 1, \\(P(u)\\circ Q(u)=(PQ)(u)=(QP)(u)=Q(u)\\circ P(u)\\). Si \\(P\\) annule \\(u\\) (\\(P(u)=0\\)), alors \\((PQ)(u)=P(u)\\circ Q(u)=0\\circ Q(u)=0\\) : \\(PQ\\) annule aussi \\(u\\).</p><p><b>3.</b> \\(\\chi_A(\\lambda)=\\det(A-\\lambda I)=(-1-\\lambda)(2-\\lambda)-(-2)(1)=\\lambda^2-\\lambda-2+2=\\lambda^2-\\lambda\\). Par le théorème de Cayley-Hamilton, \\(\\chi_A(A)=A^2-A=0\\) : \\(X^2-X\\) annule \\(A\\). Factorisons \\(R\\) : \\(R=X(X^3+2X^2+X-4)\\) ; on vérifie que \\(X=1\\) est racine de \\(X^3+2X^2+X-4\\) (\\(1+2+1-4=0\\)), donc \\(X^3+2X^2+X-4=(X-1)(X^2+3X+4)\\), d'où \\(R=X(X-1)(X^2+3X+4)=(X^2-X)(X^2+3X+4)\\). Comme \\(X^2-X\\) annule \\(A\\), la question 2 (avec \\(P=X^2-X\\), \\(Q=X^2+3X+4\\)) donne que \\(R=(X^2-X)(X^2+3X+4)\\) annule également \\(A\\).</p>"
+}

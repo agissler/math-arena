@@ -1,0 +1,14 @@
+{
+  "id": "ccp-067",
+  "title": "Diagonalisabilité d'une matrice antisymétrique perturbée",
+  "domain": "Algèbre",
+  "chapter": 21,
+  "level": "MP",
+  "cadence": "Standard · 20 min",
+  "difficulty": 4,
+  "statement": "Soit la matrice \\(M = \\begin{pmatrix} 0 & a & c \\\\ b & 0 & c \\\\ b & -a & 0 \\end{pmatrix}\\) où \\(a,b,c\\) sont des réels.",
+  "followup": "\\(M\\) est-elle diagonalisable dans \\(\\mathcal{M}_3(\\mathbb{R})\\) ? \\(M\\) est-elle diagonalisable dans \\(\\mathcal{M}_3(\\mathbb{C})\\) ?",
+  "hint": "Calculez le polynôme caractéristique de M : il se met sous la forme -λ(λ²-k) pour un certain réel k dépendant de a,b,c.",
+  "grading_context": "Calcul : χ_M(λ)=-λ³+λ(ab+bc-ac)=-λ(λ²-k) avec k=ab+bc-ac. Valeurs propres : 0, √k, -√k. Si k>0 : 3 valeurs propres réelles distinctes, diagonalisable dans M3(R) (et donc dans M3(C)). Si k=0 : seule valeur propre 0 (triple) ; M diagonalisable ssi M=0 (une matrice diagonalisable de seule valeur propre 0 est nulle) ; donc non diagonalisable (ni sur R ni sur C) dès que (a,b,c)≠(0,0,0). Si k<0 : valeurs propres 0, i√(-k), -i√(-k), trois valeurs propres distinctes mais deux non réelles : non diagonalisable dans M3(R) (une matrice réelle diagonalisable sur R a toutes ses valeurs propres réelles), mais diagonalisable dans M3(C) (valeurs propres distinctes).",
+  "correction": "<p>Calcul du polynôme caractéristique (développement du déterminant \\(M-\\lambda I\\)) : \\(\\chi_M(\\lambda) = -\\lambda^3 + \\lambda(ab+bc-ac) = -\\lambda\\big(\\lambda^2-k\\big)\\), où l'on pose \\(k=ab+bc-ac\\). Les valeurs propres sont donc \\(0\\), \\(\\sqrt{k}\\) et \\(-\\sqrt{k}\\) (au sens complexe si \\(k<0\\)).</p><p><b>Si \\(k>0\\) :</b> trois valeurs propres réelles deux à deux distinctes \\((0,\\sqrt k,-\\sqrt k)\\) : \\(M\\) est diagonalisable dans \\(\\mathcal{M}_3(\\mathbb{R})\\) (donc aussi dans \\(\\mathcal{M}_3(\\mathbb{C})\\)).</p><p><b>Si \\(k=0\\) :</b> \\(0\\) est l'unique valeur propre, de multiplicité \\(3\\). Une matrice diagonalisable n'ayant que \\(0\\) pour valeur propre est nécessairement nulle. Donc, dès que \\((a,b,c)\\neq(0,0,0)\\), \\(M\\) n'est diagonalisable ni dans \\(\\mathcal{M}_3(\\mathbb{R})\\) ni dans \\(\\mathcal{M}_3(\\mathbb{C})\\).</p><p><b>Si \\(k<0\\) :</b> les valeurs propres sont \\(0\\), \\(i\\sqrt{-k}\\), \\(-i\\sqrt{-k}\\), deux non réelles. Une matrice réelle diagonalisable dans \\(\\mathcal{M}_3(\\mathbb{R})\\) a nécessairement toutes ses valeurs propres réelles : \\(M\\) n'est donc pas diagonalisable dans \\(\\mathcal{M}_3(\\mathbb{R})\\). En revanche, les trois valeurs propres complexes sont distinctes, donc \\(M\\) est diagonalisable dans \\(\\mathcal{M}_3(\\mathbb{C})\\).</p>"
+}

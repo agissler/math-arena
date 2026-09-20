@@ -1,0 +1,17 @@
+{
+  "id": "ccp-036",
+  "title": "Continuité des applications linéaires",
+  "domain": "Analyse",
+  "chapter": 23,
+  "level": "MP",
+  "cadence": "Standard · 15 min",
+  "difficulty": 3,
+  "statement": "Soient \\(E\\), \\(F\\) deux espaces vectoriels normés sur \\(\\mathbb{R}\\).",
+  "questions": [
+    "Démontrer que si \\(f\\) est une application linéaire de \\(E\\) dans \\(F\\), les propositions \\(P_1\\) : « \\(f\\) est continue sur \\(E\\) », \\(P_2\\) : « \\(f\\) est continue en \\(0_E\\) » et \\(P_3\\) : « \\(\\exists k>0,\\ \\forall x \\in E,\\ \\|f(x)\\| \\leq k\\|x\\| \\) » sont équivalentes.",
+    "Soit \\(E\\) l'espace vectoriel des applications continues de \\([0,1]\\) dans \\(\\mathbb{R}\\) muni de la norme définie par \\(\\|f\\| = \\sup_{x\\in[0,1]} |f(x)|\\). On considère l'application \\(\\varphi\\) de \\(E\\) dans \\(\\mathbb{R}\\) définie par \\(\\varphi(f) = \\int_0^1 f(t)\\,dt\\). Démontrer que \\(\\varphi\\) est linéaire et continue."
+  ],
+  "hint": "Pour (P3⇒P1), écrivez f(x)-f(a)=f(x-a) et majorez par k||x-a||.",
+  "grading_context": "(1) (P1⇒P2) trivial. (P2⇒P3) : continuité en 0 donne, pour ε=1, un η>0 tel que ||x||≤η ⇒ ||f(x)||≤1 ; pour x≠0 quelconque, appliquer ceci à ηx/||x|| donne ||f(x)||≤(1/η)||x||, d'où k=1/η. (P3⇒P1) : f(x)-f(a)=f(x-a) par linéarité, donc ||f(x)-f(a)||≤k||x-a||, qui tend vers 0 quand x→a : f est k-lipschitzienne donc continue partout. (2) φ est linéaire par linéarité de l'intégrale. |φ(f)|=|∫f|≤∫|f|≤∫||f||=||f|| (f continue bornée par sa norme sup sur [0,1] de longueur 1), donc φ est continue par le critère P3 avec k=1 (φ linéaire de E dans R, majorée par ||f||).",
+  "correction": "<p><b>1.</b> (\\(P_1\\Rightarrow P_2\\)) Immédiat (continuité en un point particulier). (\\(P_2\\Rightarrow P_3\\)) Par continuité en \\(0_E\\) (et \\(f(0_E)=0\\) par linéarité), il existe \\(\\eta>0\\) tel que \\(\\|x\\|\\leq\\eta \\Rightarrow \\|f(x)\\|\\leq1\\). Pour \\(x\\neq0\\) quelconque, posons \\(u=\\eta x/\\|x\\|\\), de norme \\(\\eta\\) : \\(\\|f(u)\\|\\leq1\\), soit \\(\\frac{\\eta}{\\|x\\|}\\|f(x)\\|\\leq1\\) (linéarité), d'où \\(\\|f(x)\\|\\leq\\frac{1}{\\eta}\\|x\\|\\). On prend \\(k=1/\\eta\\) (valable aussi pour \\(x=0\\)). (\\(P_3\\Rightarrow P_1\\)) Pour \\(x,a\\in E\\), \\(f(x)-f(a)=f(x-a)\\) par linéarité, donc \\(\\|f(x)-f(a)\\|\\leq k\\|x-a\\|\\) : \\(f\\) est \\(k\\)-lipschitzienne, donc continue en tout point \\(a\\).</p><p><b>2.</b> \\(\\varphi\\) est linéaire par linéarité de l'intégrale : \\(\\varphi(\\lambda f+\\mu g)=\\lambda\\varphi(f)+\\mu\\varphi(g)\\). De plus \\(|\\varphi(f)|=\\left|\\int_0^1 f(t)\\,dt\\right| \\leq \\int_0^1 |f(t)|\\,dt \\leq \\int_0^1 \\|f\\|\\,dt = \\|f\\|\\) (car \\(|f(t)|\\leq\\|f\\|\\) pour tout \\(t\\)). Par le critère \\(P_3\\) (ici \\(k=1\\), \\(F=\\mathbb{R}\\)), \\(\\varphi\\) est continue.</p>"
+}

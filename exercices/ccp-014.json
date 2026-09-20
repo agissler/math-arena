@@ -1,0 +1,18 @@
+{
+  "id": "ccp-014",
+  "title": "Intégration terme à terme d'une série de fonctions",
+  "domain": "Analyse",
+  "chapter": 25,
+  "level": "MP",
+  "cadence": "Standard · 20 min",
+  "difficulty": 3,
+  "statement": "Soient \\(a\\) et \\(b\\) deux réels donnés avec \\(a<b\\). Soit \\((f_n)_{n\\in\\mathbb{N}}\\) une suite de fonctions continues sur \\([a,b]\\), à valeurs réelles.",
+  "questions": [
+    "Démontrer que si la suite \\((f_n)_{n\\in\\mathbb{N}}\\) converge uniformément sur \\([a,b]\\) vers \\(f\\), alors la suite \\(\\left(\\int_a^b f_n(x)\\,dx\\right)_{n\\in\\mathbb{N}}\\) converge vers \\(\\int_a^b f(x)\\,dx\\).",
+    "Justifier comment ce résultat peut être utilisé dans le cas des séries de fonctions.",
+    "Démontrer que \\(\\displaystyle\\int_0^{1/2} \\left(\\sum_{n=0}^{+\\infty} x^n\\right) dx = \\sum_{n=1}^{+\\infty} \\dfrac{1}{n2^n}\\)."
+  ],
+  "hint": "Pour la question 3, utilisez la convergence normale de la série géométrique sur [0,1/2] pour justifier l'intégration terme à terme, puis calculez aussi l'intégrale directement via 1/(1-x).",
+  "grading_context": "(1) |∫fn-∫f|≤∫|fn-f|≤(b-a)sup|fn-f|→0. (2) Si Σun converge uniformément sur [a,b] (un continues), la suite des sommes partielles Sn=Σ_{k=0}^n uk converge uniformément vers S=Σuk ; par (1), ∫Sn→∫S, i.e. Σ_{k=0}^n ∫uk → ∫S : on peut intégrer terme à terme. (3) La série géométrique Σx^n converge normalement sur [0,1/2] (|x^n|≤(1/2)^n, Σ(1/2)^n convergente), donc on intègre terme à terme : ∫₀^{1/2}Σx^n dx=Σ∫₀^{1/2}x^n dx=Σ(1/2)^{n+1}/(n+1)=Σ_{m≥1}1/(m2^m). D'autre part, Σx^n=1/(1-x) sur [0,1/2[, et ∫₀^{1/2}dx/(1-x)=[-ln(1-x)]₀^{1/2}=ln2. Donc Σ_{n≥1}1/(n2^n)=ln2, ce qui établit l'égalité demandée (les deux membres valent ln2).",
+  "correction": "<p><b>1.</b> \\(\\left|\\int_a^b f_n - \\int_a^b f\\right| = \\left|\\int_a^b (f_n-f)\\right| \\leq \\int_a^b |f_n-f| \\leq (b-a)\\sup_{[a,b]}|f_n-f|\\), majorant qui tend vers \\(0\\) par convergence uniforme. Donc \\(\\int_a^b f_n \\to \\int_a^b f\\).</p><p><b>2.</b> Si \\(\\sum u_n\\) converge uniformément sur \\([a,b]\\) (les \\(u_n\\) étant continues), la suite des sommes partielles \\(S_n=\\sum_{k=0}^n u_k\\) converge uniformément vers \\(S=\\sum_{k=0}^{+\\infty}u_k\\). En appliquant la question 1 à \\((S_n)\\), \\(\\int_a^b S_n \\to \\int_a^b S\\), c'est-à-dire \\(\\sum_{k=0}^n \\int_a^b u_k \\to \\int_a^b S\\) : on peut donc intégrer terme à terme, \\(\\int_a^b \\left(\\sum_{k=0}^{+\\infty} u_k\\right) = \\sum_{k=0}^{+\\infty} \\int_a^b u_k\\).</p><p><b>3.</b> Sur \\([0,1/2]\\), \\(|x^n|\\leq(1/2)^n\\) et \\(\\sum(1/2)^n\\) converge : la série géométrique \\(\\sum x^n\\) converge normalement, donc uniformément, sur \\([0,1/2]\\). Par la question 2 : \\(\\int_0^{1/2}\\left(\\sum_{n=0}^{+\\infty}x^n\\right)dx = \\sum_{n=0}^{+\\infty}\\int_0^{1/2}x^n\\,dx = \\sum_{n=0}^{+\\infty}\\dfrac{(1/2)^{n+1}}{n+1} = \\sum_{m=1}^{+\\infty}\\dfrac{1}{m\\,2^m}\\) (changement d'indice \\(m=n+1\\)). D'autre part, \\(\\sum_{n=0}^{+\\infty}x^n=\\dfrac{1}{1-x}\\) sur \\([0,1/2]\\), donc \\(\\int_0^{1/2}\\dfrac{dx}{1-x} = \\big[-\\ln(1-x)\\big]_0^{1/2} = \\ln 2\\). En combinant les deux calculs de la même intégrale : \\(\\displaystyle\\sum_{n=1}^{+\\infty}\\dfrac{1}{n2^n} = \\ln 2 = \\int_0^{1/2}\\left(\\sum_{n=0}^{+\\infty}x^n\\right)dx\\), ce qui est l'égalité demandée.</p>"
+}

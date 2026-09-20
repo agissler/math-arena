@@ -1,0 +1,19 @@
+{
+  "id": "ccp-060",
+  "title": "Noyau et image de M ↦ AM",
+  "domain": "Algèbre",
+  "chapter": 12,
+  "level": "MP",
+  "cadence": "Standard · 15 min",
+  "difficulty": 3,
+  "statement": "Soit la matrice \\(A = \\begin{pmatrix} 1 & 2 \\\\ 2 & 4 \\end{pmatrix}\\) et \\(f\\) l'endomorphisme de \\(\\mathcal{M}_2(\\mathbb{R})\\) défini par \\(f(M) = AM\\).",
+  "questions": [
+    "Déterminer \\(\\ker f\\).",
+    "\\(f\\) est-il surjectif ?",
+    "Trouver une base de \\(\\mathrm{Im}\\,f\\).",
+    "A-t-on \\(\\mathcal{M}_2(\\mathbb{R}) = \\ker f \\oplus \\mathrm{Im}\\,f\\) ?"
+  ],
+  "hint": "AM=0 signifie que chaque colonne de M est dans le noyau de A (vu comme application linéaire de R² dans R²).",
+  "grading_context": "A est de rang 1 (lignes proportionnelles), donc son noyau (comme application R²→R²) est la droite engendrée par (-2,1), et son image la droite engendrée par (1,2). AM=0 ssi chaque colonne de M est dans Ker(A) : ker f est donc l'ensemble des matrices dont les deux colonnes sont proportionnelles à (-2,1), de dimension 2, base {[[-2,0],[1,0]], [[0,-2],[0,1]]}. De même Im f = matrices dont les deux colonnes sont dans Im(A)=Vect(1,2), dimension 2, base {[[1,0],[2,0]], [[0,1],[0,2]]}. f n'est pas surjectif car rg f=2≠4=dim M2(R). Comme Ker(A) et Im(A) sont deux droites distinctes de R² (non proportionnelles), Ker f ∩ Im f = {0}, et dim Ker f + dim Im f = 2+2=4=dim M2(R) : la somme est directe et égale à M2(R).",
+  "correction": "<p>\\(A\\) est de rang 1 : \\(\\ker A = \\mathrm{Vect}(-2,1)\\) et \\(\\mathrm{Im}\\,A = \\mathrm{Vect}(1,2)\\) dans \\(\\mathbb{R}^2\\).</p><p><b>1.</b> \\(AM=0\\) signifie que chaque colonne de \\(M\\) appartient à \\(\\ker A\\). Donc \\(\\ker f = \\{M : \\text{colonnes de } M \\in \\mathrm{Vect}(-2,1)\\}\\), de dimension 2, engendré par \\(M_1=\\begin{pmatrix}-2&0\\\\1&0\\end{pmatrix}\\) et \\(M_2=\\begin{pmatrix}0&-2\\\\0&1\\end{pmatrix}\\).</p><p><b>2.</b> \\(\\dim\\ker f = 2\\), donc par le théorème du rang, \\(\\mathrm{rg}\\,f = 4-2=2 \\neq 4 = \\dim\\mathcal{M}_2(\\mathbb{R})\\) : \\(f\\) n'est pas surjectif.</p><p><b>3.</b> \\(\\mathrm{Im}\\,f\\) est l'ensemble des matrices dont chaque colonne est dans \\(\\mathrm{Im}\\,A=\\mathrm{Vect}(1,2)\\), engendré par \\(N_1=\\begin{pmatrix}1&0\\\\2&0\\end{pmatrix}\\) et \\(N_2=\\begin{pmatrix}0&1\\\\0&2\\end{pmatrix}\\), qui en forment une base (dimension 2, cohérent avec le théorème du rang).</p><p><b>4.</b> \\(\\ker A=\\mathrm{Vect}(-2,1)\\) et \\(\\mathrm{Im}\\,A=\\mathrm{Vect}(1,2)\\) sont deux droites distinctes de \\(\\mathbb{R}^2\\) (non proportionnelles), donc leur intersection est réduite à \\(\\{0\\}\\) ; il en résulte que \\(\\ker f \\cap \\mathrm{Im}\\,f=\\{0\\}\\) (une matrice dans les deux aurait ses colonnes simultanément dans \\(\\ker A\\) et \\(\\mathrm{Im}\\,A\\), donc nulles). Comme \\(\\dim\\ker f+\\dim\\mathrm{Im}\\,f=2+2=4=\\dim\\mathcal{M}_2(\\mathbb{R})\\), on a bien \\(\\mathcal{M}_2(\\mathbb{R})=\\ker f\\oplus\\mathrm{Im}\\,f\\).</p>"
+}

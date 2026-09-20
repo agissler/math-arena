@@ -1,0 +1,18 @@
+{
+  "id": "ccp-112",
+  "title": "Dénombrement de couples et triplets de parties",
+  "domain": "Probabilités",
+  "chapter": 16,
+  "level": "MP",
+  "cadence": "Standard · 20 min",
+  "difficulty": 3,
+  "statement": "Soit \\(n \\in \\mathbb{N}^*\\) et \\(E\\) un ensemble possédant \\(n\\) éléments. On désigne par \\(\\mathcal{P}(E)\\) l'ensemble des parties de \\(E\\).",
+  "questions": [
+    "Déterminer le nombre \\(a\\) de couples \\((A,B) \\in (\\mathcal{P}(E))^2\\) tels que \\(A \\subset B\\).",
+    "Déterminer le nombre \\(b\\) de couples \\((A,B) \\in (\\mathcal{P}(E))^2\\) tels que \\(A \\cap B = \\emptyset\\).",
+    "Déterminer le nombre \\(c\\) de triplets \\((A,B,C) \\in (\\mathcal{P}(E))^3\\) tels que \\(A, B\\) et \\(C\\) soient deux à deux disjoints et vérifient \\(A \\cup B \\cup C = E\\)."
+  ],
+  "hint": "Dans chaque cas, raisonnez élément par élément : combien de « statuts » possibles a chaque élément de E vis-à-vis de (A,B) ou (A,B,C) ?",
+  "grading_context": "(1) A⊂B : chaque élément de E a 3 statuts possibles (hors de B donc hors de A ; dans B\\A ; dans A donc dans B), indépendamment pour chaque élément : a=3^n. (2) A∩B=∅ : chaque élément a 3 statuts (hors des deux, dans A seul, dans B seul), donc b=3^n. (3) A,B,C deux à deux disjoints de réunion E : chaque élément appartient à exactement l'un des trois ensembles, soit 3 choix par élément : c=3^n. Les trois réponses sont égales à 3^n.",
+  "correction": "<p><b>1.</b> La condition \\(A\\subset B\\) équivaut, pour chaque élément \\(x\\in E\\), à l'un des 3 statuts indépendants : \\(x\\notin B\\) (donc \\(x\\notin A\\)), \\(x\\in B\\setminus A\\), ou \\(x\\in A\\) (donc \\(x\\in B\\)). Ces \\(3\\) choix étant indépendants pour chacun des \\(n\\) éléments, \\(a=3^n\\).</p><p><b>2.</b> La condition \\(A\\cap B=\\emptyset\\) équivaut, pour chaque \\(x\\in E\\), à l'un des 3 statuts : \\(x\\notin A\\cup B\\), \\(x\\in A\\) seul, ou \\(x\\in B\\) seul (ne peut être dans les deux). D'où \\(b=3^n\\).</p><p><b>3.</b> La condition « \\(A,B,C\\) deux à deux disjoints et \\(A\\cup B\\cup C=E\\) » signifie que chaque élément de \\(E\\) appartient à exactement l'un des trois ensembles \\(A\\), \\(B\\) ou \\(C\\) : 3 choix indépendants par élément, d'où \\(c=3^n\\).</p><p>Les trois réponses coïncident : \\(a=b=c=3^n\\).</p>"
+}

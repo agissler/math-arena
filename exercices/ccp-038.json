@@ -1,0 +1,17 @@
+{
+  "id": "ccp-038",
+  "title": "Normes sur R[X] et équivalence en dimension finie",
+  "domain": "Analyse",
+  "chapter": 23,
+  "level": "MP",
+  "cadence": "Standard · 20 min",
+  "difficulty": 4,
+  "statement": "On note \\(\\mathbb{R}[X]\\) l'espace vectoriel des polynômes à coefficients réels. Pour \\(P = \\sum_{i=0}^n a_i X^i \\in \\mathbb{R}[X]\\) (avec \\(n \\geq \\deg P\\)), on pose \\(N_1(P) = \\sum_{i=0}^n |a_i|\\) et \\(N_\\infty(P) = \\max_{0\\leq i\\leq n} |a_i|\\).",
+  "questions": [
+    "Démontrer que \\(N_1\\) et \\(N_\\infty\\) sont des normes sur \\(\\mathbb{R}[X]\\). Démontrer que tout ouvert pour la norme \\(N_\\infty\\) est un ouvert pour la norme \\(N_1\\). Démontrer que les normes \\(N_1\\) et \\(N_\\infty\\) ne sont pas équivalentes.",
+    "On note \\(\\mathbb{R}_k[X]\\) le sous-espace vectoriel de \\(\\mathbb{R}[X]\\) constitué par les polynômes de degré inférieur ou égal à \\(k\\). On note \\(N_1'\\) la restriction de \\(N_1\\) à \\(\\mathbb{R}_k[X]\\) et \\(N_\\infty'\\) la restriction de \\(N_\\infty\\) à \\(\\mathbb{R}_k[X]\\). Les normes \\(N_1'\\) et \\(N_\\infty'\\) sont-elles équivalentes ?"
+  ],
+  "hint": "Pour la non-équivalence sur R[X] tout entier, considérez les polynômes 1+X+...+X^n. Pour la question 2, pensez au théorème d'équivalence des normes en dimension finie.",
+  "grading_context": "N1, N∞ sont des normes usuelles sur les coordonnées (analogues aux normes 1 et infini sur les suites à support fini). Comme N∞(P)≤N1(P) toujours, tout ouvert pour N∞ est ouvert pour N1 (même argument d'inclusion de boules que l'exercice précédent, avec les rôles échangés). Non-équivalence sur R[X] (dimension infinie) : Pn=1+X+...+Xⁿ a N∞(Pn)=1 mais N1(Pn)=n+1→∞, donc pas de constante C avec N1≤C·N∞. En revanche, sur Rk[X] qui est de dimension finie (k+1), le théorème d'équivalence des normes en dimension finie s'applique directement : N1' et N∞' sont équivalentes.",
+  "correction": "<p><b>1.</b> \\(N_1\\) et \\(N_\\infty\\) vérifient les axiomes de norme comme les normes 1 et infini usuelles sur les suites de coefficients (à support fini) : positivité, séparation (un polynôme est nul ssi tous ses coefficients sont nuls), homogénéité et inégalité triangulaire immédiates coefficient par coefficient. Comme \\(N_\\infty(P)=\\max_i|a_i|\\leq\\sum_i|a_i|=N_1(P)\\), le même argument d'inclusion de boules que dans l'exercice précédent (avec les rôles de \\(N_1\\) et \\(N_\\infty\\) échangés) montre que tout ouvert pour \\(N_\\infty\\) est ouvert pour \\(N_1\\). Pour la non-équivalence : posons \\(P_n=1+X+\\cdots+X^n\\) ; \\(N_\\infty(P_n)=1\\) pour tout \\(n\\), tandis que \\(N_1(P_n)=n+1\\to+\\infty\\). Le rapport \\(N_1(P_n)/N_\\infty(P_n)=n+1\\to+\\infty\\) : aucune constante \\(C\\) ne peut vérifier \\(N_1\\leq C\\,N_\\infty\\) sur \\(\\mathbb{R}[X]\\) tout entier, donc les normes ne sont pas équivalentes.</p><p><b>2.</b> \\(\\mathbb{R}_k[X]\\) est un espace vectoriel de dimension finie \\(k+1\\). Or, en dimension finie, toutes les normes sont équivalentes (théorème du cours). Donc \\(N_1'\\) et \\(N_\\infty'\\) sont équivalentes sur \\(\\mathbb{R}_k[X]\\), bien que \\(N_1\\) et \\(N_\\infty\\) ne le soient pas sur \\(\\mathbb{R}[X]\\) tout entier (qui est de dimension infinie) : ceci illustre que l'équivalence des normes est un phénomène propre à la dimension finie.</p>"
+}

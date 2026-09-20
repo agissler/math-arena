@@ -1,0 +1,17 @@
+{
+  "id": "ccp-070",
+  "title": "Éléments propres d'une matrice de permutation et de ses polynômes",
+  "domain": "Algèbre",
+  "chapter": 21,
+  "level": "MP",
+  "cadence": "Standard · 20 min",
+  "difficulty": 4,
+  "statement": "Soit \\(A = \\begin{pmatrix} 0 & 0 & 1 \\\\ 1 & 0 & 0 \\\\ 0 & 1 & 0 \\end{pmatrix} \\in \\mathcal{M}_3(\\mathbb{C})\\).",
+  "questions": [
+    "Déterminer les valeurs propres et les vecteurs propres de \\(A\\). \\(A\\) est-elle diagonalisable ?",
+    "Soit \\((a,b,c) \\in \\mathbb{C}^3\\) et \\(B = aI_3 + bA + cA^2\\), où \\(I_3\\) désigne la matrice identité d'ordre 3. Déduire de la question 1 les éléments propres de \\(B\\)."
+  ],
+  "hint": "A vérifie A³=I3 (c'est une matrice de permutation cyclique) : ses valeurs propres sont les racines cubiques de l'unité.",
+  "grading_context": "A(x,y,z)=(z,x,y), et A³=I3. Les valeurs propres sont les racines cubiques de l'unité 1,j,j² (j=e^{2iπ/3}), toutes distinctes donc A diagonalisable dans M3(C). Pour ω∈{1,j,j²}, résoudre A(x,y,z)=ω(x,y,z) donne le vecteur propre (ω²,ω,1) (à un scalaire près). B est un polynôme en A, donc a les mêmes vecteurs propres que A, avec pour valeurs propres a+bω+cω² pour chaque racine cubique ω.",
+  "correction": "<p><b>1.</b> \\(A(x,y,z)=(z,x,y)\\), et on vérifie \\(A^3=I_3\\) (c'est la matrice de la permutation cyclique \\((1\\,2\\,3)\\)). Les valeurs propres de \\(A\\) sont donc à chercher parmi les racines cubiques de l'unité \\(1, j, j^2\\) (\\(j=e^{2i\\pi/3}\\)) ; en résolvant \\(A(x,y,z)=\\omega(x,y,z)\\) pour \\(\\omega\\in\\{1,j,j^2\\}\\) (système \\(z=\\omega x, x=\\omega y, y=\\omega z\\)), on trouve le vecteur propre \\(v_\\omega=(\\omega^2,\\omega,1)\\) (à un scalaire près), non nul. Les trois valeurs propres \\(1,j,j^2\\) sont distinctes : \\(A\\) est diagonalisable dans \\(\\mathcal{M}_3(\\mathbb{C})\\), de vecteurs propres \\(v_1=(1,1,1)\\), \\(v_j=(j^2,j,1)\\), \\(v_{j^2}=(j,j^2,1)\\).</p><p><b>2.</b> \\(B\\) est un polynôme en \\(A\\) (\\(B=aI_3+bA+cA^2\\)), donc \\(B\\) admet les mêmes vecteurs propres que \\(A\\) : pour tout vecteur propre \\(v_\\omega\\) de \\(A\\) associé à \\(\\omega\\) (\\(Av_\\omega=\\omega v_\\omega\\), donc \\(A^2v_\\omega=\\omega^2 v_\\omega\\)), on a \\(Bv_\\omega=(a+b\\omega+c\\omega^2)v_\\omega\\). Les éléments propres de \\(B\\) sont donc : vecteur propre \\(v_1=(1,1,1)\\) pour la valeur propre \\(a+b+c\\) ; \\(v_j=(j^2,j,1)\\) pour \\(a+bj+cj^2\\) ; \\(v_{j^2}=(j,j^2,1)\\) pour \\(a+bj^2+cj\\).</p>"
+}

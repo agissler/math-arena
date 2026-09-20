@@ -1,0 +1,18 @@
+{
+  "id": "ccp-087",
+  "title": "Interpolation de Lagrange",
+  "domain": "Algèbre",
+  "chapter": 10,
+  "level": "MP",
+  "cadence": "Standard · 20 min",
+  "difficulty": 3,
+  "statement": "Soient \\(a_0, a_1, \\ldots, a_n\\) \\(n+1\\) réels deux à deux distincts.",
+  "questions": [
+    "Montrer que si \\(b_0, b_1, \\ldots, b_n\\) sont \\(n+1\\) réels quelconques, alors il existe un unique polynôme \\(P\\) vérifiant \\(\\deg P \\leq n\\) et \\(\\forall i \\in [\\![0,n]\\!],\\ P(a_i) = b_i\\).",
+    "Soit \\(k \\in [\\![0,n]\\!]\\). Expliciter ce polynôme \\(P\\), que l'on notera \\(L_k\\), lorsque \\(b_i = 0\\) si \\(i \\neq k\\) et \\(b_i=1\\) si \\(i=k\\).",
+    "Prouver que \\(\\forall p \\in [\\![0,n]\\!],\\ \\sum_{k=0}^n a_k^p L_k = X^p\\)."
+  ],
+  "hint": "Pour la question 1, considérez l'application linéaire Φ: P↦(P(a0),...,P(an)) entre deux espaces de même dimension finie, et montrez qu'elle est injective.",
+  "grading_context": "(1) L'application Φ:R_n[X]→R^{n+1}, P↦(P(a0),...,P(an)) est linéaire entre deux espaces de dimension n+1. Elle est injective : si P(ai)=0 pour n+1 valeurs distinctes ai et deg P≤n, alors P a plus de racines que son degré, donc P=0. Étant injective entre espaces de même dimension finie, Φ est bijective : existence et unicité de P pour tout (b0,...,bn). (2) Lk(X)=∏_{i≠k} (X-ai)/(ak-ai) : polynôme de degré n s'annulant en tous les ai (i≠k) et valant 1 en ak. (3) Les deux membres sont des polynômes de degré ≤n ; ils coïncident en chaque aj (j=0..n) car Lk(aj)=δ_{kj} (1 si k=j, 0 sinon), donc LHS(aj)=aj^p=RHS(aj). Deux polynômes de degré ≤n coïncidant en n+1 points distincts sont égaux (unicité de la question 1), d'où l'égalité.",
+  "correction": "<p><b>1.</b> Considérons \\(\\Phi : \\mathbb{R}_n[X] \\to \\mathbb{R}^{n+1}\\), \\(P \\mapsto (P(a_0),\\ldots,P(a_n))\\), application linéaire entre deux espaces vectoriels de même dimension finie \\(n+1\\). Elle est injective : si \\(P \\in \\ker\\Phi\\), \\(P\\) admet les \\(n+1\\) racines distinctes \\(a_0,\\ldots,a_n\\) tout en étant de degré \\(\\leq n\\), donc \\(P=0\\) (un polynôme non nul de degré \\(\\leq n\\) a au plus \\(n\\) racines). Une application linéaire injective entre espaces de même dimension finie est bijective : pour tout \\((b_0,\\ldots,b_n)\\), il existe un unique \\(P\\) tel que \\(\\Phi(P)=(b_0,\\ldots,b_n)\\).</p><p><b>2.</b> \\(L_k(X) = \\displaystyle\\prod_{i\\neq k} \\frac{X-a_i}{a_k-a_i}\\) : ce polynôme de degré \\(n\\) s'annule en chaque \\(a_i\\) (\\(i\\neq k\\)) et vaut \\(1\\) en \\(a_k\\), donc réalise exactement les valeurs demandées.</p><p><b>3.</b> Notons \\(L_k(a_j)=\\delta_{k,j}\\) (1 si \\(k=j\\), 0 sinon) par construction. Les deux membres \\(\\sum_k a_k^p L_k\\) et \\(X^p\\) sont des polynômes de degré \\(\\leq n\\) (car \\(p\\leq n\\) pour \\(X^p\\), et chaque \\(L_k\\) est de degré \\(n\\)). Évalués en \\(a_j\\) : \\(\\sum_k a_k^p L_k(a_j) = a_j^p\\) (seul le terme \\(k=j\\) survit), qui vaut exactement \\((X^p)(a_j)=a_j^p\\). Les deux polynômes coïncident donc aux \\(n+1\\) points distincts \\(a_0,\\ldots,a_n\\) : par l'unicité de la question 1 (appliquée à \\(b_j=a_j^p\\)), ils sont égaux : \\(\\sum_{k=0}^n a_k^p L_k = X^p\\).</p>"
+}

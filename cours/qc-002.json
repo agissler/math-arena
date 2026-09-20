@@ -1,0 +1,14 @@
+{
+  "id": "qc-002",
+  "title": "Idéaux de K[X]",
+  "domain": "Algèbre",
+  "chapter": 10,
+  "level": "MP",
+  "cadence": "Blitz · 10 min",
+  "difficulty": 3,
+  "statement": "Soit \\(\\mathbb{K}\\) un sous-corps de \\(\\mathbb{C}\\).",
+  "followup": "Énoncez la description des idéaux de l'anneau \\(\\mathbb{K}[X]\\), et démontrez-la.",
+  "hint": "Considérez, si l'idéal n'est pas réduit à {0}, un élément non nul de degré minimal.",
+  "grading_context": "Résultat attendu : tout idéal I de K[X] est de la forme (P)=P·K[X] pour un unique polynôme unitaire P (ou I={0}). Preuve : si I≠{0}, soit P un élément non nul de degré minimal dans I (unitaire, quitte à diviser par son coefficient dominant). Pour tout Q∈I, la division euclidienne de Q par P donne Q=SP+R avec deg R<deg P ; comme R=Q-SP∈I (I est un idéal, stable par combinaison), la minimalité de deg P force R=0, donc P divise Q : I⊂(P). Réciproquement (P)⊂I car P∈I et I est un idéal. Donc I=(P). Unicité de P (unitaire) : si (P)=(P'), P et P' sont associés donc égaux si unitaires.",
+  "correction": "<p><b>Énoncé.</b> Tout idéal \\(I\\) de \\(\\mathbb{K}[X]\\) est de la forme \\(I=(P)=P\\cdot\\mathbb{K}[X]\\) pour un unique polynôme unitaire \\(P\\) (avec la convention \\(I=\\{0\\}\\) si \\(P=0\\)) : on dit que \\(\\mathbb{K}[X]\\) est un anneau principal.</p><p><b>Démonstration.</b> Si \\(I=\\{0\\}\\), c'est trivial avec \\(P=0\\). Sinon, soit \\(P\\) un élément non nul de \\(I\\) de degré minimal parmi les éléments non nuls de \\(I\\) (que l'on choisit unitaire, quitte à le diviser par son coefficient dominant — encore dans \\(I\\) par stabilité par produit scalaire). Montrons \\(I=(P)\\).</p><p>\\((P)\\subset I\\) : immédiat, car \\(P\\in I\\) et \\(I\\), étant un idéal, est stable par multiplication par tout élément de \\(\\mathbb{K}[X]\\).</p><p>\\(I\\subset(P)\\) : soit \\(Q\\in I\\). Par division euclidienne, \\(Q=SP+R\\) avec \\(\\deg R<\\deg P\\) (ou \\(R=0\\)). Comme \\(R=Q-SP\\) et que \\(Q,P\\in I\\) avec \\(I\\) stable par combinaison \\(\\mathbb{K}[X]\\)-linéaire, \\(R\\in I\\). Par minimalité de \\(\\deg P\\) parmi les éléments non nuls de \\(I\\), on doit avoir \\(R=0\\) (sinon \\(R\\) serait un élément non nul de \\(I\\) de degré \\(<\\deg P\\)). Donc \\(Q=SP\\in(P)\\).</p><p>Ainsi \\(I=(P)\\). L'unicité du générateur unitaire découle du fait que deux générateurs d'un même idéal principal sont associés (se divisent mutuellement), donc égaux à un scalaire près, et unitaires impose l'égalité.</p>"
+}

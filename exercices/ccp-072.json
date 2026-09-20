@@ -1,0 +1,17 @@
+{
+  "id": "ccp-072",
+  "title": "Endomorphisme envoyant toute une base sur un même vecteur",
+  "domain": "Algèbre",
+  "chapter": 21,
+  "level": "MP",
+  "cadence": "Standard · 15 min",
+  "difficulty": 3,
+  "statement": "Soit \\(n\\) un entier naturel non nul. Soit \\(f\\) un endomorphisme d'un espace vectoriel \\(E\\) de dimension \\(n\\), et soit \\(e=(e_1,\\ldots,e_n)\\) une base de \\(E\\). On suppose que \\(f(e_1)=f(e_2)=\\cdots=f(e_n)=v\\), où \\(v\\) est un vecteur donné de \\(E\\).",
+  "questions": [
+    "Donner le rang de \\(f\\).",
+    "\\(f\\) est-il diagonalisable ? (discuter en fonction du vecteur \\(v\\))"
+  ],
+  "hint": "Écrivez v dans la base e : v=∑λi ei, et calculez f(v) pour voir si v est vecteur propre.",
+  "grading_context": "Im f = Vect(v) (image de tous les vecteurs de base = v). Si v=0, rg f=0 (f nul, trivialement diagonalisable). Si v≠0, rg f=1. Écrivons v=∑λi ei ; alors f(v)=∑λi f(ei)=∑λi v=(∑λi)v=Sv où S=∑λi. Si S≠0 : v est vecteur propre pour la valeur propre S, et ker f (dimension n-1 par le rang) est l'espace propre pour 0 ; comme v∉ker f (sinon Sv=0 donnerait S=0), les espaces propres 0 et S ont pour somme des dimensions (n-1)+1=n : f est diagonalisable. Si S=0 : f(v)=0 donc v∈ker f ; comme Im f=Vect(v)⊂ker f, f²=0 avec f≠0 (v≠0) : f est nilpotente non nulle, donc non diagonalisable (sa seule valeur propre serait 0, ce qui forcerait f=0).",
+  "correction": "<p><b>1.</b> \\(\\mathrm{Im}\\,f=\\mathrm{Vect}(f(e_1),\\ldots,f(e_n))=\\mathrm{Vect}(v)\\). Donc \\(\\mathrm{rg}(f)=0\\) si \\(v=0\\) (auquel cas \\(f=0\\)), et \\(\\mathrm{rg}(f)=1\\) si \\(v\\neq0\\).</p><p><b>2.</b> Si \\(v=0\\), \\(f=0\\) est trivialement diagonalisable. Supposons \\(v\\neq0\\) et écrivons \\(v=\\sum_{i=1}^n \\lambda_i e_i\\) dans la base \\(e\\). Alors \\(f(v)=\\sum_i \\lambda_i f(e_i)=\\sum_i \\lambda_i v = S\\,v\\), où \\(S=\\sum_i\\lambda_i\\).</p><p><u>Si \\(S\\neq0\\) :</u> \\(v\\) est vecteur propre de \\(f\\) pour la valeur propre \\(S\\). Comme \\(\\mathrm{rg}(f)=1\\), \\(\\dim\\ker f=n-1\\) (théorème du rang), et \\(v\\notin\\ker f\\) (sinon \\(Sv=f(v)=0\\) donnerait \\(S=0\\)). Les espaces propres associés à \\(0\\) (=\\(\\ker f\\), dimension \\(n-1\\)) et à \\(S\\) (=\\(\\mathrm{Vect}(v)\\), dimension \\(1\\)) ont une somme de dimensions égale à \\(n\\) : \\(f\\) est diagonalisable.</p><p><u>Si \\(S=0\\) :</u> \\(f(v)=0\\), donc \\(v\\in\\ker f\\), donc \\(\\mathrm{Im}\\,f=\\mathrm{Vect}(v)\\subset\\ker f\\), ce qui donne \\(f^2=0\\). Comme \\(f\\neq0\\) (\\(v\\neq0\\)), \\(f\\) est un endomorphisme nilpotent non nul : sa seule valeur propre possible est \\(0\\), et s'il était diagonalisable il serait semblable à la matrice nulle, donc nul — contradiction. \\(f\\) n'est donc pas diagonalisable dans ce cas.</p>"
+}

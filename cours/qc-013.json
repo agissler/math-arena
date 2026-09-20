@@ -1,0 +1,14 @@
+{
+  "id": "qc-013",
+  "title": "Inégalité de Taylor-Lagrange",
+  "domain": "Analyse",
+  "chapter": 26,
+  "level": "MP",
+  "cadence": "Blitz · 10 min",
+  "difficulty": 3,
+  "statement": "Soit \\(f\\) une fonction de classe \\(\\mathcal{C}^{n+1}\\) sur un intervalle \\(I\\), à valeurs dans un espace normé de dimension finie, et \\(a,x\\in I\\).",
+  "followup": "Énoncez l'inégalité de Taylor-Lagrange à l'ordre \\(n\\), et démontrez-la à partir de la formule de Taylor avec reste intégral.",
+  "hint": "Majorez le reste intégral en utilisant l'inégalité de la moyenne et une majoration de f^(n+1) par une constante M sur le segment.",
+  "grading_context": "Inégalité : si ||f^(n+1)|| ≤ M sur le segment [a,x] (ou [x,a]), alors ||f(x) - Σ_{k=0}^n (x-a)^k/k! f^(k)(a)|| ≤ M|x-a|^{n+1}/(n+1)!. Preuve : partant de la formule de Taylor avec reste intégral, le reste vaut ∫_a^x (x-t)^n/n! f^(n+1)(t)dt ; par l'inégalité de la moyenne (||∫f||≤∫||f||) : ||reste|| ≤ ∫_a^x |(x-t)^n/n!| ||f^(n+1)(t)|| dt ≤ M ∫_a^x |(x-t)^n/n!| dt = M|x-a|^{n+1}/(n+1)! (calcul direct de l'intégrale, en distinguant x≥a ou x<a pour le signe).",
+  "correction": "<p><b>Énoncé.</b> Si \\(\\|f^{(n+1)}(t)\\|\\leq M\\) pour tout \\(t\\) entre \\(a\\) et \\(x\\), alors \\[\\left\\|f(x)-\\sum_{k=0}^n\\frac{(x-a)^k}{k!}f^{(k)}(a)\\right\\| \\leq M\\,\\frac{|x-a|^{n+1}}{(n+1)!}.\\]</p><p><b>Démonstration.</b> D'après la formule de Taylor avec reste intégral, \\(f(x)-\\sum_{k=0}^n\\frac{(x-a)^k}{k!}f^{(k)}(a) = \\int_a^x \\frac{(x-t)^n}{n!}f^{(n+1)}(t)\\,dt\\). Par l'inégalité \\(\\left\\|\\int f\\right\\|\\leq\\int\\|f\\|\\) (valable pour \\(x\\geq a\\) ; pour \\(x<a\\) on applique le même argument à \\(-\\int_x^a\\)) :</p><p>\\[\\left\\|\\int_a^x \\frac{(x-t)^n}{n!}f^{(n+1)}(t)\\,dt\\right\\| \\leq \\left|\\int_a^x \\frac{|x-t|^n}{n!}\\|f^{(n+1)}(t)\\|\\,dt\\right| \\leq M\\left|\\int_a^x \\frac{|x-t|^n}{n!}\\,dt\\right|.\\]</p><p>Un calcul direct donne \\(\\left|\\int_a^x \\frac{|x-t|^n}{n!}\\,dt\\right| = \\frac{|x-a|^{n+1}}{(n+1)!}\\) (primitive de \\(|x-t|^n\\) en \\(t\\), à une constante près, est \\(-\\mathrm{sgn}(x-a)\\frac{|x-t|^{n+1}}{n+1}\\)). D'où l'inégalité annoncée.</p>"
+}

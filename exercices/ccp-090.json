@@ -1,0 +1,19 @@
+{
+  "id": "ccp-090",
+  "title": "Isomorphisme d'évaluation et base de Lagrange",
+  "domain": "Algèbre",
+  "chapter": 10,
+  "level": "MP",
+  "cadence": "Marathon · 25 min",
+  "difficulty": 3,
+  "statement": "\\(\\mathbb{K}\\) désigne le corps des réels ou celui des complexes. Soient \\(a_1, a_2, a_3\\) trois scalaires distincts donnés de \\(\\mathbb{K}\\).",
+  "questions": [
+    "Montrer que \\(\\Phi : \\mathbb{K}_2[X] \\to \\mathbb{K}^3,\\ P \\mapsto (P(a_1),P(a_2),P(a_3))\\) est un isomorphisme d'espaces vectoriels.",
+    "On note \\((e_1,e_2,e_3)\\) la base canonique de \\(\\mathbb{K}^3\\) et on pose \\(\\forall k \\in \\{1,2,3\\},\\ L_k = \\Phi^{-1}(e_k)\\). Justifier que \\((L_1,L_2,L_3)\\) est une base de \\(\\mathbb{K}_2[X]\\). Exprimer les polynômes \\(L_1, L_2\\) et \\(L_3\\) en fonction de \\(a_1, a_2\\) et \\(a_3\\).",
+    "Soit \\(P \\in \\mathbb{K}_2[X]\\). Déterminer les coordonnées de \\(P\\) dans la base \\((L_1,L_2,L_3)\\).",
+    "Application : on se place dans \\(\\mathbb{R}^2\\) muni d'un repère orthonormé et on considère les trois points \\(A(0,1)\\), \\(B(1,3)\\), \\(C(2,1)\\). Déterminer une fonction polynomiale de degré 2 dont la courbe passe par les points \\(A\\), \\(B\\) et \\(C\\)."
+  ],
+  "hint": "Les Lk sont les polynômes de Lagrange associés à a1,a2,a3 ; les coordonnées de P sont ses valeurs P(a1),P(a2),P(a3).",
+  "grading_context": "(1) Φ est linéaire (évaluation) ; injective car un polynôme de degré≤2 non nul a au plus 2 racines, donc ne peut s'annuler en 3 points distincts sauf s'il est nul. Comme dim K2[X]=3=dim K³, Φ injective entre espaces de même dimension finie est bijective : isomorphisme. (2) L'image d'une base par un isomorphisme réciproque est une base : (L1,L2,L3)=(Φ^{-1}(e1),Φ^{-1}(e2),Φ^{-1}(e3)) est une base de K2[X]. Lk est le polynôme de Lagrange : Lk(X)=∏_{i≠k}(X-ai)/(ak-ai), degré 2, valant 1 en ak et 0 aux deux autres points. (3) P=P(a1)L1+P(a2)L2+P(a3)L3 (coordonnées = valeurs de P aux points ai, car Φ(Lk)=ek). (4) Avec a1=0,a2=1,a3=2 et valeurs 1,3,1 : L1=(X-1)(X-2)/2, L2=-X(X-2), L3=X(X-1)/2. P=1·L1+3·L2+1·L3, qui se développe en P(X)=-2X²+4X+1 (vérifier P(0)=1,P(1)=3,P(2)=1).",
+  "correction": "<p><b>1.</b> \\(\\Phi\\) est linéaire (l'évaluation en un point est linéaire). Elle est injective : si \\(\\Phi(P)=0\\), \\(P\\) admet les 3 racines distinctes \\(a_1,a_2,a_3\\) tout en étant de degré \\(\\leq2\\), donc \\(P=0\\). Comme \\(\\dim\\mathbb{K}_2[X]=3=\\dim\\mathbb{K}^3\\), une application linéaire injective entre espaces de même dimension finie est bijective : \\(\\Phi\\) est un isomorphisme.</p><p><b>2.</b> L'image réciproque d'une base par un isomorphisme est une base : \\((L_1,L_2,L_3)=(\\Phi^{-1}(e_1),\\Phi^{-1}(e_2),\\Phi^{-1}(e_3))\\) est donc une base de \\(\\mathbb{K}_2[X]\\). \\(L_k\\) vérifie \\(L_k(a_k)=1\\) et \\(L_k(a_i)=0\\) pour \\(i\\neq k\\) : ce sont les polynômes de Lagrange, \\(L_1(X)=\\dfrac{(X-a_2)(X-a_3)}{(a_1-a_2)(a_1-a_3)}\\), \\(L_2(X)=\\dfrac{(X-a_1)(X-a_3)}{(a_2-a_1)(a_2-a_3)}\\), \\(L_3(X)=\\dfrac{(X-a_1)(X-a_2)}{(a_3-a_1)(a_3-a_2)}\\).</p><p><b>3.</b> Puisque \\(\\Phi(L_k)=e_k\\), on a \\(\\Phi(P)=\\sum_k P(a_k)e_k\\) et \\(P=\\Phi^{-1}(\\Phi(P))=\\sum_k P(a_k)L_k\\) : les coordonnées de \\(P\\) dans \\((L_1,L_2,L_3)\\) sont exactement \\((P(a_1),P(a_2),P(a_3))\\).</p><p><b>4.</b> Avec \\(a_1=0,a_2=1,a_3=2\\) et valeurs \\(1,3,1\\) : \\(L_1(X)=\\dfrac{(X-1)(X-2)}{2}\\), \\(L_2(X)=-X(X-2)\\), \\(L_3(X)=\\dfrac{X(X-1)}{2}\\). Alors \\(P=1\\cdot L_1+3\\cdot L_2+1\\cdot L_3\\), qui se développe en \\(P(X)=-2X^2+4X+1\\) (on vérifie \\(P(0)=1\\), \\(P(1)=3\\), \\(P(2)=1\\)).</p>"
+}

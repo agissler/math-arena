@@ -1,0 +1,18 @@
+{
+  "id": "ccp-107",
+  "title": "Tirages successifs dans deux urnes liées",
+  "domain": "Probabilités",
+  "chapter": 28,
+  "level": "MP",
+  "cadence": "Marathon · 25 min",
+  "difficulty": 4,
+  "statement": "On dispose de deux urnes \\(U_1\\) et \\(U_2\\). L'urne \\(U_1\\) contient deux boules blanches et trois boules noires. L'urne \\(U_2\\) contient quatre boules blanches et trois boules noires. On effectue des tirages successifs dans les conditions suivantes : on choisit une urne au hasard et on tire une boule dans l'urne choisie, puis on la remet. Si la boule tirée était blanche, le tirage suivant se fait dans l'urne \\(U_1\\) ; sinon dans l'urne \\(U_2\\). Pour tout \\(n \\in \\mathbb{N}^*\\), on note \\(B_n\\) l'événement « la boule tirée au \\(n\\)-ième tirage est blanche » et on pose \\(p_n = P(B_n)\\).",
+  "questions": [
+    "Calculer \\(p_1\\).",
+    "Prouver que \\(\\forall n \\in \\mathbb{N}^*,\\ p_{n+1} = -\\dfrac{6}{35}p_n + \\dfrac{4}{7}\\).",
+    "En déduire, pour tout entier naturel \\(n\\) non nul, la valeur de \\(p_n\\)."
+  ],
+  "hint": "Pour la question 3, cherchez le point fixe de la récurrence puis étudiez la suite (pn - point fixe).",
+  "grading_context": "(1) p1=P(choisir U1)P(blanche|U1)+P(choisir U2)P(blanche|U2)=(1/2)(2/5)+(1/2)(4/7)=1/5+2/7=17/35. (2) Par la formule des probabilités totales conditionnée par Bn : pn+1=P(Bn+1|Bn)pn+P(Bn+1|Bn^c)(1-pn). Si Bn (blanche), le tirage suivant est dans U1 : P(blanche|U1)=2/5. Si non Bn, tirage dans U2 : P(blanche|U2)=4/7. Donc pn+1=(2/5)pn+(4/7)(1-pn)=(2/5-4/7)pn+4/7=(-6/35)pn+4/7. (3) Point fixe p*=-6/35 p*+4/7 donne p*=20/41. La suite (pn-p*) est géométrique de raison -6/35 : pn-p*=(p1-p*)(-6/35)^{n-1}. Avec p1-p*=17/35-20/41=-3/1435, on obtient pn=20/41-(3/1435)(-6/35)^{n-1}.",
+  "correction": "<p><b>1.</b> \\(p_1 = P(U_1)P(\\text{blanche}|U_1)+P(U_2)P(\\text{blanche}|U_2) = \\dfrac12\\cdot\\dfrac25+\\dfrac12\\cdot\\dfrac47 = \\dfrac15+\\dfrac27 = \\dfrac{7+10}{35}=\\dfrac{17}{35}\\).</p><p><b>2.</b> Par la formule des probabilités totales avec le système complet \\((B_n,B_n^c)\\) : \\(p_{n+1}=P(B_{n+1}|B_n)p_n + P(B_{n+1}|B_n^c)(1-p_n)\\). Si \\(B_n\\) est réalisé, le tirage \\(n{+}1\\) se fait dans \\(U_1\\), donc \\(P(B_{n+1}|B_n)=\\dfrac25\\) ; sinon il se fait dans \\(U_2\\), donc \\(P(B_{n+1}|B_n^c)=\\dfrac47\\). D'où \\(p_{n+1}=\\dfrac25 p_n + \\dfrac47(1-p_n) = \\left(\\dfrac25-\\dfrac47\\right)p_n+\\dfrac47 = -\\dfrac{6}{35}p_n+\\dfrac47\\).</p><p><b>3.</b> Le point fixe \\(p^*\\) de cette récurrence affine vérifie \\(p^*=-\\dfrac{6}{35}p^*+\\dfrac47\\), soit \\(p^*\\left(1+\\dfrac{6}{35}\\right)=\\dfrac47\\), soit \\(p^*\\cdot\\dfrac{41}{35}=\\dfrac47\\), d'où \\(p^*=\\dfrac{20}{41}\\). La suite \\((p_n-p^*)\\) est géométrique de raison \\(-\\dfrac{6}{35}\\) : \\(p_n-p^*=(p_1-p^*)\\left(-\\dfrac{6}{35}\\right)^{n-1}\\). Avec \\(p_1-p^*=\\dfrac{17}{35}-\\dfrac{20}{41}=\\dfrac{17\\times41-20\\times35}{35\\times41}=\\dfrac{697-700}{1435}=-\\dfrac{3}{1435}\\), on obtient : \\(p_n = \\dfrac{20}{41} - \\dfrac{3}{1435}\\left(-\\dfrac{6}{35}\\right)^{n-1}\\).</p>"
+}

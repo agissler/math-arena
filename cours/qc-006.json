@@ -1,0 +1,14 @@
+{
+  "id": "qc-006",
+  "title": "Approximation uniforme par des fonctions en escalier",
+  "domain": "Analyse",
+  "chapter": 25,
+  "level": "MP",
+  "cadence": "Standard · 15 min",
+  "difficulty": 3,
+  "statement": "Soit \\(f\\) une fonction continue par morceaux sur un segment \\([a,b]\\), à valeurs dans un espace normé de dimension finie \\(F\\).",
+  "followup": "Énoncez et démontrez le théorème d'approximation uniforme de \\(f\\) par des fonctions en escalier.",
+  "hint": "Traitez d'abord le cas où f est continue sur tout le segment, en utilisant le théorème de Heine (continuité uniforme sur un compact).",
+  "grading_context": "Théorème : pour tout ε>0, il existe une fonction en escalier φ sur [a,b] telle que sup_{[a,b]}||f-φ||<ε. Preuve (cas f continue, le cas continue par morceaux s'y ramène en traitant chaque morceau) : par le théorème de Heine, f est uniformément continue sur le segment [a,b] (compact) : il existe η>0 tel que |x-y|<η ⟹ ||f(x)-f(y)||<ε. On subdivise [a,b] en points a=x0<x1<...<xN=b de pas <η, et on définit φ constante égale à f(xi) sur chaque [xi,xi+1[ : pour x dans cet intervalle, ||f(x)-φ(x)||=||f(x)-f(xi)||<ε (car |x-xi|<η). Donc sup|f-φ|<ε.",
+  "correction": "<p><b>Énoncé.</b> Toute fonction \\(f\\) continue par morceaux sur un segment \\([a,b]\\), à valeurs dans un espace normé de dimension finie, est limite uniforme sur \\([a,b]\\) de fonctions en escalier : pour tout \\(\\varepsilon>0\\), il existe une fonction en escalier \\(\\varphi\\) telle que \\(\\sup_{[a,b]}\\|f-\\varphi\\|<\\varepsilon\\).</p><p><b>Démonstration (cas \\(f\\) continue sur \\([a,b]\\)).</b> Par le théorème de Heine, \\(f\\) est uniformément continue sur le compact \\([a,b]\\) : il existe \\(\\eta>0\\) tel que \\(\\forall(x,y)\\in[a,b]^2,\\ |x-y|<\\eta \\Rightarrow \\|f(x)-f(y)\\|<\\varepsilon\\). Choisissons une subdivision \\(a=x_0<x_1<\\cdots<x_N=b\\) de pas \\(<\\eta\\) (par exemple régulière), et définissons \\(\\varphi\\) en escalier, constante égale à \\(f(x_i)\\) sur \\([x_i,x_{i+1}[\\) pour chaque \\(i\\) (et \\(\\varphi(b)=f(b)\\)). Pour \\(x\\in[x_i,x_{i+1}[\\), \\(|x-x_i|<\\eta\\), donc \\(\\|f(x)-\\varphi(x)\\|=\\|f(x)-f(x_i)\\|<\\varepsilon\\). Ainsi \\(\\sup_{[a,b]}\\|f-\\varphi\\|\\leq\\varepsilon\\).</p><p><b>Cas \\(f\\) continue par morceaux :</b> on applique le raisonnement précédent séparément sur chacun des sous-segments où \\(f\\) coïncide avec une fonction continue (en nombre fini), puis on recolle les fonctions en escalier obtenues.</p>"
+}

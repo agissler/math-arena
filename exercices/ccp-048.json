@@ -1,0 +1,18 @@
+{
+  "id": "ccp-048",
+  "title": "Une fonction orthogonale à tous les tⁿ est nulle",
+  "domain": "Analyse",
+  "chapter": 25,
+  "level": "MP",
+  "cadence": "Standard · 20 min",
+  "difficulty": 4,
+  "statement": "\\(C^0([0,1],\\mathbb{R})\\) désigne l'espace vectoriel des fonctions continues sur \\([0,1]\\) à valeurs dans \\(\\mathbb{R}\\). Soit \\(f \\in C^0([0,1],\\mathbb{R})\\) telle que \\(\\forall n \\in \\mathbb{N},\\ \\int_0^1 t^n f(t)\\,dt = 0\\).",
+  "questions": [
+    "Énoncer le théorème de Weierstrass d'approximation par des fonctions polynomiales.",
+    "Soit \\((P_n)_{n\\in\\mathbb{N}}\\) une suite de fonctions polynomiales convergeant uniformément sur le segment \\([0,1]\\) vers \\(f\\). Montrer que la suite de fonctions \\((P_n f)_{n\\in\\mathbb{N}}\\) converge uniformément sur le segment \\([0,1]\\) vers \\(f^2\\). Démontrer que \\(\\int_0^1 f^2(t)\\,dt = \\lim_{n\\to+\\infty} \\int_0^1 P_n(t)f(t)\\,dt\\). Calculer \\(\\int_0^1 P_n(t)f(t)\\,dt\\).",
+    "En déduire que \\(f\\) est la fonction nulle sur le segment \\([0,1]\\)."
+  ],
+  "hint": "Écrivez Pn comme combinaison linéaire (finie) de puissances de t, puis utilisez l'hypothèse sur les intégrales de t^k f(t).",
+  "grading_context": "(1) Théorème de Weierstrass : toute fonction continue sur un segment [a,b] est limite uniforme d'une suite de fonctions polynomiales. (2) |Pn f - f²|=|f||Pn-f|≤||f||∞·||Pn-f||∞→0 : convergence uniforme de Pn f vers f². La convergence uniforme sur un segment entraîne la convergence des intégrales, donc ∫Pn f→∫f². Comme Pn est une combinaison linéaire finie ∑ck t^k, ∫Pn f=∑ck∫t^k f=∑ck·0=0 par hypothèse, pour tout n. (3) En passant à la limite : ∫f²=lim∫Pn f=0. Or f² est continue positive d'intégrale nulle sur [0,1], donc f²=0, donc f=0 sur [0,1].",
+  "correction": "<p><b>1.</b> Toute fonction continue sur un segment \\([a,b]\\) à valeurs réelles (ou complexes) est limite uniforme sur \\([a,b]\\) d'une suite de fonctions polynomiales.</p><p><b>2.</b> \\(f\\) étant continue sur le compact \\([0,1]\\), elle y est bornée par \\(M=\\|f\\|_\\infty\\). On a \\(|P_n(t)f(t)-f(t)^2|=|f(t)||P_n(t)-f(t)|\\leq M\\,\\|P_n-f\\|_\\infty\\), majorant indépendant de \\(t\\) et tendant vers \\(0\\) : \\((P_nf)\\) converge uniformément vers \\(f^2\\) sur \\([0,1]\\). La convergence uniforme sur un segment entraînant la convergence des intégrales, \\(\\int_0^1 P_n(t)f(t)\\,dt \\to \\int_0^1 f(t)^2\\,dt\\), ce qui est l'égalité demandée (à l'échange près, \\(\\int_0^1 f^2 = \\lim_n \\int_0^1 P_nf\\)). Enfin, \\(P_n\\) étant une combinaison linéaire finie \\(P_n=\\sum_k c_k t^k\\), on a \\(\\int_0^1 P_n(t)f(t)\\,dt = \\sum_k c_k \\int_0^1 t^k f(t)\\,dt = \\sum_k c_k \\cdot 0 = 0\\) par hypothèse, pour tout \\(n\\).</p><p><b>3.</b> En passant à la limite dans l'égalité précédente : \\(\\int_0^1 f(t)^2\\,dt = \\lim_{n\\to+\\infty} 0 = 0\\). Or \\(f^2\\) est continue et positive sur \\([0,1]\\), d'intégrale nulle : elle est donc identiquement nulle (résultat classique sur les fonctions continues positives d'intégrale nulle), d'où \\(f=0\\) sur \\([0,1]\\).</p>"
+}
