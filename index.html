@@ -271,6 +271,34 @@ textarea:focus{background:rgba(0,229,160,.02)}
 .tutor-chat-send-btn{width:36px;height:36px;border-radius:10px;background:var(--accent);border:none;color:#0A1A12;font-size:15px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center}
 .tutor-chat-send-btn:disabled{background:var(--border);color:var(--muted);cursor:default}
 
+/* ── Login (invité + Google OAuth) ── */
+.login-box{background:var(--surf);border:1px solid var(--border);border-radius:16px;padding:36px 32px;width:100%;max-width:640px;display:flex;flex-direction:column;gap:22px;align-items:center}
+.login-logo{font-family:var(--mono);font-size:22px;font-weight:600;color:var(--accent)}
+.login-logo span{color:var(--muted);font-weight:400}
+.login-options{width:100%;display:flex;align-items:stretch;gap:20px}
+.login-card{flex:1;min-width:0;display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:center}
+.login-card-title{font-family:var(--mono);font-size:12px;color:var(--muted);text-align:center}
+.login-card-note{font-family:var(--mono);font-size:11px;color:var(--dim);text-align:center}
+.login-divider{display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--muted);font-family:var(--mono);font-size:11px;position:relative;padding:0 2px}
+.login-divider::before{content:'';position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--border)}
+.login-divider span{background:var(--surf);padding:8px 0;position:relative;z-index:1}
+.login-input{width:100%;background:var(--surf2);border:1px solid var(--border);border-radius:8px;padding:11px 14px;font-family:var(--mono);font-size:14px;color:var(--text);outline:none;caret-color:var(--accent);text-align:center;letter-spacing:2px}
+.login-error{display:none;font-family:var(--mono);font-size:12px;color:var(--danger);text-align:center}
+.login-error.on{display:block}
+.login-pw-btn{width:100%;background:var(--accent);color:#0A1A12;font-family:var(--mono);font-size:13px;font-weight:600;border:none;padding:11px;border-radius:8px;cursor:pointer}
+.google-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:#fff;color:#3c4043;font-family:var(--sans);font-size:14px;font-weight:500;border:1px solid #dadce0;padding:11px 16px;border-radius:8px;cursor:pointer;transition:box-shadow .15s,background .15s}
+.google-btn:hover{background:#f8f9fa;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+
+/* ── Indicateur de session (header) ── */
+.session-indicator{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.session-avatar{width:24px;height:24px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.session-avatar-fallback{display:flex;align-items:center;justify-content:center;background:var(--accent);color:#0A1A12;font-weight:600;font-size:11px}
+.session-email{max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)}
+.session-logout-btn{background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--mono);font-size:10px;padding:3px 8px;border-radius:12px;cursor:pointer}
+.session-logout-btn:hover{border-color:var(--borderB);color:var(--text)}
+.session-guest-badge{background:var(--surf2);border:1px solid var(--border);padding:3px 10px;border-radius:12px;color:var(--text)}
+.session-guest-note{color:var(--dim)}
+
 /* ── Mobile ── */
 @media(max-width:600px){
   .sc-grid{grid-template-columns:1fr}
@@ -279,6 +307,12 @@ textarea:focus{background:rgba(0,229,160,.02)}
   .model-select-btn{max-width:130px;font-size:10px}
   .model-remaining{display:none}
   .quota-banner{padding:10px 16px 0}
+  .session-email{max-width:90px}
+  .login-box{padding:28px 20px}
+  .login-options{flex-direction:column}
+  .login-divider{flex-direction:row;padding:4px 0}
+  .login-divider::before{top:50%;bottom:auto;left:0;right:0;width:auto;height:1px}
+  .login-divider span{padding:0 10px}
   .tab-bar{padding:16px 16px 0}
   .selector-bar{padding:14px 16px 0}
   main{padding:16px 16px 0}
@@ -305,17 +339,26 @@ textarea:focus{background:rgba(0,229,160,.02)}
 <body>
 
 <!-- LOGIN SCREEN -->
-<div id="login-screen" style="display:none;position:fixed;inset:0;background:var(--bg);z-index:100;flex-direction:column;align-items:center;justify-content:center;gap:0">
-  <div id="login-box" style="background:var(--surf);border:1px solid var(--border);border-radius:16px;padding:40px 36px;width:100%;max-width:360px;display:flex;flex-direction:column;gap:20px;align-items:center">
-    <div style="font-family:var(--mono);font-size:22px;font-weight:600;color:var(--accent)">Math<span style="color:var(--muted);font-weight:400">Arena</span></div>
-    <div style="font-family:var(--mono);font-size:12px;color:var(--muted);text-align:center">Accès restreint — entrez le mot de passe</div>
-    <input id="login-input" type="password" placeholder="Mot de passe…"
-      style="width:100%;background:var(--surf2);border:1px solid var(--border);border-radius:8px;padding:11px 14px;font-family:var(--mono);font-size:14px;color:var(--text);outline:none;caret-color:var(--accent);text-align:center;letter-spacing:2px"/>
-    <div id="login-error" style="display:none;font-family:var(--mono);font-size:12px;color:var(--danger);text-align:center">Mot de passe incorrect</div>
-    <button id="login-btn" onclick="submitLogin()"
-      style="width:100%;background:var(--accent);color:#0A1A12;font-family:var(--mono);font-size:13px;font-weight:600;border:none;padding:11px;border-radius:8px;cursor:pointer">
-      Accéder
-    </button>
+<div id="login-screen" style="display:none;position:fixed;inset:0;background:var(--bg);z-index:100;flex-direction:column;align-items:center;justify-content:center;gap:0;padding:16px">
+  <div id="login-box" class="login-box">
+    <div class="login-logo">Math<span>Arena</span></div>
+    <div class="login-options">
+      <div class="login-card" id="google-login-card" style="display:none">
+        <button id="google-login-btn" class="google-btn" onclick="startGoogleLogin()" type="button">
+          <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84c-.21 1.13-.84 2.09-1.8 2.73v2.27h2.91c1.7-1.57 2.69-3.88 2.69-6.64z"/><path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.17l-2.91-2.27c-.81.54-1.84.86-3.05.86-2.35 0-4.34-1.58-5.05-3.71H.96v2.34C2.44 15.98 5.48 18 9 18z"/><path fill="#FBBC05" d="M3.95 10.71c-.18-.54-.28-1.11-.28-1.71s.1-1.17.28-1.71V4.95H.96C.35 6.17 0 7.55 0 9s.35 2.83.96 4.05l2.99-2.34z"/><path fill="#EA4335" d="M9 3.58c1.32 0 2.51.45 3.44 1.35l2.58-2.58C13.46.89 11.43 0 9 0 5.48 0 2.44 2.02.96 4.95l2.99 2.34C4.66 5.16 6.65 3.58 9 3.58z"/></svg>
+          <span>Connexion Google</span>
+        </button>
+        <div class="login-card-note">Utilise votre quota Gemini personnel</div>
+      </div>
+      <div class="login-divider" id="login-divider" style="display:none"><span>ou</span></div>
+      <div class="login-card">
+        <div class="login-card-title">Mot de passe</div>
+        <input id="login-input" type="password" placeholder="Mot de passe…" class="login-input"/>
+        <button id="login-btn" onclick="submitLogin()" class="login-pw-btn" type="button">Accéder</button>
+        <div class="login-card-note">Quota partagé — limité</div>
+      </div>
+    </div>
+    <div id="login-error" class="login-error">Mot de passe incorrect</div>
   </div>
 </div>
 
@@ -334,6 +377,7 @@ textarea:focus{background:rgba(0,229,160,.02)}
         <div class="model-dropdown" id="model-dropdown"></div>
       </div>
       <div class="elo-pill">ELO <b id="elo-display">1200</b></div>
+      <div class="session-indicator" id="session-indicator"></div>
     </div>
   </header>
   <div class="quota-banner" id="quota-banner">
@@ -506,10 +550,26 @@ let tutorLoading = false;
 let tutorMsgTimer = null;
 const tutorMsgs = ['Réflexion en cours…','Je regarde ça…','Un instant…'];
 
+function workerUrlFor(path) {
+  return WORKER_URL.endsWith('/') ? WORKER_URL + path : WORKER_URL + '/' + path;
+}
+
+// Corps d'authentification à fusionner dans chaque requête au worker : mot de
+// passe partagé en mode invité, access_token personnel (rafraîchi si besoin)
+// en mode Google.
+async function buildAuthBody() {
+  if (authMode === 'google') {
+    const token = await getValidAccessToken();
+    if (!token) throw new Error('Session Google expirée — reconnectez-vous.');
+    return { access_token: token };
+  }
+  return { password: sessionPassword };
+}
+
 // ── Appel Gemini via worker ────────────────────────────
 async function callAI(prompt, images) {
   if (!WORKER_URL) throw new Error('URL du worker non configurée.');
-  const body = { password: sessionPassword, prompt };
+  const body = { ...(await buildAuthBody()), prompt };
   if (selectedModel) body.model = selectedModel;
   if (images && images.length) {
     body.images = images.map(a => ({ mimeType: a.mimeType, data: a.base64 }));
@@ -531,7 +591,7 @@ async function callAI(prompt, images) {
 // (la solution de référence), pour ne jamais exposer ces éléments côté client.
 async function callGrading(prompt, gradingContext, images) {
   if (!WORKER_URL) throw new Error('URL du worker non configurée.');
-  const body = { password: sessionPassword, prompt, grading_context: gradingContext };
+  const body = { ...(await buildAuthBody()), prompt, grading_context: gradingContext };
   if (selectedModel) body.model = selectedModel;
   if (images && images.length) {
     body.images = images.map(a => ({ mimeType: a.mimeType, data: a.base64 }));
@@ -613,8 +673,20 @@ async function loadModelCatalog() {
     const res = await fetch(workerModelsUrl());
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
-    MODEL_CATALOG_CLIENT = data.models || {};
-    DEFAULT_ORDER_CLIENT = Array.isArray(data.default_order) ? data.default_order.filter(m => MODEL_CATALOG_CLIENT[m]) : Object.keys(MODEL_CATALOG_CLIENT);
+    let models = data.models || {};
+    let order = Array.isArray(data.default_order) ? data.default_order.filter(m => models[m]) : Object.keys(models);
+
+    // En mode Google, seuls les modèles Gemini sont utilisables (l'utilisateur
+    // n'a pas de clé Groq personnelle) : le catalogue est filtré côté client
+    // avant même le calcul du modèle par défaut, pour que selectDefaultModel()
+    // et le dropdown ne voient jamais que des modèles Gemini dans ce mode.
+    if (sessionStorage.getItem('auth_mode') === 'google') {
+      order = order.filter(m => models[m]?.provider === 'gemini');
+      models = Object.fromEntries(order.map(m => [m, models[m]]));
+    }
+
+    MODEL_CATALOG_CLIENT = models;
+    DEFAULT_ORDER_CLIENT = order;
   } catch (e) {
     console.error('Impossible de charger le catalogue de modèles', e);
     MODEL_CATALOG_CLIENT = {};
@@ -1812,6 +1884,9 @@ function retryEval() {
 
 // ── Login gate ─────────────────────────────────────────
 let sessionPassword = null; // mot de passe tapé, gardé en mémoire le temps de la session
+let authMode = null;        // 'guest' | 'google'
+let googleUserEmail = '';
+let googleUserPicture = '';
 
 function checkLogin() {
   showLogin();
@@ -1827,6 +1902,7 @@ async function showApp() {
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app-wrapper').style.display = 'contents';
   document.getElementById('main-content').innerHTML = '<p style="font-family:var(--mono);color:var(--muted);padding:24px 0">Chargement des problèmes…</p>';
+  renderSessionIndicator();
   try {
     await problemsPromise;
   } catch (e) {
@@ -1836,6 +1912,16 @@ async function showApp() {
   buildSelector();
   renderProblem(0);
   renderFiltersPanel();
+}
+
+function showLoginError(message) {
+  const el = document.getElementById('login-error');
+  el.textContent = message || 'Mot de passe incorrect';
+  el.classList.add('on');
+  const box = document.getElementById('login-box');
+  box.style.animation = 'none';
+  box.offsetHeight;
+  box.style.animation = 'shake .4s ease';
 }
 
 async function submitLogin() {
@@ -1860,32 +1946,172 @@ async function submitLogin() {
 
     // Mot de passe accepté — on le garde en mémoire
     sessionPassword = val;
-    document.getElementById('login-error').style.display = 'none';
+    authMode = 'guest';
+    sessionStorage.setItem('auth_mode', 'guest');
+    document.getElementById('login-error').classList.remove('on');
     loadModelCatalog(); // en parallèle : n'a pas besoin d'attendre le chargement des problèmes
     await showApp();
 
   } catch(e) {
-    document.getElementById('login-error').style.display = 'block';
+    showLoginError('Mot de passe incorrect');
     document.getElementById('login-input').value = '';
     document.getElementById('login-input').focus();
-    const box = document.getElementById('login-box');
-    box.style.animation = 'none';
-    box.offsetHeight;
-    box.style.animation = 'shake .4s ease';
   } finally {
     btn.disabled = false;
     btn.textContent = 'Accéder';
   }
 }
 
+// ── Connexion Google (OAuth 2.0 + PKCE, sans backend supplémentaire) ────
+let GOOGLE_CLIENT_ID_FROM_CONFIG = '';
+let GOOGLE_OAUTH_ENABLED = false;
+
+async function loadAuthConfig() {
+  try {
+    const res = await fetch(workerUrlFor('config'));
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    GOOGLE_CLIENT_ID_FROM_CONFIG = data.google_client_id || '';
+    GOOGLE_OAUTH_ENABLED = !!(data.google_oauth_enabled && GOOGLE_CLIENT_ID_FROM_CONFIG);
+  } catch (e) {
+    console.error('Impossible de charger la configuration', e);
+    GOOGLE_OAUTH_ENABLED = false;
+  }
+  const googleCard = document.getElementById('google-login-card');
+  const divider = document.getElementById('login-divider');
+  if (googleCard) googleCard.style.display = GOOGLE_OAUTH_ENABLED ? '' : 'none';
+  if (divider) divider.style.display = GOOGLE_OAUTH_ENABLED ? '' : 'none';
+}
+
+function generateRandomString(length) {
+  const arr = new Uint8Array(length);
+  crypto.getRandomValues(arr);
+  return Array.from(arr, b => b.toString(16).padStart(2, '0')).join('').slice(0, length);
+}
+
+function base64url(buffer) {
+  const bytes = new Uint8Array(buffer);
+  let str = '';
+  for (const b of bytes) str += String.fromCharCode(b);
+  return btoa(str).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+
+async function startGoogleLogin() {
+  if (!GOOGLE_CLIENT_ID_FROM_CONFIG) return;
+
+  const codeVerifier = generateRandomString(64);
+  const codeChallenge = base64url(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(codeVerifier)));
+
+  sessionStorage.setItem('pkce_verifier', codeVerifier);
+  sessionStorage.setItem('oauth_state', generateRandomString(16));
+
+  const params = new URLSearchParams({
+    client_id: GOOGLE_CLIENT_ID_FROM_CONFIG,
+    redirect_uri: window.location.origin + window.location.pathname,
+    response_type: 'code',
+    scope: 'https://www.googleapis.com/auth/generativelanguage',
+    code_challenge: codeChallenge,
+    code_challenge_method: 'S256',
+    state: sessionStorage.getItem('oauth_state'),
+    access_type: 'offline',
+    prompt: 'consent',
+  });
+  window.location.href = 'https://accounts.google.com/o/oauth2/v2/auth?' + params;
+}
+
+async function exchangeCodeForToken(code) {
+  const res = await fetch(workerUrlFor('oauth/token'), {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      code,
+      code_verifier: sessionStorage.getItem('pkce_verifier'),
+      redirect_uri: window.location.origin + window.location.pathname,
+    })
+  });
+  const data = await res.json();
+  if (!data.access_token) throw new Error(data.error || 'Échec de l\'authentification Google');
+
+  sessionStorage.setItem('google_access_token', data.access_token);
+  sessionStorage.setItem('google_refresh_token', data.refresh_token || '');
+  sessionStorage.setItem('google_token_expiry', String(Date.now() + (data.expires_in || 3600) * 1000));
+  sessionStorage.setItem('google_user_email', data.email || '');
+  sessionStorage.setItem('google_user_picture', data.picture || '');
+  sessionStorage.setItem('auth_mode', 'google');
+
+  authMode = 'google';
+  googleUserEmail = data.email || '';
+  googleUserPicture = data.picture || '';
+
+  loadModelCatalog();
+  await showApp();
+}
+
+// Rafraîchit l'access_token s'il expire dans moins de 5 minutes. Appelé avant
+// chaque requête au worker en mode Google (voir buildAuthBody()).
+async function getValidAccessToken() {
+  const expiry = parseInt(sessionStorage.getItem('google_token_expiry') || '0', 10);
+  if (Date.now() < expiry - 300000) {
+    return sessionStorage.getItem('google_access_token');
+  }
+
+  const refreshToken = sessionStorage.getItem('google_refresh_token');
+  if (!refreshToken) { logout(); return null; }
+
+  const res = await fetch(workerUrlFor('oauth/refresh'), {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ refresh_token: refreshToken })
+  });
+  const data = await res.json();
+  if (!data.access_token) { logout(); return null; }
+
+  sessionStorage.setItem('google_access_token', data.access_token);
+  sessionStorage.setItem('google_token_expiry', String(Date.now() + (data.expires_in || 3600) * 1000));
+  return data.access_token;
+}
+
+function renderSessionIndicator() {
+  const el = document.getElementById('session-indicator');
+  if (!el) return;
+
+  if (authMode === 'google') {
+    const email = googleUserEmail || sessionStorage.getItem('google_user_email') || '';
+    const picture = googleUserPicture || sessionStorage.getItem('google_user_picture') || '';
+    const truncated = email.length > 20 ? email.slice(0, 20) + '…' : email;
+    const initial = email ? email[0].toUpperCase() : '?';
+    const avatarHtml = picture
+      ? `<img src="${picture}" class="session-avatar" alt="">`
+      : `<span class="session-avatar session-avatar-fallback">${initial}</span>`;
+    el.innerHTML = `${avatarHtml}<span class="session-email" title="${email}">${truncated}</span><button type="button" class="session-logout-btn" onclick="logout()">Déconnexion</button>`;
+  } else {
+    el.innerHTML = `<span class="session-guest-badge">Mode invité</span><span class="session-guest-note">quota partagé</span>`;
+  }
+}
+
+function logout() {
+  // Révocation du token Google (best effort — on ne bloque pas la déconnexion
+  // si cet appel échoue).
+  const token = sessionStorage.getItem('google_access_token');
+  if (token) {
+    fetch(`https://oauth2.googleapis.com/revoke?token=${token}`, { method: 'POST' }).catch(() => {});
+  }
+  // Efface la session mais garde les préférences (filtres, modèle choisi, quotas).
+  const toKeep = ['ma_filters', 'ma_selected_model', 'ma_quotas'];
+  const saved = toKeep.map(k => [k, localStorage.getItem(k)]);
+  sessionStorage.clear();
+  saved.forEach(([k, v]) => { if (v) localStorage.setItem(k, v); });
+  window.location.reload();
+}
+
 let problemsPromise = null;
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   problemsPromise = loadAllContent();
+  loadAuthConfig(); // en parallèle : ne bloque pas l'affichage de l'écran de login
   document.getElementById('login-input').addEventListener('keydown', e => {
     if (e.key === 'Enter') submitLogin();
   });
-  checkLogin();
 
   document.addEventListener('click', (e) => {
     const wrap = document.getElementById('model-select-wrap');
@@ -1901,6 +2127,42 @@ document.addEventListener('DOMContentLoaded', () => {
     tutorInput.style.height = 'auto';
     tutorInput.style.height = Math.min(tutorInput.scrollHeight, 100) + 'px';
   });
+
+  // Retour de redirection depuis Google ?
+  const urlParams = new URLSearchParams(window.location.search);
+  const code = urlParams.get('code');
+  const state = urlParams.get('state');
+  const oauthError = urlParams.get('error');
+
+  if (oauthError) {
+    window.history.replaceState({}, '', window.location.pathname);
+    checkLogin();
+    showLoginError('Connexion Google annulée ou refusée.');
+    return;
+  }
+
+  if (code && state && state === sessionStorage.getItem('oauth_state')) {
+    window.history.replaceState({}, '', window.location.pathname);
+    try {
+      await exchangeCodeForToken(code);
+    } catch (e) {
+      checkLogin();
+      showLoginError(e.message || 'Échec de la connexion Google');
+    }
+    return;
+  }
+
+  // Session Google déjà active (ex : simple refresh de page) ?
+  if (sessionStorage.getItem('auth_mode') === 'google' && sessionStorage.getItem('google_access_token')) {
+    authMode = 'google';
+    googleUserEmail = sessionStorage.getItem('google_user_email') || '';
+    googleUserPicture = sessionStorage.getItem('google_user_picture') || '';
+    loadModelCatalog();
+    await showApp();
+    return;
+  }
+
+  checkLogin();
 });
 </script>
 </body>
