@@ -253,24 +253,41 @@ const WORKER_URL = 'https://holy-dawn-664a.armandgissler.workers.dev/';
 // ═══════════════════════════════════════════════════════
 
 // ── Chapitres du programme MP ───────────────────────────
+// Chapitres basés sur les programmes officiels du Bulletin officiel (2021) :
+// n° 1-20 : MPSI/MP2I (1ère année, 2 semestres) — n° 21-30 : MP/MPI (2ème année).
+// Le n°8 "Structures algébriques usuelles" figure dans les deux programmes
+// (approfondi en 2ème année) : il n'est donc listé qu'une seule fois.
 const CHAPTERS = [
-  {n:1,  name:'Groupes',                                  domain:'Algèbre'},
-  {n:2,  name:'Arithmétique',                              domain:'Algèbre'},
-  {n:3,  name:'Corps, polynômes, fractions rationnelles',  domain:'Algèbre'},
-  {n:4,  name:'Algèbre linéaire',                          domain:'Algèbre'},
-  {n:5,  name:'Réduction',                                 domain:'Algèbre'},
-  {n:6,  name:'Espaces euclidiens',                        domain:'Algèbre'},
-  {n:7,  name:'Endomorphismes symétriques',                domain:'Algèbre'},
-  {n:8,  name:'Topologie matricielle',                     domain:'Algèbre'},
-  {n:9,  name:'Espaces vectoriels normés et topologie',    domain:'Analyse'},
-  {n:10, name:'Analyse de première année',                 domain:'Analyse'},
-  {n:11, name:'Intégration',                               domain:'Analyse'},
-  {n:12, name:'Suites et séries de fonctions',             domain:'Analyse'},
-  {n:13, name:'Séries entières',                           domain:'Analyse'},
-  {n:14, name:'Équations différentielles',                 domain:'Analyse'},
-  {n:15, name:'Calcul différentiel',                       domain:'Analyse'},
-  {n:16, name:'Probabilités',                              domain:'Probabilités'},
-  {n:17, name:'Compléments',                               domain:'Compléments'},
+  {n:1,  name:'Raisonnement et vocabulaire ensembliste',              domain:'Algèbre'},
+  {n:2,  name:'Compléments de calcul algébrique et de trigonométrie', domain:'Algèbre'},
+  {n:3,  name:'Nombres complexes',                                    domain:'Algèbre'},
+  {n:4,  name:'Techniques fondamentales de calcul différentiel et intégral', domain:'Analyse'},
+  {n:5,  name:'Nombres réels et suites numériques',                   domain:'Analyse'},
+  {n:6,  name:'Fonctions d\'une variable réelle : limites, continuité, dérivabilité, convexité', domain:'Analyse'},
+  {n:7,  name:'Arithmétique dans Z',                                  domain:'Algèbre'},
+  {n:8,  name:'Structures algébriques usuelles',                      domain:'Algèbre'},
+  {n:9,  name:'Calcul matriciel et systèmes linéaires',                domain:'Algèbre'},
+  {n:10, name:'Polynômes et fractions rationnelles',                  domain:'Algèbre'},
+  {n:11, name:'Analyse asymptotique',                                 domain:'Analyse'},
+  {n:12, name:'Espaces vectoriels et applications linéaires',         domain:'Algèbre'},
+  {n:13, name:'Matrices',                                             domain:'Algèbre'},
+  {n:14, name:'Groupe symétrique et déterminants',                    domain:'Algèbre'},
+  {n:15, name:'Intégration',                                          domain:'Analyse'},
+  {n:16, name:'Dénombrement',                                         domain:'Probabilités'},
+  {n:17, name:'Probabilités',                                         domain:'Probabilités'},
+  {n:18, name:'Espaces préhilbertiens réels',                         domain:'Algèbre'},
+  {n:19, name:'Procédés sommatoires discrets',                        domain:'Analyse'},
+  {n:20, name:'Fonctions de deux variables',                          domain:'Analyse'},
+  {n:21, name:'Réduction des endomorphismes et des matrices carrées', domain:'Algèbre'},
+  {n:22, name:'Endomorphismes d\'un espace euclidien',                domain:'Algèbre'},
+  {n:23, name:'Topologie des espaces vectoriels normés',              domain:'Analyse'},
+  {n:24, name:'Séries numériques et vectorielles',                    domain:'Analyse'},
+  {n:25, name:'Suites et séries de fonctions, séries entières',       domain:'Analyse'},
+  {n:26, name:'Fonctions vectorielles',                               domain:'Analyse'},
+  {n:27, name:'Intégration sur un intervalle quelconque',             domain:'Analyse'},
+  {n:28, name:'Variables aléatoires discrètes',                       domain:'Probabilités'},
+  {n:29, name:'Équations différentielles linéaires',                  domain:'Analyse'},
+  {n:30, name:'Calcul différentiel et optimisation',                  domain:'Analyse'},
 ];
 const LEVELS = ['MPSI', 'MP', 'MP*'];
 function chapterInfo(n) { return CHAPTERS.find(c => c.n === Number(n)); }
