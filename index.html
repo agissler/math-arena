@@ -2009,7 +2009,7 @@ async function startGoogleLogin() {
     client_id: GOOGLE_CLIENT_ID_FROM_CONFIG,
     redirect_uri: window.location.origin + window.location.pathname,
     response_type: 'code',
-    scope: 'https://www.googleapis.com/auth/generativelanguage',
+    scope: 'https://www.googleapis.com/auth/cloud-platform openid email profile',
     code_challenge: codeChallenge,
     code_challenge_method: 'S256',
     state: sessionStorage.getItem('oauth_state'),
