@@ -1100,20 +1100,6 @@ function dismissTutorBubble() {
   document.getElementById('tutor-bubble')?.classList.add('hidden');
 }
 
-// Sur mobile, la barre d'adresse/le clavier réduisent la "visual viewport" sans
-// changer window.innerHeight : on recale le widget pour qu'il reste visible
-// au-dessus de la zone masquée (barre du navigateur, clavier virtuel…).
-function syncTutorViewport() {
-  const vv = window.visualViewport;
-  if (!vv) return;
-  const hidden = Math.max(0, window.innerHeight - (vv.height + vv.offsetTop));
-  const shift = hidden ? `translateY(-${hidden}px)` : '';
-  const launcher = document.getElementById('tutor-launcher');
-  const panel = document.getElementById('tutor-chat-panel');
-  if (launcher) launcher.style.transform = shift;
-  if (panel) panel.style.transform = shift;
-}
-
 function scrollTutorToBottom() {
   const wrap = document.getElementById('tutor-chat-messages');
   if (wrap) wrap.scrollTop = wrap.scrollHeight;
@@ -1433,12 +1419,6 @@ document.addEventListener('DOMContentLoaded', () => {
   checkLogin();
 
   document.getElementById('tutor-attach-row-slot').innerHTML = attachRowHTML('chat');
-  syncTutorViewport();
-  if (window.visualViewport) {
-    window.visualViewport.addEventListener('resize', syncTutorViewport);
-    window.visualViewport.addEventListener('scroll', syncTutorViewport);
-  }
-  window.addEventListener('resize', syncTutorViewport);
   const tutorInput = document.getElementById('tutor-chat-input');
   tutorInput.addEventListener('keydown', e => {
     if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendTutorMessage(); }
