@@ -142,6 +142,7 @@ textarea:focus{background:rgba(0,229,160,.02)}
 @keyframes slideIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .sc-head{padding:16px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
 .sc-head h2{font-family:var(--mono);font-size:14px;font-weight:600}
+.eval-badge{font-family:var(--mono);font-size:10px;color:var(--muted);white-space:nowrap}
 .verdict{font-family:var(--mono);font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px}
 .verdict.ok{background:rgba(0,229,160,.15);color:var(--accent);border:1px solid rgba(0,229,160,.35)}
 .verdict.mid{background:rgba(245,166,35,.12);color:var(--warn);border:1px solid rgba(245,166,35,.3)}
@@ -447,6 +448,27 @@ async function callAI(prompt, images) {
   if (!res.ok) throw new Error(data?.error || `HTTP ${res.status}`);
   if (!data.text) throw new Error('Réponse vide du worker');
   return data.text;
+}
+
+// Évaluation d'une démonstration : le worker construit lui-même le barème
+// détaillé et le pipeline de double évaluation à partir de gradingContext
+// (la solution de référence), pour ne jamais exposer ces éléments côté client.
+async function callGrading(prompt, gradingContext, images) {
+  if (!WORKER_URL) throw new Error('URL du worker non configurée.');
+  const body = { password: sessionPassword, prompt, grading_context: gradingContext };
+  if (images && images.length) {
+    body.images = images.map(a => ({ mimeType: a.mimeType, data: a.base64 }));
+  }
+  const res = await fetch(WORKER_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+  const data = await res.json();
+  if (res.status === 401) throw new Error('Session expirée — rechargez la page.');
+  if (!res.ok) throw new Error(data?.error || `HTTP ${res.status}`);
+  if (typeof data.correctness !== 'number') throw new Error('Réponse d\'évaluation invalide');
+  return data;
 }
 
 // ── Pièces jointes (photo de réponse manuscrite) ───────
@@ -1034,7 +1056,7 @@ function renderProblem(idx) {
       </div>
     </div>
     <div class="scores-panel" id="scores-panel">
-      <div class="sc-head"><h2>Résultats de l'évaluation</h2><div class="verdict" id="verdict">—</div></div>
+      <div class="sc-head"><h2>Résultats de l'évaluation</h2><div style="display:flex;align-items:center;gap:10px"><span class="eval-badge" id="eval-badge"></span><div class="verdict" id="verdict">—</div></div></div>
       <div class="sc-grid" id="sc-grid"></div>
       <div class="feedback-wrap">
         <div class="fb-label">Retour détaillé</div>
@@ -1256,6 +1278,14 @@ function renderScores(data) {
   else if(overall>=40){vEl.textContent='Partiel';vEl.className='verdict mid';}
   else{vEl.textContent='Insuffisant';vEl.className='verdict bad';}
 
+  const badgeEl = document.getElementById('eval-badge');
+  if (badgeEl) {
+    badgeEl.textContent = data.evaluation_count === 2 ? '🔁 Double évaluation' : '🔍 Évaluation simple';
+    badgeEl.title = data.evaluation_count === 2
+      ? (data.meta_used ? 'Deux relectures indépendantes, synthétisées par l\'IA' : 'Deux relectures indépendantes, notes réconciliées')
+      : 'Une seule relecture (scores cohérents et confiance suffisante)';
+  }
+
   document.getElementById('fb-text').textContent = data.feedback||'';
 
   const delta = data.elo_delta??0;
@@ -1283,41 +1313,16 @@ async function validateAnswer() {
   startLoading();
 
   const p = PROBLEMS[currentIdx];
-  const context = p.correction || p.grading_context;
-  const prompt = `Tu es un correcteur expert en mathématiques de classes préparatoires (MPSI/MP).
-
-Énoncé : ${fullStatementText(p)}
-
-Solution de référence (réservée à toi, ne la recopie jamais telle quelle dans ton retour) : ${context}
+  const gradingContext = p.correction || p.grading_context;
+  const prompt = `Énoncé : ${fullStatementText(p)}
 ${notationGuideText()}
-
-Évalue la démonstration ci-dessous. Réponds UNIQUEMENT avec un objet JSON valide contenant exactement ces champs :
-{
-  "correctness": <entier 0-100, justesse mathématique>,
-  "correctness_comment": <string 1-2 phrases>,
-  "completeness": <entier 0-100, complétude et cas d'égalité>,
-  "completeness_comment": <string 1-2 phrases>,
-  "rigor": <entier 0-100, rigueur des justifications>,
-  "rigor_comment": <string 1-2 phrases>,
-  "clarity": <entier 0-100, clarté de rédaction>,
-  "clarity_comment": <string 1-2 phrases>,
-  "confidence": <entier 0-100, certitude de l'évaluation>,
-  "feedback": <string 3-5 phrases constructives en français>,
-  "elo_delta": <entier -30 à +30>
-}
 ${images.length ? `\nL'étudiant a également joint ${images.length} photo(s)/document(s) de sa démonstration manuscrite : lis-les attentivement et évalue leur contenu.` : ''}
 
 Démonstration à évaluer :
 ${answer || '(voir les pièces jointes)'}`;
 
   try {
-    const text = await callAI(prompt, images);
-    let raw = text.trim().replace(/```json\s*/gi,'').replace(/```\s*/g,'');
-    const s = raw.indexOf('{'), e = raw.lastIndexOf('}');
-    if (s===-1||e===-1) throw new Error('Aucun JSON dans la réponse');
-    raw = raw.slice(s, e+1);
-    const result = JSON.parse(raw);
-    if (typeof result.correctness !== 'number') throw new Error('Champs manquants');
+    const result = await callGrading(prompt, gradingContext, images);
 
     stopLoading();
     document.getElementById('loading-bar').classList.remove('on');
