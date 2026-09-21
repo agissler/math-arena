@@ -1,3 +1,8 @@
 # Copie de travail locale du Cloudflare Worker (déployé séparément sur Cloudflare,
 # ce fichier n'est pas la source de vérité et ne doit pas être versionné ici).
 cloudflare-worker.js
+
+# PDF : ne versionner que les annales.
+*.pdf
+!/pdfs/annales/*.pdf
+!/pdfs/annales/**/*.pdf
