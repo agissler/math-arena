@@ -6,3 +6,7 @@ cloudflare-worker.js
 *.pdf
 !/pdfs/annales/*.pdf
 !/pdfs/annales/**/*.pdf
+
+# Bibliothèque locale : ne pas versionner ces dossiers.
+/pdfs/exercices/
+/pdfs/livres/
