@@ -2,7 +2,7 @@
 
 Application web statique d'entraînement aux mathématiques de CPGE, destinée aux niveaux MPSI, MP et MP*.
 
-Elle regroupe des questions de cours, des exercices, des annales, une évaluation de type ELO et des outils de correction ou de tutorat assistés par IA. L'interface tient dans `index.html`; les contenus sont chargés depuis des fichiers JSON.
+Elle regroupe des questions de cours, des exercices, des annales, une évaluation ELO et des outils de correction ou de tutorat assistés par IA.
 
 ## Lancer le projet
 
@@ -16,15 +16,21 @@ Ouvrir ensuite [http://localhost:8000](http://localhost:8000). Une connexion Int
 
 ## Structure
 
-- `index.html` — interface, styles et logique côté client.
-- `cours/` — questions de cours et catalogue `index.json`.
-- `exercices/` — exercices et catalogue `index.json`.
-- `annales/` — sujets structurés et catalogue `index.json`.
-- `notation-guide.json` — conventions utilisées lors de la correction de copies.
-- `pdfs/annales/` — PDF d'annales suivis par Git.
+- `index.html` — structure de la page.
+- `assets/` — styles et logique JavaScript côté client.
+- `Data/` — taxonomie, guide de notation et contenus JSON indexés.
+- `schemas/` — formats JSON de référence.
+- `scripts/` et `tests/` — validation automatique des contenus.
+- `docs/` — documentation des formats JSON.
+- `.github/workflows/` — validation exécutée par GitHub.
 
 ## Ajouter du contenu
 
-Créer un fichier JSON en prenant un fichier voisin comme modèle, puis ajouter son nom au `index.json` du dossier concerné. Les identifiants doivent être uniques et les chaînes LaTeX doivent respecter l'échappement JSON (`\\` pour un antislash).
+Créer le JSON dans le sous-dossier approprié de `Data/`, puis ajouter son nom au `index.json` concerné. Le format complet est décrit dans `docs/formats-json.md`.
 
-Le projet ne possède actuellement ni build ni suite de tests automatisés : valider les JSON, puis effectuer un contrôle rapide dans le navigateur et sa console.
+```powershell
+node scripts/validate-content.mjs
+node tests/content/validate-content.test.mjs
+```
+
+Il n'existe aucune étape de build : après validation, effectuer un contrôle rapide dans le navigateur et sa console.

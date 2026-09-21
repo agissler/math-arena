@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "exercice.schema.json",
+  "title": "Exercice Math Arena",
+  "$ref": "common.schema.json#/$defs/problem"
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "annale.schema.json",
+  "title": "Annale Math Arena",
+  "type": "object",
+  "required": ["id", "concours", "filiere", "annee", "epreuve", "duree", "blocks"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "concours": {"type": "string", "minLength": 1},
+    "filiere": {"type": "string", "minLength": 1},
+    "annee": {"type": "integer", "minimum": 1900, "maximum": 2100},
+    "epreuve": {"type": "string", "minLength": 1},
+    "duree": {"type": "string", "minLength": 1},
+    "blocks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": ["type", "html"],
+            "properties": {
+              "type": {"const": "text"},
+              "html": {"type": "string", "minLength": 1}
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": ["type", "level", "title"],
+            "properties": {
+              "type": {"const": "heading"},
+              "level": {"type": "integer", "minimum": 1, "maximum": 6},
+              "title": {"type": "string", "minLength": 1}
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": ["type", "id", "statement"],
+            "properties": {
+              "type": {"const": "question"},
+              "id": {"type": "string", "minLength": 1},
+              "statement": {"type": "string", "minLength": 1},
+              "formula": {"type": "string"},
+              "followup": {"type": "string"}
+            },
+            "additionalProperties": false
+          }
+        ]
+      }
+    }
+  },
+  "additionalProperties": false
+}
