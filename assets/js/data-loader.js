@@ -1,6 +1,7 @@
 // ── Taxonomie chargée depuis data/taxonomy.json ─────────
 let CHAPTERS = [];
 let LEVELS = [];
+let DIFFICULTIES = [];
 function chapterInfo(n) { return CHAPTERS.find(c => c.n === Number(n)); }
 
 function fullStatementText(p) {
@@ -45,12 +46,13 @@ async function loadAllContent() {
     fetch('data/notation-guide.json').then(r => r.ok ? r.json() : null).catch(() => null),
   ]);
 
-  if (!Array.isArray(taxonomy.chapters) || !Array.isArray(taxonomy.levels) || !Array.isArray(taxonomy.cadences)) {
-    throw new Error('Taxonomie invalide : "chapters", "levels" et "cadences" doivent être des tableaux.');
+  if (!Array.isArray(taxonomy.chapters) || !Array.isArray(taxonomy.levels) || !Array.isArray(taxonomy.cadences) || !Array.isArray(taxonomy.difficulties)) {
+    throw new Error('Taxonomie invalide : "chapters", "levels", "cadences" et "difficulties" doivent être des tableaux.');
   }
 
   CHAPTERS = taxonomy.chapters;
   LEVELS = taxonomy.levels;
+  DIFFICULTIES = taxonomy.difficulties;
   EXERCICES = exercices;
   COURS = cours;
   ANNALES = annales;

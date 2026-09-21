@@ -76,9 +76,7 @@ function validateProblem(root, file, item, taxonomy, ids, issues) {
     if (field in item && typeof item[field] !== 'string') issues.push(`${label}.${field} doit être une chaîne`);
   }
   if (!Number.isInteger(item.chapter)) issues.push(`${label}.chapter doit être un entier`);
-  if (!Number.isInteger(item.difficulty) || item.difficulty < 1 || item.difficulty > 5) {
-    issues.push(`${label}.difficulty doit être un entier entre 1 et 5`);
-  }
+  if (!Number.isInteger(item.difficulty)) issues.push(`${label}.difficulty doit être un entier`);
   for (const field of ['questions', 'tags']) {
     if (field in item && (!Array.isArray(item[field]) || item[field].some(value => typeof value !== 'string'))) {
       issues.push(`${label}.${field} doit être un tableau de chaînes`);
@@ -91,6 +89,7 @@ function validateProblem(root, file, item, taxonomy, ids, issues) {
   ids.add(item.id);
   if (!taxonomy.levels.includes(item.level)) issues.push(`${label} : niveau inconnu "${item.level}"`);
   if (!taxonomy.cadences.includes(item.cadence)) issues.push(`${label} : cadence inconnue "${item.cadence}"`);
+  if (!taxonomy.difficulties.some(entry => entry.value === item.difficulty)) issues.push(`${label} : difficulté inconnue "${item.difficulty}"`);
   const chapter = taxonomy.chapters.find(entry => entry.n === item.chapter);
   if (!chapter) issues.push(`${label} : chapitre inconnu "${item.chapter}"`);
   else if (chapter.domain !== item.domain) issues.push(`${label} : domaine "${item.domain}" incompatible avec le chapitre ${item.chapter}`);
@@ -145,9 +144,9 @@ function validateAnnale(root, file, item, ids, issues) {
 function validateTaxonomy(root, issues) {
   const file = path.join(root, 'data', 'taxonomy.json');
   const taxonomy = readJson(root, file, issues);
-  if (!taxonomy || !Array.isArray(taxonomy.levels) || !Array.isArray(taxonomy.cadences) || !Array.isArray(taxonomy.chapters)) {
-    issues.push('data/taxonomy.json doit définir les tableaux levels, cadences et chapters');
-    return { levels: [], cadences: [], chapters: [] };
+  if (!taxonomy || !Array.isArray(taxonomy.levels) || !Array.isArray(taxonomy.cadences) || !Array.isArray(taxonomy.difficulties) || !Array.isArray(taxonomy.chapters)) {
+    issues.push('data/taxonomy.json doit définir les tableaux levels, cadences, difficulties et chapters');
+    return { levels: [], cadences: [], difficulties: [], chapters: [] };
   }
   const levels = new Set();
   taxonomy.levels.forEach((level, index) => {
@@ -160,6 +159,14 @@ function validateTaxonomy(root, issues) {
     requireNonEmptyString(cadence, `data/taxonomy.json.cadences[${index}]`, issues);
     if (cadences.has(cadence)) issues.push(`data/taxonomy.json : cadence dupliquée "${cadence}"`);
     cadences.add(cadence);
+  });
+  const difficulties = new Set();
+  taxonomy.difficulties.forEach((difficulty, index) => {
+    const label = `data/taxonomy.json.difficulties[${index}]`;
+    if (!Number.isInteger(difficulty?.value) || difficulty.value < 1) issues.push(`${label}.value doit être un entier positif`);
+    requireNonEmptyString(difficulty?.label, `${label}.label`, issues);
+    if (difficulties.has(difficulty?.value)) issues.push(`data/taxonomy.json : difficulté dupliquée "${difficulty?.value}"`);
+    difficulties.add(difficulty?.value);
   });
   const chapters = new Set();
   taxonomy.chapters.forEach((chapter, index) => {

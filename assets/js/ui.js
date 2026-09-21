@@ -326,12 +326,14 @@ function renderProblem(idx) {
   attachments['answer'] = [];
   const chap = chapterInfo(p.chapter);
   document.getElementById('hdr-cat').textContent = `${p.domain} · ${chap ? chap.name : '—'}`;
-  const dots = Array.from({length:5},(_,i)=>`<div class="dot${i<p.difficulty?' on':''}"></div>`).join('');
+  const maxDifficulty = Math.max(...DIFFICULTIES.map(d => d.value));
+  const difficultyLabel = DIFFICULTIES.find(d => d.value === p.difficulty)?.label || '';
+  const dots = Array.from({length:maxDifficulty},(_,i)=>`<div class="dot${i<p.difficulty?' on':''}"></div>`).join('');
 
   document.getElementById('main-content').innerHTML = `
     <div class="meta-row">
       <div class="tag">Problème #${String(idx+1).padStart(3,'0')}</div>
-      <div class="diff-row">Difficulté <div class="dots">${dots}</div> niveau ${p.difficulty}/5</div>
+      <div class="diff-row">Difficulté <div class="dots">${dots}</div> niveau ${p.difficulty}/${maxDifficulty}${difficultyLabel ? ` · ${difficultyLabel}` : ''}</div>
     </div>
     <div class="cat-row">
       <span class="cat-tag">${p.domain}</span>

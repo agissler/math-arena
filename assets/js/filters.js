@@ -31,7 +31,7 @@ function buildSelector() {
       </select>
       <select class="filter-select" onchange="onFilterChange('difficulty', this.value)">
         <option value="">Toutes difficultés</option>
-        ${[1,2,3,4,5].map(d => `<option value="${d}"${filters.difficulty===String(d)?' selected':''}>Niveau ${d}/5</option>`).join('')}
+        ${DIFFICULTIES.map(d => `<option value="${d.value}"${filters.difficulty===String(d.value)?' selected':''}>${d.value} — ${d.label}</option>`).join('')}
       </select>
     </div>
     <div class="prob-list" id="prob-list"></div>`;
@@ -107,8 +107,14 @@ function cadenceBucket(cadenceStr) {
   return 'marathon';
 }
 
+function difficultyBounds() {
+  const values = DIFFICULTIES.map(d => d.value).filter(Number.isInteger).sort((a, b) => a - b);
+  return { min: values[0] ?? 1, max: values[values.length - 1] ?? 5 };
+}
+
 function defaultRandomFilters() {
-  return { levels: [], diffMin: 1, diffMax: 5, domain: '', cadences: [], tags: [] };
+  const bounds = difficultyBounds();
+  return { levels: [], diffMin: bounds.min, diffMax: bounds.max, domain: '', cadences: [], tags: [] };
 }
 
 function loadRandomFilters() {
@@ -116,11 +122,12 @@ function loadRandomFilters() {
     const raw = localStorage.getItem(RANDOM_FILTERS_KEY);
     if (!raw) return defaultRandomFilters();
     const parsed = JSON.parse(raw);
-    const clamp5 = (n, fallback) => Number.isInteger(n) ? Math.min(Math.max(n, 1), 5) : fallback;
+    const bounds = difficultyBounds();
+    const clampDifficulty = (n, fallback) => Number.isInteger(n) ? Math.min(Math.max(n, bounds.min), bounds.max) : fallback;
     return {
       levels: Array.isArray(parsed.levels) ? parsed.levels.filter(l => LEVELS.includes(l)) : [],
-      diffMin: clamp5(parsed.diffMin, 1),
-      diffMax: clamp5(parsed.diffMax, 5),
+      diffMin: clampDifficulty(parsed.diffMin, bounds.min),
+      diffMax: clampDifficulty(parsed.diffMax, bounds.max),
       domain: typeof parsed.domain === 'string' ? parsed.domain : '',
       cadences: Array.isArray(parsed.cadences) ? parsed.cadences.filter(c => CADENCE_BUCKETS.some(b => b.key === c)) : [],
       tags: Array.isArray(parsed.tags) ? parsed.tags.filter(t => typeof t === 'string') : [],
@@ -235,6 +242,7 @@ function renderFiltersPanel() {
 
   const domains = ['Analyse', 'Algèbre', 'Probabilités', 'Géométrie'];
   const tags = getAllTags();
+  const difficultyRange = difficultyBounds();
 
   panel.innerHTML = `
     <div class="filters-panel-box">
@@ -254,8 +262,8 @@ function renderFiltersPanel() {
         <div class="filter-block">
           <div class="filter-block-label">Difficulté <span class="filter-block-value" id="diff-range-label">${randomFilters.diffMin} – ${randomFilters.diffMax}</span></div>
           <div class="range-slider-wrap">
-            <input type="range" min="1" max="5" step="1" value="${randomFilters.diffMin}" id="diff-min-input" oninput="onDiffRangeInput('min', this.value)">
-            <input type="range" min="1" max="5" step="1" value="${randomFilters.diffMax}" id="diff-max-input" oninput="onDiffRangeInput('max', this.value)">
+            <input type="range" min="${difficultyRange.min}" max="${difficultyRange.max}" step="1" value="${randomFilters.diffMin}" id="diff-min-input" oninput="onDiffRangeInput('min', this.value)">
+            <input type="range" min="${difficultyRange.min}" max="${difficultyRange.max}" step="1" value="${randomFilters.diffMax}" id="diff-max-input" oninput="onDiffRangeInput('max', this.value)">
           </div>
         </div>
 

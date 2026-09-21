@@ -1,0 +1,23 @@
+{
+  "id": "commutateur-endomorphismes-nilpotence",
+  "title": "Commutateur d'endomorphismes et nilpotence",
+  "domain": "Algèbre",
+  "chapter": "Réduction des endomorphismes et des matrices carrées",
+  "level": "MP",
+  "cadence": "Marathon · 35 min",
+  "difficulty": 5,
+  "statement": "Soit $V$ un espace vectoriel de dimension finie sur $\\mathbb{C}$. Pour $a,b\\in\\mathcal{L}(V)$, on pose $\\varphi_a(b)=ab-ba$.",
+  "questions": [
+    "Pour $a,b\\in\\mathcal{L}(V)$ et $n\\in\\mathbb{N}$, calculer $\\varphi_a^n(b)$.",
+    "Montrer que $a^{n+1}b-ba^{n+1}=\\displaystyle\\sum_{k=0}^{n}a^k(ab-ba)a^{n-k}$.",
+    "Montrer que si $0$ est valeur propre de $a\\in\\mathcal{L}(V)$, alors $a$ est nilpotent si, et seulement si, $\\varphi_a$ est nilpotent.",
+    "Montrer que si $a\\in\\mathcal{L}(V)$ n'a qu'une valeur propre, alors $\\varphi_a$ est nilpotent. Étudier la réciproque."
+  ],
+  "grading_context": "Oral blanc X (planche 2), classe de MP 2017/2018, lycée Louis-le-Grand. Temps de passage : 50 minutes.",
+  "tags": [
+    "endomorphismes",
+    "commutateur",
+    "nilpotence",
+    "valeurs propres"
+  ]
+}

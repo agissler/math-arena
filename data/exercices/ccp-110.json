@@ -1,0 +1,17 @@
+{
+  "id": "rearrangement-serie-semi-convergente",
+  "title": "Réarrangement d'une série semi-convergente",
+  "domain": "Analyse",
+  "chapter": "Séries numériques et vectorielles",
+  "level": "MP",
+  "cadence": "Marathon · 35 min",
+  "difficulty": 4,
+  "statement": "Soit $\\sum_{n\\geq 0} a_n$ une série réelle semi-convergente et $\\alpha\\in\\mathbb{R}$. Montrer qu'il existe une permutation $\\sigma$ de $\\mathbb{N}$ telle que la série $\\sum_{n\\geq 0} a_{\\sigma(n)}$ converge vers $\\alpha$.",
+  "grading_context": "Oral blanc X (planche 1), classe de MP 2017/2018, lycée Louis-le-Grand. Temps de passage : 50 minutes.",
+  "tags": [
+    "séries numériques",
+    "semi-convergence",
+    "permutation",
+    "réarrangement"
+  ]
+}

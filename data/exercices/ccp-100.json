@@ -1,0 +1,23 @@
+{
+  "id": "compacite-intersections-boules-fermees",
+  "title": "Compacité et intersections avec des boules fermées",
+  "domain": "Analyse",
+  "chapter": "Topologie des espaces vectoriels normés",
+  "level": "MP",
+  "cadence": "Standard · 20 min",
+  "difficulty": 4,
+  "statement": "Soit $K$ un compact non vide de $\\mathbb{R}^n$. Pour $r \\in \\mathbb{R}_+^*$, on pose $C(r)=\\{x\\in\\mathbb{R}^n\\mid K\\subset \\overline{B}(x,r)\\}$.",
+  "questions": [
+    "Montrer que, si $C(r)\\neq\\varnothing$, $C(r)$ est compact.",
+    "Que dire de l'ensemble $\\displaystyle \\bigcap_{r\\in\\mathbb{R}_+^*} C(r)$ ?",
+    "Montrer que l'ensemble $\\{r\\in\\mathbb{R}_+^*\\mid C(r)\\neq\\varnothing\\}$ est de la forme $[\\tau,+\\infty[$.",
+    "Combien d'éléments sont dans $C(\\tau)$ ?"
+  ],
+  "grading_context": "Exercice noté sur 8 points. Oral blanc (planche 10), classe de MP 2017/2018, lycée Louis-le-Grand. Temps de préparation : 20 minutes. Temps de passage : 20 minutes.",
+  "tags": [
+    "compacité",
+    "boules fermées",
+    "intersection",
+    "espace euclidien"
+  ]
+}

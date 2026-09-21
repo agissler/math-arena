@@ -9,9 +9,9 @@ Champs obligatoires :
 - `id`, identique au nom du fichier sans `.json` ;
 - `title`, `domain`, `level`, `cadence` et `statement` ;
 - `chapter`, numéro déclaré dans `data/taxonomy.json` ;
-- `difficulty`, entier de 1 à 5.
+- `difficulty`, valeur déclarée dans `data/taxonomy.json`.
 
-`level` et `cadence` doivent correspondre exactement à des valeurs déclarées dans `data/taxonomy.json`.
+`level`, `cadence` et `difficulty` doivent correspondre exactement à des valeurs déclarées dans `data/taxonomy.json`.
 
 Champs optionnels : `formula`, `followup`, `questions`, `remark`, `hint`, `grading_context`, `correction` et `tags`.
 

@@ -10,6 +10,13 @@
     "Marathon · 30 min",
     "Marathon · 35 min"
   ],
+  "difficulties": [
+    {"value": 1, "label": "Très facile"},
+    {"value": 2, "label": "Facile"},
+    {"value": 3, "label": "Intermédiaire"},
+    {"value": 4, "label": "Difficile"},
+    {"value": 5, "label": "Très difficile"}
+  ],
   "chapters": [
     {"n": 1, "name": "Raisonnement et vocabulaire ensembliste", "domain": "Algèbre"},
     {"n": 2, "name": "Compléments de calcul algébrique et de trigonométrie", "domain": "Algèbre"},

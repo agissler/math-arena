@@ -3,7 +3,7 @@
   "$id": "taxonomy.schema.json",
   "title": "Taxonomie Math Arena",
   "type": "object",
-  "required": ["levels", "cadences", "chapters"],
+  "required": ["levels", "cadences", "difficulties", "chapters"],
   "properties": {
     "levels": {
       "type": "array",
@@ -16,6 +16,19 @@
       "minItems": 1,
       "uniqueItems": true,
       "items": {"type": "string", "minLength": 1}
+    },
+    "difficulties": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["value", "label"],
+        "properties": {
+          "value": {"type": "integer", "minimum": 1},
+          "label": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
     },
     "chapters": {
       "type": "array",
