@@ -1,6 +1,6 @@
 # Formats JSON
 
-Les fichiers chargés par l'application se trouvent sous `Data/`. Chaque sous-dossier de contenu possède un `index.json` qui liste exactement les fichiers à charger.
+Les fichiers chargés par l'application se trouvent sous `data/`. Chaque sous-dossier de contenu possède un `index.json` qui liste exactement les fichiers à charger.
 
 ## Cours et exercices
 
@@ -8,8 +8,10 @@ Champs obligatoires :
 
 - `id`, identique au nom du fichier sans `.json` ;
 - `title`, `domain`, `level`, `cadence` et `statement` ;
-- `chapter`, numéro déclaré dans `Data/taxonomy.json` ;
+- `chapter`, numéro déclaré dans `data/taxonomy.json` ;
 - `difficulty`, entier de 1 à 5.
+
+`level` et `cadence` doivent correspondre exactement à des valeurs déclarées dans `data/taxonomy.json`.
 
 Champs optionnels : `formula`, `followup`, `questions`, `remark`, `hint`, `grading_context`, `correction` et `tags`.
 

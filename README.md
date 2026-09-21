@@ -1,6 +1,6 @@
 # Math Arena
 
-Application web statique d'entraînement aux mathématiques de CPGE, destinée aux niveaux MPSI, MP et MP*.
+Application web statique d'entraînement aux mathématiques, destinée aux niveaux Terminale, MPSI, MP et MP*.
 
 Elle regroupe des questions de cours, des exercices, des annales, une évaluation ELO et des outils de correction ou de tutorat assistés par IA.
 
@@ -18,7 +18,7 @@ Ouvrir ensuite [http://localhost:8000](http://localhost:8000). Une connexion Int
 
 - `index.html` — structure de la page.
 - `assets/` — styles et logique JavaScript côté client.
-- `Data/` — taxonomie, guide de notation et contenus JSON indexés.
+- `data/` — taxonomie, guide de notation et contenus JSON indexés.
 - `schemas/` — formats JSON de référence.
 - `scripts/` et `tests/` — validation automatique des contenus.
 - `docs/` — documentation des formats JSON.
@@ -26,7 +26,7 @@ Ouvrir ensuite [http://localhost:8000](http://localhost:8000). Une connexion Int
 
 ## Ajouter du contenu
 
-Créer le JSON dans le sous-dossier approprié de `Data/`, puis ajouter son nom au `index.json` concerné. Le format complet est décrit dans `docs/formats-json.md`.
+Créer le JSON dans le sous-dossier approprié de `data/`, puis ajouter son nom au `index.json` concerné. Le format complet est décrit dans `docs/formats-json.md`.
 
 ```powershell
 node scripts/validate-content.mjs

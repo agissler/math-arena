@@ -90,6 +90,7 @@ function validateProblem(root, file, item, taxonomy, ids, issues) {
   if (ids.has(item.id)) issues.push(`${label} : identifiant dupliqué "${item.id}"`);
   ids.add(item.id);
   if (!taxonomy.levels.includes(item.level)) issues.push(`${label} : niveau inconnu "${item.level}"`);
+  if (!taxonomy.cadences.includes(item.cadence)) issues.push(`${label} : cadence inconnue "${item.cadence}"`);
   const chapter = taxonomy.chapters.find(entry => entry.n === item.chapter);
   if (!chapter) issues.push(`${label} : chapitre inconnu "${item.chapter}"`);
   else if (chapter.domain !== item.domain) issues.push(`${label} : domaine "${item.domain}" incompatible avec le chapitre ${item.chapter}`);
@@ -142,44 +143,50 @@ function validateAnnale(root, file, item, ids, issues) {
 }
 
 function validateTaxonomy(root, issues) {
-  const file = path.join(root, 'Data', 'taxonomy.json');
+  const file = path.join(root, 'data', 'taxonomy.json');
   const taxonomy = readJson(root, file, issues);
-  if (!taxonomy || !Array.isArray(taxonomy.levels) || !Array.isArray(taxonomy.chapters)) {
-    issues.push('Data/taxonomy.json doit définir les tableaux levels et chapters');
-    return { levels: [], chapters: [] };
+  if (!taxonomy || !Array.isArray(taxonomy.levels) || !Array.isArray(taxonomy.cadences) || !Array.isArray(taxonomy.chapters)) {
+    issues.push('data/taxonomy.json doit définir les tableaux levels, cadences et chapters');
+    return { levels: [], cadences: [], chapters: [] };
   }
   const levels = new Set();
   taxonomy.levels.forEach((level, index) => {
-    requireNonEmptyString(level, `Data/taxonomy.json.levels[${index}]`, issues);
-    if (levels.has(level)) issues.push(`Data/taxonomy.json : niveau dupliqué "${level}"`);
+    requireNonEmptyString(level, `data/taxonomy.json.levels[${index}]`, issues);
+    if (levels.has(level)) issues.push(`data/taxonomy.json : niveau dupliqué "${level}"`);
     levels.add(level);
+  });
+  const cadences = new Set();
+  taxonomy.cadences.forEach((cadence, index) => {
+    requireNonEmptyString(cadence, `data/taxonomy.json.cadences[${index}]`, issues);
+    if (cadences.has(cadence)) issues.push(`data/taxonomy.json : cadence dupliquée "${cadence}"`);
+    cadences.add(cadence);
   });
   const chapters = new Set();
   taxonomy.chapters.forEach((chapter, index) => {
-    const label = `Data/taxonomy.json.chapters[${index}]`;
+    const label = `data/taxonomy.json.chapters[${index}]`;
     if (!Number.isInteger(chapter?.n) || chapter.n < 1) issues.push(`${label}.n doit être un entier positif`);
     requireNonEmptyString(chapter?.name, `${label}.name`, issues);
     requireNonEmptyString(chapter?.domain, `${label}.domain`, issues);
-    if (chapters.has(chapter?.n)) issues.push(`Data/taxonomy.json : chapitre dupliqué "${chapter?.n}"`);
+    if (chapters.has(chapter?.n)) issues.push(`data/taxonomy.json : chapitre dupliqué "${chapter?.n}"`);
     chapters.add(chapter?.n);
   });
   return taxonomy;
 }
 
 function validateNotationGuide(root, issues) {
-  const file = path.join(root, 'Data', 'notation-guide.json');
+  const file = path.join(root, 'data', 'notation-guide.json');
   const guide = readJson(root, file, issues);
   if (!guide) return;
-  requireNonEmptyString(guide.grading_instruction, 'Data/notation-guide.json.grading_instruction', issues);
-  if (!Array.isArray(guide.equivalent_notations)) issues.push('Data/notation-guide.json.equivalent_notations doit être un tableau');
+  requireNonEmptyString(guide.grading_instruction, 'data/notation-guide.json.grading_instruction', issues);
+  if (!Array.isArray(guide.equivalent_notations)) issues.push('data/notation-guide.json.equivalent_notations doit être un tableau');
   else guide.equivalent_notations.forEach((entry, index) => {
-    requireNonEmptyString(entry?.meaning, `Data/notation-guide.json.equivalent_notations[${index}].meaning`, issues);
+    requireNonEmptyString(entry?.meaning, `data/notation-guide.json.equivalent_notations[${index}].meaning`, issues);
     if (!Array.isArray(entry?.forms) || entry.forms.some(form => typeof form !== 'string')) {
-      issues.push(`Data/notation-guide.json.equivalent_notations[${index}].forms doit être un tableau de chaînes`);
+      issues.push(`data/notation-guide.json.equivalent_notations[${index}].forms doit être un tableau de chaînes`);
     }
   });
   if (!Array.isArray(guide.handwriting_ambiguities) || guide.handwriting_ambiguities.some(value => typeof value !== 'string')) {
-    issues.push('Data/notation-guide.json.handwriting_ambiguities doit être un tableau de chaînes');
+    issues.push('data/notation-guide.json.handwriting_ambiguities doit être un tableau de chaînes');
   }
 }
 
@@ -192,14 +199,14 @@ export function validateRepository(root = DEFAULT_ROOT) {
   validateNotationGuide(root, issues);
   const problemIds = new Set();
   for (const kind of ['cours', 'exercices']) {
-    const folder = path.join(root, 'Data', kind);
+    const folder = path.join(root, 'data', kind);
     for (const name of validateIndexedFolder(root, folder, issues)) {
       const file = path.join(folder, name);
       validateProblem(root, file, readJson(root, file, issues), taxonomy, problemIds, issues);
     }
   }
   const annaleIds = new Set();
-  const annalesFolder = path.join(root, 'Data', 'annales');
+  const annalesFolder = path.join(root, 'data', 'annales');
   for (const name of validateIndexedFolder(root, annalesFolder, issues)) {
     const file = path.join(annalesFolder, name);
     validateAnnale(root, file, readJson(root, file, issues), annaleIds, issues);

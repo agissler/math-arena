@@ -1,5 +1,15 @@
 {
-  "levels": ["MPSI", "MP", "MP*"],
+  "levels": ["Terminale", "MPSI", "MP", "MP*"],
+  "cadences": [
+    "Blitz · 10 min",
+    "Blitz · 15 min",
+    "Standard · 15 min",
+    "Standard · 20 min",
+    "Marathon · 20 min",
+    "Marathon · 25 min",
+    "Marathon · 30 min",
+    "Marathon · 35 min"
+  ],
   "chapters": [
     {"n": 1, "name": "Raisonnement et vocabulaire ensembliste", "domain": "Algèbre"},
     {"n": 2, "name": "Compléments de calcul algébrique et de trigonométrie", "domain": "Algèbre"},

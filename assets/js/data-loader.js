@@ -1,4 +1,4 @@
-// ── Taxonomie chargée depuis Data/taxonomy.json ─────────
+// ── Taxonomie chargée depuis data/taxonomy.json ─────────
 let CHAPTERS = [];
 let LEVELS = [];
 function chapterInfo(n) { return CHAPTERS.find(c => c.n === Number(n)); }
@@ -12,9 +12,9 @@ function fullStatementText(p) {
   return parts.join('\n\n');
 }
 
-// ── Contenu chargé depuis Data/ ─────────────────────────
-// Pour ajouter un problème : crée Data/<dossier>/<id>.json (avec domain,
-// chapter, level, difficulty) puis ajoute son nom dans Data/<dossier>/index.json.
+// ── Contenu chargé depuis data/ ─────────────────────────
+// Pour ajouter un problème : crée data/<dossier>/<id>.json (avec domain,
+// chapter, level, difficulty) puis ajoute son nom dans data/<dossier>/index.json.
 let EXERCICES = [];
 let COURS = [];
 let ANNALES = [];
@@ -35,18 +35,18 @@ let NOTATION_GUIDE = null;
 
 async function loadAllContent() {
   const [taxonomy, exercices, cours, annales, notationGuide] = await Promise.all([
-    fetch('Data/taxonomy.json').then(r => {
-      if (!r.ok) throw new Error(`Impossible de charger Data/taxonomy.json (HTTP ${r.status})`);
+    fetch('data/taxonomy.json').then(r => {
+      if (!r.ok) throw new Error(`Impossible de charger data/taxonomy.json (HTTP ${r.status})`);
       return r.json();
     }),
-    loadProblemSet('Data/exercices'),
-    loadProblemSet('Data/cours'),
-    loadProblemSet('Data/annales'),
-    fetch('Data/notation-guide.json').then(r => r.ok ? r.json() : null).catch(() => null),
+    loadProblemSet('data/exercices'),
+    loadProblemSet('data/cours'),
+    loadProblemSet('data/annales'),
+    fetch('data/notation-guide.json').then(r => r.ok ? r.json() : null).catch(() => null),
   ]);
 
-  if (!Array.isArray(taxonomy.chapters) || !Array.isArray(taxonomy.levels)) {
-    throw new Error('Taxonomie invalide : "chapters" et "levels" doivent être des tableaux.');
+  if (!Array.isArray(taxonomy.chapters) || !Array.isArray(taxonomy.levels) || !Array.isArray(taxonomy.cadences)) {
+    throw new Error('Taxonomie invalide : "chapters", "levels" et "cadences" doivent être des tableaux.');
   }
 
   CHAPTERS = taxonomy.chapters;
@@ -58,7 +58,7 @@ async function loadAllContent() {
   randomFilters = loadRandomFilters();
   PROBLEMS = EXERCICES;
 }
-// Construit un bloc d'instructions à partir de Data/notation-guide.json, pour aider
+// Construit un bloc d'instructions à partir de data/notation-guide.json, pour aider
 // l'IA à interpréter les notations mathématiques (en particulier sur une photo
 // manuscrite) sans pénaliser des variations de forme sans conséquence sur le sens.
 function notationGuideText() {
