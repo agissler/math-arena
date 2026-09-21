@@ -2,6 +2,9 @@
 # ce fichier n'est pas la source de vérité et ne doit pas être versionné ici).
 cloudflare-worker.js
 
+# Instructions locales pour les agents de développement.
+/AGENTS.md
+
 # PDF : ne versionner que les annales.
 *.pdf
 !/pdfs/annales/*.pdf
